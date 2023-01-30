@@ -1,0 +1,112 @@
+<ion-header>
+  
+    <div class="tool">
+      <ion-buttons slot="start">
+      <ion-back-button (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
+      </ion-buttons>
+  
+    </div>
+</ion-header>
+
+<ion-content>
+  <div class="bar primary">
+    <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
+    <div class="close">
+      <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
+    </div>
+    
+  </div>
+  
+  <ion-list class="lst">
+    <div class="lstcont">
+    <div *ngIf = "anyContent">
+      <div *ngIf = "obj">
+        <div *ngFor = "let song of songs">
+            <div  class="cont1"  (click) = "promo(song)">
+              <ion-label><p  class="items">{{ song.title }}</p></ion-label> 
+            </div> 
+            <div (click) = "EditSong(song)"  class="edit">
+              <ion-icon class ="icon" name="pencil"></ion-icon>
+            </div>
+            <div (click) = "deleteSong(song)"  class="edit del" color="danger">
+              <ion-icon class="icon" name = "trash"></ion-icon>
+            </div>
+
+        </div>
+        <div *ngIf = "songs.length == 0" >
+          <div style="width:100%" >
+            <ion-chip style="width:66%; margin:auto 17%;">
+              <ion-label style="margin: 0 auto;" >No Songs Founded</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+            
+      </div>
+
+      <div *ngIf = "!obj">
+        <div  class="cont" *ngFor = "let song of songs" (click) = "promo(song)">
+          <ion-label><p class="items">{{ song.title }}</p></ion-label> 
+        </div> 
+        <div *ngIf = "songs.length == 0" >
+          <div style="width:100%" >
+            <ion-chip style="width:66%; margin:auto 17%;">
+              <ion-label style="margin: 0 auto;" >No Songs Founded</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div style="width:100%"  *ngIf = "!anyContent">
+      <ion-chip style="width:66%; margin:auto 17%;"> 
+        <ion-label style="margin: 0 auto;" >Songs will be added soon</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+  </ion-list>
+
+
+  <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="success">
+          <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-chip class="auth">
+          <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
+        </ion-chip>
+        <p style="white-space: pre-line; text-align: center; font-size: 13px;"> {{ currSong.content }}
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+  <!-- Edit Model -->
+  <ion-modal backdropDismiss="false" [isOpen]="isEditOpen">
+    <ng-template>
+    
+      <ion-header>
+        <ion-toolbar style="--background-color: rgb(232, 248, 232) !important;">
+          <ion-input (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.title" required></ion-input>
+         
+          <div style="padding-right: 5px;" slot="end">
+            <ion-button type="submit"  (click) = "updateSong()" [disabled] = "submitButton"  type="submit" size = "small" color="success">Save</ion-button>
+            <ion-button size = "small" color="danger"  (click)="setOpen(false)">Close</ion-button>
+          </div>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-chip class="auth" >
+          <ion-input style="font-size: 10px; max-lines: 3;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
+        </ion-chip>
+        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; font-size: 15px;" [autoGrow] = "true"></ion-textarea>
+      </ion-content>
+
+    </ng-template>
+  </ion-modal>
+</ion-content>

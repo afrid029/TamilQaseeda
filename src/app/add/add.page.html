@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-header>
+   <form  #addForm = "ngForm" validate>
+    <ion-item lines="full">
+      <ion-label position="floating">Title</ion-label>
+      <ion-input  [(ngModel)]="song.title" name="title" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Content</ion-label>
+      <ion-textarea [(ngModel)]="song.content" [autoGrow]="true" name="content"required></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Author</ion-label>
+      <ion-input [(ngModel)]="song.author" type="text" name="author"></ion-input>
+    </ion-item>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-select [(ngModel)]="song.type" name="type" interface="action-sheet" placeholder="Select Catagory" required>
+          <ion-select-option value="prophet">Muhammadh Sallallahu Alaihiwasallam</ion-select-option>
+          <ion-select-option value="muhi">Ghawsul A`lam</ion-select-option>
+          <ion-select-option value="shahul">Bathusha Nayagam</ion-select-option>
+          <ion-select-option value="ajmeer">Ajmeer Nayagam</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div class="cont">
+      <ion-button type="submit" [disabled]="addForm.invalid" (click)="submit()" class = "btn">Add</ion-button>
+    </div>
+   </form>
+  </ion-card-header>
+</ion-card>
+</ion-content>

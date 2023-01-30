@@ -1,0 +1,8 @@
+{
+  "name": "TamilQaseeda2.0",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,35 @@
+<ion-card [routerLink] = "['/prop']" id="id1" class="card">
+    <img class="img" alt="Silhouette of mountains" src="../../assets/madina.png" />
+    <ion-card-header>
+      <ion-card-subtitle class="ccontent">Prophet</ion-card-subtitle>
+      <ion-card-title class="ctitle">Muhammadhu Nabi</ion-card-title>
+      <ion-card-subtitle class="ccontent">Sallallaahu Alaihiwasallam</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card [routerLink] = "['/muhi']" class="card">
+    <img alt="Silhouette of mountains" src="../../assets/madina.png" />
+    <ion-card-header>
+      <ion-card-subtitle class="ccontent">Al-Ghawz, Quthbul Akthab</ion-card-subtitle>
+      <ion-card-title class="ctitle">Muhiyyideen Abdul Qadir Jeelani</ion-card-title>
+      <ion-card-subtitle class="ccontent" font-size="10px">Qathasallahussirrahul Azeez </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card [routerLink] = "['/shahul']" class="card">
+    <img alt="Silhouette of mountains" src="../../assets/madina.png" />
+    <ion-card-header>
+      <ion-card-subtitle class="ccontent">Quthbul Majeedh, Farthul Waheedh, Bathusha</ion-card-subtitle>
+      <ion-card-title class="ctitle">Shahul Hameed </ion-card-title>
+      <ion-card-subtitle class="ccontent" font-size="10px">Qathasallahussirrahul Azeez</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  
+  <ion-card [routerLink] = "['/ajmeer']" class="card">
+    <img alt="Silhouette of mountains" src="../../assets/madina.png" />
+    <ion-card-header>
+      <ion-card-subtitle class="ccontent">Kwaajah, Ghareebe Nawaz</ion-card-subtitle>
+      <ion-card-title class="ctitle">Moinuddin</ion-card-title>
+      <ion-card-subtitle class="ccontent" font-size="10px">Chisthi, Ajmeeri</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
