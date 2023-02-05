@@ -133,7 +133,7 @@ async getSong(type: string){
     
     return res
   }).catch((e) =>{
-    return 'error in getSong'
+    return e.message;
   });
 }
 
@@ -636,7 +636,7 @@ async getCalendar(){
     
     return res
   }).catch((e) =>{
-    return 'error in getCalendar'
+    return e.message;
   });
 }
 
@@ -768,17 +768,16 @@ getCalendarFromFireBase(){
 
 async deleteAll(){
 
-  localStorage.removeItem('songref');
-  localStorage.removeItem('ziyaramref');
-  localStorage.removeItem('calendarref');
-  localStorage.removeItem('evidenceref');
-  // //await this.createDatabase();
-  return this.databaseObj.executeSql('delete from ziyaram',[]).then(()=>{
-    return 'All Songs deleted successfully';
-
-  }).catch((e)=>{
-   return 'Problem in deleteAll '+JSON.stringify(e)
-  })
+  // localStorage.removeItem('songref');
+  // localStorage.removeItem('ziyaramref');
+  // localStorage.removeItem('calendarref');
+  // localStorage.removeItem('evidenceref');
+  //await this.createDatabase();
+  // return this.databaseObj.executeSql('delete from ziyaram',[]).then(()=>{
+  //   return 'All Songs deleted successfully';
+  // }).catch((e)=>{
+  //  return 'Problem in deleteAll '+JSON.stringify(e)
+  //})
 
 //   console.log(this.curTime);
 //   this.curTime = new Date().getTime();

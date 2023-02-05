@@ -2,3 +2,21 @@ ion-app{
     margin-top: 8%;
     margin-bottom: 2%;
 }
+
+ion-menu::part(container){
+    border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
+}
+
+@media (prefers-color-scheme: dark){
+    ion-menu::part(container){
+        border-radius: 0 20px 20px 0;
+      box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
+    }
+}
+@media (prefers-color-scheme: light){
+    ion-menu::part(container){    
+      box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.589);
+    }
+}

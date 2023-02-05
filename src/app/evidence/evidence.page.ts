@@ -63,16 +63,9 @@ export class EvidencePage {
         this.net=re;
       });
 
-      console.log(localStorage.getItem('user'));
-      if(localStorage.getItem('user')){
-        console.log("set");
-        this.obj = true;
-        
-      }else{
-        console.log("unset");
-        this.obj = false;
-        
-      }
+      this.obsr.user.subscribe(re=>{
+        this.obj = re;
+      })
    }
    unsbr(){
     //this.subs.unsubscribe();
@@ -82,8 +75,23 @@ ionViewWillEnter(){
   console.log('will Enter');
   this.getEvidence();
 }
+ionViewDidEnter(){
+  console.log('Evidence view entering');
+  
+  this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+
+    
+  })
+ }
+
+ ionViewWillLeave(){
+  console.log('Evidence view leaving');
+  
+  this.subs.unsubscribe();
+ }
 
 async getEvidence(){
+  this.spinner = true;
 
   return this.db.getEvidence().then((data)=>{
     console.log('Ziyaram entering ', data);
@@ -113,6 +121,7 @@ async getEvidence(){
       console.log('Evidences ', this.aqeeda, this.fiqh, this.other);
       
     }
+    this.spinner = false;
     if(this.aqeeda.length == 0){
       this.aqAnyContent = false
     }
@@ -126,13 +135,15 @@ async getEvidence(){
     
   }).catch((e)=>{
     console.log(e);
+    this.spinner = false;
     this.utilService.erroToast(e,'analytics-outline');
     })
 
 }
 async handleRefresh(event: any) {
-  this.spinner = true
+  
   if(this.net){
+    this.spinner = true
     setTimeout(() => {
       this.db.getEvidenceFromFireBase();
       console.log('refreshed ');
@@ -175,20 +186,23 @@ setEditFalse(){
 }
 
 update(){
-  if(this.net){
+  
     if(this.net){
+      this.spinner = true;
+      this.isEditOpen = false;
       this.editEvidence.updatedDate = new Date().getTime();
       this.editEvidence.deleted = false;
       this.db.updateEvidenceFireBase(this.editEvidence).then(()=>{
-        this.isEditOpen = false;
+        this.spinner = false;
         this.utilService.successToast('Evidence updated successfully','thumbs-up-outline','success');
       }).catch(er =>{
+        this.spinner = false;
         this.utilService.erroToast('Something Went Wrong', 'bug-outline');
       });
     }else{
       this.utilService.NetworkToast();
     }
-  }
+  
 }
 
 async deleteEvidence(data: any){
@@ -207,8 +221,10 @@ async deleteEvidence(data: any){
           text: 'Delete',
           role: 'confirm',
           handler: () =>{
-            console.log('delete Conformed');
+            this.spinner = true;
+            console.log('delete Confirmed');
              this.db.deleteaevidenceFireBase(data).then(()=>{
+                this.spinner = false;
                   this.utilService.successToast('Evidence Detail deleted successfully','trash-outline','warning');
               }).catch((er)=>{
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
@@ -264,14 +280,5 @@ clearSearch(){
     this.searchKey = ''; 
 }
 
-
-curr(){
-  console.log(this.slide.activeIndex);
-  
-}
-
-check(){
-  alert('hiii');
-}
 
 }

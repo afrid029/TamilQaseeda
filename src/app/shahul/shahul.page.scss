@@ -32,7 +32,7 @@
     .tool {
         width: 100%;
         height: 100%;
-        background-image: url(../../assets/pictures/qaseeda/darkheadshahul.png);
+        background-image: url(../../assets/pictures/qaseeda/darkheadshahul.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
               
@@ -77,7 +77,7 @@
     .tool {
         width: 100%;
         height: 100%;
-        background-image: url(../../assets/pictures/qaseeda/headshahul.png);
+        background-image: url(../../assets/pictures/qaseeda/headshahul.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
               
@@ -196,4 +196,8 @@
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+ion-spinner {
+    transform: scale(2);
+    z-index: 4;
 }

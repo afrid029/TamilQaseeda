@@ -9,6 +9,9 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
+    <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+   </div>
 <div class="bar primary">
   <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
   <div class="close">

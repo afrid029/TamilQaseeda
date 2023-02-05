@@ -17,35 +17,35 @@ export class CalendarPage {
   obj: Boolean;
   net: Boolean;
   subs: Subscription;
+  spinner:boolean = false;
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation) {
     
-    //   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-    //     if(this.routerOutlet.canGoBack()){
-    //        this.unsbr();
-    //         this.location.back();
-    //         console.log('helloww');
-    //     }else{
-    //       console.log('11111111111111111');
-          
-    //     }
-    // })
+    
       this.obsr.network.subscribe(re=>{
         this.net=re;
       });
 
-      console.log(localStorage.getItem('user'));
-      if(localStorage.getItem('user')){
-        console.log("set");
-        this.obj = true;
-        
-      }else{
-        console.log("unset");
-        this.obj = false;
-        
-      }
+     this.obsr.user.subscribe(re=>{
+      this.obj=re;
+     })
+   }
+
+   ionViewDidEnter(){
+    console.log('calendarview entering');
+    
+    this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+
+      
+    })
+   }
+
+   ionViewWillLeave(){
+    console.log('calendar view leaving');
+    
+    this.subs.unsubscribe();
    }
    unsbr(){
     // this.subs.unsubscribe();

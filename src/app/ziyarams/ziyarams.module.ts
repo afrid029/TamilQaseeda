@@ -13,7 +13,7 @@ import { ZiyaramsPage } from './ziyarams.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ZiyaramsPageRoutingModule
+    ZiyaramsPageRoutingModule,
   ],
   declarations: [ZiyaramsPage]
 })

@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ObsrService {
   public network = new BehaviorSubject(false);
   public database = new BehaviorSubject(false);
+  public user = new BehaviorSubject(false);
   constructor(private online: OnlineStatusService) { 
     if(this.online.getStatus()){
       console.log("Connected");
@@ -25,6 +26,12 @@ export class ObsrService {
         this.network.next(false);
       }
     })
+
+    if(localStorage.getItem('user')){
+      this.user.next(true);
+    }else{
+      this.user.next(false);
+    }
   }
 
 }

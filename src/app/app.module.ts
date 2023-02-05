@@ -17,6 +17,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { OnlineStatusModule } from 'ngx-online-status';
 
+import { FormsModule } from '@angular/forms';
+
 
 import { IonRouterOutlet } from '@ionic/angular';
 
@@ -27,7 +29,7 @@ import { IonRouterOutlet } from '@ionic/angular';
   declarations: [AppComponent,TabsComponentComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireAuthModule,
-  AngularFireStorageModule,
+  AngularFireStorageModule, FormsModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireDatabaseModule,
   OnlineStatusModule],

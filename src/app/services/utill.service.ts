@@ -45,5 +45,17 @@ export class UtillService {
     to.present();
   }
 
+  async loggedInToast(){
+    const to = await this.toast.create({
+      message: 'Already logged in',
+      icon: 'code-download-outline',
+      duration: 3000,
+      position: 'top',
+      color: 'dark'
+    });
+
+    to.present();
+  }
+
 
 }

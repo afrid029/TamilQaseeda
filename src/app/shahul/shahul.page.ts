@@ -5,6 +5,7 @@ import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { PlatformLocation } from '@angular/common';
 import { UtillService } from '../services/utill.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shahul',
@@ -25,32 +26,18 @@ export class ShahulPage {
   obj: boolean;
   net: boolean;
   subs: Subscription;
+  spinner: boolean = false;
 
-  constructor(public db: DatabaseService, public obs: ObsrService, public platform: Platform, public routerOutlet: IonRouterOutlet, public location: PlatformLocation, public util: UtillService, public alertctrl: AlertController,
+  constructor(public db: DatabaseService, public obs: ObsrService, public platform: Platform, public routerOutlet: IonRouterOutlet, public location: PlatformLocation, public util: UtillService, public alertctrl: AlertController, public route: Router,
     public obsr: ObsrService) {
 
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
   
-    this.subs = this.platform.backButton.subscribeWithPriority(100,()=>{
-        if(this.routerOutlet.canGoBack()){
-          if(!this.isEditOpen && !this.isModalOpen){
-            this.unsbr();
-            this.location.back();
-            console.log('helloww');
-          }
-        }
-    })
-    if(localStorage.getItem('user')){
-      console.log("set");
-      this.obj = true;
-      
-    }else{
-      console.log("unset");
-      this.obj = false;
-      
-    }
+    this.obsr.user.subscribe(re=>{
+      this.obj = re
+    });
 }
 unsbr(){
   this.subs.unsubscribe();
@@ -64,8 +51,28 @@ ionViewWillEnter(){
   console.log('will Enter');
   this.getSongs();
 }
+ionViewDidEnter(){
+  console.log('shahulview entering');
+  
+  this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+    if(this.isEditOpen || this.isModalOpen){
+      console.log('Model Opened');
+      
+    }else{
+      console.log('Go to home');
+      this.route.navigateByUrl('home');
+    }
+  })
+ }
+
+ ionViewWillLeave(){
+  console.log('shahul view leaving');
+  
+  this.subs.unsubscribe();
+ }
 
 async getSongs() {
+  this.spinner = true;
   this.db.getSong("shahul").then((data)=>{
     console.log('song entering');
     this.songs = [];
@@ -80,9 +87,12 @@ async getSongs() {
     }else{
       this.anyContent = false;
     }
+    this.spinner = false;
     
   }).catch((e)=>{
+    this.spinner = false;
     console.log(e);
+    this.util.erroToast(e,'alert-circle-outline')
     })
 }
   
@@ -148,10 +158,13 @@ async deleteSong(data: any){
           text: 'Delete',
           role: 'confirm',
           handler: () =>{
+            this.spinner = true;
             console.log('delete Conformed');
              this.db.deleteFireBase(data).then(()=>{
+              this.spinner = false;
                   this.util.successToast('Song deleted successfully','trash-outline','warning');
               }).catch((er)=>{
+                this.spinner = false;
                 this.util.erroToast('Something Went Wrong', 'bug-outline');
               });
             
@@ -169,11 +182,14 @@ updateSong(){
   console.log('ready To update');
   console.log(this.editSong);
   if(this.net){
+    this.spinner = true;
+    this.isEditOpen = false;
     this.editSong.updatedDate = new Date().getTime();
     this.db.updateFireBase(this.editSong).then(()=>{
-      this.isEditOpen = false;
+      this.spinner = false;
       this.util.successToast('Song updated successfully','thumbs-up-outline','success');
     }).catch(er =>{
+      this.spinner = false;
       this.util.erroToast('Something Went Wrong', 'bug-outline');
     });
   }else{

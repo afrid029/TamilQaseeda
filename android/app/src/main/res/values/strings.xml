@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">TamilQaseeda</string>
-    <string name="title_activity_main">TamilQaseeda</string>
-    <string name="package_name">com.mafd.TamilQaseeda</string>
-    <string name="custom_url_scheme">com.mafd.TamilQaseeda</string>
+    <string name="app_name">Ahlussunnah Tamil</string>
+    <string name="title_activity_main">Ahlussunnah Tamil</string>
+    <string name="package_name">com.mafd.ahlussunnahtamil</string>
+    <string name="custom_url_scheme">com.mafd.ahlussunnahtamil</string>
 </resources>

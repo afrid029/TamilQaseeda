@@ -5,6 +5,9 @@
 
 
 <ion-content>
+  <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
+    <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+   </div>
     <div class="bar primary">
       <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
       <div class="close">
@@ -16,9 +19,7 @@
     <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <div *ngIf="spinner" style="position:fixed; display: flex; width:100%; height:100%; justify-content: space-around; align-items: center;">
-      <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
-     </div>
+    
     
     <div class="lst">
       <div class="lstcont">
@@ -73,11 +74,14 @@
         </ion-header>
         <ion-content>
           <ion-card>
-            <img alt="Silhouette of mountains" src="{{img}}" />
+            <img alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
+            <div *ngIf="cardSpinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;">
+              <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+             </div>
             <ion-card-header>
               <ion-card-title style="width: 100%; font-weight: 700; font-size: medium;">{{currZiyaram.name}}</ion-card-title>
               <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>
-              <ion-card-subtitle *ngIf = "currZiyaram.day !== null"><small> <ion-icon name="calendar-outline"></ion-icon>
+              <ion-card-subtitle *ngIf = "currZiyaram.day !== ''"><small> <ion-icon name="calendar-outline"></ion-icon>
                 &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
             </ion-card-header>
           
@@ -160,9 +164,11 @@
               <ion-input [(ngModel)]="editZiyaram.lat"  type="number" name="lat" required></ion-input>
             </ion-item>
             <ion-item>
-            <img src="{{editZiyaram.imageUrl}}" width="100%" alt="">
+            <img src="{{editZiyaram.imageUrl}}" width="100%" alt=""/>
+            </ion-item>
+            <ion-item>
             <ion-button color="primary" size="medium">
-              <input [(ngModel)]="editZiyaram.imageUrl" type="file" accept="image/*" (change)="openActionSheet($event)" />
+              <input type="file" accept="image/*" (change)="openActionSheet($event)" />
             </ion-button>
             </ion-item>
             <div class="cont">

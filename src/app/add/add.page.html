@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="dashboard"></ion-back-button>
+      <ion-title>Add Hazeetha </ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
+    <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+   </div>
 <ion-card>
   <ion-card-header>
    <form  #addForm = "ngForm" validate>

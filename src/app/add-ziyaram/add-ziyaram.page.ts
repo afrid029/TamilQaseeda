@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { finalize, Observable, tap } from 'rxjs';
-import { Camera, ImageOptions } from '@capacitor/camera';
-import { CameraResultType, CameraSource, GalleryPhoto } from '@capacitor/camera/dist/esm/definitions';
-import { SafeResourceUrl } from '@angular/platform-browser';
+
 import { UtillService } from '../services/utill.service';
-import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { ObsrService } from '../services/obsr.service';
 import { DatabaseService } from '../services/database.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 export interface imgFile {
   name: string;
@@ -45,7 +42,7 @@ export class AddZiyaramPage implements OnInit {
   btnvalid: boolean = false;
 
   perc: number = 0;
-
+  spinner: boolean = false;
   net: Boolean;
   constructor(private storage: AngularFireStorage, public utill: UtillService, public obsr: ObsrService, public datasc: DatabaseService, public router: Router) {
     this.obsr.network.subscribe((re)=>{
@@ -65,7 +62,7 @@ export class AddZiyaramPage implements OnInit {
     this.isFileUploaded = false;
     this.imgName = file.name;
 
-    const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
+    const fileStoragePath = `Images/${new Date().getTime()}_${file.name}`;
     const imageRef = this.storage.ref(fileStoragePath);
     this.fileUploadTask = this.storage.upload(fileStoragePath, file);
     this.percentageVal = this.fileUploadTask.percentageChanges();
@@ -108,13 +105,16 @@ export class AddZiyaramPage implements OnInit {
     console.log(this.ziyaram);
 
     if(this.net){
+      this.spinner = true;
       this.ziyaram.updatedDate = new Date().getTime();
 
       this.datasc.addZiyaramDetail(this.ziyaram).then(async (re: any)=>{
-        
+        this.spinner = false;
+        this.router.navigateByUrl('dashboard');
         this.ziyaram = {name:'',description:'',location:'',day:'',long:'',lat:'',imageUrl:'',updatedDate:0, deleted: false};
         this.utill.successToast('Ziyaram Detail Successfully Added','cloud-upload-sharp','warning')
       }).catch((e: any)=>{
+        this.spinner = false;
         console.log('Error encountered ', e.message);   
         this.utill.erroToast(e.message, 'snow-outline'); 
       });

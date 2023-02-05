@@ -24,6 +24,8 @@ export class AddPage {
   net: Boolean;
   chk: any;
 
+  spinner: boolean = false;
+
   constructor(private db: DatabaseService, private sqlite: SQLite,
     public afs: AngularFirestore,
     public obsr: ObsrService,
@@ -38,15 +40,19 @@ export class AddPage {
    }
   submit(){
     if(this.net){
+      this.spinner = true;
       this.song.updatedDate = new Date().getTime();
       console.log(this.song);
     
       this.db.sendToFirebase(this.song).then(async (re: any)=>{
         console.log(re);
+        this.spinner = false;
+        this.router.navigateByUrl('dashboard')
         this.song = {title:'',content:'',author:'',type:'', updatedDate:0, deleted: false};
         this.util.successToast('Song Successfully Added','cloud-upload-sharp','warning')
             
       }).catch((e: any)=>{
+        this.spinner = false;
           console.log('Error encountered ', e.message);   
           this.util.erroToast(e.message, 'snow-outline');  
       });
