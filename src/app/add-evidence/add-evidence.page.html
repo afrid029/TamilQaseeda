@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+     
+      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-title>Add Religious Evidence</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-header>
+   <form  #addForm = "ngForm" validate>
+    <ion-item lines="full">
+      <ion-label position="floating">தலைப்பு</ion-label>
+      <ion-input [(ngModel)]="evidence.title"  name="title" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">விபரம்</ion-label>
+      <ion-textarea [(ngModel)]="evidence.content" style="max-height: 300px; overflow-y: true"  [autoGrow]="true" name="content"required></ion-textarea>
+    </ion-item>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-select [(ngModel)]="evidence.type"  name="type" interface="action-sheet" placeholder="பிரதான பிரிவு" required>
+          <ion-select-option value="aqeeda">அகீதா</ion-select-option>
+          <ion-select-option value="fikh">பிஃக்ஹ்</ion-select-option>
+          <ion-select-option value="other">ஏனையவை</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div class="cont">
+      <ion-button (click)="submit()" style = "display: flex;"type="submit" [disabled]="addForm.invalid"  class = "btn">Add</ion-button>
+    </div>
+   </form>
+  </ion-card-header>
+</ion-card>
+</ion-content>

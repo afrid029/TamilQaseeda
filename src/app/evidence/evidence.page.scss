@@ -1,0 +1,261 @@
+@media (prefers-color-scheme: light){
+    
+    .items{
+        color: rgb(0, 0, 0);
+    }
+    .edit {
+        background-color: rgb(18, 173, 245);
+    }
+    .del{
+        background-color: rgba(201, 35, 13, 0.877);
+    }
+   
+    .search{
+        background-color: rgb(189, 189, 189);
+        color: black;
+    }
+    .search ion-icon{
+        color: rgb(15, 15, 15);
+    }
+    .close{
+        color: black;
+    }
+    .bar {
+        background-color: rgba(224, 224, 224, 0.562);
+    }
+
+    .home {
+        color: #fdc103;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/evidence/evidancelightbanner.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+    .head{
+        background-color: #b9c77a7a;
+        color: #141414;
+        
+        box-shadow: 0 0 6px 0 #cfcfcf;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .items{
+        color: rgb(255, 255, 255);
+    }
+   
+    .edit {
+        background-color: rgb(18, 173, 245);
+    }
+    .del{
+        background-color: rgba(201, 35, 13, 0.877);
+    }
+    .search{
+        background-color: rgb(243, 237, 237);
+        color: black;
+    }
+    .search ion-icon{
+        color: rgb(15, 15, 15);
+    }
+    .close{
+        color: black;
+    }
+    .bar {
+        background-color: rgba(224, 224, 224, 0.562);
+    }
+    .home {
+        color: #ffffff;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/evidence/evidencedarkbanner.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+
+    .head{
+        background-color: #b5b6b07a;
+        color: #e9e6e6;
+        box-shadow: 0 0 6px 0 #ffffff;
+    }
+    
+}
+
+// .cont{
+    
+//     width: 100%;
+//     height: 35px;
+//     border-radius: 10px;
+//     padding:0px 12px;
+//     overflow-y: hidden;
+//     font-weight: bold;
+//     margin-bottom: 10px;
+  
+// }
+// .cont1{
+   
+//     width: 72%;
+//     float: left;
+//     height: 35px;
+//     overflow-y: hidden;
+//     border-radius: 10px;
+//     padding:0px 10px;
+  
+//     font-weight: bold;
+//     margin-bottom: 10px;
+//     margin-right: 4px;
+// }
+
+// .cont::-webkit-scrollbar, .cont1::-webkit-scrollbar {
+//     display: none;
+// }
+.items {
+    text-align:justify; 
+    font-weight: 500; 
+    white-space: pre-wrap; 
+    margin-top: 10px;
+    font-size: 11px;
+    
+}
+.edit {
+    border-radius: 78px !important;
+    float: left;
+    width: 12%;
+    height: 35px;
+    text-align: center;
+    
+    padding: 12px 5px;
+    margin-left: 2px;
+    padding-top: 10px;
+}
+.del {
+   
+    margin-left: 8px;
+}
+.icon {
+    color:white;
+    font-size: 16px;
+}
+
+.auth{
+    height: auto; 
+    overflow-y: scroll; 
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.lst{
+    
+    padding-left: 2%;
+    padding-right:2%;
+ 
+    height: 100%;
+    width: 100%;
+    position:fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+   
+}
+
+.lstcont{
+    height: 100%;
+  
+    max-height: auto;
+    overflow-y: scroll;
+}
+.bar {
+    width: 100%;
+   margin-top: 1%;
+
+    z-index: 3;
+    position: fixed;
+    padding-bottom: 2%;
+    float: left;
+
+}
+.search {
+    width: 95%;
+    border-radius: 16px;
+    margin-left: 2%;
+    float: left;
+    padding-left: 1%;
+ 
+    position:fixed;
+    margin-bottom: 4%;
+    margin-top: 2%;
+  
+   
+}
+
+.search ion-icon{
+    margin-left: 5%;
+    font-size: 20px;
+}
+
+.close{
+    margin-top: 4%;
+    float: right;
+    font-size: 25px;
+    margin-right: 5%;
+    position: relative;
+    z-index: 5;
+    width:30px;
+    
+
+}
+
+.auth{
+    height: auto; 
+    overflow-y: scroll; 
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.tool {
+    width: 100%;
+    height: 6%;
+    
+          
+    }
+.cont{
+    margin-top: 9% !important;
+    height: 92%; 
+    width: 100%; 
+    overflow-y: scroll;
+    border-radius:4%;
+
+}
+.cont ion-item ion-label {
+    padding-left: 2%;
+    font-size: 12px;
+}
+.head{
+    position: fixed;
+    display: flex;
+    top:1%;
+    z-index: 2;
+    width: 98%;
+    height: 5%;
+    border-radius: 4px;
+    text-align: center;
+  
+}
+.head ion-text{
+    font-size: 14px;
+    font-weight: 1000;
+    width: 100%;
+    margin-top: 2%;
+}
+
+
+.cont::-webkit-scrollbar {
+    display: none;
+}

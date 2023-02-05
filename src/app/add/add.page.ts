@@ -47,9 +47,9 @@ export class AddPage {
         this.util.successToast('Song Successfully Added','cloud-upload-sharp','warning')
             
       }).catch((e: any)=>{
-          console.log('Error encountered ', e.message);     
+          console.log('Error encountered ', e.message);   
+          this.util.erroToast(e.message, 'snow-outline');  
       });
-          this.router.navigateByUrl('add');
     }else{
         this.util.NetworkToast();
       }   

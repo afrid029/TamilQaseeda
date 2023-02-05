@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
     path: 'ajmeer',
@@ -29,6 +29,34 @@ const routes: Routes = [
   {
     path: 'add',
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'ziyarams',
+    loadChildren: () => import('./ziyarams/ziyarams.module').then( m => m.ZiyaramsPageModule)
+  },
+  {
+    path: 'evidence',
+    loadChildren: () => import('./evidence/evidence.module').then( m => m.EvidencePageModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
+  {
+    path: 'add-ziyaram',
+    loadChildren: () => import('./add-ziyaram/add-ziyaram.module').then( m => m.AddZiyaramPageModule)
+  },
+  {
+    path: 'add-evidence',
+    loadChildren: () => import('./add-evidence/add-evidence.module').then( m => m.AddEvidencePageModule)
+  },
+  {
+    path: 'add-calendar',
+    loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
   }
 ];
 @NgModule({

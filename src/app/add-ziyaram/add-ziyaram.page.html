@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+     
+      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-title>Add Ziyaram Detail</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card style="overflow-y: scroll; max-height: 80%;">
+  <ion-card-header>
+   <form  #addForm = "ngForm" validate>
+    <ion-item lines="full">
+      <ion-label position="floating">ஸியாரத்தின் பெயர்</ion-label>
+      <ion-input  [(ngModel)]="ziyaram.name" name="name" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">விபரம்</ion-label>
+      <ion-textarea style="max-height: 300px; overflow-y: scroll;" [(ngModel)]="ziyaram.description"  [autoGrow]="true" name="description" required></ion-textarea>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">அமைவிடம்</ion-label>
+      <ion-input [(ngModel)]="ziyaram.location"  type="text" name="location" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">விஷேட தினம்</ion-label>
+      <ion-input [(ngModel)]="ziyaram.day"  type="text" name="day"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Longtitude</ion-label>
+      <ion-input [(ngModel)]="ziyaram.long"  type="number" name="long" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Latitude</ion-label>
+      <ion-input [(ngModel)]="ziyaram.lat"  type="number" name="lat" required></ion-input>
+    </ion-item>
+<br>
+    <img src="{{ziyaram.imageUrl}}" width="100%" alt="">
+    <ion-button color="primary" size="medium">
+      <input [(ngModel)]="ziyaram.imageUrl" type="file" accept="image/*" (change)="openActionSheet($event)" />
+    </ion-button>
+    <div class="cont">
+      <ion-button (click)="submit()" [disabled]="addForm.invalid || btnvalid" type="submit" style="display: flex"  class = "btn">Add</ion-button>
+    </div>
+   </form>
+  </ion-card-header>
+  <div *ngIf="perc">
+    <ion-progress-bar [value] = "perc"></ion-progress-bar>
+  </div>
+</ion-card>
+</ion-content>

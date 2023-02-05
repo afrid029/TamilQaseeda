@@ -91,7 +91,7 @@ handleSearch(){
     this.vis = "visible";
     this.songs = [];
     this.Permsongs.forEach((s: any)=>{
-      if(s.title.startsWith(this.searchKey)){
+      if(s.title.includes(this.searchKey)){
         this.songs.push(s);
       } 
     })

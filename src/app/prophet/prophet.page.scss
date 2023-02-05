@@ -1,14 +1,12 @@
 @media (prefers-color-scheme: dark){
-    .cont, .cont1 {
-        background-color: rgba(129, 129, 129, 0.342);
-        border: 2px solid rgb(0, 90, 32);
-    }
+    // .cont, .cont1 {
+    //     background-color: rgba(129, 129, 129, 0.342);
+    //     border: 2px solid rgb(0, 90, 32);
+    // }
     .items{
         color: rgb(255, 255, 255);
     }
-    // .lst{
-    //     background-image: url(../../assets/home/darkblurmuham.png);
-    // }
+   
     .edit {
         background-color: rgb(18, 173, 245);
     }
@@ -35,7 +33,7 @@
     .tool {
         width: 100%;
         height: 100%;
-        background-image: url(../../assets/home/darkheadmuham.png);
+        background-image: url(../../assets/pictures/qaseeda/darkheadmuham.png);
         background-repeat: no-repeat;
         background-size: 100% 100%;
               
@@ -44,10 +42,10 @@
 }
 
 @media (prefers-color-scheme: light){
-    .cont, .cont1 {
-        background-color: rgba(203, 245, 225, 0.315);
-        border: 2px solid rgb(0, 83, 28);
-    }
+    // .cont, .cont1 {
+    //     background-color: rgba(203, 245, 225, 0.315);
+    //     border: 2px solid rgb(0, 83, 28);
+    // }
     
     .items{
         color: rgb(0, 0, 0);
@@ -58,9 +56,7 @@
     .del{
         background-color: rgba(201, 35, 13, 0.877);
     }
-    // .lst{
-    //     background-image: url(../../assets/home/blurmuham.png);
-    // }
+   
     .search{
         background-color: rgb(189, 189, 189);
         color: black;
@@ -82,7 +78,7 @@
     .tool {
         width: 100%;
         height: 100%;
-        background-image: url(../../assets/home/headmuham.png);
+        background-image: url(../../assets/pictures/qaseeda/headmuham.png);
         background-repeat: no-repeat;
         background-size: 100% 100%;
               
@@ -91,33 +87,50 @@
 }
 
 .cont{
-    
-    width: 100%;
-    height: 35px;
-    border-radius: 10px;
-    padding:0px 12px;
-    overflow-y: hidden;
-    font-weight: bold;
-    margin-bottom: 10px;
-  
-}
-.cont1{
-   
-    width: 72%;
-    float: left;
-    height: 35px;
-    overflow-y: hidden;
-    border-radius: 10px;
-    padding:0px 10px;
-  
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-right: 4px;
-}
+    //margin-top: 8% !important;
+    height: 92%; 
+    width: 100%; 
+    overflow-y: scroll;
+   border-radius: 16px;
 
-.cont::-webkit-scrollbar, .cont1::-webkit-scrollbar {
+}
+.cont::-webkit-scrollbar {
     display: none;
 }
+.cont ion-item ion-label {
+    padding-left: 2%;
+    font-size: 12px;
+}
+.lstcont::-webkit-scrollbar{
+    display: none;
+}
+
+// .cont{
+    
+//     width: 100%;
+//     height: 35px;
+//     border-radius: 10px;
+//     padding:0px 12px;
+//     overflow-y: hidden;
+//     font-weight: bold;
+//     margin-bottom: 10px;
+  
+// }
+// .cont1{
+   
+//     width: 72%;
+//     float: left;
+//     height: 35px;
+//     overflow-y: hidden;
+//     border-radius: 10px;
+//     padding:0px 10px;
+  
+//     font-weight: bold;
+//     margin-bottom: 10px;
+//     margin-right: 4px;
+// }
+
+
 .items {
     text-align:justify; 
     font-weight: 500; 
@@ -170,9 +183,12 @@
 
 .lstcont{
     height: 100%;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
     max-height: auto;
     overflow-y: scroll;
+}
+.lstcont::-webkit-scrollbar{
+    display: none;
 }
 .bar {
     width: 100%;

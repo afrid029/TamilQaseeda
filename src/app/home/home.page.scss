@@ -14,54 +14,47 @@
 
 @media (prefers-color-scheme: dark){
 
-    .bg {
-        background-image: url(../../assets/home/darkhomebg.png);
-       
-    }
     .card{
         background-color: rgb(236, 231, 220);
     }
     .muham {
-        background-image: url(../../assets/home/darkmuham.png);
+        background-image: url(../../assets/pictures/qaseeda/darkmuham.png);
     }
     .muhi {
-        background-image: url(../../assets/home/darkmuhiy.png);
+        background-image: url(../../assets/pictures/qaseeda/darkmuhiy.png);
     }
     .shahul {
-        background-image: url(../../assets/home/darkshahul.png);
+        background-image: url(../../assets/pictures/qaseeda/darkshahul.png);
     }
     .kwaja {
-        background-image: url(../../assets/home/darkkwaja.png);
+        background-image: url(../../assets/pictures/qaseeda/darkkwaja.png);
     }
     .img {
-        content: url("../../assets/home/darkbanner.png");
+        content: url(../../assets/pictures/qaseeda/qaseedadarkbanner.png);
     }
     
 }
 
 @media (prefers-color-scheme: light){
-    .bg {
-        background-image: url(../../assets/home/homebg.png);
-        
-    }
+   
     .card{
         background-color: rgb(6, 105, 31);
     }
     .muham {
-        background-image: url(../../assets/home/muham.png);
+        background-image: url(../../assets/pictures/qaseeda/muham.png);
     }
     .muhi {
-        background-image: url(../../assets/home/muhiy.png);
+        background-image: url(../../assets/pictures/qaseeda/muhiy.png);
     }
     .shahul {
-        background-image: url(../../assets/home/shahul.png);
+        background-image: url(../../assets/pictures/qaseeda/shahul.png);
     }
     .kwaja {
-        background-image: url(../../assets/home/kwaja.png);
+        background-image: url(../../assets/pictures/qaseeda/kwaja.png);
     }
 
     .img {
-        content: url("../../assets/home/lightbanner.png");
+        content: url(../../assets/pictures/qaseeda/qaseedalightbanner.png);
     }
     // .toolbar{
     //     --background: rgb(5, 109, 23);
@@ -82,6 +75,15 @@ color: white;
     background-size: 100% 100%;
     height: 98%;
     
+    
+}
+
+.qaseedahome {
+    content: url(../../assets/pictures/bg.png);
+    position: fixed;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
 }
 .myc {
     width: 96%;
@@ -91,8 +93,6 @@ color: white;
     max-height: 98%;
     overflow-y: scroll;
     background-color: rgba(245, 245, 220, 0);
-    
-    
 }
 
 
@@ -110,25 +110,6 @@ color: white;
     background-size:100% 100%;
    
 }
-
-
-
-// .card::-webkit-scrollbar {
-//     display: none;
-// }
-// .ctitle {
-//     // font-family: kiddu !important;
-//     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-//     font-size: 17px;
-//     text-align: center;
-// }
-
-// .ccontent {
-//    // font-family: nallur !important;
-//    font-size: 12px;
-//    text-align: center;
-// }
-
 .menu {
     height: 100%;
 }
@@ -140,9 +121,7 @@ color: white;
 .tool {
     width: 100%;
     height: 6%;
-    // background-image: url(../../assets/home/lightbanner.png);
-    // background-repeat: no-repeat;
-    // background-size: 100% 120%;
+    
           
     }
 

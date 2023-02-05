@@ -20,45 +20,43 @@
 <ion-list class="lst">
   <div class="lstcont">
   <div *ngIf = "anyContent">
-    <div *ngIf = "obj">
+    <div *ngIf = "obj" class="cont">
       <div *ngFor = "let song of songs">
-          <div  class="cont1"  (click) = "promo(song)">
-            <ion-label><p  class="items">{{ song.title }}</p></ion-label> 
-          </div> 
-          <div (click) = "EditSong(song)"  class="edit">
-            <ion-icon class ="icon" name="pencil"></ion-icon>
-          </div>
-          <div (click) = "deleteSong(song)"  class="edit del" color="danger">
-            <ion-icon class="icon" name = "trash"></ion-icon>
-          </div>
-
-      </div>
-      <div *ngIf = "songs.length == 0" >
-        <div style="width:100%" >
-          <ion-chip style="width:66%; margin:auto 17%;">
-            <ion-label style="margin: 0 auto;" >No Songs Founded</ion-label>
-          </ion-chip>
-        </div>
+          <ion-item>
+            <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
+            <div (click) = "EditSong(song)" class="edit">
+              <ion-icon class="icon" name="pencil"></ion-icon>
+            </div>
+            <div (click) = "deleteSong(song)"  class="edit del">
+              <ion-icon class="icon" name="trash"></ion-icon>
+            </div>
+          </ion-item>
+          
       </div>
           
     </div>
 
-    <div *ngIf = "!obj">
-      <div  class="cont" *ngFor = "let song of songs" (click) = "promo(song)">
-        <ion-label><p class="items">{{ song.title }}</p></ion-label> 
-      </div> 
-      <div *ngIf = "songs.length == 0" >
-        <div style="width:100%" >
-          <ion-chip style="width:66%; margin:auto 17%;">
-            <ion-label style="margin: 0 auto;" >No Songs Founded</ion-label>
-          </ion-chip>
-        </div>
-      </div>
+    <div *ngIf = "!obj" class="cont">
+      <div *ngFor = "let song of songs">
+        <ion-item>
+          <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
+          
+        </ion-item>
     </div> 
+      
+    </div> 
+
+    <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "songs.length == 0" >
+      
+      <ion-chip style="width:76%;">
+        <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+      </ion-chip>
+    
   </div>
-  <div style="width:100%"  *ngIf = "!anyContent">
-    <ion-chip style="width:66%; margin:auto 17%;"> 
-      <ion-label style="margin: 0 auto;" >Songs will be added soon</ion-label>
+  </div>
+  <div class="cont" *ngIf = "!anyContent">
+    <ion-chip style="width:95%; top:48%"> 
+      <ion-label style="margin: 0 auto;" >பாடல்கள் விரைவில் இணைக்கப்படும்</ion-label>
     </ion-chip>
   </div>
 </div>
@@ -67,7 +65,7 @@
 
 <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
   <ng-template>
-    <ion-header>
+    <ion-header style="height: auto;">
       <ion-toolbar color="success">
         <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
         <ion-buttons slot="end">
