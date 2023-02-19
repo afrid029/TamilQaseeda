@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
-import { IonRouterOutlet, LoadingController, MenuController, Platform } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import {  IonRouterOutlet, LoadingController, MenuController, Platform } from '@ionic/angular';
 import { DatabaseService } from './services/database.service';
 import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
 import { UtillService } from './services/utill.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
+
 
 
 export class AppComponent {
@@ -43,7 +46,9 @@ export class AppComponent {
 
       this.obsr.network.subscribe(re=>{
         this.net = re;
-      })
+      });
+     const md = document.getElementsByClassName('md');
+     
     
    }
 

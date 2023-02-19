@@ -1,7 +1,13 @@
+<html class="addBody">
 
+<ion-header>  
   <div class="tool">
-    <img class="img" alt="">
+    <ion-buttons slot="start">
+      <ion-back-button style="visibility: hidden;" (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
+      </ion-buttons>
   </div>
+</ion-header>
+
 
 
 <ion-content>
@@ -34,7 +40,7 @@
           
             <div *ngIf="obj" class="cont">
               <div *ngFor = "let s of aqeeda">
-                <ion-item >
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -51,7 +57,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of aqeeda">
-                <ion-item>
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                 </ion-item>
               </div>
@@ -86,7 +92,7 @@
           
             <div  *ngIf="obj" class="cont">
               <div *ngFor = "let s of fiqh">
-                <ion-item>
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -102,7 +108,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of fiqh">
-                <ion-item>
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
         
                 </ion-item>
@@ -138,7 +144,7 @@
           
             <div *ngIf="obj" class="cont">
               <div *ngFor = "let s of other">
-                <ion-item>
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -154,7 +160,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of other">
-                <ion-item>
+                <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
         
                 </ion-item>
@@ -186,7 +192,7 @@
     </div>
     </ion-list>
     
-    <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
+    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
       <ng-template>
         <ion-header>
           <ion-toolbar color="success">
@@ -196,7 +202,7 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
+        <ion-content class="modalBody">
           <ion-card>
             <ion-card-content style="white-space: pre-line;">{{currEvidence.content}}</
               ion-card-content>
@@ -231,7 +237,7 @@
       <ng-template>
       
         <ion-header>
-          <ion-toolbar style="--background-color: rgb(232, 248, 232) !important;">
+          <ion-toolbar color="warning">
             <ion-title>{{editEvidence.title}}</ion-title>
            
             <ion-buttons slot="end">
@@ -239,7 +245,7 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content class="ion-padding">
+        <ion-content class="ion-padding modalBody">
           <form  #addForm = "ngForm" validate>
             <ion-item lines="full">
               <ion-label position="floating">தலைப்பு</ion-label>
@@ -269,8 +275,9 @@
     </ion-modal>
   
   <ion-fab [routerLink] = "['/dashboard']" vertical="bottom" horizontal="end" slot="fixed" (click)="unsbr()" >
-    <ion-fab-button color="success">
+    <ion-fab-button style="border-radius: 50px;" shape="circle" color="success">
       <ion-icon name="home" mode="md"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+</html>

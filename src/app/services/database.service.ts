@@ -23,6 +23,7 @@ export class DatabaseService {
   afs: any;
   network: Boolean;
 
+  user: boolean = false;
   constructor(private sqlite: SQLite,
     private toast: ToastController,
     private utilService:UtillService,
@@ -38,6 +39,10 @@ export class DatabaseService {
           this.ngAuth = undefined;
         }
       })
+
+      this.obsr.user.subscribe(re=>{
+        this.user = re;
+      });
 
       
      }
@@ -370,12 +375,24 @@ getAllZiyaram(){
 
 //Add Ziyaram
 addZiyaramDetail(data: any){
-  return this.afs.collection('ziyarams').add(data).then((re: any)=>{
-    console.log(re);
-    return 'added'
-  }).catch((er: any)=>{
-    console.log('errr');
-  });
+  if(this.user){
+    data.updatedDate = new Date().getTime();
+    data.deleted = false;
+    return this.afs.collection('ziyarams').add(data).then((re: any)=>{
+      console.log(re);
+      return 'added'
+    }).catch((er: any)=>{
+      console.log('errr');
+    });
+  }else{
+    return this.afs.collection('ziyaramRequests').add(data).then((re: any)=>{
+      console.log(re);
+      return 'added'
+    }).catch((er: any)=>{
+      console.log('errr');
+    });
+  }
+  
 }
 
 //Get All Ziyaram From fire
@@ -768,10 +785,10 @@ getCalendarFromFireBase(){
 
 async deleteAll(){
 
-  // localStorage.removeItem('songref');
-  // localStorage.removeItem('ziyaramref');
-  // localStorage.removeItem('calendarref');
-  // localStorage.removeItem('evidenceref');
+  localStorage.removeItem('songref');
+  localStorage.removeItem('ziyaramref');
+  localStorage.removeItem('calendarref');
+  localStorage.removeItem('evidenceref');
   //await this.createDatabase();
   // return this.databaseObj.executeSql('delete from ziyaram',[]).then(()=>{
   //   return 'All Songs deleted successfully';
@@ -798,10 +815,10 @@ async deleteAll(){
   
 
 
-  // this.databaseObj.executeSql(`drop table ziyaram`,[]).then((res)=>{
-  //   console.log(res);
+  this.databaseObj.executeSql(`drop table ziyaram`,[]).then((res)=>{
+    console.log(res);
     
-  // });
+  });
 
   // this.databaseObj.executeSql(
   //   "SELECT updatedDate FROM song",[]

@@ -8,6 +8,7 @@
   </div>
 
   <swiper
+  [loop]="true"
     [effect]="'coverflow'"
     [grabCursor]="true"
     [centeredSlides]="true"
@@ -61,17 +62,18 @@
     <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isAddModalOpen">
       <ng-template>
         <ion-header>
-          <ion-toolbar>
+          <ion-toolbar color="secondary">
             <ion-buttons slot="end">
               <ion-button (click)="setAddModel(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content class="ion-padding">
+        <ion-content class="ion-padding addmenu">
           <ion-button (click)="navigateTo('add')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Hazeetha</ion-button>
           <ion-button (click)="navigateTo('add-ziyaram')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Ziyaram Detail</ion-button>
           <ion-button (click)="navigateTo('add-evidence')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Religious Topic</ion-button>
           <ion-button (click)="navigateTo('add-calendar')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Calendar Detail</ion-button>
+         
         </ion-content>
       </ng-template>
     </ion-modal>

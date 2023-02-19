@@ -22,6 +22,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonRouterOutlet } from '@ionic/angular';
 
+// import { GoogleMapComponent } from './components/google-map/google-map.component';
+import { SharedModuleModule } from './modules/shared-module/shared-module.module';
+
 
 
 
@@ -32,7 +35,8 @@ import { IonRouterOutlet } from '@ionic/angular';
   AngularFireStorageModule, FormsModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireDatabaseModule,
-  OnlineStatusModule],
+  OnlineStatusModule,
+  SharedModuleModule],
   providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

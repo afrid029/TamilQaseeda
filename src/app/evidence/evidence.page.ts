@@ -79,6 +79,9 @@ ionViewDidEnter(){
   console.log('Evidence view entering');
   
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+    if(!this.isEditOpen && !this.isModalOpen){
+      this.route.navigateByUrl('/dashboard');
+    }
 
     
   })

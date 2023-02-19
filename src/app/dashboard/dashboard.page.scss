@@ -170,6 +170,9 @@
         box-shadow: 0 0 6px 0 #f0f2f3;
         background-image: url(../../assets/pictures/dashboard/headingdarkbg.jpg);        
       }
+    .addmenu{
+      background-color: #000000;
+    }
 }
 
 @media (prefers-color-scheme: light){
@@ -194,6 +197,9 @@
         box-shadow: 0 0 6px 0 #fbfeff;
         background-image: url(../../assets/pictures/dashboard/headingbg.jpg);        
       }
+      .addmenu{
+        background-color: #ffffff;
+      }
 }
   
   .bg{
@@ -217,6 +223,9 @@
     overflow: hidden;
     
   }
+  .ban::-webkit-scrollbar{
+    display: none;
+}
   .txt{
     font-family: nts !important;
     font-weight: 500;

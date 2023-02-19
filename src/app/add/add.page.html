@@ -1,3 +1,4 @@
+<html class="addBody">
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -11,7 +12,7 @@
   <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
     <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
    </div>
-<ion-card>
+<ion-card style="overflow-y: scroll; max-height: 80%;">
   <ion-card-header>
    <form  #addForm = "ngForm" validate>
     <ion-item lines="full">
@@ -29,20 +30,38 @@
       <ion-input [(ngModel)]="song.author" type="text" name="author"></ion-input>
     </ion-item>
 
-    <ion-list lines="full">
-      <ion-item>
-        <ion-select [(ngModel)]="song.type" name="type" interface="action-sheet" placeholder="Select Catagory" required>
-          <ion-select-option value="prophet">முஹம்மது ஸல்லல்லாஹு அலைஹி வஸல்லம்</ion-select-option>
-          <ion-select-option value="muhi">முஹியித்தீன் அப்துல் காதிர் ஜீலானி கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-select-option>
-          <ion-select-option value="shahul">ஷாஹுல் ஹமீது நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-select-option>
-          <ion-select-option value="ajmeer">ஹாஜா நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-select-option>
-        </ion-select>
+   
+      <ion-item id="optionmodal">
+        <ion-label >Select Type</ion-label>
+        <p style="font-size: 15px; text-align: center;">{{type}}</p>
       </ion-item>
-    </ion-list>
+     
     <div class="cont">
-      <ion-button type="submit" [disabled]="addForm.invalid" style="display: flex;" (click)="submit()" class = "btn">Add</ion-button>
+      <ion-button type="submit" [disabled]="addForm.invalid || typeSelected" style="display: flex;" (click)="submit()" class = "btn">Add</ion-button>
     </div>
    </form>
   </ion-card-header>
 </ion-card>
 </ion-content>
+
+<ion-modal #modal trigger="optionmodal" [initialBreakpoint]="0.40" [breakpoints]="[0,0.40]" class="addmodal" backdropDismiss="false" >
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding modalBody ">
+      <ion-list>
+        <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('prophet')">முஹம்மது ஸல்லல்லாஹு அலைஹி வஸல்லம்</ion-item>
+        <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;"(click)="setTypeVal('muhi')">முஹியித்தீன் அப்துல் காதிர் ஜீலானி கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
+        <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('shahul')">ஷாஹுல் ஹமீது நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
+        <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('ajmeer')">ஹாஜா நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
+      </ion-list>
+      
+    </ion-content>
+  </ng-template>
+</ion-modal>
+</html>

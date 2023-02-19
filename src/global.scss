@@ -51,8 +51,9 @@
   user-select: auto;
 }
 ion-modal {
-    --height: 92%;
+    --height: 100%;
     --border-radius: 16px;
+   // background-color: rgb(15, 15, 15) !important;
     // --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
   
@@ -93,3 +94,25 @@ ion-modal {
     --margin-top: 5px !important;
     --position: fixed !important;
 }
+body{
+  --ion-background-color: none !important;
+}
+
+@media (prefers-color-scheme: dark){
+  .addBody{
+    background-color: rgb(43, 42, 42);
+   }
+   .modalBody{
+    background-color: rgb(43, 42, 42);
+   }
+}
+
+@media (prefers-color-scheme: light){
+  .addBody{
+    background-color: rgb(245, 245, 245);
+   }
+   .modalBody{
+    background-color: rgb(255, 255, 255);
+   }
+}
+

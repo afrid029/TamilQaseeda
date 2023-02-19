@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFireList } from '@angular/fire/compat/database';
 import {DatabaseService} from '../services/database.service';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ToastController } from '@ionic/angular';
+import { IonModal, ToastController } from '@ionic/angular';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
 
@@ -15,14 +15,15 @@ import { UtillService } from '../services/utill.service';
   styleUrls: ['./add.page.scss'],
 })
 
+
 export class AddPage {
-  databaseObj: SQLiteObject;
+  @ViewChild(IonModal) 
+  modal : IonModal;
+
   song: any = {title:'',content:'',author:'',type:'',updatedDate:0, deleted: false};
-  value: any = [{}];
-  document: AngularFireList<any>;
-  len: number;
   net: Boolean;
-  chk: any;
+  type: string;
+  typeSelected: boolean = true;
 
   spinner: boolean = false;
 
@@ -59,6 +60,26 @@ export class AddPage {
     }else{
         this.util.NetworkToast();
       }   
+  }
+ 
+
+  setTypeVal(val: any){
+    this.modal.dismiss();
+    this.song.type = val;
+    this.typeSelected = false;
+    if(val === 'prophet'){
+      this.type = 'முஹம்மது ஸல்லல்லாஹு அலைஹி வஸல்லம்'
+    }
+    if(val === 'muhi'){
+      this.type = 'முஹியித்தீன் அப்துல் காதிர் ஜீலானி கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்'
+    }
+    if(val === 'shahul'){
+      this.type = 'ஷாஹுல் ஹமீது நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்'
+    }
+    if(val === 'ajmeer'){
+      this.type = 'ஹாஜா நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்'
+    }
+
   }
 
  

@@ -1,5 +1,6 @@
+<html class="addBody">
+
 <ion-header>
-  
     <div class="tool">
       <ion-buttons slot="start">
       <ion-back-button (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
@@ -25,7 +26,7 @@
     <div *ngIf = "anyContent">
       <div *ngIf = "obj" class="cont">
         <div *ngFor = "let song of songs">
-            <ion-item>
+            <ion-item style="background-color: rgb(238, 238, 238);">
               <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
               <div (click) = "EditSong(song)" class="edit">
                 <ion-icon class="icon" name="pencil"></ion-icon>
@@ -35,13 +36,14 @@
               </div>
             </ion-item>
             
+
         </div>
             
       </div>
 
       <div class="cont" *ngIf = "!obj">
         <div *ngFor = "let song of songs">
-          <ion-item>
+          <ion-item style="background-color: rgb(238, 238, 238);">
             <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
             
           </ion-item>
@@ -76,7 +78,7 @@
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding">
+      <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
           <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
         </ion-chip>
@@ -88,11 +90,11 @@
 
 
   <!-- Edit Model -->
-  <ion-modal backdropDismiss="false" [isOpen]="isEditOpen">
+  <ion-modal  backdropDismiss="false" [isOpen]="isEditOpen">
     <ng-template>
     
       <ion-header>
-        <ion-toolbar style="--background-color: rgb(232, 248, 232) !important;">
+        <ion-toolbar color="warning">
           <ion-input (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.title" required></ion-input>
          
           <div style="padding-right: 5px;" slot="end">
@@ -101,7 +103,7 @@
           </div>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding">
+      <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
           <ion-input style="font-size: 10px; max-lines: 3;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
         </ion-chip>
@@ -112,3 +114,5 @@
   </ion-modal>
 
 </ion-content>
+
+</html>

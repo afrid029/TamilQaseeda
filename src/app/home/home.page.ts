@@ -32,15 +32,11 @@ export class HomePage {
         this.obj = re;
       })
    }
-   unsbr(){
-    //this.subs.unsubscribe();
-    console.log('Unsubscribed');
-    
-  }
   ionViewDidEnter(){
     console.log('Homeview entering');
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+      this.route.navigateByUrl('/dashboard');
 
       
     })

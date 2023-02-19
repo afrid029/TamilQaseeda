@@ -57,7 +57,12 @@ const routes: Routes = [
   {
     path: 'add-calendar',
     loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
-  }
+  },
+  {
+    path: 'google-map',
+    loadChildren: () => import('./google-map/google-map.module').then( m => m.GoogleMapPageModule)
+  },
+ 
 ];
 @NgModule({
   imports: [

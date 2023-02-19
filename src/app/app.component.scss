@@ -6,17 +6,19 @@ ion-app{
 ion-menu::part(container){
     border-radius: 0 20px 20px 0;
 
-  box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
+  box-shadow: 4px 0px 16px #81708169;
 }
 
 @media (prefers-color-scheme: dark){
     ion-menu::part(container){
         border-radius: 0 20px 20px 0;
       box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
+      background-color: rgb(32, 32, 32);
     }
 }
 @media (prefers-color-scheme: light){
     ion-menu::part(container){    
       box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.589);
+      background-color: rgb(253, 253, 253);
     }
 }

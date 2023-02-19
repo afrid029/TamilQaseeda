@@ -1,15 +1,19 @@
 import { PlatformLocation } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Platform, IonRouterOutlet, AlertController } from '@ionic/angular';
+import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { Platform, IonRouterOutlet, AlertController, IonContent, ScrollDetail, IonModal } from '@ionic/angular';
 import { finalize, Observable, Subscription, tap } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 import { LaunchNavigator, LaunchNavigatorOptions } from '@awesome-cordova-plugins/launch-navigator';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { imgFile } from '../add-ziyaram/add-ziyaram.page';
+import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
+
+SwiperCore.use([EffectCoverflow, Pagination]);
 
 @Component({
   selector: 'app-ziyarams',
@@ -17,6 +21,8 @@ import { imgFile } from '../add-ziyaram/add-ziyaram.page';
   styleUrls: ['./ziyarams.page.scss'],
 })
 export class ZiyaramsPage {
+  @ViewChild('modal1') modal: IonModal;
+  @ViewChild('modal2') modal2: IonModal;
 
   img: string = "./../../assets/pictures/noImage.png";
   img1: string = "./../../assets/pictures/noImage.png";
@@ -52,6 +58,30 @@ export class ZiyaramsPage {
   files: Observable<imgFile[]>;
   perc: number = 0;
 
+
+  isMapOpen: boolean = false;
+  long: any;
+  lat: any;
+  selected: boolean = false;
+
+  province: any;
+  district: any;
+  place: string;
+
+  Central = ['Kandy','Matala','Nuwera Eliya'];
+  Eastern = ['Ampara', 'Batticaloa', 'Trincomale'];
+  North = ['Jaffna','Kilinochi','Mannar','Mullaitivu','Vavuniya'];
+  Northcentral = ['Anuradhapura', 'Polannaruwa'];
+  Northwestern = ['Kurunagela', 'Puttalam'];
+  Sabragamuva = ['Kegalle','Ratnapura'];
+  Southern = ['Galle','Hambantota','Matara'];
+  Uva = ['Badulla','Moneragala'];
+  Western = ['Colombo','Gampaha','Kalutara'];
+
+  dist: any[];
+
+  locationStat: string = "Locate Ziyaram Position"
+
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation, public storage: AngularFireStorage) {
@@ -62,7 +92,25 @@ export class ZiyaramsPage {
       this.obsr.user.subscribe(re=>{
         this.obj = re
       });
-      
+      this.obsr.latitude.subscribe(re=>{
+        this.lat = re;
+      })
+  
+      this.obsr.longtitude.subscribe(re=>{
+        this.long = re;
+      })
+      this.obsr.LocSelected.subscribe(re=>{
+        this.selected = re;
+        if(re){
+          this.locationStat = 'Location Selected';
+        }else{
+          this.locationStat = 'Locate Ziyaram Position';
+        }
+  
+        console.log(this.locationStat);
+        
+      })
+      this.getZiyarams();
       
    }
    unsbr(){
@@ -70,13 +118,18 @@ export class ZiyaramsPage {
   }
   ionViewWillEnter(){
     console.log('will Enter');
-    this.getZiyarams();
+    
+   
+  
+    
   }
   ionViewDidEnter(){
     console.log('ziyaram view entering');
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-
+        if(!this.isEditOpen && !this.isModalOpen){
+          this.route.navigateByUrl('/dashboard');
+        }
       
     })
    }
@@ -174,7 +227,7 @@ launchGoogleMap(){
     if(isAvailable){
       app = LaunchNavigator.APP.GOOGLE_MAPS;
     
-      LaunchNavigator.navigate([this.currZiyaram.long, this.currZiyaram.lat ], {
+      LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
         app: app
     })
     }else{
@@ -185,6 +238,8 @@ launchGoogleMap(){
 
 
 handleSearch(){
+  console.log(this.Permziyarams);
+  
   if(this.searchKey.length > 0){
     this.vis = "visible";
     this.ziyarams = [];
@@ -207,14 +262,43 @@ clearSearch(){
 }
 
 EditZiyaram(data: any){
-  this.editZiyaram = data;
-  this.currImg = data.imageUrl;
-  console.log(this.currImg);
-  console.log(this.editZiyaram); 
-  this.isEditOpen = true
+  // this.editZiyaram = data;
+  // const s = data.location;
+  // const ar = s.split(',');
+  // this.place = ar[0];
+  // this.district = ar[1];
+  // this.province = ar[2]
+  
+  // this.currImg = data.imageUrl;
+  // console.log(this.currImg);
+  // console.log(this.editZiyaram); 
+  // this.obsr.latitude.next(data.lat);
+  // this.obsr.longtitude.next(data.long);
+  // this.obsr.LocSelected.next(true);
+  // this.isEditOpen = true
+  const send:NavigationExtras = {
+    queryParams: {
+      source: JSON.stringify(data)
+    }
+  }
+  this.route.navigate(['add-ziyaram'], send);
 }
 setEditFalse(){
   this.isEditOpen = false;
+}
+setMapOpen(){
+  // this.isMapOpen = true;
+  this.chekService();
+}
+async chekService(){
+  const t = await Geolocation.checkPermissions().then((re)=>{
+    this.route.navigateByUrl('google-map');
+    
+  }).catch(async er=>{
+    this.utilService.erroToast('Turn On Your Location Service','power');   
+
+    
+  });
 }
 
 async openActionSheet(event: any){
@@ -261,30 +345,6 @@ async openActionSheet(event: any){
 
 }
 
-update(){
-  if(this.net){
-    this.spinner = true;
-    this.isEditOpen = false;
-    this.editZiyaram.updatedDate = new Date().getTime();
-    this.editZiyaram.deleted = false;
-    this.db.updateZiyaramFireBase(this.editZiyaram).then(()=>{
-      if(this.currImg.length > 1){
-        this.storage.storage.refFromURL(this.currImg).delete().catch((er)=>{
-          this.utilService.erroToast('Error in photo replacing ','alert-circle-outline')
-        });
-        this.currImg = '';
-      }
-      this.spinner = false;
-      this.utilService.successToast('Ziyaram updated successfully','thumbs-up-outline','success');
-    }).catch(er =>{
-      this.spinner = false;
-      this.utilService.erroToast('Something Went Wrong', 'bug-outline');
-    });
-  }else{
-    this.utilService.NetworkToast();
-  }
-}
-
 async deleteZiyaram(data: any){
   if(this.net){
     const alert = await this.alertctrl.create({
@@ -320,6 +380,46 @@ async deleteZiyaram(data: any){
     this.utilService.NetworkToast();
   }
 }
+
+setArray(){
+  if(this.province === 'Central Province'){
+    this.dist = this.Central;
+  }
+  if(this.province === 'Eastern Province'){
+    this.dist = this.Eastern;
+  }
+  if(this.province === 'North Province'){
+    this.dist = this.North;
+  }
+  if(this.province === 'Northcentral Province'){
+    this.dist = this.Northcentral;
+  }
+  if(this.province === 'Northwestern Province'){
+    this.dist = this.Northwestern;
+  }
+  if(this.province === 'Southern Province'){
+    this.dist = this.Southern;
+  }
+  if(this.province === 'Sabragamuva Province'){
+    this.dist = this.Sabragamuva;
+  }
+  if(this.province === 'Uva Province'){
+    this.dist = this.Uva;
+  }
+  if(this.province === 'Western Province'){
+    this.dist = this.Western;
+  }
+}
+
+// setProvince(province:string){
+//   this.province = province;
+//   this.modal.dismiss();
+// }
+
+// setDistrict(dist:string){
+//   this.district = dist;
+//   this.modal2.dismiss();
+// }
 
 
 }

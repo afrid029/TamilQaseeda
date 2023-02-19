@@ -1,4 +1,5 @@
 import { CapacitorConfig } from '@capacitor/cli';
+import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
@@ -20,6 +21,10 @@ const config: CapacitorConfig = {
       splashImmersive: true,
       layoutName: "launch_screen",
       useDialog: true,
+    },
+    Keyboard: {
+      resize: KeyboardResize.None,
+      resizeOnFullScreen: true,
     },
   },
 };

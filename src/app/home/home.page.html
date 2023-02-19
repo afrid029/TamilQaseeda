@@ -1,37 +1,34 @@
-
-    <div class="tool">
-      <img class="img" alt="">
-    </div>
-<ion-content  id="main-content">
-  <img class="qaseedahome" alt="">
-    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-   <div class="bg">
-    <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
-      <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
-     </div>
-
+<html class="addBody">
   
-  <ion-card class="myc">
-    <ion-card [routerLink] = "['/prophet']" id="id1" class="card muham">
-    </ion-card>
+<div class="tool">
+  <img class="img" alt="">
+</div>
+<ion-content  id="main-content">
+<img class="qaseedahome" alt="">
+<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+<div class="bg">
+<div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
+  <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+ </div>
 
-    <ion-card [routerLink] = "['/muhyidden']" class="card muhi">
-    </ion-card>
 
-    <ion-card [routerLink] = "['/shahul']" id="id1" class="card shahul">
-    </ion-card>
+<ion-card class="myc">
+<ion-card [routerLink] = "['/prophet']" id="id1" class="card muham">
+</ion-card>
 
-    <ion-card [routerLink] = "['/ajmeer']" class="card kwaja">
-    </ion-card>
-  </ion-card>
+<ion-card [routerLink] = "['/muhyidden']" class="card muhi">
+</ion-card>
+
+<ion-card [routerLink] = "['/shahul']" id="id1" class="card shahul">
+</ion-card>
+
+<ion-card [routerLink] = "['/ajmeer']" class="card kwaja">
+</ion-card>
+</ion-card>
 </div> 
-
-<ion-fab [routerLink] = "['/dashboard']" vertical="bottom" horizontal="end" slot="fixed" (click)="unsbr()" >
-  <ion-fab-button color="success">
-    <ion-icon name="home" mode="md"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
 </ion-content>
 
+
+</html>

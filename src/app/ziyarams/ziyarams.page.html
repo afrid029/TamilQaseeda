@@ -1,7 +1,11 @@
-
+<html class="addBody">
+<ion-header>  
   <div class="tool">
-    <img class="img" alt="">
+    <ion-buttons slot="start">
+      <ion-back-button style="visibility: hidden;" (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
+      </ion-buttons>
   </div>
+</ion-header>
 
 
 <ion-content>
@@ -26,7 +30,7 @@
         <div *ngIf="anyContent">
           <div *ngIf="obj" class="cont">
             <div *ngFor = "let s of ziyarams">
-              <ion-item >
+              <ion-item style="background-color: rgb(238, 238, 238);">
                 <ion-label (click) = "promo(s)">{{s.name}}</ion-label>
                 <div (click)="EditZiyaram(s)" class="edit">
                   <ion-icon class="icon" name="pencil"></ion-icon>
@@ -35,12 +39,14 @@
                   <ion-icon class="icon" name="trash"></ion-icon>
                 </div>
               </ion-item>
+              
+              
             </div>
           </div>
       
           <div *ngIf="!obj" class="cont">
             <div *ngFor = "let s of ziyarams">
-              <ion-item>
+              <ion-item style="background-color: rgb(238, 238, 238);">
                 <ion-label (click) = "promo(s)">{{s.name}}</ion-label>
               </ion-item>
             </div>
@@ -60,6 +66,10 @@
           </ion-chip>
         </div>
       </div>
+      <div style="width: 85%; ">
+        <ion-button [routerLink] = "['/add-ziyaram']" color="success" style="display: flex; overflow:visible;
+        box-shadow: 0px 0px 4px 1.5px #888888; border-radius:6px;">Send Ziyaram Details</ion-button>
+      </div>
     </div>
 
     <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
@@ -72,7 +82,7 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
+        <ion-content class="modalBody">
           <ion-card>
             <img alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
             <div *ngIf="cardSpinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;">
@@ -97,93 +107,13 @@
     </ion-modal>
   
   
-    <!-- <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar color="success">
-            <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="setOpen(false)">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <ion-chip class="auth">
-            <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
-          </ion-chip>
-          <p style="white-space: pre-line; text-align: center; font-size: 13px;"> {{ currSong.content }}
-          </p>
-        </ion-content>
-      </ng-template>
-    </ion-modal> -->
+    
   
   
-    <!-- Edit Model -->
-    <ion-modal backdropDismiss="false" [isOpen]="isEditOpen">
-      <ng-template>
-      
-        <ion-header>
-          <ion-toolbar style="--background-color: rgb(232, 248, 232) !important;">
-      
-            <ion-title >{{editZiyaram.name}}</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="setEditFalse()">Close</ion-button>
-            </ion-buttons>
-           
-            <!-- <div style="padding-right: 5px;" slot="end">
-              <ion-button type="submit"   [disabled] = "submitButton"  type="submit" size = "small" color="success">Save</ion-button>
-              <ion-button size = "small" color="danger"  (click)="setEditFalse()">Close</ion-button>
-            </div> -->
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <form  #addForm = "ngForm" validate>
-            <ion-item lines="full">
-              <ion-label position="floating">ஸியாரத்தின் பெயர்</ion-label>
-              <ion-input  [(ngModel)]="editZiyaram.name" name="name" type="text" required></ion-input>
-            </ion-item>
-        
-            <ion-item lines="full">
-              <ion-label position="floating">விபரம்</ion-label>
-              <ion-textarea style="max-height: 300px; overflow-y: scroll;" [(ngModel)]="editZiyaram.description"  [autoGrow]="true" name="description" required></ion-textarea>
-            </ion-item>
-            <ion-item lines="full">
-              <ion-label position="floating">அமைவிடம்</ion-label>
-              <ion-input [(ngModel)]="editZiyaram.location"  type="text" name="location" required></ion-input>
-            </ion-item>
-            <ion-item lines="full">
-              <ion-label position="floating">விஷேட தினம்</ion-label>
-              <ion-input [(ngModel)]="editZiyaram.day"  type="text" name="day"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Longtitude</ion-label>
-              <ion-input [(ngModel)]="editZiyaram.long"  type="number" name="long" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Latitude</ion-label>
-              <ion-input [(ngModel)]="editZiyaram.lat"  type="number" name="lat" required></ion-input>
-            </ion-item>
-            <ion-item>
-            <img src="{{editZiyaram.imageUrl}}" width="100%" alt=""/>
-            </ion-item>
-            <ion-item>
-            <ion-button color="primary" size="medium">
-              <input type="file" accept="image/*" (change)="openActionSheet($event)" />
-            </ion-button>
-            </ion-item>
-            <div class="cont">
-              <ion-button (click)="update()" [disabled]="addForm.invalid || btnvalid" type="submit" style="display: flex" color="success"  class = "btn">Update</ion-button>
-            </div>
-           </form>
-          
-        </ion-content>
-  
-      </ng-template>
-    </ion-modal>
-  
-  <ion-fab [routerLink] = "['/dashboard']" vertical="bottom" horizontal="end" slot="fixed" (click)="unsbr()" >
-    <ion-fab-button color="success">
-      <ion-icon name="home" mode="md"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>
+<ion-fab style="z-index: 12; top: 92.9%;" [routerLink] = "['/dashboard']" vertical="bottom" horizontal="end" slot="fixed" (click)="unsbr()" >
+  <ion-button  shape="outline" color="success">
+    <ion-icon name="home"></ion-icon>
+  </ion-button>
+</ion-fab>
+</html>

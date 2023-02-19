@@ -1,0 +1,14 @@
+<ion-content >
+  <div class="container">
+    <capacitor-google-map  #map></capacitor-google-map>
+    
+  </div>
+  
+  
+  <ion-button (click)="goprev()" color ="danger" style="display: flex;">Cancel</ion-button>
+ 
+    <ion-button [disabled]="!test" (click)="goFurther()" color ="success" style="display: flex;">Locate</ion-button>
+ 
+  
+  
+</ion-content>
