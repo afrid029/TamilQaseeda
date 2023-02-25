@@ -16,14 +16,11 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { OnlineStatusModule } from 'ngx-online-status';
-
 import { FormsModule } from '@angular/forms';
-
-
 import { IonRouterOutlet } from '@ionic/angular';
-
 // import { GoogleMapComponent } from './components/google-map/google-map.component';
 import { SharedModuleModule } from './modules/shared-module/shared-module.module';
+import { NgCalendarModule } from 'ionic2-calendar';
 
 
 
@@ -36,7 +33,8 @@ import { SharedModuleModule } from './modules/shared-module/shared-module.module
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireDatabaseModule,
   OnlineStatusModule,
-  SharedModuleModule],
+  SharedModuleModule,
+  NgCalendarModule],
   providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

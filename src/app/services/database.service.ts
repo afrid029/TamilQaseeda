@@ -384,6 +384,17 @@ addZiyaramDetail(data: any){
     }).catch((er: any)=>{
       console.log('errr');
     });
+// console.log('Chjeclk');
+
+//     if(this.afs.collection(`ziyaramRequests`).docid(data.docid).get()){
+//       console.log('Correct');
+      
+//     }else{
+//       console.log('Not Correct');
+      
+//     }
+
+  
   }else{
     return this.afs.collection('ziyaramRequests').add(data).then((re: any)=>{
       console.log(re);
@@ -417,9 +428,30 @@ getAllZiyaramfromFire(){
     );
 }
 
+//Get Ziyaram Requests From Fire
+getZiyaramRequests(){
+  return this.afs.collection(`ziyaramRequests`).snapshotChanges().pipe(
+    map((actions: any)=>{
+      return actions.map((a: any)=>{
+        const data = a.payload.doc.data();
+        const docid = a.payload.doc.id;
+        return {docid,...data}
+      })
+    })
+  )
+}
+
 // Update Ziyaram in Firebase
 async updateZiyaramFireBase(ziyaram: any){
-  this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);   
+  this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);  
+  let a = this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).get();
+  a.subscribe((re: any)=>{
+    if(re.exists){
+      this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).delete();
+    }
+    
+  })
+  a.unsubscribe;
 }
 
 
@@ -427,6 +459,9 @@ async updateZiyaramFireBase(ziyaram: any){
 async deleteZiyaramFireBase(ziyaram: any){
   const time = new Date().getTime();
   this.afs.collection('ziyarams').doc(ziyaram.docid).update({deleted: true, updatedDate: time});
+}
+async deleteZiyaramRequestFireBase(data: any){
+  this.afs.collection(`ziyaramRequests`).doc(data.docid).delete();
 }
 
 /****************Refresh Event************* */

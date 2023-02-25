@@ -1,5 +1,5 @@
 import { PlatformLocation } from '@angular/common';
-import { Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Platform, IonRouterOutlet, AlertController, IonContent, ScrollDetail, IonModal } from '@ionic/angular';
 import { finalize, Observable, Subscription, tap } from 'rxjs';
@@ -20,7 +20,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   templateUrl: './ziyarams.page.html',
   styleUrls: ['./ziyarams.page.scss'],
 })
-export class ZiyaramsPage {
+export class ZiyaramsPage implements AfterViewInit {
   @ViewChild('modal1') modal: IonModal;
   @ViewChild('modal2') modal2: IonModal;
 
@@ -35,6 +35,7 @@ export class ZiyaramsPage {
   searchKey: String;
   ziyarams : any = [];
   Permziyarams : any = [];
+  ZiyaramRequests: any = [];
   currZiyaram : any = {};
   editZiyaram : any = {};
   obj: Boolean;
@@ -79,6 +80,7 @@ export class ZiyaramsPage {
   Western = ['Colombo','Gampaha','Kalutara'];
 
   dist: any[];
+  anyReq: boolean = false;
 
   locationStat: string = "Locate Ziyaram Position"
 
@@ -86,42 +88,56 @@ export class ZiyaramsPage {
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation, public storage: AngularFireStorage) {
     
-      this.obsr.network.subscribe(re=>{
-        this.net=re;
-      });
-      this.obsr.user.subscribe(re=>{
-        this.obj = re
-      });
-      this.obsr.latitude.subscribe(re=>{
-        this.lat = re;
-      })
-  
-      this.obsr.longtitude.subscribe(re=>{
-        this.long = re;
-      })
-      this.obsr.LocSelected.subscribe(re=>{
-        this.selected = re;
-        if(re){
-          this.locationStat = 'Location Selected';
-        }else{
-          this.locationStat = 'Locate Ziyaram Position';
-        }
-  
-        console.log(this.locationStat);
-        
-      })
-      this.getZiyarams();
+     
       
    }
    unsbr(){
     // this.subs.unsubscribe();
   }
+
+  ngAfterViewInit(){
+    this.obsr.network.subscribe(re=>{
+      this.net=re;
+      console.log(re);
+      
+      if(re){
+        this.db.getZiyaramRequests().subscribe((re: any) =>{
+          console.log(re);
+          if(re.length > 0){
+            this.anyReq = true;
+            this.ZiyaramRequests = re;
+          }else{
+            this.ZiyaramRequests = [];
+          }
+          
+        })
+      }
+    });
+    this.obsr.user.subscribe(re=>{
+      this.obj = re
+    });
+    this.obsr.latitude.subscribe(re=>{
+      this.lat = re;
+    })
+
+    this.obsr.longtitude.subscribe(re=>{
+      this.long = re;
+    })
+    this.obsr.LocSelected.subscribe(re=>{
+      this.selected = re;
+      if(re){
+        this.locationStat = 'Location Selected';
+      }else{
+        this.locationStat = 'Locate Ziyaram Position';
+      }
+
+      console.log(this.locationStat);
+      
+    })
+    this.getZiyarams();
+  }
   ionViewWillEnter(){
-    console.log('will Enter');
-    
-   
-  
-    
+    console.log('will Enter'); 
   }
   ionViewDidEnter(){
     console.log('ziyaram view entering');
@@ -283,6 +299,7 @@ EditZiyaram(data: any){
   }
   this.route.navigate(['add-ziyaram'], send);
 }
+
 setEditFalse(){
   this.isEditOpen = false;
 }
@@ -365,6 +382,43 @@ async deleteZiyaram(data: any){
             console.log('delete Conformed');
              this.db.deleteZiyaramFireBase(data).then(()=>{
               this.spinner = false;
+                  this.utilService.successToast('Ziyaram Detail deleted successfully','trash-outline','warning');
+              }).catch((er)=>{
+                this.spinner = false;
+                this.utilService.erroToast('Something Went Wrong', 'bug-outline');
+              });
+            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }else{
+    this.utilService.NetworkToast();
+  }
+}
+async deleteZiyaramRequest(data: any){
+  if(this.net){
+    const alert = await this.alertctrl.create({
+      header: 'Are You Sure To Delete',
+      buttons:[
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () =>{
+            console.log('cancelled');
+            
+          }
+        },{
+          text: 'Delete',
+          role: 'confirm',
+          handler: () =>{
+            this.spinner = true;
+            console.log('delete Confirmed');
+             this.db.deleteZiyaramRequestFireBase(data).then((re)=>{
+              this.spinner = false;
+              console.log(re);
+              
                   this.utilService.successToast('Ziyaram Detail deleted successfully','trash-outline','warning');
               }).catch((er)=>{
                 this.spinner = false;

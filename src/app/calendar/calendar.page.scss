@@ -1,0 +1,157 @@
+@media (prefers-color-scheme: dark){
+    .home {
+        color: #ffffff;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/calendar/calendardarkbanner.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+}
+@media (prefers-color-scheme: light){
+    .home {
+        color: #fdc103;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/calendar/calendarlightbanner.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+}
+
+
+
+.tool {
+    width: 100%;
+    height: 100%;
+}
+.lst{
+    
+    padding-left: 2%;
+    padding-right:2%;
+    // padding-top: 2%;
+    height: 100%;
+    width: 100%;
+    position:fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+   
+}
+
+.lstcont{
+    height: 100%;
+  
+    max-height: auto;
+    overflow-y: scroll;
+}
+.cont{
+    // margin-top: 10% !important;
+    height: 92%; 
+    width: 100%; 
+    overflow-y: scroll;
+    border-radius:2%;
+
+}
+.cont::-webkit-scrollbar {
+    display: none;
+}
+.lst::-webkit-scrollbar {
+    display: none;
+}
+.lstcont::-webkit-scrollbar {
+    display: none;
+}
+
+:host ::ng-deep{
+    .swiper-slide{
+      height: 70% !important;
+      // margin-top: 10%;
+      margin-bottom: 200px;
+    }
+    .swiper{
+      height: 90% !important;
+    }
+    .swiper-wrapper{
+        height: 25.0vh !important;
+        top: 4.0vh !important;
+    }
+    .monthview-container{
+      height: 100% !important;
+      overflow-y: show !important;
+    }
+    .cont{
+      height: 100% !important;
+    }
+
+    .cont::-webkit-scrollbar{
+      display: none !important;
+  }
+    .monthview-primary-with-event{
+      background-color: var(--ion-color-success) !important;
+      border-radius: 25px;
+      font-weight: 600;
+    }
+  
+     
+      
+    
+    td{
+      border-radius: 25px;
+      margin: 13px !important;
+      
+    }
+    .monthview-selected{
+      background-color: var(--ion-color-primary) !important;
+      border-radius: 25px;
+    }
+    .monthview-current{
+      background-color: rgba(192, 185, 86, 0.979) !important;
+      border-radius: 25px !important;
+      
+      border-bottom-color: var(--ion-color-warning) !important;
+    }
+    thead{
+      background-color: rgb(200, 207, 92);
+    }
+    tbody{
+      background-color: rgba(235, 235, 235, 0.445);
+    }
+    table{
+      background-color: transparent !important;
+    }
+    .ion-text-center{
+      background-color: rgb(5, 87, 19);
+      border: 2px dashed rgb(206, 139, 38);
+      border-radius: 10px;
+      margin: 5px;
+      width: 100%;
+      height: 7.0vh;
+      color: white;
+      align-items: center;
+      z-index: 10;
+    }
+     h2 {
+        margin-top: 5px !important;
+    }
+    .monthview-eventdetail-timecolumn{
+      display: none;
+    }
+    .item-lines-default{
+      background-color: rgb(224, 228, 228) !important;
+      border-radius: 12px !important;
+      margin-bottom: 5px !important;
+  
+    }
+    .no-events-label{
+      color: rgb(178, 185, 185) !important;
+    }
+   
+  
+  }
