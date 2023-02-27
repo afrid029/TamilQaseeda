@@ -10,6 +10,16 @@
         background-size: 100% 100%;
               
         }
+    .edit{
+      border: 1px solid rgb(238, 232, 232);
+      color: #ffffff;
+      background-color: #3477ce;
+    }
+    .del{
+      color: rgb(255, 255, 255);
+      border: 1px solid rgb(238, 232, 232);
+      background-color: #c74d07;
+    }
 }
 @media (prefers-color-scheme: light){
     .home {
@@ -23,7 +33,29 @@
         background-size: 100% 100%;
               
         }
+    .del{
+      color: #c74d07 !important;
+      border: 1px solid #c74d07 !important;
+    }
+    .edit{
+      border: 1px solid #3477ce;
+      color: #3477ce;
+    }
 }
+
+.delAlert{
+  --background-color: #fdc103 !important;
+}
+
+.md,.ios,.wp {
+  page-landing {
+    .delAlert {
+      --background-color: #F35E5D !important;
+      background: #F35E5D  !important;
+      color: red !important;
+      $alert-md-background-color: #F35E5D;
+      $alert-ios-background: #F35E5D;
+    }}}
 
 
 
@@ -68,6 +100,53 @@
 .lstcont::-webkit-scrollbar {
     display: none;
 }
+.listbtn{
+  --background: rgb(8, 117, 66);
+}
+.modalBody{
+  padding-top: 25px !important;
+  margin-left: 225px !important;
+}
+.edit {
+  border-radius: 78px !important;
+  float: left;
+  width: 12%;
+  height: 35px;
+  text-align: center;
+  
+
+  padding: 12px 5px;
+  margin-left: 2px;
+  padding-top: 10px;
+}
+.del {
+  margin-left: 8px;
+ 
+}
+.detail{
+  // width: 100%;
+  // max-width: 100%;
+  // overflow-x: visible !important;
+  white-space: nowrap; 
+  width: 100%; 
+  overflow: scroll;
+  text-overflow: clip;
+  padding-left: 8%;
+  font-size: small;
+}
+.date{
+  position: fixed; 
+  background-color: rgba(120, 177, 158, 0.644); 
+  border: 2px dashed rgb(94, 77, 3);
+  border-radius: 7px;;
+  width: 10%;
+  height: 34px;
+  padding: 8px;
+  padding-left: 10px !important;
+  font-size: small;
+  
+}
+
 
 :host ::ng-deep{
     .swiper-slide{
@@ -77,6 +156,7 @@
     }
     .swiper{
       height: 90% !important;
+      padding-top: 35px !important;
     }
     .swiper-wrapper{
         height: 25.0vh !important;
@@ -97,6 +177,7 @@
       background-color: var(--ion-color-success) !important;
       border-radius: 25px;
       font-weight: 600;
+      z-index: 10 !important;
     }
   
      
@@ -104,8 +185,9 @@
     
     td{
       border-radius: 25px;
-      margin: 13px !important;
-      
+    }
+    tr, td{
+      border: 4px solid transparent !important;
     }
     .monthview-selected{
       background-color: var(--ion-color-primary) !important;
@@ -114,8 +196,7 @@
     .monthview-current{
       background-color: rgba(192, 185, 86, 0.979) !important;
       border-radius: 25px !important;
-      
-      border-bottom-color: var(--ion-color-warning) !important;
+      // border-bottom-color: var(--ion-color-warning) !important;
     }
     thead{
       background-color: rgb(200, 207, 92);
@@ -151,6 +232,9 @@
     }
     .no-events-label{
       color: rgb(178, 185, 185) !important;
+    }
+    .event-detail-container{
+      background-color: transparent !important;
     }
    
   

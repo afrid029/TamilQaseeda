@@ -70,14 +70,14 @@
 
   <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
     <ng-template>
-      <ion-header style="height: auto;">
+      
         <ion-toolbar color="success">
           <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
-      </ion-header>
+      
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
           <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
@@ -93,7 +93,7 @@
   <ion-modal  backdropDismiss="false" [isOpen]="isEditOpen">
     <ng-template>
     
-      <ion-header>
+     
         <ion-toolbar color="warning">
           <ion-input (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.title" required></ion-input>
          
@@ -102,7 +102,7 @@
             <ion-button size = "small" color="danger"  (click)="setOpen(false)">Close</ion-button>
           </div>
         </ion-toolbar>
-      </ion-header>
+  
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
           <ion-input style="font-size: 10px; max-lines: 3;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>

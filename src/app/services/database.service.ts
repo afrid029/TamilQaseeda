@@ -721,7 +721,7 @@ getAllCalendar(){
   ).then((res) =>{
     console.log('results',res.rows.length);
     for(var i=0; i< res.rows.length; i++) {
-      this.oldEvidence.push(res.rows.item(i));
+      this.oldCalendar.push(res.rows.item(i));
     }
      
   }).catch((e) =>{
@@ -766,7 +766,9 @@ getAllCalendarfromFire(){
 
 // Update calendar in Firebase
 async updateCalendarFireBase(calendar: any){
-  this.afs.collection('calendar').doc(calendar.docid).set(calendar        );   
+  console.log(calendar);
+  
+  this.afs.collection('calendar').doc(calendar.docid).set(calendar);   
 }
 
 
@@ -778,7 +780,7 @@ async deletecalendarFireBase(evidence: any){
 
 /***********Refresh Event*************/
 
-getCalendarFromFireBase(){
+async getCalendarFromFireBase(){
   this.getAllCalendar();
   this.getAllCalendarfromFire().subscribe((re: any)=>{
     console.log('Length from db ', re.length);
@@ -806,13 +808,19 @@ getCalendarFromFireBase(){
         }
       }
       this.utilService.successToast('Calendar List Updated','bookmark','success');
+      
+      
     }else{
       this.utilService.successToast('Calendar List Upto Date','cloud-done','tertiary');
+      
+      
   }
   });
  
   const curTime = new Date().getTime();
   localStorage.setItem('calendarref',curTime.toString());
+
+  
 }
 
 

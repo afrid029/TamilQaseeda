@@ -85,6 +85,7 @@ export class AddZiyaramPage implements OnInit {
   newImage: boolean = false;
 
   locationStat: string = "Locate Ziyaram Position"
+  title: string = " Add Ziyaram Detail";
   fileSelected: boolean = true;
   constructor(private storage: AngularFireStorage, public utill: UtillService, public obsr: ObsrService, public datasc: DatabaseService, public router: Router, public platform: Platform,
     public active: ActivatedRoute, public location: Location) {
@@ -109,6 +110,7 @@ export class AddZiyaramPage implements OnInit {
     this.obsr.user.subscribe(re=>{
       this.admin = re;
       if(!re){
+        this.title = 'Send Ziyaram Details'
         this.captchaTest = true;
         this.captchaText = this.createCaptcha();
         this.captchaInterval = setInterval(()=>{
@@ -132,6 +134,7 @@ export class AddZiyaramPage implements OnInit {
 
     this.active.queryParams.subscribe(params=>{
       if(params && params['source']){
+        this.title = 'Update Ziyaram Details'
         this.ziyaram = JSON.parse(params['source']);
         // this.ziyaram.name = JSON.parse(params['source']).name;
         // this.ziyaram.description = JSON.parse(params['source']).description;

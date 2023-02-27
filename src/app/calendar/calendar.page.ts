@@ -5,6 +5,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
 import { AlertController, IonRouterOutlet, Platform, ToastController } from '@ionic/angular';
 import { CalendarMode, QueryMode, Step } from 'ionic2-calendar';
+import { title } from 'process';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
@@ -26,7 +27,22 @@ export class CalendarPage {
   eventSource: any[]=[];
   event:any;
   isToday: boolean=false;
+  isModalOpen: boolean=false;
+  isEditModalOpen: boolean=false;
+  editEvent: any;
   viewTitle: string='';
+  jan: any[] = [];
+  feb: any[] = [];
+  mar: any[] = [];
+  apr: any[] = [];
+  may: any[] = [];
+  jun: any[] = [];
+  jul: any[] = [];
+  aug: any[] = [];
+  sep: any[] = [];
+  oct: any[] = [];
+  nov: any[] = [];
+  dec: any[] = [];
   calendar = {
     mode: 'month' as CalendarMode,
     queryMode: 'local' as QueryMode,
@@ -85,25 +101,37 @@ export class CalendarPage {
     },
   };
 
+  currYear: any;
+
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
-    private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation, public afs: AngularFirestore) {
+    private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation) {
     
     
       this.obsr.network.subscribe(re=>{
         this.net=re;
+        console.log('Connecteffffffff');
+        
       });
 
      this.obsr.user.subscribe(re=>{
       this.obj=re;
      })
    }
+   ionViewWillEnter(){
+    this.getCalendar();
+   }
 
    ionViewDidEnter(){
     console.log('calendarview entering');
     
-    this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{ 
+    this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+      if(!this.isModalOpen && !this.isEditModalOpen){
+        this.route.navigateByUrl('/dashboard');
+      }
     })
+    console.log(localStorage.getItem('calendarref'));
+    
 
    
    }
@@ -113,80 +141,255 @@ export class CalendarPage {
     
     this.subs.unsubscribe();
    }
-   ngOnInit(){
-    // this.afs.collection(`calendar`).valueChanges().forEach((re: any)=>{
-    //   re.forEach((da: any)=>{
-    //     this.eventSource.push({
-    //       title: da.content,
-    //       startTime: new Date(Date.UTC(2023,1,20)),
-    //       endTime: new Date(Date.UTC(2023,1,21)),
-    //       allDay: true
-  
-    //     });
-        
-    //   })
-      
-      
-      
-    // })
-    let event1: any[] = [];
-    this.afs.collection(`calendar`).valueChanges().forEach((re: any)=>{
-      re.forEach((da: any)=>{
-        const d = new Date(da.date);
-        console.log(d);
+
+   async getCalendar(){
+    this.spinner = true;
+    this.eventSource = [];
+    let events: any[] = []
+    this.jan=[];
+    this.feb=[];
+    this.mar=[];
+    this.apr=[];
+     this.may=[];
+     this.jun = [];
+     this.jul = [];
+     this.aug = [];
+    this.sep = [];
+    this.oct= [];
+    this.nov = [];
+    this.dec = [];
+    return this.db.getCalendar().then((data)=>{
+      console.log('calendar ',data.rows);
+      for(var i = 0; i<data.rows.length; i++){
+        console.log(data.rows.item(i));
+        const d = new Date(data.rows.item(i).date);
         const year = d.getFullYear();
         const month = d.getMonth();
         const day = d.getDate();
+        const currDate = new Date();
+         this.currYear = currDate.getFullYear();
+       
 
-        console.log(year, month, day);
+        console.log(data.rows.item(i).date.split('-')[2]);
         
-        
-        event1.push({
-          title: da.content,
+        events.push({
+          title: data.rows.item(i).content,
           startTime: new Date(Date.UTC(year,month,day)),
           endTime: new Date(Date.UTC(year,month,day+1)),
           allDay: true
-  
-        });
-        this.eventSource = [...this.eventSource, event1[0]];
-      event1 = [];
+        })
+
+        if(month == 0){
+          this.jan.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        }else if(month ==1){
+          this.feb.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        }else if(month ==2){
+          this.mar.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
         
-      })
-      
-      
-      
-      
-    });
+        }else if(month ==3){
+          this.apr.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        }else if(month ==4){
+          this.may.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==5){
+          this.jun.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==6){
+          this.jul.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==7){
+          this.aug.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==8){
+          this.sep.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==9){
+          this.oct.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==10){
+          this.nov.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        
+        }else if(month ==11){
+          this.dec.push({
+            docid: data.rows.item(i).docid,
+            year: data.rows.item(i).date.split('-')[0],
+            month: data.rows.item(i).date.split('-')[1],
+            day: data.rows.item(i).date.split('-')[2],
+            content: data.rows.item(i).content
+          })
+        }
+        
+      }
 
-    console.log(this.eventSource);
-    
-    // this.eventSource.push({
-    //   title: 'test',
-    //   startTime: new Date(Date.UTC(2023,1,20)),
-    //   endTime: new Date(Date.UTC(2023,1,21)),
-    //   allDay: true
-    // })
-
-    // this.eventSource.push({
-    //   title: 'tes2t',
-    //   startTime: new Date(Date.UTC(2023,1,20)),
-    //   endTime: new Date(Date.UTC(2023,1,21)),
-    //   allDay: true
-    // })
+      
+      this.spinner = false;
+      this,this.eventSource = events;
+      
+    })
    }
-   unsbr(){
-    // this.subs.unsubscribe();
-  }
+   ngOnInit(){
+   
+   }
+  
 async handleRefresh(event: any) {
   if(this.net){
+    this.spinner = true;
     setTimeout(() => {
-      this.db.getFromFireBase();
+      this.db.getCalendarFromFireBase();
       console.log('refreshed ');
       event.target.complete();
-    }, 2000);
+    }, 500);
+
+    setTimeout(()=>{
+      this.getCalendar();
+      this.spinner = false
+    },4000)
         
   }else{
     event.target.complete();
+    this.utilService.NetworkToast();
+  }
+}
+
+setmodel(state: boolean){
+  this.isModalOpen = state;
+}
+seteditmodel(state: boolean){
+  this.isEditModalOpen = state;
+}
+updateClick(data: any){
+  console.log(data);
+  const d = data.year + "-" + (data.month) + "-" + data.day;
+  console.log(d);
+  
+  this.editEvent = {
+    docid: data.docid,
+    date: d,
+    content: data.content
+  }
+  
+  // this.editEvent = data;
+  this.seteditmodel(true);
+}
+update(){
+  if(this.net){
+    this.spinner = true;
+    this.isEditModalOpen = false;
+    this.editEvent.updatedDate = new Date().getTime();
+    this.editEvent.deleted = false;
+    this.db.updateCalendarFireBase(this.editEvent).then(() => {
+      this.spinner = false;
+      this.utilService.successToast('Calendar event successfully','thumbs-up-outline','success');
+    }).catch(er=>{
+      this.spinner = false;
+      this.utilService.erroToast('Something Went Wrong', 'bug-outline');
+    });
+
+  }else{
+    this.utilService.NetworkToast();
+  }
+}
+
+async deleteClick(data: any){
+  console.log(data);
+  if(this.net){
+    const alert = await this.alertctrl.create({
+      header: 'Are You Sure To Delete',
+      cssClass: 'delAlert',
+      buttons:[
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass : 'delAlert',
+          handler: () =>{
+            console.log('cancelled');
+            
+          }
+        },{
+          text: 'Delete',
+          role: 'confirm',
+          handler: () =>{
+            this.spinner = true;
+            console.log('delete Confirmed');
+             this.db.deletecalendarFireBase(data).then(()=>{
+                this.spinner = false;
+                  this.utilService.successToast('Calendar event deleted successfully','trash-outline','warning');
+              }).catch((er)=>{
+                this.utilService.erroToast('Something Went Wrong', 'bug-outline');
+              });
+            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }else{
     this.utilService.NetworkToast();
   }
 }
@@ -219,52 +422,7 @@ onCurrentDateChanged(ev: Date) {
 }
 
 /**************************************************************/
-loadDate(){
-  let event1: any[] = [];
-  this.afs.collection(`calendar`).valueChanges().forEach((re: any)=>{
-    re.forEach((da: any)=>{
-      event1.push({
-        title: da.content,
-        startTime: new Date(Date.UTC(2023,1,20)),
-        endTime: new Date(Date.UTC(2023,1,21)),
-        allDay: true
 
-      });
-      this.eventSource = [...this.eventSource, event1[0]];
-    event1 = [];
-      
-    })
-    
-    
-    
-    
-  });
-
-  // var events = [];
-  // events.push({
-  //   title: 'fsdfsd',
-  //   startTime: new Date(Date.UTC(2023,1,23)),
-  //   endTime: new Date(Date.UTC(2023,1,24)),
-  //   allDay: true
-
-  // });
-  // this.eventSource = [...this.eventSource, events[0]];
-  //  events = [];
-  // events.push({
-  //   title: 'fsdasasfsd',
-  //   startTime: new Date(Date.UTC(2023,1,27)),
-  //   endTime: new Date(Date.UTC(2023,1,28)),
-  //   allDay: true
-
-  // });
-    
-    console.log(this.eventSource);
-    
-
-    
-
-  
-}
 
 
 }

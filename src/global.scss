@@ -101,12 +101,24 @@ body{
   --ion-background-color: none !important;
 }
 
+
+
 @media (prefers-color-scheme: dark){
   .addBody{
     background-color: rgb(43, 42, 42);
    }
    .modalBody{
     background-color: rgb(43, 42, 42);
+   }
+   ion-alert.delAlert {
+    --background: rgb(85, 83, 83) !important;
+    --border: 2px solid white;
+     button.alert-button:nth-child(1){
+       color: rgb(255, 255, 255);
+     }
+     button.alert-button:nth-child(2){
+       color: rgb(255, 255, 255);
+     }
    }
 }
 
@@ -116,6 +128,16 @@ body{
    }
    .modalBody{
     background-color: rgb(255, 255, 255);
+   }
+   ion-alert.delAlert {
+    --background: rgb(255, 255, 255) !important;
+
+     button.alert-button:nth-child(1){
+       color: black;
+     }
+     button.alert-button:nth-child(2){
+       color: black;
+     }
    }
 }
 

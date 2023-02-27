@@ -161,6 +161,9 @@
     .calendar {
         content: url(../../assets/pictures/dashboard/calendarhomedarkicon.jpg);
     }
+    .dua{
+      content: url(../../assets/pictures/dashboard/duahomedarkicon.jpg);
+    }
     .bg {
         background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
     }
@@ -187,6 +190,9 @@
     }
     .calendar {
         content: url(../../assets/pictures/dashboard/calendarhomelighticon.jpg);
+    }
+    .dua{
+        content: url(../../assets/pictures/dashboard/duahomelighticon.jpg);
     }
     .bg{
         background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
@@ -275,7 +281,7 @@
   }
   
 
-  .haseetha, .ziyaram, .evidence, .calendar{
+  .haseetha, .ziyaram, .evidence, .calendar, .dua{
     border-radius: 5%;
   }
 

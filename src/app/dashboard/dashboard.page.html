@@ -46,6 +46,12 @@
           </div>
           
         </ng-template>
+        <ng-template swiperSlide>
+          <div (click)="navigateTo('dua')"  class="img">
+            <img class="dua"/>
+          </div>
+          
+        </ng-template>
       </swiper>
 
     
@@ -73,6 +79,7 @@
           <ion-button (click)="navigateTo('add-ziyaram')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Ziyaram Detail</ion-button>
           <ion-button (click)="navigateTo('add-evidence')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Religious Topic</ion-button>
           <ion-button (click)="navigateTo('add-calendar')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Calendar Detail</ion-button>
+          <ion-button (click)="navigateTo('add-dua')" style="display: flex; width: 90%; margin: 5% 5%;" color="success">Add Duas</ion-button>
          
         </ion-content>
       </ng-template>

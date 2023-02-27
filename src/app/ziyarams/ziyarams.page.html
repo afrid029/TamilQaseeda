@@ -107,14 +107,14 @@
 
     <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
       <ng-template>
-        <ion-header>
+        
           <ion-toolbar color="success">
             <ion-title style="font-size:14px">{{currZiyaram.name}}</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="setViewModel(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
-        </ion-header>
+        
         <ion-content class="modalBody">
           <ion-card>
             <img alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />

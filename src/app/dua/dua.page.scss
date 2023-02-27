@@ -1,0 +1,48 @@
+@media (prefers-color-scheme: dark){
+    .home {
+        color: #ffffff;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/dua/duadarkbanner.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+    .edit{
+      border: 1px solid rgb(238, 232, 232);
+      color: #ffffff;
+      background-color: #3477ce;
+    }
+    .del{
+      color: rgb(255, 255, 255);
+      border: 1px solid rgb(238, 232, 232);
+      background-color: #c74d07;
+    }
+}
+@media (prefers-color-scheme: light){
+    .home {
+        color: #fdc103;
+    }
+    .tool {
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/pictures/dua/dualightbanner.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+              
+        }
+    .del{
+      color: #c74d07 !important;
+      border: 1px solid #c74d07 !important;
+    }
+    .edit{
+      border: 1px solid #3477ce;
+      color: #3477ce;
+    }
+}
+.tool {
+    width: 100%;
+    height: 100%;
+}

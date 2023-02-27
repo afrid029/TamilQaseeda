@@ -10,17 +10,20 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-item (click)="closeMenu()" [routerLink] = "['/home']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="navigate-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;தமிழ் ஹஸீதா தளம்</ion-label>
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="musical-notes-sharp"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;தமிழ் ஹஸீதா தளம்</ion-label>
       </ion-item>
       <ion-item (click)="closeMenu()" [routerLink] = "['/ziyarams']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="navigate-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="location-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
       </ion-item>
       <ion-item (click)="closeMenu()" [routerLink] = "['/evidence']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="navigate-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="bulb-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
       </ion-item>
      <ion-item (click)="closeMenu()" [routerLink] = "['/calendar']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="navigate-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="calendar-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
     </ion-item>
+    <ion-item (click)="closeMenu()" [routerLink] = "['/dua']">
+      <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="book-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
+  </ion-item>
 
       <ion-item (click)="openLogin()">
          <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="person-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Admin Login</ion-label>
@@ -50,6 +53,61 @@
   </ion-menu>
   <div class="ion-page" id="main-content">
   </div>
+
+  <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen">
+    <ng-template>  
+       
+      
+     
+
+        <!-- <div class="alt">
+          <ion-fab  (click)="openModal(false)"class="closebtn" vertical="top" horizontal="end" slot="fixed">
+            <ion-icon class="closeicon"  name="close-circle-sharp"></ion-icon>
+          </ion-fab>
+        </div> -->
+
+        <ion-card class="card" >
+          <ion-card-header style="height: 10%;">
+         
+              <!-- <ion-button fill="clear" class="closebtn1" style="margin-left: 60%"  (click)="openModal(false)">
+                <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
+              </ion-button> -->
+          
+           
+          </ion-card-header>
+          <ion-card-content class="alt1">
+            
+            <div  class="img">
+              <ion-button fill="clear" class="closebtn1" (click)="openModal(false)">
+                <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
+              </ion-button>
+              <img alt="Dialog-Box" class="alert"/>
+
+              <div class="content">
+                <h5 >
+                  நபிகள் நாயகம் (ஸல்) அவர்கள் பற்றி ஒரு செய்தியை அறிவிக்கும்போது இன்று நாம் அறிவிப்பாளர்களின் வரிசையுடன் கூறுவதில்லை.
+                  நபிகள் நாயகம் (ஸல்) அவர்கள் பற்றி ஒரு செய்தியை அறிவிக்கும்போது இன்று நாம் அறிவிப்பாளர்களின் வரிசையுடன் கூறுவதில்லை. 
+                  
+                </h5>
+<br><br><br>
+              
+                  <h6>
+                    XZXzXZ
+                  </h6>
+              
+              </div>
+              
+            </div>
+          </ion-card-content>
+        </ion-card>
+     
+     
+      
+       
+      
+      </ng-template>
+   
+  </ion-modal>
   
     <ion-router-outlet></ion-router-outlet>
   

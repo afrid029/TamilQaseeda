@@ -25,6 +25,8 @@ export class AddCalendarPage implements OnInit {
     if(this.net){
       this.spinner = true;
       this.calendar.updatedDate = new Date().getTime();
+      console.log(this.calendar);
+      
 
       this.datasc.addCalendarDetail(this.calendar).then(async (re: any)=>{
         this.spinner = false;

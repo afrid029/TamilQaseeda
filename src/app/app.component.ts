@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {  IonRouterOutlet, LoadingController, MenuController, Platform } from '@ionic/angular';
+import {  IonRouterOutlet, LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { DatabaseService } from './services/database.service';
 import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
@@ -21,8 +21,10 @@ export class AppComponent {
   isLoginOpen: boolean = false;
   login = {email:'', password:''};
   spinner: boolean = false;
+
+  isModalOpen: boolean = false;
  
-  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController) {
+  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController) {
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
@@ -47,9 +49,22 @@ export class AppComponent {
       this.obsr.network.subscribe(re=>{
         this.net = re;
       });
-     const md = document.getElementsByClassName('md');
+     
      
     
+   }
+   ngOnInit(){
+    console.log('Appcomponent');
+    this.openModal(true);
+    
+   }
+   async openModal(state: boolean){
+    // const modal = this.modalCtrl.create({
+      
+    // })
+    this.isModalOpen = state;
+
+
    }
 
    openLogin(){

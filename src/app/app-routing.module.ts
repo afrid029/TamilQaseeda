@@ -62,6 +62,14 @@ const routes: Routes = [
     path: 'google-map',
     loadChildren: () => import('./google-map/google-map.module').then( m => m.GoogleMapPageModule)
   },
+  {
+    path: 'dua',
+    loadChildren: () => import('./dua/dua.module').then( m => m.DuaPageModule)
+  },
+  {
+    path: 'add-dua',
+    loadChildren: () => import('./add-dua/add-dua.module').then( m => m.AddDuaPageModule)
+  },
  
 ];
 @NgModule({
