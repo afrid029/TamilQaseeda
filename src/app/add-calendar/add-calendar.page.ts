@@ -31,7 +31,7 @@ export class AddCalendarPage implements OnInit {
       this.datasc.addCalendarDetail(this.calendar).then(async (re: any)=>{
         this.spinner = false;
         this.route.navigateByUrl('dashboard');
-        this.calendar = {date:'', content: '', updatedDate:0, deleted: false};
+        this.calendar = {};
         this.util.successToast('Calendar Detail Successfully Added','cloud-upload-sharp','warning')
       }).catch((er: any)=>{
         this.spinner = false;

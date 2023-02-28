@@ -35,16 +35,16 @@ export class AddEvidencePage implements OnInit {
       console.log(this.evidence);
       
       
-      // this.datasc.addEvidenceDetail(this.evidence).then(async (data: any) => {
-      //   this.spinner = false;
-      //   this.route.navigateByUrl('dashboard');
-      //   this.evidence = {title:'',content:'',type:'', updatedDate:0, deleted: false}
-      //   this.util.successToast('Evidence Successfully Added','cloud-upload-sharp','warning')
-      // }).catch((er: any)=>{
-      //   this.spinner = false;
-      //   console.log('Error encountered ', er.message);   
-      //   this.util.erroToast(er.message, 'snow-outline'); 
-      // })
+      this.datasc.addEvidenceDetail(this.evidence).then(async (data: any) => {
+        this.spinner = false;
+        this.route.navigateByUrl('dashboard');
+        this.evidence = {};
+        this.util.successToast('Evidence Successfully Added','cloud-upload-sharp','warning')
+      }).catch((er: any)=>{
+        this.spinner = false;
+        console.log('Error encountered ', er.message);   
+        this.util.erroToast(er.message, 'snow-outline'); 
+      })
     }else{
   
       this.util.NetworkToast();

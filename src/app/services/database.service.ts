@@ -19,6 +19,7 @@ export class DatabaseService {
   oldZiyaram: any=[];
   oldEvidence: any = [];
   oldCalendar: any=[];
+  oldDua: any=[];
   ngAuth: any;
   afs: any;
   network: Boolean;
@@ -59,7 +60,7 @@ export class DatabaseService {
      this.databaseObj = db;
      this.obsr.database.next(true);
   }).catch((e) => {
-    alert("Error in creatin databse "+JSON.stringify(e))
+    this.utilService.erroToast('Error in create database','storefront-outline');
   });
 
 }
@@ -73,8 +74,10 @@ async createTables(){
     
   }).catch((er) => {
     console.log(er);
-    
+    this.utilService.erroToast('Error in create tables','storefront-outline');
   });
+    
+  
 
   console.log('Ziyaram Table')
   await this.databaseObj.executeSql(
@@ -84,6 +87,7 @@ async createTables(){
     
   }).catch((er) => {
     console.log(er);
+    this.utilService.erroToast('Error in create tables','storefront-outline');
     
   });
 
@@ -95,6 +99,7 @@ async createTables(){
     
   }).catch((er) => {
     console.log(er);
+    this.utilService.erroToast('Error in create tables','storefront-outline');
     
   });
 
@@ -106,6 +111,19 @@ async createTables(){
     
   }).catch((er) => {
     console.log(er);
+    this.utilService.erroToast('Error in create tables','storefront-outline');
+    
+  });
+
+  console.log('Awraadh Table')
+  await this.databaseObj.executeSql(
+    `create table if not exists dua (docid TEXT PRIMARY KEY, title TEXT, content TEXT, type TEXT,meaning TEXT, benifit TEXT, updatedDate INTEGER)`,[]
+  ).then((res) => {
+    console.log(res);
+    
+  }).catch((er) => {
+    console.log(er);
+    this.utilService.erroToast('Error in create tables','storefront-outline');
     
   });
 }
@@ -824,6 +842,182 @@ async getCalendarFromFireBase(){
 }
 
 
+
+
+/* *******************************Duas Detail******************************************/
+
+/********SQL************** */
+
+//ADD Dua
+async addDua(dua: any){
+  console.log(dua);
+  this.databaseObj.executeSql(
+    'INSERT INTO dua (docid, title, content,meaning, benifit, type, updatedDate) VALUES (?,?,?,?,?,?,?)',[dua.docid, dua.title, dua.content,dua.meaning, dua.benifit, dua.type,  dua.updatedDate]
+  ).then((res) =>{
+    
+  }).catch((e) =>{
+    if(e.code === 6){
+      console.log('res1');
+      return 'Detail already exists'
+    }
+    console.log('res2 ', e.message);
+    return 'error in add dua '+JSON.stringify(e)  
+  });
+}
+
+// Get Dua
+async getDuas(){
+  return this.databaseObj.executeSql(
+    "SELECT * FROM dua order by title",[]
+  ).then((res) =>{
+    console.log('results',res.rows.length);
+    
+    return res
+  }).catch((e) =>{
+    return e.message;
+  });
+}
+
+//Delete Dua
+deleteDua(id: string){
+  this.databaseObj.executeSql(
+    `DELETE from dua WHERE docid = ?`,[id]
+  ).then(()=>{
+    console.log('Dua deleted successfully');
+    
+  }).catch((e) =>{
+    console.log('Dua deleted errrrrrooror ', e);
+  })
+}
+
+//Update Dua
+async updateDua(dua: any){
+  return this.databaseObj.executeSql(
+    `Update dua set title=?, content=?,meaning=?, benifit=?, type=?,updatedDate=? where docid=?`,[dua.title,dua.content,dua.meaning,dua.benifit,dua.type,dua.updatedDate,dua.docid]
+  ).then(()=>{
+    console.log('successss dua');
+    
+    return 'Dua Updated successfully'
+    
+    
+  }).catch((e) =>{
+    console.log('error dua update ',e);
+    
+    return 'error in Update Dua'
+  })
+}
+//Get All Dua from SQL
+getAllDua(){
+  this.databaseObj.executeSql(
+    "SELECT * FROM dua order by updatedDate",[]
+  ).then((res) =>{
+    console.log('results',res.rows.length);
+    for(var i=0; i< res.rows.length; i++) {
+      this.oldDua.push(res.rows.item(i));
+    }
+     
+  }).catch((e) =>{
+    return 'error in getDua'
+  });
+}
+
+/******FireStore************ */
+
+//Add Dua
+addDuaDetail(data: any){
+  
+    data.updatedDate = new Date().getTime();
+    data.deleted = false;
+    return this.afs.collection('duas').add(data).then((re: any)=>{
+      console.log(re);
+      return 'added'
+    }).catch((er: any)=>{
+      console.log('errr');
+    });
+
+ 
+  
+}
+
+//Get All Duas From fire
+getAllDuafromFire(){
+  const curTime = Number(localStorage.getItem('duaref'));
+  console.log(curTime);
+  return this.afs.collection(`duas`,(
+    ref: { 
+    where: (arg0: string, arg1: string, arg2: any) => 
+      { (): any; new(): any; 
+        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
+    }; }
+    )=>
+    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+      map((actions: any)=>{
+        return actions.map((a: any)=>{
+          const data = a.payload.doc.data();
+          const docid = a.payload.doc.id;
+          return {docid, ...data}
+        })
+      })
+    );
+}
+
+
+// Update Dua in Firebase
+async updateDuaFireBase(dua: any){
+  this.afs.collection('duas').doc(dua.docid).set(dua);
+}
+
+
+//Delete Dua in Firebase
+async deleteDuaFireBase(dua: any){
+  const time = new Date().getTime();
+  this.afs.collection('duas').doc(dua.docid).update({deleted: true, updatedDate: time});
+}
+
+
+/****************Refresh Event************* */
+async getDuaFromFireBase(){
+  this.getAllDua();
+  this.getAllDuafromFire().subscribe((re: any)=>{
+    console.log('Length from db ', re.length);
+    if(re.length > 0){
+      for(var i = 0; i<re.length; i++){
+        console.log(re[i]);
+        console.log(this.oldDua);
+        const check = this.oldDua.find((b: any) =>re[i].docid === b.docid);
+        if(check){
+          console.log('data found for ', check.docid);
+          if(re[i].deleted){
+            console.log(re[i]);
+            console.log(check);
+            this.deleteDua(check.docid);
+          }else{
+            
+            this.updateDua(re[i]);
+          }
+          
+        }else{
+          console.log('Data not found for', re[i].docid);
+          
+          this.addDua(re[i]);
+          
+        }
+      }
+      this.utilService.successToast('List Updated','bookmark','success');
+     
+    }else{
+      this.utilService.successToast('List Upto Date','cloud-done','tertiary');
+      
+  }
+  });
+ 
+  const curTime = new Date().getTime();
+  localStorage.setItem('duaref',curTime.toString());
+
+  //return true;
+}
+
+
 /******************************************* */
 
 async deleteAll(){
@@ -832,6 +1026,7 @@ async deleteAll(){
   localStorage.removeItem('ziyaramref');
   localStorage.removeItem('calendarref');
   localStorage.removeItem('evidenceref');
+  localStorage.removeItem('duaref');
   //await this.createDatabase();
   // return this.databaseObj.executeSql('delete from ziyaram',[]).then(()=>{
   //   return 'All Songs deleted successfully';

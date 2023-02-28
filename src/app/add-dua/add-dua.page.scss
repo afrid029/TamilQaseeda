@@ -1,0 +1,21 @@
+.textarea{
+    max-height: 300px; 
+    overflow-y: scroll;
+}
+.textarea::-webkit-scrollbar{
+    display: none;
+}
+.card{
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+.itm {
+    background-color: rgb(238, 238, 238); border-radius: 14px;
+  }
+  .listbody{
+    border-radius: 14px !important;
+    background-color: transparent;
+  }
+.card::-webkit-scrollbar{
+    display: none;
+}

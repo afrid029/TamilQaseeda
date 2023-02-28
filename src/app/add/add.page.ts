@@ -49,7 +49,7 @@ export class AddPage {
         console.log(re);
         this.spinner = false;
         this.router.navigateByUrl('dashboard')
-        this.song = {title:'',content:'',author:'',type:'', updatedDate:0, deleted: false};
+        this.song = {};
         this.util.successToast('Song Successfully Added','cloud-upload-sharp','warning')
             
       }).catch((e: any)=>{

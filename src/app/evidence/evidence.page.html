@@ -11,8 +11,9 @@
 
 
 <ion-content>
-  <div *ngIf="spinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;">
-    <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
+  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+  opacity: 0.7;">
+    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
     <div class="bar primary">
       <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
@@ -64,8 +65,8 @@
             </div>
             <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "aqeeda.length == 0" >
       
-              <ion-chip style="width:76%;">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
               </ion-chip>
             
           </div>
@@ -77,8 +78,8 @@
             <ion-text>அகீதா</ion-text>
           </div>
             <div class="cont">
-              <ion-chip style="width:95%;  top: 38%;">
-                <ion-label style="margin: 0 auto;" >தலைப்புகள் விரைவில் இணைக்கப்படும்</ion-label>
+              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; No Data Found</ion-label>
               </ion-chip>
             </div>
         </ng-template>
@@ -116,8 +117,8 @@
             </div>
             <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "fiqh.length == 0" >
       
-              <ion-chip style="width:76%;">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
               </ion-chip>
             
           </div>
@@ -129,8 +130,8 @@
             <ion-text>பிஃக்ஹ்</ion-text>
           </div>
             <div class="cont">
-              <ion-chip style="width:95%;  top: 38%;">
-                <ion-label style="margin: 0 auto;" >தலைப்புகள் விரைவில் இணைக்கப்படும்</ion-label>
+              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; No Data Found</ion-label>
               </ion-chip>
             </div>
         </ng-template>
@@ -168,9 +169,9 @@
             </div>
 
             <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "other.length == 0" >
-      
-              <ion-chip style="width:76%;">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+              
+              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
               </ion-chip>
             
           </div>
@@ -182,8 +183,8 @@
             <ion-text>ஏனையவை</ion-text>
           </div>
             <div class="cont">
-              <ion-chip style="width:95%;  top: 38%;">
-                <ion-label style="margin: 0 auto;" >தலைப்புகள் விரைவில் இணைக்கப்படும்</ion-label>
+              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
+                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; No Data Found</ion-label>
               </ion-chip>
             </div>
         </ng-template>
@@ -204,7 +205,7 @@
    
         <ion-content class="modalBody">
           <ion-card>
-            <ion-card-content style="white-space: pre-line;">{{currEvidence.content}}</
+            <ion-card-content style="white-space: pre-line; text-align: justify;">{{currEvidence.content}}</
               ion-card-content>
           </ion-card>
         </ion-content>

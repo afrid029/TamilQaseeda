@@ -140,4 +140,14 @@ body{
      }
    }
 }
+ion-alert{
+  --background: rgb(131, 128, 128) !important;
+
+  button.alert-button:nth-child(1){
+    color: black;
+  }
+  button.alert-button:nth-child(2){
+    color: black;
+  }
+}
 

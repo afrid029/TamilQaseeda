@@ -283,7 +283,7 @@ export class AddZiyaramPage implements OnInit {
               this.obsr.latitude.next(-1);
               this.obsr.longtitude.next(-1);
               this.btnvalid = false;
-              this.ziyaram = {name:'',description:'',location:'',day:'',long:'',lat:'',imageUrl:''};
+              this.ziyaram = {};
               if(this.admin){
                 this.utill.successToast('Ziyaram Detail Successfully Added','cloud-upload-sharp','warning')
               }else{

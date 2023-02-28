@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DuaPageRoutingModule } from './dua-routing.module';
 
 import { DuaPage } from './dua.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DuaPageRoutingModule
+    DuaPageRoutingModule,
+    SwiperModule
   ],
   declarations: [DuaPage]
 })

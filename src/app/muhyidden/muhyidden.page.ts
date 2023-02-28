@@ -151,6 +151,7 @@ async deleteSong(data: any){
 
     const alert = await this.alertctrl.create({
       header: 'Are You Sure To Delete',
+      cssClass: 'delAlert',
       buttons:[
         {
           text: 'Cancel',

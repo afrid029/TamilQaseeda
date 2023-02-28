@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {  IonRouterOutlet, LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
+import {  AnimationController, IonRouterOutlet, LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { DatabaseService } from './services/database.service';
 import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
@@ -24,7 +24,7 @@ export class AppComponent {
 
   isModalOpen: boolean = false;
  
-  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController) {
+  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController) {
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
@@ -49,13 +49,38 @@ export class AppComponent {
       this.obsr.network.subscribe(re=>{
         this.net = re;
       });
-     
-     
-    
    }
+
+   enterAnimation = (baseEl: HTMLElement) => {
+    const root = baseEl.shadowRoot;
+
+    const backdropAnimation = this.animationCtrl
+      .create()
+      .addElement(root?.querySelector('ion-backdrop')!)
+      .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+    const wrapperAnimation = this.animationCtrl
+      .create()
+      .addElement(root?.querySelector('.modal-wrapper')!)
+      .keyframes([
+        { offset: 0, opacity: '0', transform: 'scale(0)' },
+        { offset: 1, opacity: '0.99', transform: 'scale(1)' },
+      ]);
+
+    return this.animationCtrl
+      .create()
+      .addElement(baseEl)
+      .easing('ease-out')
+      .duration(500)
+      .addAnimation([backdropAnimation, wrapperAnimation]);
+  };
+
+  leaveAnimation = (baseEl: HTMLElement) => {
+    return this.enterAnimation(baseEl).direction('reverse');
+  }
    ngOnInit(){
     console.log('Appcomponent');
-    this.openModal(true);
+    this.openModal(false);
     
    }
    async openModal(state: boolean){
@@ -63,6 +88,7 @@ export class AppComponent {
       
     // })
     this.isModalOpen = state;
+    
 
 
    }
