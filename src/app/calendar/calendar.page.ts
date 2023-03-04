@@ -101,7 +101,6 @@ export class CalendarPage {
     },
   };
 
-  currYear: any;
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
@@ -167,7 +166,7 @@ export class CalendarPage {
         const month = d.getMonth();
         const day = d.getDate();
         const currDate = new Date();
-         this.currYear = currDate.getFullYear();
+        const currYear = currDate.getFullYear();
        
 
         console.log(data.rows.item(i).date.split('-')[2]);
@@ -180,6 +179,7 @@ export class CalendarPage {
         })
 
         if(month == 0){
+          
           this.jan.push({
             docid: data.rows.item(i).docid,
             year: data.rows.item(i).date.split('-')[0],

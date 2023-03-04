@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'add-dua',
     loadChildren: () => import('./add-dua/add-dua.module').then( m => m.AddDuaPageModule)
   },
+  {
+    path: 'wallalert',
+    loadChildren: () => import('./wallalert/wallalert.module').then( m => m.WallalertPageModule)
+  },
  
 ];
 @NgModule({

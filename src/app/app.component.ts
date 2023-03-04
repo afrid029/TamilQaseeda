@@ -21,10 +21,13 @@ export class AppComponent {
   isLoginOpen: boolean = false;
   login = {email:'', password:''};
   spinner: boolean = false;
-
+  alerts: any = [];
+  content: any = {};
+  i: number = 0;
+  length: number;
   isModalOpen: boolean = false;
  
-  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController) {
+  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController, private db: DatabaseService) {
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
@@ -80,17 +83,85 @@ export class AppComponent {
   }
    ngOnInit(){
     console.log('Appcomponent');
-    this.openModal(false);
+    this.db.getTodayContent().subscribe((cont: any)=>{
+      console.log('Alerts Count ', cont.length);
+      if(cont.length > 0){
+        this.alerts = cont;
+        this.length = cont.length;
+        this.openModal(true);
+
+        // const inter = setInterval(()=>{
+        //   if(this.i === cont.length){
+        //     clearInterval(inter);
+        //     console.log('cleared interval');
+        //     this.i = 0;
+            
+        //   }
+        //   console.log('cheking ',this.i);
+          
+
+        //   if(!this.isModalOpen){
+        //     this.isModalOpen = true;
+        //     this.content = cont[this.i];
+        //   }
+        // },1000)
+
+
+        // for(let i=0; i<cont.length; i++){
+        //   this.content = cont[i];
+        //   console.log(this.content);
+          
+        //   this.isModalOpen = true;
+        //   const inter = setInterval(()=>{
+        //     if(!this.isModalOpen){
+        //       console.log('okokokok');
+              
+        //       clearInterval(inter)
+        //     }
+        //   },1000)
+
+        // }
+      }
+      
+    })
+    //this.openModal(false);
     
    }
    async openModal(state: boolean){
     // const modal = this.modalCtrl.create({
       
     // })
-    this.isModalOpen = state;
+
+    if(state){
+      this.content = this.alerts[this.i];
+      this.i = this.i + 1;
+      this.isModalOpen = true;
+    }
+
+    if(!state){
+      if(this.i >= this.length){
+        this.isModalOpen = false;
+        this.i = 0;
+      }else{
+        console.log(this.i, this.length);
+        
+        this.isModalOpen = false;
+        setTimeout(()=>{
+          this.content = this.alerts[this.i];
+          this.i = this.i + 1;
+          this.isModalOpen = true;
+        },500)
+      }
+    }
     
+  
 
+   }
 
+     ionViewWillEnter(){
+      
+      
+   
    }
 
    openLogin(){

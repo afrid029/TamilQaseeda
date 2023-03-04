@@ -107,18 +107,18 @@ export class AddZiyaramPage implements OnInit {
     this.obsr.longtitude.subscribe(re=>{
       this.long = re;
     })
-    this.obsr.user.subscribe(re=>{
-      this.admin = re;
-      if(!re){
-        this.title = 'Send Ziyaram Details'
-        this.captchaTest = true;
-        this.captchaText = this.createCaptcha();
-        this.captchaInterval = setInterval(()=>{
-          this.captchaText = this.createCaptcha();
-          console.log(this.captchaText);
-        },15000)
-      }
-    })
+    // this.obsr.user.subscribe(re=>{
+    //   this.admin = re;
+    //   if(!re){
+    //     this.title = 'Send Ziyaram Details'
+    //     this.captchaTest = true;
+    //     this.captchaText = this.createCaptcha();
+    //     this.captchaInterval = setInterval(()=>{
+    //       this.captchaText = this.createCaptcha();
+    //       console.log(this.captchaText);
+    //     },15000)
+    //   }
+    // })
 
     this.obsr.LocSelected.subscribe(re=>{
       this.selected = re;
@@ -155,6 +155,9 @@ export class AddZiyaramPage implements OnInit {
       }
     })
    }
+   ngAfterViewInit() {
+    
+   }
    
 
    createCaptcha(){
@@ -174,6 +177,18 @@ export class AddZiyaramPage implements OnInit {
    }
    ionViewDidEnter(){
     console.log('view entering');
+    this.obsr.user.subscribe(re=>{
+      this.admin = re;
+      if(!re){
+        this.title = 'Send Ziyaram Details'
+        this.captchaTest = true;
+        this.captchaText = this.createCaptcha();
+        this.captchaInterval = setInterval(()=>{
+          this.captchaText = this.createCaptcha();
+          console.log(this.captchaText);
+        },10000)
+      }
+    })
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       console.log('Dashboard ',this.constructor.name); 

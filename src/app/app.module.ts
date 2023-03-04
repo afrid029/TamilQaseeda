@@ -21,6 +21,8 @@ import { IonRouterOutlet } from '@ionic/angular';
 // import { GoogleMapComponent } from './components/google-map/google-map.component';
 import { SharedModuleModule } from './modules/shared-module/shared-module.module';
 import { NgCalendarModule } from 'ionic2-calendar';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -35,7 +37,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
   OnlineStatusModule,
   SharedModuleModule,
   NgCalendarModule],
-  providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

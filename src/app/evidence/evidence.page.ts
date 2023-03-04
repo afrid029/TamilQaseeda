@@ -180,7 +180,13 @@ promo(data: any){
 }
 
 EditEvidence(data: any){
-  this.editEvidence = data;
+  // this.editEvidence = data;
+  this.editEvidence.docid = data.docid;
+  this.editEvidence.title = data.title;
+  this.editEvidence.content = data.content;
+  this.editEvidence.type = data.type;
+  this.editEvidence.updatedDate= data.updatedDate;
+  this.editEvidence.deleted = false;
   this.isEditOpen = true;
 }
 

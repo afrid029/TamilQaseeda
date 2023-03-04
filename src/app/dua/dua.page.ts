@@ -72,6 +72,7 @@ export class DuaPage implements OnInit {
 
   async getDua(){
     this.spinner = true;
+
   
     return this.db.getDuas().then((data)=>{
       console.log('Dua entering ', data);
@@ -195,12 +196,20 @@ promo(data: any){
 Title: String;
 
 editDetail(data: any){
-  this.editAwraath = data;
-  // this.Title = data.title;
-  // this.editAwraath.content = data.content;
-  // this.editAwraath.meaning = data.meaning;
-  // this.editAwraath.benifit = data.benifit;
-  // this.editAwraath.type = data.type;
+  console.log(data);
+ // this.editAwraath = data;
+ this.editAwraath.docid = data.docid;
+  this.editAwraath.title = data.title;
+  this.editAwraath.content = data.content;
+  this.editAwraath.meaning = data.meaning;
+  this.editAwraath.benifit = data.benifit;
+  this.editAwraath.type = data.type;
+  this.editAwraath.updatedDate = data.updatedDate;
+  this.editAwraath.deleted = false;
+  
+  console.log(this.editAwraath);
+  
+  
   this.setEditModel(true);
 }
 async deleteAwrath(data: any){

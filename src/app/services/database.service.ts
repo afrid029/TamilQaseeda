@@ -7,7 +7,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { UtillService } from './utill.service';
 import { ObsrService } from './obsr.service';
-import { ECDH } from 'crypto';
+import { DatePipe } from '@angular/common';
+
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class DatabaseService {
     private toast: ToastController,
     private utilService:UtillService,
     private obsr: ObsrService,
-    private injector:Injector) {
+    private injector:Injector, private datePipe: DatePipe) {
       this.obsr.network.subscribe(re=>{
         this.network = re;
         if(re){
@@ -778,8 +779,10 @@ getAllCalendarfromFire(){
           const docid = a.payload.doc.id;
           return {docid, ...data}
         })
-      })
+      })  
     );
+
+    
 }
 
 // Update calendar in Firebase
@@ -1017,6 +1020,54 @@ async getDuaFromFireBase(){
   //return true;
 }
 
+/*************************First ALert Dialog******************** */
+sendAlertContent(data: any){
+  return this.afs.collection('alerts').add(data).then((re: any)=>{
+    return 'added';
+  }).catch((err: any)=>{
+    this.utilService.erroToast('Something went wrong','storefront-outline');
+  })
+}
+
+getAlertContent(){
+  return this.afs.collection('alerts',(ref: { orderBy: (arg0: string, arg1: string) => any; })=> ref.orderBy('date', 'desc')).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
+async updateAlertContent(data: any){
+  console.log(data);
+  
+  this.afs.collection('alerts').doc(data.docid).set(data);
+}
+
+async deleteAlertContent(data: any){
+  this.afs.collection('alerts').doc(data.docid).delete();
+}
+
+getTodayContent(){
+  const dt = Date.parse(new Date().toDateString());
+  console.log(dt);
+  console.log(new Date(dt));
+  return this.afs.collection('alerts',(ref: { where: (arg0: string, arg1: string, arg2: number) => any; })=> ref.where(
+    'date','==', dt
+  )).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
 
 /******************************************* */
 
@@ -1079,5 +1130,6 @@ async deleteAll(){
   
 // }
 }
+
 
 
