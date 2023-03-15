@@ -27,7 +27,7 @@ export class DuaPage implements OnInit {
   isModalOpen: boolean = false;
   isEditOpen: boolean = false;
   duaAnyContent: boolean = false;
-  salAnyContent: boolean =false; 
+  salAnyContent: boolean =false;
   currAwraath: any = {}
   editAwraath: any = {};
 
@@ -35,13 +35,13 @@ export class DuaPage implements OnInit {
   PermDua: any = [];
 
   salawat: any = [];
-  PermSalawat: any = []; 
+  PermSalawat: any = [];
 
-  constructor(private platform: Platform, private obsr: ObsrService, private router: Router, private db: DatabaseService, private utilService: UtillService, private alertctrl: AlertController) { 
+  constructor(private platform: Platform, private obsr: ObsrService, private router: Router, private db: DatabaseService, private utilService: UtillService, private alertctrl: AlertController) {
     this.obsr.network.subscribe(re=>{
       this.net =re;
     });
-    
+
     this.obsr.user.subscribe(re=>{
       this.obj =re;
     })
@@ -60,7 +60,7 @@ export class DuaPage implements OnInit {
       }else{
           this.router.navigateByUrl('/dashboard');
         }
-      
+
     })
   }
   ionViewWillLeave(){
@@ -73,17 +73,17 @@ export class DuaPage implements OnInit {
   async getDua(){
     this.spinner = true;
 
-  
+
     return this.db.getDuas().subscribe((data)=>{
       console.log('Dua entering ', data);
       this.dua = [];
       this.salawat = [];
-  
+
       console.log('Dua entering ', this.dua.length, this.salawat.length);
       if(data.length > 0){
-        
+
         for(var i=0; i< data.length; i++) {
-          
+
           if(data[i].type === 'dua'){
             this.duaAnyContent = true;
             this.dua.push(data[i]);
@@ -92,12 +92,12 @@ export class DuaPage implements OnInit {
             this.salawat.push(data[i]);
           }
         }
-  
+
         this.PermDua = this.dua;
         this.PermSalawat = this.salawat;
-      
+
         console.log('Duas ', this.dua, this.salawat);
-        
+
       }
       this.spinner = false;
       if(this.dua.length == 0){
@@ -106,33 +106,14 @@ export class DuaPage implements OnInit {
       if(this.salawat.length == 0){
         this.salAnyContent = false
       }
-      
-      
-      
+
+
+
     })
-  
+
   }
 
-  // async handleRefresh(event: any) {
   
-  //   if(this.net){
-  //     this.spinner = true
-  //     setTimeout(() => {
-  //       this.db.getDuaFromFireBase();
-  //       console.log('refreshed ');
-  //       event.target.complete();
-  //     }, 2000);
-  
-  //     setTimeout(()=>{
-  //      this.getDua();
-  //       this.spinner = false;
-  //     },4000)
-          
-  //   }else{
-  //     event.target.complete();
-  //     this.utilService.NetworkToast();
-  //   }
-  // }
   private slide: any;
 setSwiperInstance(event: any){
   console.log(event.activeIndex);
@@ -158,18 +139,18 @@ handleSearch(){
       })
 
     }
-    
+
   }else{
       this.vis = "hidden";
       this.dua = this.PermDua;
       this.salawat = this.PermSalawat;
-      
+
   }
 }
 
 clearSearch(){
   // console.log('Clicked ', this.Permevidence);
-  this.searchKey = ''; 
+  this.searchKey = '';
 }
 
 setViewModel(state: boolean){
@@ -201,10 +182,10 @@ editDetail(data: any){
   this.editAwraath.benifit = data.benifit;
   this.editAwraath.type = data.type;
 
-  
+
   console.log(this.editAwraath);
-  
-  
+
+
   this.setEditModel(true);
 }
 async deleteAwrath(data: any){
@@ -218,7 +199,7 @@ async deleteAwrath(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -232,7 +213,7 @@ async deleteAwrath(data: any){
               }).catch((er)=>{
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]

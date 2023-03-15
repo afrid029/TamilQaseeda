@@ -23,7 +23,7 @@ export class HomePage {
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
     public toast: ToastController, private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation) {
-    
+
       this.obsr.network.subscribe(re=>{
         this.net=re;
       });
@@ -34,11 +34,11 @@ export class HomePage {
    }
   ionViewDidEnter(){
     console.log('Homeview entering');
-    
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       this.route.navigateByUrl('/dashboard');
 
-      
+
     })
    }
 
@@ -46,22 +46,5 @@ export class HomePage {
     console.log('Home view leaving');
     this.subs.unsubscribe();
    }
-
-// async handleRefresh(event: any) {
-//   if(this.net){
-//     this.spinner = true;
-//     setTimeout(() => {
-//       this.db.getFromFireBase();
-//       console.log('refreshed ');
-//       event.target.complete();
-//       this.spinner = false;
-//     }, 2000);
-
-        
-//   }else{
-//     event.target.complete();
-//     this.utilService.NetworkToast();
-//   }
-// }
 
 }

@@ -18,21 +18,18 @@
       <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
     </div>
     </div>
-<!-- 
-   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
+
 
   <ion-list class="lst">
     <div class="lstcont">
       <swiper [effect]="'coverflow'" (swiper)="setSwiperInstance($event)">
 
           <ng-template *ngIf="duaAnyContent"  swiperSlide>
-  
+
             <div class="head">
               <ion-text>துஆக்கள்</ion-text>
             </div>
-            
+
               <div *ngIf="obj" class="cont">
                 <!--For div-->
                 <div *ngFor="let d of dua">
@@ -44,12 +41,12 @@
                     <div (click)="deleteAwrath(d)" class="edit del">
                       <ion-icon class="icon" name="trash"></ion-icon>
                     </div>
-                  </ion-item>                                    
+                  </ion-item>
                 </div>
-                
-    
+
+
               </div>
-  
+
               <div *ngIf="!obj" class="cont">
                 <!--For div-->
                 <div *ngFor="let d of dua" >
@@ -58,12 +55,12 @@
                   </ion-item>
                 </div>
               </div>
-              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "dua.length == 0" >
-        
+              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "dua.length === 0" >
+
                 <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
                 </ion-chip>
-              
+
             </div>
           </ng-template>
           <ng-template *ngIf="!duaAnyContent"  swiperSlide>
@@ -77,15 +74,15 @@
                 </ion-chip>
               </div>
           </ng-template>
-  
+
 
 
           <ng-template *ngIf="salAnyContent" swiperSlide>
-  
+
             <div class="head">
               <ion-text>ஸலவாத்துக்கள்</ion-text>
             </div>
-            
+
               <div *ngIf="obj" class="cont">
                 <!--For div-->
                 <div *ngFor="let s of salawat">
@@ -97,13 +94,13 @@
                     <div (click)="deleteAwrath(s)" class="edit del">
                       <ion-icon class="icon" name="trash"></ion-icon>
                     </div>
-                    
+
                   </ion-item>
                 </div>
-                
-    
+
+
               </div>
-  
+
               <div *ngIf="!obj" class="cont">
                 <!--For div-->
                 <div *ngFor="let s of salawat">
@@ -112,12 +109,12 @@
                   </ion-item>
                 </div>
               </div>
-              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "salawat.length == 0" >
-        
+              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "salawat.length === 0" >
+
                 <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
                 </ion-chip>
-              
+
             </div>
           </ng-template>
           <ng-template *ngIf="!salAnyContent"  swiperSlide>
@@ -131,7 +128,7 @@
                 </ion-chip>
               </div>
           </ng-template>
-  
+
           </swiper>
 
     </div>
@@ -140,28 +137,28 @@
 
   <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
     <ng-template>
-      
+
         <ion-toolbar color="success">
           <ion-title style="font-size:14px">{{currAwraath.title}}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setViewModel(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
- 
+
       <ion-content class="modalBody">
         <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px">
           <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
 
             <ion-item>
               <p style="text-align: center; font-size: 20px; width: 100%; font-weight: 800;">{{currAwraath.content}}</p>
-             
+
             </ion-item>
             <br>
             <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
             <ion-item>
-  
+
               <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6;">{{currAwraath.meaning}}</p>
-           
+
             </ion-item>
             <br>
             <div *ngIf="currAwraath.benifit">
@@ -170,7 +167,7 @@
                 <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6;"><i>{{currAwraath.benifit}}</i></p>
               </ion-item>
             </div>
-           
+
           </ion-card-content>
         </ion-card>
       </ion-content>
@@ -181,16 +178,16 @@
   <!-- Edit Model -->
   <ion-modal backdropDismiss="false" [isOpen]="isEditOpen">
     <ng-template>
-    
-     
+
+
         <ion-toolbar color="warning">
           <ion-title style="font-size:14px">{{editAwraath.title}}</ion-title>
-         
+
           <ion-buttons slot="end">
             <ion-button (click)="setEditModel(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
-     
+
       <ion-content class="ion-padding modalBody">
         <form  #addForm = "ngForm" validate>
 
@@ -198,34 +195,34 @@
             <ion-label position="floating">தலைப்பு</ion-label>
             <ion-input [(ngModel)]="editAwraath.title" name="title" type="text" required></ion-input>
           </ion-item>
-          
+
           <ion-item lines="full">
             <ion-label position="floating">துஆ / ஸலவாத்து</ion-label>
             <ion-textarea [(ngModel)]="editAwraath.content" class="textarea"  [autoGrow]="true" name="content" required></ion-textarea>
           </ion-item>
-      
+
           <ion-item lines="full">
             <ion-label position="floating">பொருள்</ion-label>
             <ion-textarea [(ngModel)]="editAwraath.meaning" class="textarea"  [autoGrow]="true" name="meaning" required></ion-textarea>
           </ion-item>
-    
+
           <ion-item lines="full">
             <ion-label position="floating">பலன்கள்</ion-label>
             <ion-textarea class="textarea" [(ngModel)]="editAwraath.benifit" style="max-height: 300px; overflow-y: true"  [autoGrow]="true" name="benifit"></ion-textarea>
           </ion-item>
-          
+
           <ion-item lines="full">
             <ion-label position="floating">Choose One</ion-label>
             <ion-select [(ngModel)]="editAwraath.type" name="type" inerface="action-sheet" placeholder="Choose One" required>
               <ion-select-option value="dua">துஆ</ion-select-option>
               <ion-select-option value="salawat">ஸலவாத்து</ion-select-option>
-              
+
 
             </ion-select>
-            
-             
+
+
           </ion-item>
-      
+
           <div class="cont">
             <ion-button (click)="update()" color="secondary" style = "display: flex;"type="submit" [disabled]="addForm.invalid "  class = "btn">Update</ion-button>
           </div>

@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-     
+
       <ion-back-button (click)="clearMap()" defaultHref="dashboard"></ion-back-button>
       <ion-title>{{title}}</ion-title>
     </ion-buttons>
@@ -27,33 +27,17 @@
       <ion-label style="font-size: small;" position="floating">குறிப்பு / சுருக்கமான வரலாறு</ion-label>
       <ion-textarea style="max-height: 300px; overflow-y: scroll;" [(ngModel)]="ziyaram.description"  [autoGrow]="true" name="description"></ion-textarea>
     </ion-item>
-  
+
       <h5 >அமைவிடம் / Location</h5>
 
       <ion-item id="provincemodal">
         <ion-label style="font-size: small;" position="floating">மாகாணம்</ion-label>
         <p>{{province}}</p>
 
-        <!-- <ion-select [(ngModel)]="province"  type="text" name="province" interface="action-sheet" required>
-          <ion-select-option value="Central">Central Province</ion-select-option>
-          <ion-select-option value="Eastern">Eastern Province</ion-select-option>
-          <ion-select-option value="North">Northern Province</ion-select-option>
-          <ion-select-option value="Northcentral">North Central Province</ion-select-option>
-          <ion-select-option value="Northwestern">North Western Province</ion-select-option>
-          <ion-select-option value="Sabragamuva">Sabragamuva Province</ion-select-option>
-          <ion-select-option value="Southern">Southern Province</ion-select-option>
-          <ion-select-option value="Uva">Uva Province</ion-select-option>
-          <ion-select-option value="Western">Western Province</ion-select-option>
-        </ion-select> -->
       </ion-item>
       <ion-item id="districtmodal" (click)="setArray()" disabled="{{province ? 'false' : 'true'}}" >
         <ion-label style="font-size: small;"  position="floating">மாவட்டம்</ion-label>
         <p>{{district}}</p>
-        <!-- <ion-select [(ngModel)]="district"  type="text" name="district" interface="action-sheet" required>
-          <div *ngFor ="let dis of dist">
-              <ion-select-option>{{dis}}</ion-select-option>
-          </div>
-        </ion-select> -->
       </ion-item>
     <ion-item >
       <ion-label style="font-size: small;"  position="floating">Town / Village </ion-label>
@@ -64,36 +48,23 @@
       <ion-input [(ngModel)]="ziyaram.day"  type="text" name="day"></ion-input>
     </ion-item>
     <br>
-    
+
       <ion-button color = "{{selected ? 'success' : 'danger'}}" style="display: flex; width: 100%; height: 30px;" (click)="setOpen(true)" ><ion-icon name="location-outline"></ion-icon> &nbsp;  {{locationStat}}</ion-button>
-    
-    <!-- <ion-item>
-      <ion-label position="floating">Latitude</ion-label>
-      <ion-input [(ngModel)]="ziyaram.lat"  type="number" name="lat" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Longtitude</ion-label>
-      <ion-input [(ngModel)]="ziyaram.long"  type="number" name="long" required></ion-input>
-    </ion-item> -->
-    
+
 <br>
   <div>
     <img src="{{ziyaram.imageUrl}}" width="100%" alt="">
     <ion-button style="display: flex; width: 100%;" color="primary" size="medium">
       <input #fileInput type="file" accept="image/*" (change)="openActionSheet($event)"/><ion-button style="float: right;" (click)="clearFile()" fill="light" *ngIf="closeButton"><ion-icon   name="close-outline"></ion-icon></ion-button>
     </ion-button>
-    
+
   </div>
     <br>
-    <ion-item *ngIf="!admin">
-      <h3>{{captchaText}}</h3>
-      <ion-label position="floating">Enter The Code</ion-label>
-      <ion-input (ionChange)="enterCode($event)" type="text"></ion-input>
-    </ion-item>
-  
+
+
     <div class="cont">
-      <ion-button *ngIf="!update"  color="success" (click)="submit()" [disabled]="addForm.invalid || btnvalid || !selected || captchaTest|| fileSelected" type="submit" style="display: flex"  class = "btn">Add </ion-button>
-      <ion-button *ngIf="update"  color="warning" (click)="updateDetail()" [disabled]="addForm.invalid || btnvalid || !selected || captchaTest || fileSelected" type="submit" style="display: flex"  class = "btn">Update</ion-button>
+      <ion-button *ngIf="!update"  color="success" (click)="submit()" [disabled]="addForm.invalid || btnvalid || !selected || !fileSelected" type="submit" style="display: flex"  class = "btn">Add </ion-button>
+      <ion-button *ngIf="update"  color="warning" (click)="updateDetail()" [disabled]="addForm.invalid || btnvalid || !selected ||  !fileSelected" type="submit" style="display: flex"  class = "btn">Update</ion-button>
     </div>
    </form>
   </ion-card-header>
@@ -144,26 +115,11 @@
         <ion-item (click)="setDistrict(dis)">
           {{dis}}
         </ion-item>
-        
+
       </ion-list>
     </ion-content>
   </ng-template>
 </ion-modal>
-<!------------------ Location Selector --------------------->
-<!-- <ion-modal backdropDismiss="false" [isOpen]="isModalOpen">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <div style="padding-right: 10px;" slot="end">
-          <ion-button size="small" expend="block" fill="outline" color="danger" (click)="setClose(false)">Close</ion-button>
-          <ion-button size="small" expend="block"  color="success" [disabled]="!selected" (click)="setLoc()">Locate</ion-button>
-        </div>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <app-google-map></app-google-map>
-    </ion-content>
-  </ng-template>
-</ion-modal> -->
+
 </ion-content>
 </html>

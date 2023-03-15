@@ -85,15 +85,12 @@ export class DashboardPage {
 
   navigateTo(val: any){
     console.log(val);
-    // if(!this.isAddModalOpen){
-    //   this.route.navigateByUrl(val);
-    // }
+
     setTimeout(()=>{
       this.route.navigateByUrl(val);
 
     },10);
     this.isAddModalOpen = false;
-    //this.subs.unsubscribe();
 
   }
 

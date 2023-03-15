@@ -5,7 +5,7 @@
       <ion-buttons slot="start">
       <ion-back-button (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
       </ion-buttons>
-  
+
     </div>
 </ion-header>
 
@@ -20,9 +20,9 @@
     <div class="close">
       <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
     </div>
-    
+
   </div>
-  
+
   <ion-list class="lst">
     <div class="lstcont">
     <div *ngIf = "anyContent">
@@ -37,32 +37,32 @@
                 <ion-icon class="icon" name="trash"></ion-icon>
               </div>
             </ion-item>
-            
+
 
         </div>
-            
+
       </div>
 
       <div class="cont" *ngIf = "!obj">
         <div *ngFor = "let song of songs">
           <ion-item style="background-color: rgb(238, 238, 238);">
             <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
-            
-          </ion-item>
-      </div> 
-       
-      </div> 
 
-      <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "songs.length == 0" >
-      
+          </ion-item>
+      </div>
+
+      </div>
+
+      <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "songs.length === 0" >
+
         <ion-chip style="width:76%;">
           <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
         </ion-chip>
-      
+
     </div>
     </div>
     <div class="cont" *ngIf = "!anyContent">
-      <ion-chip style="width:95%; top:48%"> 
+      <ion-chip style="width:95%; top:48%">
         <ion-label style="margin: 0 auto;" >பாடல்கள் விரைவில் இணைக்கப்படும்</ion-label>
       </ion-chip>
     </div>
@@ -72,14 +72,14 @@
 
   <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
     <ng-template>
-      
+
         <ion-toolbar color="success">
           <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
-      
+
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
           <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
@@ -94,17 +94,17 @@
   <!-- Edit Model -->
   <ion-modal  backdropDismiss="false" [isOpen]="isEditOpen">
     <ng-template>
-    
-     
+
+
         <ion-toolbar color="warning">
           <ion-input (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.title" required></ion-input>
-         
+
           <div style="padding-right: 5px;" slot="end">
             <ion-button type="submit"  (click) = "updateSong()" [disabled] = "submitButton"  type="submit" size = "small" color="success">Save</ion-button>
             <ion-button size = "small" color="danger"  (click)="setOpen(false)">Close</ion-button>
           </div>
         </ion-toolbar>
-  
+
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
           <ion-input style="font-size: 10px; max-lines: 3;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>

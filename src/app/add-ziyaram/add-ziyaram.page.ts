@@ -14,7 +14,7 @@ export interface imgFile {
   name: string;
   filepath: string;
   size: number;
-} 
+}
 @Component({
   selector: 'app-add-ziyaram',
   templateUrl: './add-ziyaram.page.html',
@@ -43,7 +43,7 @@ export class AddZiyaramPage implements OnInit {
   imgName: string;
   imgSize: number;
   // File uploading status
-  
+
   isFileUploaded: boolean = false;
 
   btnvalid: boolean = false;
@@ -77,9 +77,7 @@ export class AddZiyaramPage implements OnInit {
   admin: boolean = false;
   update: boolean = false;
 
-  captchaText: string;
-  captchaInterval: any;
-  captchaTest: boolean = false;
+
   currImg: string;
   closeButton: boolean = false;
   newImage: boolean = false;
@@ -93,7 +91,7 @@ export class AddZiyaramPage implements OnInit {
     this.platform.keyboardDidShow.subscribe((ev: any)=>{
       const { keyboardHeight  } = ev;
       console.log(ev);
-      
+
 
     })
     this.obsr.network.subscribe((re)=>{
@@ -107,18 +105,7 @@ export class AddZiyaramPage implements OnInit {
     this.obsr.longtitude.subscribe(re=>{
       this.long = re;
     })
-    // this.obsr.user.subscribe(re=>{
-    //   this.admin = re;
-    //   if(!re){
-    //     this.title = 'Send Ziyaram Details'
-    //     this.captchaTest = true;
-    //     this.captchaText = this.createCaptcha();
-    //     this.captchaInterval = setInterval(()=>{
-    //       this.captchaText = this.createCaptcha();
-    //       console.log(this.captchaText);
-    //     },15000)
-    //   }
-    // })
+
 
     this.obsr.LocSelected.subscribe(re=>{
       this.selected = re;
@@ -129,16 +116,13 @@ export class AddZiyaramPage implements OnInit {
       }
 
       console.log(this.locationStat);
-      
-    }) 
+
+    })
 
     this.active.queryParams.subscribe(params=>{
       if(params && params['source']){
         this.title = 'Update Ziyaram Details'
         this.ziyaram = JSON.parse(params['source']);
-        // this.ziyaram.name = JSON.parse(params['source']).name;
-        // this.ziyaram.description = JSON.parse(params['source']).description;
-        // this.ziyaram.imageUrl = JSON.parse(params['source']).imageUrl;
         this.currImg = this.ziyaram.imageUrl;
         this.update = true;
         const s = this.ziyaram.location;
@@ -149,49 +133,21 @@ export class AddZiyaramPage implements OnInit {
         this.fileSelected = false;
         this.obsr.latitude.next(this.ziyaram.lat);
         console.log(this.obsr.latitude.getValue());
-        
+
         this.obsr.longtitude.next(this.ziyaram.long);
         this.obsr.LocSelected.next(true);
       }
     })
    }
-  
-   
 
-   createCaptcha(){
-    let text = (111111)+Math.random() * (999999-111111);
-    text = Math.round(text);
-    return text.toString();
-   }
-   enterCode(event: any){
-    console.log(event.detail.value);
-    if(this.captchaText === event.detail.value){
-      clearInterval(this.captchaInterval);
-      this.captchaTest = false;
-      console.log('donee');
-      
-    }
-    
-   }
+
    ionViewDidEnter(){
     console.log('view entering');
-    this.obsr.user.subscribe(re=>{
-      this.admin = re;
-      if(!re){
-        this.title = 'Send Ziyaram Details'
-        this.captchaTest = true;
-        this.captchaText = this.createCaptcha();
-        this.captchaInterval = setInterval(()=>{
-          this.captchaText = this.createCaptcha();
-          console.log(this.captchaText);
-        },10000)
-      }
-    })
-    
+
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      console.log('Dashboard ',this.constructor.name); 
-      //this.router.navigateByUrl('/dashboard');
-      //this.location.back();
+      console.log('Dashboard ',this.constructor.name);
+
       this.goBack();
       this.clearMap();
     })
@@ -199,7 +155,7 @@ export class AddZiyaramPage implements OnInit {
 
    goBack(){
     console.log(this.update);
-    
+
     if(this.update){
       this.router.navigateByUrl('/ziyarams')
     }else{
@@ -214,10 +170,9 @@ export class AddZiyaramPage implements OnInit {
    }
 
 
-  
+
   ionViewWillLeave(){
     console.log('view leaving');
-    clearInterval(this.captchaInterval)
     this.subs.unsubscribe();
   }
   ngOnInit() {
@@ -230,10 +185,10 @@ export class AddZiyaramPage implements OnInit {
     this.fileSelected = false;
     this.closeButton = true;
     this.newImage = true;
-    
+
   }
 
-  
+
   clearFile(){
     console.log('Clear file');
     this.newImage = false;
@@ -244,9 +199,9 @@ export class AddZiyaramPage implements OnInit {
     }else{
       this.fileSelected = true;
     }
-    
+
   }
-  
+
   submit(){
     console.log(this.ziyaram);
 
@@ -264,7 +219,7 @@ export class AddZiyaramPage implements OnInit {
         console.log(per);
         this.perc = per/100;
 
-      })    
+      })
       console.log(this.fileUploadTask);
       this.fileUploadTask.snapshotChanges().pipe(
         finalize(() => {
@@ -273,13 +228,13 @@ export class AddZiyaramPage implements OnInit {
           this.UploadedImageURL.subscribe(
             (resp) => {
               console.log(resp);
-              
+
               this.ziyaram.imageUrl = resp;
               this.isFileUploaded = true;
 
               this.utill.successToast('Picture has been successfully uploaded.', 'cloud-done', 'success');
-             
-              
+
+
             },
             (error) => {
               this.utill.erroToast(error.message, 'cellular-outline');
@@ -293,12 +248,12 @@ export class AddZiyaramPage implements OnInit {
 
       const adding = setInterval(()=>{
         if(this.isFileUploaded){
-         
-            this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province; 
+
+            this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province;
             console.log(this.ziyaram.location);
             this.ziyaram.long = this.obsr.longtitude.getValue();
             this.ziyaram.lat = this.obsr.latitude.getValue();
-  
+
             this.datasc.addZiyaramDetail(this.ziyaram).then(async (re: any)=>{
               this.spinner = false;
               this.router.navigateByUrl('dashboard');
@@ -319,26 +274,26 @@ export class AddZiyaramPage implements OnInit {
                   setTimeout(()=>{
                     this.utill.successToast('Admin Will Add This Detail In The List Soon','person-circle-outline','dark')
                   },2500)
-                  
+
                 })
               }
-              
+
             }).catch((e: any)=>{
               this.spinner = false;
-              console.log('Error encountered ', e.message);   
-              this.utill.erroToast(e.message, 'snow-outline'); 
+              console.log('Error encountered ', e.message);
+              this.utill.erroToast(e.message, 'snow-outline');
             });
 
             clearInterval(adding);
         }
       },1000)
 
-      
-        
+
+
     }else{
       this.utill.NetworkToast();
     }
-    
+
   }
 
   updateDetail(){
@@ -362,7 +317,7 @@ export class AddZiyaramPage implements OnInit {
             console.log(per);
             this.perc = per/100;
 
-          })    
+          })
           console.log(this.fileUploadTask);
           this.fileUploadTask.snapshotChanges().pipe(
             finalize(() => {
@@ -371,13 +326,13 @@ export class AddZiyaramPage implements OnInit {
               this.UploadedImageURL.subscribe(
                 (resp) => {
                   console.log(resp);
-                  
+
                   this.ziyaram.imageUrl = resp;
                   this.isFileUploaded = true;
 
                   this.utill.successToast('Picture has been successfully uploaded.', 'cloud-done', 'success');
-                
-                  
+
+
                 },
                 (error) => {
                   this.utill.erroToast(error.message, 'cellular-outline');
@@ -389,20 +344,20 @@ export class AddZiyaramPage implements OnInit {
             })
           ).subscribe();
         });
-        
+
       }else{
         this.isFileUploaded = true;
       }
 
       const adding = setInterval(()=>{
         if(this.isFileUploaded){
-         
-            this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province; 
+
+            this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province;
             console.log(this.ziyaram.lat, this.ziyaram.long);
             this.ziyaram.long = this.obsr.longtitude.getValue();
             this.ziyaram.lat = this.obsr.latitude.getValue();
             console.log(this.ziyaram.lat, this.ziyaram.long);
-  
+
             this.datasc.updateZiyaramFireBase(this.ziyaram).then(async (re: any)=>{
               this.spinner = false;
               // this.location.normalize("/dashboard");
@@ -419,45 +374,35 @@ export class AddZiyaramPage implements OnInit {
               this.utill.successToast('Ziyaram Details Updated Successfully','thumbs-up-outline','success')
             }).catch((e: any)=>{
               this.spinner = false;
-              console.log('Error encountered ', e.message);   
-              this.utill.erroToast(e.message, 'snow-outline'); 
+              console.log('Error encountered ', e.message);
+              this.utill.erroToast(e.message, 'snow-outline');
             });
 
             clearInterval(adding);
         }
       },1000)
 
-      
-        
+
+
     }else{
       this.utill.NetworkToast();
     }
-    
-    
+
+
 
   }
   setOpen(value: boolean){
-    
-    //document.documentElement.style.setProperty(`--ion-background-color`, 'none !important')
-    //this.router.navigateByUrl('google-map');
-    
-    // if(this.update){
-    //   this.obsr.latitude.next(this.ziyaram.lat);
-    //   console.log(this.obsr.latitude.getValue());
-    
-    //   this.obsr.longtitude.next(this.ziyaram.long);
-    // }
-    this.chekService(); 
+    this.chekService();
   }
 
   async chekService(){
     const t = await Geolocation.checkPermissions().then((re)=>{
       this.router.navigateByUrl('google-map');
-      
-    }).catch(async er=>{
-      this.utill.erroToast('Turn On Your Location Service','power');   
 
-      
+    }).catch(async er=>{
+      this.utill.erroToast('Turn On Your Location Service','power');
+
+
     });
   }
 

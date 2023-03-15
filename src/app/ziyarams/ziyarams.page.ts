@@ -87,9 +87,9 @@ export class ZiyaramsPage implements AfterViewInit {
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation, public storage: AngularFireStorage) {
-    
-     
-      
+
+
+
    }
    unsbr(){
     // this.subs.unsubscribe();
@@ -99,7 +99,7 @@ export class ZiyaramsPage implements AfterViewInit {
     this.obsr.network.subscribe(re=>{
       this.net=re;
       console.log(re);
-      
+
       this.db.getZiyaramRequests().subscribe((re: any) =>{
           console.log(re);
           if(re.length > 0){
@@ -108,9 +108,9 @@ export class ZiyaramsPage implements AfterViewInit {
           }else{
             this.ZiyaramRequests = [];
           }
-          
+
         })
-      
+
     });
     this.obsr.user.subscribe(re=>{
       this.obj = re
@@ -131,29 +131,29 @@ export class ZiyaramsPage implements AfterViewInit {
       }
 
       console.log(this.locationStat);
-      
+
     })
     this.getZiyarams();
   }
   ionViewWillEnter(){
-    console.log('will Enter'); 
+    console.log('will Enter');
   }
   ionViewDidEnter(){
     console.log('ziyaram view entering');
-    
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
         if(!this.isModalOpen){
           this.route.navigateByUrl('/dashboard');
         }else{
           this.isModalOpen = false
         }
-      
+
     })
    }
 
    ionViewWillLeave(){
     console.log('Ziyaram view leaving');
-    
+
     this.subs.unsubscribe();
    }
 
@@ -170,42 +170,19 @@ export class ZiyaramsPage implements AfterViewInit {
         this.anyContent = false;
       }
       this.spinner = false;
-      
-      
+
+
     })
   }
-// async handleRefresh(event: any) {
-//   if(this.net){
-//     this.spinner = true;
-//     setTimeout(() => {
-//       this.db.getZiyaramFromFireBase().then((re)=>{
-//         event.target.complete();
-//         console.log('AAAAAAAAA');
-//       });
-      
-     
-//     }, 2000);
 
-//     setTimeout(async ()=>{
-//       console.log('BBBBBBBB');
-//       this.getZiyarams();
-//       this.spinner = false;
-//     },4000)
-        
-//   }else{
-//     event.target.complete();
-//     this.utilService.NetworkToast();
-//   }
-  
-// }
 
 promo(data: any){
   this.cardSpinner = true;
   console.log(data.docid);
   this.currZiyaram = data;
-  this.isModalOpen = true;  
- 
-  
+  this.isModalOpen = true;
+
+
   if(this.net){
     setTimeout(()=>{
       if(this.currZiyaram.imageUrl !== ''){
@@ -218,13 +195,13 @@ promo(data: any){
     this.cardSpinner = false;
     this.utilService.NetworkToast();
   }
-  
+
 }
 
 missImage(event: any){
   //alert('Image missed')
   this.img = this.img1;
-} 
+}
 
 setViewModel(val: any){
   this.isModalOpen=val;
@@ -235,7 +212,7 @@ launchGoogleMap(){
     let app;
     if(isAvailable){
       app = LaunchNavigator.APP.GOOGLE_MAPS;
-    
+
       LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
         app: app
     })
@@ -248,15 +225,15 @@ launchGoogleMap(){
 
 handleSearch(){
   console.log(this.Permziyarams);
-  
+
   if(this.searchKey.length > 0){
     this.vis = "visible";
     this.ziyarams = [];
     this.Permziyarams.forEach((s: any)=>{
       if(s.name.toLowerCase().includes(this.searchKey.toLowerCase()) || s.location.toLowerCase().includes(this.searchKey.toLowerCase())){
-        
+
         this.ziyarams.push(s);
-      } 
+      }
     })
     console.log(this.ziyarams.length);
   }else{
@@ -264,27 +241,14 @@ handleSearch(){
     this.ziyarams = this.Permziyarams;
   }
 }
- 
+
 clearSearch(){
     console.log('Clicked ', this.Permziyarams);
-    this.searchKey = ''; 
+    this.searchKey = '';
 }
 
 EditZiyaram(data: any){
-  // this.editZiyaram = data;
-  // const s = data.location;
-  // const ar = s.split(',');
-  // this.place = ar[0];
-  // this.district = ar[1];
-  // this.province = ar[2]
-  
-  // this.currImg = data.imageUrl;
-  // console.log(this.currImg);
-  // console.log(this.editZiyaram); 
-  // this.obsr.latitude.next(data.lat);
-  // this.obsr.longtitude.next(data.long);
-  // this.obsr.LocSelected.next(true);
-  // this.isEditOpen = true
+
   const send:NavigationExtras = {
     queryParams: {
       source: JSON.stringify(data)
@@ -303,11 +267,11 @@ setMapOpen(){
 async chekService(){
   const t = await Geolocation.checkPermissions().then((re)=>{
     this.route.navigateByUrl('google-map');
-    
-  }).catch(async er=>{
-    this.utilService.erroToast('Turn On Your Location Service','power');   
 
-    
+  }).catch(async er=>{
+    this.utilService.erroToast('Turn On Your Location Service','power');
+
+
   });
 }
 
@@ -317,7 +281,7 @@ async openActionSheet(event: any){
   if(this.net){
     this.btnvalid = true;
     this.imgName = file.name;
-  
+
     const fileStoragePath = `Images/${new Date().getTime()}_${file.name}`;
     const imageRef = this.storage.ref(fileStoragePath);
     this.fileUploadTask = this.storage.upload(fileStoragePath, file);
@@ -325,8 +289,8 @@ async openActionSheet(event: any){
     this.percentageVal.subscribe((per)=>{
       console.log(per);
       this.perc = per/100;
-  
-    })    
+
+    })
     console.log(this.fileUploadTask);
     this.fileUploadTask.snapshotChanges().pipe(
       finalize(() => {
@@ -351,7 +315,7 @@ async openActionSheet(event: any){
   }else{
     this.utilService.NetworkToast();
   }
- 
+
 
 }
 
@@ -366,7 +330,7 @@ async deleteZiyaram(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -381,7 +345,7 @@ async deleteZiyaram(data: any){
                 this.spinner = false;
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]
@@ -401,7 +365,7 @@ async deleteZiyaramRequest(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -412,13 +376,13 @@ async deleteZiyaramRequest(data: any){
              this.db.deleteZiyaramRequestFirebase(data).then((re)=>{
               this.spinner = false;
               console.log(re);
-              
+
                   this.utilService.successToast('Ziyaram Detail deleted successfully','trash-outline','warning');
               }).catch((er)=>{
                 this.spinner = false;
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]
@@ -465,7 +429,7 @@ logScrollStart(event: any){
   setTimeout(() =>{
     this.btn = "visible";
   },2500)
-  
+
 }
 
 

@@ -1,5 +1,5 @@
 <html class="addBody">
-<ion-header>  
+<ion-header>
   <div class="tool">
     <ion-buttons slot="start">
       <ion-back-button style="visibility: hidden;" (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
@@ -15,23 +15,21 @@
    </div>
     <div class="bar primary">
       <ion-input style="font-style: italic; font-size: 10px;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
-      <!-- <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher> -->
+
       <div class="close">
         <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
       </div>
-      
+
     </div>
 
-    
+
     <ion-list class="lst">
       <div class="lstcont">
 
         <swiper [effect]="'coverflow'">
           <ng-template *ngIf="anyContent" swiperSlide>
 
-            
+
               <div *ngIf="obj" (scroll)="logScrollStart($event)"  class="cont" >
                 <div *ngFor = "let s of ziyarams">
                   <ion-item style="background-color: rgb(238, 238, 238);">
@@ -46,11 +44,11 @@
                       <ion-icon class="icon" name="trash"></ion-icon>
                     </div>
                   </ion-item>
-                  
-                  
+
+
                 </div>
               </div>
-          
+
               <div *ngIf="!obj" class="cont">
                 <div *ngFor = "let s of ziyarams">
                   <ion-item style="background-color: rgb(238, 238, 238);">
@@ -60,16 +58,16 @@
                   </ion-item>
                 </div>
               </div>
-    
-              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "ziyarams.length == 0" >
-          
+
+              <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "ziyarams.length === 0" >
+
                 <ion-chip style="width:76%;">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                 </ion-chip>
-              
+
             </div>
-            
-  
+
+
           </ng-template>
           <ng-template *ngIf="!anyContent"  swiperSlide>
             <div  class="cont">
@@ -93,8 +91,8 @@
                     <ion-icon class="icon" name="trash"></ion-icon>
                   </div>
                 </ion-item>
-                
-                
+
+
               </div>
             </div>
 
@@ -107,23 +105,19 @@
 
         </swiper>
       </div>
-      <!-- <div style="width: 85%; ">
-        <ion-button [routerLink] = "['/add-ziyaram']" color="success" style="display: flex; overflow:visible;
-        box-shadow: 0px 0px 4px 1.5px #888888; border-radius:6px;">Send Ziyaram Details</ion-button>
-        
-      </div> -->
+
     </ion-list>
 
     <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
       <ng-template>
-        
+
           <ion-toolbar color="success">
             <ion-title style="font-size:14px">{{currZiyaram.name}}</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="setViewModel(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
-        
+
         <ion-content class="modalBody">
           <ion-card>
             <img alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
@@ -136,7 +130,7 @@
               <ion-card-subtitle *ngIf = "currZiyaram.day !== ''"><small> <ion-icon name="calendar-outline"></ion-icon>
                 &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
             </ion-card-header>
-          
+
             <ion-card-content style="white-space: pre-line;">
               {{currZiyaram.description}}
 
@@ -147,17 +141,12 @@
         </ion-content>
       </ng-template>
     </ion-modal>
-  
-  
-    
-  
-  
+
+
+
+
+
 </ion-content>
-<!-- <ion-fab style="z-index: 12; top: 92.9%;" [routerLink] = "['/dashboard']" vertical="bottom" horizontal="end" slot="fixed" (click)="unsbr()" >
-  <ion-button  shape="outline" color="success">
-    <ion-icon name="home"></ion-icon>
-  </ion-button>
-</ion-fab> -->
 
 <ion-fab [style.visibility]="btn"  vertical="bottom" horizontal="start">
   <ion-fab-button size="small" color="danger">

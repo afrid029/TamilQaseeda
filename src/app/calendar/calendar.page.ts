@@ -105,12 +105,12 @@ export class CalendarPage {
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation) {
-    
-    
+
+
       this.obsr.network.subscribe(re=>{
         this.net=re;
         console.log('Connecteffffffff');
-        
+
       });
 
      this.obsr.user.subscribe(re=>{
@@ -123,7 +123,7 @@ export class CalendarPage {
 
    ionViewDidEnter(){
     console.log('calendarview entering');
-    
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       if(this.isEditModalOpen){
         this.isEditModalOpen = false;
@@ -132,17 +132,17 @@ export class CalendarPage {
       }else{
           this.route.navigateByUrl('/dashboard');
         }
-      
+
     })
     console.log(localStorage.getItem('calendarref'));
-    
 
-   
+
+
    }
 
    ionViewWillLeave(){
     console.log('calendar view leaving');
-    
+
     this.subs.unsubscribe();
    }
 
@@ -172,10 +172,10 @@ export class CalendarPage {
         const day = d.getDate();
         const currDate = new Date();
         const currYear = currDate.getFullYear();
-       
+
 
         console.log(data[i].date.split('-')[2]);
-        
+
         events.push({
           title: data[i].content,
           startTime: new Date(Date.UTC(year,month,day)),
@@ -184,7 +184,7 @@ export class CalendarPage {
         })
 
         if(month == 0){
-          
+
           this.jan.push({
             docid: data[i].docid,
             year: data[i].date.split('-')[0],
@@ -208,7 +208,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==3){
           this.apr.push({
             docid: data[i].docid,
@@ -225,7 +225,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==5){
           this.jun.push({
             docid: data[i].docid,
@@ -234,7 +234,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==6){
           this.jul.push({
             docid: data[i].docid,
@@ -243,7 +243,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==7){
           this.aug.push({
             docid: data[i].docid,
@@ -252,7 +252,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==8){
           this.sep.push({
             docid: data[i].docid,
@@ -261,7 +261,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==9){
           this.oct.push({
             docid: data[i].docid,
@@ -270,7 +270,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==10){
           this.nov.push({
             docid: data[i].docid,
@@ -279,7 +279,7 @@ export class CalendarPage {
             day: data[i].date.split('-')[2],
             content: data[i].content
           })
-        
+
         }else if(month ==11){
           this.dec.push({
             docid: data[i].docid,
@@ -289,38 +289,20 @@ export class CalendarPage {
             content: data[i].content
           })
         }
-        
+
       }
 
-      
+
       this.spinner = false;
       this,this.eventSource = events;
-      
+
     })
    }
    ngOnInit(){
-   
-   }
-  
-// async handleRefresh(event: any) {
-//   if(this.net){
-//     this.spinner = true;
-//     setTimeout(() => {
-//       this.db.getCalendarFromFireBase();
-//       console.log('refreshed ');
-//       event.target.complete();
-//     }, 500);
 
-//     setTimeout(()=>{
-//       this.getCalendar();
-//       this.spinner = false
-//     },4000)
-        
-//   }else{
-//     event.target.complete();
-//     this.utilService.NetworkToast();
-//   }
-// }
+   }
+
+
 
 setmodel(state: boolean){
   this.isModalOpen = state;
@@ -332,13 +314,13 @@ updateClick(data: any){
   console.log(data);
   const d = data.year + "-" + (data.month) + "-" + data.day;
   console.log(d);
-  
+
   this.editEvent = {
     docid: data.docid,
     date: d,
     content: data.content
   }
-  
+
   // this.editEvent = data;
   this.seteditmodel(true);
 }
@@ -372,7 +354,7 @@ async deleteClick(data: any){
           cssClass : 'delAlert',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -386,7 +368,7 @@ async deleteClick(data: any){
               }).catch((er)=>{
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]
@@ -400,7 +382,7 @@ onEventSelected(event: any) {
   console.log(
     'sas'
   );
-  
+
   console.log(
     'Event selected:' +
       event.startTime +

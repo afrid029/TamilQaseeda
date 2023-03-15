@@ -22,7 +22,7 @@ ion-menu::part(container){
     }
 }
 @media (prefers-color-scheme: light){
-    ion-menu::part(container){    
+    ion-menu::part(container){
       box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.589);
       background-color: rgb(253, 253, 253);
     }
@@ -35,22 +35,22 @@ ion-menu::part(container){
   overflow-y: scroll;
 }
 .card{
-  height: 100%; 
-  width: 100%; 
-  background-color:transparent; 
+  height: 100%;
+  width: 100%;
+  background-color:transparent;
   margin-left: 0% !important;
   max-height: 100%;
   overflow-y: scroll;
 }
 .card1{
-  height: 100%; 
-  width: 100%; 
-  background-color:white; 
+  height: 100%;
+  width: 100%;
+  background-color:white;
   margin-left: 0% !important;
   max-height: 100%;
   overflow-y: hidden;
   border-radius: 25px;
- 
+
 }
 .card::-webkit-scrollbar {
   display: none;
@@ -69,17 +69,17 @@ ion-menu::part(container){
     // background-repeat: no-repeat;
     // background-size:100% 100% ;
     //padding-top: 2%;
-   width: 100%;  
+   width: 100%;
     overflow-x: scroll;
     // background-image: url(../assets/pictures/bg.png);
 
- 
+
 }
 .alt::before{
-        
+
   content: "";
   background-image: url(../assets/pictures/bg.png);
-  
+
 position: fixed;
 background-size: cover;
 background-position: center;
@@ -90,7 +90,7 @@ left: 0;
 top: 0;
 will-change: transform;
 z-index: -1;
-opacity: 0.3;
+opacity: 0.15;
 }
 .alt h5{
   font-size: 10px;
@@ -110,8 +110,8 @@ opacity: 0.3;
   border: 1px solid transparent;
   z-index: 10;
   right: 0.5%;
- 
-  
+
+
 }
 .closebtn{
   --background: transparent;
@@ -121,12 +121,12 @@ opacity: 0.3;
   border: 1px solid transparent;
   z-index: 10;
   right: 0.5%;
- 
-  
+
+
 }
 .closeicon1{
   font-size: 40px;
-   color: rgb(8, 8, 8); 
+   color: rgb(8, 8, 8);
   background-color: rgb(251, 255, 251);
   border-radius: 50%;
   z-index: 10;
@@ -142,14 +142,14 @@ opacity: 0.3;
   border-radius: 5%;
   margin-left: 0% !important;
   margin-right:0% !important;
-  
+
   max-height: 100%;
   overflow-y: scroll;
 
   position: relative;
   text-align: center;
   color: white;
-  
+
 }
 
 .content{
@@ -173,7 +173,7 @@ opacity: 0.3;
 .content h5{
   font-family: gunn;
   font-size: 18px;
- 
+
 }
 
 .content h5::-webkit-scrollbar {

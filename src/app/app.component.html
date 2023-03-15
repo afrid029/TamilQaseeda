@@ -35,13 +35,13 @@
             <ion-label position="floating">Email</ion-label>
             <ion-input  [(ngModel)]="login.email" name="email" type="email" required ></ion-input>
           </ion-item>
-      
+
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
             <ion-input  [(ngModel)]="login.password" type="password" name="password" required></ion-input>
           </ion-item>
           <ion-button  style="margin-top:12%;display: flex;" type="submit" [disabled]="logForm.invalid" (click)="LoginAdmin()" class = "btn">Login</ion-button>
-       
+
          </form>
         </div>
       <ion-item (click)="openAboutUs(true)">
@@ -50,16 +50,16 @@
      <ion-button (click) = "Logout()" *ngIf="obj" style="display: flex; ">Logout</ion-button>
     </ion-content>
 
-   
+
   </ion-menu>
   <div class="ion-page" id="main-content">
   </div>
 
   <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
-    <ng-template>  
-       
-      
-     
+    <ng-template>
+
+
+
 
         <!-- <div class="alt">
           <ion-fab  (click)="openModal(false)"class="closebtn" vertical="top" horizontal="end" slot="fixed">
@@ -69,15 +69,15 @@
 
         <ion-card class="card" >
           <ion-card-header style="height: 10%;">
-         
+
               <!-- <ion-button fill="clear" class="closebtn1" style="margin-left: 60%"  (click)="openModal(false)">
                 <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
               </ion-button> -->
-          
-           
+
+
           </ion-card-header>
           <ion-card-content class="alt1">
-            
+
             <div  class="img">
               <ion-button fill="clear" class="closebtn1" (click)="openModal(false)">
                 <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
@@ -87,52 +87,52 @@
               <div class="content">
                 <h5 >
                   {{content.mcontent}}
-                  
+
                 </h5>
 <br><br><br>
-              
+
                   <h6 style="white-space: pre-line; font-size: smaller;"><i>
                     "{{content.scontent}}" </i>
                   </h6>
-              
+
               </div>
-              
+
             </div>
           </ion-card-content>
         </ion-card>
-     
-     
-      
-       
-      
+
+
+
+
+
       </ng-template>
-   
+
   </ion-modal>
 
 
   <ion-modal  backdropDismiss="false" [isOpen]="isAboutOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
-    <ng-template>  
+    <ng-template>
         <ion-card class="card1" >
           <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(145, 82, 0); ">
-            <h3><b>About Us</b></h3>  
+            <h3><b>About Us</b></h3>
             <ion-button fill="clear" class="closebtn" (click)="openAboutUs(false)">
               <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
             </ion-button>
           </ion-card-header>
           <ion-card-content class="alt">
-           
+
               <h5>பிஸ்மில்லாஹிர்ரஹ்மானிர்ரஹீம்.<br><br>
 
                 அல் மதத் யா ரஸூலல்லாஹ்!<br>
                 அல் மதத் யா பத்ரியீன்!<br>
                 அல் மதத் யா முஹ்யித்தீன்!<br>
                 அல் மதத் யா ஷாஹே மீரான்!<br><br>
-                
+
                 அஸ்ஸலாமு அலைக்கும் வரஹ்மதுல்லாஹி வபரகாதுஹூ! <br> <br>
-                
-                அஹ்லுஸ் ஸுன்னத் வல் ஜமாத் எனும் சத்திய கொள்கையை உலகெங்கிலுமுள்ள தமிழ் பேசும் மக்களுக்கு எடுத்துச்செல்லும் பலரது உன்னத முயற்சிகளிலும் செயற்பாடுகளிலும் இந்த Application மூலம் எம்மையும் இனைத்த அல்லாஹ்வுக்கே எல்லா புகழும் அல்ஹம்துலில்லாஹ்!<br><br>
-                
-                இந்த App ஆனது ஒரு தூய்மையான நோக்கத்தில் எம்மிடம் உள்ள 
+
+                அஹ்லுஸ்ஸுன்னத் வல் ஜமாஅத் எனும் சத்திய கொள்கையை உலகெங்கிலுமுள்ள தமிழ் பேசும் மக்களுக்கு எடுத்துச்செல்லும் பலரது உன்னத முயற்சிகளிலும் செயற்பாடுகளிலும் இந்த Application மூலம் எம்மையும் இணைத்த அல்லாஹ்வுக்கே எல்லா புகழும் அல்ஹம்துலில்லாஹ்!<br><br>
+
+                இந்த App ஆனது ஒரு தூய்மையான நோக்கத்தில் எம்மிடம் உள்ள
                 தகவல்களை உள்ளடக்கி ஆரம்பிக்கப்பட்டுள்ளது. இதில் பிரதானமாக
                 <br><br>
                 1.இலங்கையில் உள்ள புனித வலிமார்களின் ஸியாரங்களின் தகவல்கள் (அமைவிடம், அறிமுகம், புகைப்படம்)<br>
@@ -140,40 +140,24 @@
                 3.இஸ்லாமிய துஆக்கள் மற்றும் ஸலவாத்துக்கள்<br>
                 4.இஸ்லாமிய புனித தினங்கள்<br>
                 5.தமிழ் ஹஸீதாக்கள்<br><br>
-                
+
                 போன்ற தகவல்கள் உள்வாங்கப்பட்டுள்ளது. <br><br>
-                
-                அல் குர் ஆன், அல் ஹதீஸ், இஜ்மா, கியாஸ் ஆகிய மார்க்க மூலாதாரங்களின் அடிப்படையில் கட்டியெழுப்பப்பட்டுள்ள அஹ்லுஸ்ஸுன்னாஹ் வல் ஜமாஅத் அகீதாவின் பக்கம் மக்களை அழைப்பதும் அதன் பிரகாரம் அமல் செய்வதற்கு மக்களை ஆர்வமூட்டுவதும் இலங்கையிலுள்ள இஸ்லாமிய நினைவிடங்கள் தொடர்பில் தகவல்களை திரட்டி மக்களை அறிவூட்டுவதும் நமது கலாச்சார பாரம்பரியங்களை அழிந்துவிடாமல் பாதுகாப்பதுமே இச்செயலியை நாம் உருவாக்கியிருப்பதன் நோக்கமாகும்.
+
+                அல்குர்ஆன், அல்-ஹதீஸ், இஜ்மாஉ, கியாஸ் ஆகிய மார்க்க மூலாதாரங்களின் அடிப்படையில் கட்டியெழுப்பப்பட்டுள்ள அஹ்லுஸ்ஸுன்னாஹ் வல் ஜமாஅத் அகீதாவின் பக்கம் மக்களை அழைப்பதும் அதன் பிரகாரம் அமல் செய்வதற்கு மக்களை ஆர்வமூட்டுவதும் இலங்கையிலுள்ள இஸ்லாமிய நினைவிடங்கள் தொடர்பில் தகவல்களை திரட்டி மக்களை அறிவூட்டுவதும் நமது கலாச்சார பாரம்பரியங்களை அழிந்துவிடாமல் பாதுகாப்பதுமே இச்செயலியை நாம் உருவாக்கியிருப்பதன் நோக்கமாகும்.
                 <br><br>
-                ஸியாரம் தொடர்பான தகவல்களை தாங்களே இந்த அப்லிகேசன் மூலம் எமக்கு அனுப்ப முடியும். எமது இந்த திட்டத்திற்கு பொருத்தமான தகவல்கள் உம்மிடம் இருக்கும் பட்சத்தில் எமக்கு நீங்கள் அனுப்பி வைக்கலாம். <br><br>
-                
-                உங்கள் பின்னூட்டல்களையும், குறை நிறைகளையும் மற்றும் எதிர்கொள்ளும் அசௌகரியங்களையுன் எமது மின்னஞ்சல் மற்றும் வாட்ஸப் இலக்கத்திற்கு அனுப்பலாம்.
+                ஸியாரம் தொடர்பான தகவல்களை தாங்களே இந்த App மூலம் எமக்கு அனுப்ப முடியும். மேலும், எமது இந்த திட்டத்திற்கு பொருத்தமான தகவல்கள் உம்மிடம் இருக்கும் பட்சத்தில் எமக்கு நீங்கள் மின்னஞ்சல் மற்றும் வாட்ஸப் மூலமாக அனுப்பி வைக்கலாம். அத்துடன் இந்த App இனுடைய பின்னூட்டல்கள், குறை-நிறைகளையும் எம்முடன் நீங்கள் பகிர்ந்து கொள்ள எதிர்பார்க்கின்றோம். வஸ்ஸலாம்.<br><br>
+
+
                 <br><br>
-                <!-- மின்னஞ்சல்:<br>
+                மின்னஞ்சல்:<br>
                 tamilqaseeda@gmail.com<br><br>
-                
-                வாட்ஸாப்:<br>
-                +97778363530 -->
-              
-                <!-- <span style="margin-left: 2%;
-                margin-right: 2%;
-                width: 96% !important;
-                display: flex;
-                font-weight: 800;
-                font-size: 15px;">
-                  <ion-icon name="mail-open-outline"></ion-icon> &nbsp; tamilqaseeda@gmail.com
-                &nbsp; &nbsp;&nbsp; &nbsp; <ion-icon color="success" name="logo-whatsapp"></ion-icon>&nbsp; +94778363530
-                </span> -->
-                <span style="float: left; font-size: 10px; font-weight: 700;">
-                  <ion-icon style="font-size: 10px;" color="danger" name="mail-open-outline"></ion-icon> &nbsp; tamilqaseeda@gmail.com
-                </span>
-                <span style="float: right; font-size: 10px; font-weight: 700;">
-                  <ion-icon style="font-size: 10px;" color="success" name="logo-whatsapp"></ion-icon>&nbsp; +94778363530
-                </span>
+
+                வாட்ஸப்:<br>
+                +97778363530
               </h5>
-                
-            
-            
+
+
+
           </ion-card-content>
           <ion-row>
             <ion-col style="text-align: center; color: black; font-size: 10px; font-weight: 800; background-color: rgb(209, 165, 129);">
@@ -182,12 +166,12 @@
         </ion-row>
         </ion-card>
       </ng-template>
-   
+
   </ion-modal>
 
 
-  
+
     <ion-router-outlet></ion-router-outlet>
-  
-  <!-- <app-tabs-component></app-tabs-component> -->
+
+
 </ion-app>

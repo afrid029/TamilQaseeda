@@ -32,7 +32,7 @@ export class EvidencePage {
   editEvidence: any = {};
   aqeeda : any = [];
   PermAqeeda : any = [];
-  
+
   fiqh : any = [];
   PermFiqh : any = [];
 
@@ -48,17 +48,8 @@ export class EvidencePage {
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation) {
-    
-      // this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      //   if(this.routerOutlet.canGoBack()){
-      //      this.unsbr();
-      //       this.location.back();
-      //       console.log('helloww');
-      //   }else{
-      //     console.log('11111111111111111');
-          
-      //   }
-    // })
+
+
       this.obsr.network.subscribe(re=>{
         this.net=re;
       });
@@ -67,9 +58,7 @@ export class EvidencePage {
         this.obj = re;
       })
    }
-   unsbr(){
-    //this.subs.unsubscribe();
-  }
+
 
 ionViewWillEnter(){
   console.log('will Enter');
@@ -77,7 +66,7 @@ ionViewWillEnter(){
 }
 ionViewDidEnter(){
   console.log('Evidence view entering');
-  
+
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
     if(this.isEditOpen){
       this.isEditOpen = false;
@@ -86,13 +75,13 @@ ionViewDidEnter(){
     }else{
         this.route.navigateByUrl('/dashboard');
       }
-    
+
   })
  }
 
  ionViewWillLeave(){
   console.log('Evidence view leaving');
-  
+
   this.subs.unsubscribe();
  }
 
@@ -109,12 +98,12 @@ async getEvidence(){
       let y;
       data.forEach((d: any)=>{
         y = d;
-        
+
       })
       console.log(y);
-      
+
       for(var i=0; i< data.length; i++) {
-        
+
         if(data[i].type === 'aqeeda'){
           this.aqAnyContent = true;
           this.aqeeda.push(data[i]);
@@ -131,7 +120,7 @@ async getEvidence(){
       this.PermFiqh = this.fiqh;
       this.PermOther = this.other;
       console.log('Evidences ', this.aqeeda, this.fiqh, this.other);
-      
+
     }
     this.spinner = false;
     if(this.aqeeda.length == 0){
@@ -143,31 +132,12 @@ async getEvidence(){
     if(this.other.length == 0){
       this.othAnyContent = false
     }
-    
-    
+
+
   })
 
 }
-// async handleRefresh(event: any) {
-  
-//   if(this.net){
-//     this.spinner = true
-//     setTimeout(() => {
-//       this.db.getEvidenceFromFireBase();
-//       console.log('refreshed ');
-//       event.target.complete();
-//     }, 2000);
 
-//     setTimeout(()=>{
-//       this.getEvidence();
-//       this.spinner = false;
-//     },4000)
-        
-//   }else{
-//     event.target.complete();
-//     this.utilService.NetworkToast();
-//   }
-// }
 setViewModel(val: any){
   this.isModalOpen = val;
 }
@@ -190,7 +160,7 @@ EditEvidence(data: any){
   this.editEvidence.title = data.title;
   this.editEvidence.content = data.content;
   this.editEvidence.type = data.type;
- 
+
   this.isEditOpen = true;
 }
 
@@ -199,7 +169,7 @@ setEditFalse(){
 }
 
 update(){
-  
+
     if(this.net){
       this.spinner = true;
       this.isEditOpen = false;
@@ -213,7 +183,7 @@ update(){
     }else{
       this.utilService.NetworkToast();
     }
-  
+
 }
 
 async deleteEvidence(data: any){
@@ -227,7 +197,7 @@ async deleteEvidence(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -241,7 +211,7 @@ async deleteEvidence(data: any){
               }).catch((er)=>{
                 this.utilService.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]
@@ -278,7 +248,7 @@ handleSearch(){
         }
       })
     }
-    
+
   }else{
       this.vis = "hidden";
       this.aqeeda = this.PermAqeeda;
@@ -286,10 +256,10 @@ handleSearch(){
       this.other = this.PermOther;
   }
 }
- 
+
 clearSearch(){
-    // console.log('Clicked ', this.Permevidence);
-    this.searchKey = ''; 
+    
+    this.searchKey = '';
 }
 
 

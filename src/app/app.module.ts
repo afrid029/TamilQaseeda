@@ -7,7 +7,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TabsComponentComponent } from './tabs-component/tabs-component.component';
 
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -28,7 +27,7 @@ import { DatePipe } from '@angular/common';
 
 
 @NgModule({
-  declarations: [AppComponent,TabsComponentComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireAuthModule,
   AngularFireStorageModule, FormsModule,
