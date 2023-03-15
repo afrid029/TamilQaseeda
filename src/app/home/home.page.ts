@@ -44,25 +44,24 @@ export class HomePage {
 
    ionViewWillLeave(){
     console.log('Home view leaving');
-    
     this.subs.unsubscribe();
    }
 
-async handleRefresh(event: any) {
-  if(this.net){
-    this.spinner = true;
-    setTimeout(() => {
-      this.db.getFromFireBase();
-      console.log('refreshed ');
-      event.target.complete();
-      this.spinner = false;
-    }, 2000);
+// async handleRefresh(event: any) {
+//   if(this.net){
+//     this.spinner = true;
+//     setTimeout(() => {
+//       this.db.getFromFireBase();
+//       console.log('refreshed ');
+//       event.target.complete();
+//       this.spinner = false;
+//     }, 2000);
 
         
-  }else{
-    event.target.complete();
-    this.utilService.NetworkToast();
-  }
-}
+//   }else{
+//     event.target.complete();
+//     this.utilService.NetworkToast();
+//   }
+// }
 
 }

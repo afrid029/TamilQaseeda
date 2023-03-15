@@ -114,25 +114,7 @@ export class GoogleMapPage implements OnInit {
             zoom: 12,
           },
         });
-    
-        const markerId = await this.newMap.addMarker(
-          {
-              coordinate: {
-                lat: this.loc.coords.latitude,
-                lng: this.loc.coords.longitude
-              },
-              tintColor : {
-                r:0,
-                g:24,
-                b:24,
-                a:1
-              },
-              title: 'My Location'
-          }       
-        );
-        console.log(this.obsr.latitude.value);
-        
-    
+
         if(this.obsr.latitude.getValue() !== -1 && this.obsr.longtitude.getValue() !== -1){
           const markerId1 = await this.newMap.addMarker(
             {
@@ -155,6 +137,26 @@ export class GoogleMapPage implements OnInit {
           console.log('jnjbjh');
           
         }
+    
+        const markerId = await this.newMap.addMarker(
+          {
+              coordinate: {
+                lat: this.loc.coords.latitude,
+                lng: this.loc.coords.longitude
+              },
+              tintColor : {
+                r:235,
+                g:135,
+                b:52,
+                a:1
+              },
+              title: 'My Location'
+          }       
+        );
+        console.log(this.obsr.latitude.value);
+        
+    
+        
     
     
         this.newMap.setOnMapClickListener(async (re)=>{

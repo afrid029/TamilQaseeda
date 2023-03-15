@@ -79,10 +79,13 @@ ionViewDidEnter(){
   console.log('Evidence view entering');
   
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-    if(!this.isEditOpen && !this.isModalOpen){
-      this.route.navigateByUrl('/dashboard');
-    }
-
+    if(this.isEditOpen){
+      this.isEditOpen = false;
+    }else if(this.isModalOpen){
+      this.isModalOpen = false
+    }else{
+        this.route.navigateByUrl('/dashboard');
+      }
     
   })
  }
@@ -96,25 +99,31 @@ ionViewDidEnter(){
 async getEvidence(){
   this.spinner = true;
 
-  return this.db.getEvidence().then((data)=>{
+  return this.db.getEvidence().subscribe((data)=>{
     console.log('Ziyaram entering ', data);
     this.aqeeda = [];
     this.fiqh = [];
     this.other = [];
     console.log('evidence entering ', this.aqeeda.length, this.fiqh.length, this.other.length);
-    if(data.rows.length > 0){
-      
-      for(var i=0; i< data.rows.length; i++) {
+    if(data.length > 0){
+      let y;
+      data.forEach((d: any)=>{
+        y = d;
         
-        if(data.rows.item(i).type === 'aqeeda'){
+      })
+      console.log(y);
+      
+      for(var i=0; i< data.length; i++) {
+        
+        if(data[i].type === 'aqeeda'){
           this.aqAnyContent = true;
-          this.aqeeda.push(data.rows.item(i));
-        }else if(data.rows.item(i).type === 'fikh'){
+          this.aqeeda.push(data[i]);
+        }else if(data[i].type === 'fikh'){
           this.fiqhAnyContent = true;
-          this.fiqh.push(data.rows.item(i));
+          this.fiqh.push(data[i]);
         }else{
           this.othAnyContent = true;
-          this.other.push(data.rows.item(i));
+          this.other.push(data[i]);
         }
       }
 
@@ -136,33 +145,29 @@ async getEvidence(){
     }
     
     
-  }).catch((e)=>{
-    console.log(e);
-    this.spinner = false;
-    this.utilService.erroToast(e,'analytics-outline');
-    })
+  })
 
 }
-async handleRefresh(event: any) {
+// async handleRefresh(event: any) {
   
-  if(this.net){
-    this.spinner = true
-    setTimeout(() => {
-      this.db.getEvidenceFromFireBase();
-      console.log('refreshed ');
-      event.target.complete();
-    }, 2000);
+//   if(this.net){
+//     this.spinner = true
+//     setTimeout(() => {
+//       this.db.getEvidenceFromFireBase();
+//       console.log('refreshed ');
+//       event.target.complete();
+//     }, 2000);
 
-    setTimeout(()=>{
-      this.getEvidence();
-      this.spinner = false;
-    },4000)
+//     setTimeout(()=>{
+//       this.getEvidence();
+//       this.spinner = false;
+//     },4000)
         
-  }else{
-    event.target.complete();
-    this.utilService.NetworkToast();
-  }
-}
+//   }else{
+//     event.target.complete();
+//     this.utilService.NetworkToast();
+//   }
+// }
 setViewModel(val: any){
   this.isModalOpen = val;
 }
@@ -185,8 +190,7 @@ EditEvidence(data: any){
   this.editEvidence.title = data.title;
   this.editEvidence.content = data.content;
   this.editEvidence.type = data.type;
-  this.editEvidence.updatedDate= data.updatedDate;
-  this.editEvidence.deleted = false;
+ 
   this.isEditOpen = true;
 }
 
@@ -199,8 +203,6 @@ update(){
     if(this.net){
       this.spinner = true;
       this.isEditOpen = false;
-      this.editEvidence.updatedDate = new Date().getTime();
-      this.editEvidence.deleted = false;
       this.db.updateEvidenceFireBase(this.editEvidence).then(()=>{
         this.spinner = false;
         this.utilService.successToast('Evidence updated successfully','thumbs-up-outline','success');

@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Song } from '../add/Song';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { UtillService } from './utill.service';
 import { ObsrService } from './obsr.service';
 import { DatePipe } from '@angular/common';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 
 
@@ -15,203 +15,43 @@ import { DatePipe } from '@angular/common';
   providedIn: 'root'
 })
 export class DatabaseService {
-  databaseObj: SQLiteObject;
   oldSong: any=[];
   oldZiyaram: any=[];
   oldEvidence: any = [];
   oldCalendar: any=[];
   oldDua: any=[];
-  ngAuth: any;
-  afs: any;
+  // ngAuth: any;
+  // afs: any;
   network: Boolean;
 
   user: boolean = false;
-  constructor(private sqlite: SQLite,
+  constructor(
     private toast: ToastController,
     private utilService:UtillService,
     private obsr: ObsrService,
-    private injector:Injector, private datePipe: DatePipe) {
+    private injector:Injector, private datePipe: DatePipe, private afs: AngularFirestore,
+    private ngAuth: AngularFireAuth) {
+
       this.obsr.network.subscribe(re=>{
         this.network = re;
-        if(re){
-          this.afs = this.injector.get<AngularFirestore>(AngularFirestore);
-          this.ngAuth = this.injector.get<AngularFireAuth>(AngularFireAuth);
-        }else{
-          this.afs = undefined;
-          this.ngAuth = undefined;
-        }
+
       })
 
       this.obsr.user.subscribe(re=>{
         this.user = re;
       });
 
-      
+
      }
 
-     /*Database and Table Creation*/
-  async createDatabase(){
-    console.log('hiiii');
-    await this.sqlite.create({
-      name: 'qaseedas',
-      location: 'default'
-  
-  }).then((db: SQLiteObject)=> {
-    console.log("OKk");
-     this.databaseObj = db;
-     this.obsr.database.next(true);
-  }).catch((e) => {
-    this.utilService.erroToast('Error in create database','storefront-outline');
-  });
 
-}
-
-async createTables(){
-  console.log('Song Table');
-  await this.databaseObj.executeSql(
-    `create table if not exists song (docid TEXT PRIMARY KEY, title TEXT, content TEXT, author TEXT default Unknown, type TEXT, updatedDate INTEGER)`,[]
-  ).then((res) => {
-    console.log(res);
-    
-  }).catch((er) => {
-    console.log(er);
-    this.utilService.erroToast('Error in create tables','storefront-outline');
-  });
-    
-  
-
-  console.log('Ziyaram Table')
-  await this.databaseObj.executeSql(
-    `create table if not exists ziyaram (docid TEXT PRIMARY KEY, name TEXT, description TEXT,location TEXT, day TEXT, long TEXT, lat TEXT,imageUrl TEXT, updatedDate INTEGER)`,[]
-  ).then((res) => {
-    console.log(res);
-    
-  }).catch((er) => {
-    console.log(er);
-    this.utilService.erroToast('Error in create tables','storefront-outline');
-    
-  });
-
-  console.log('Evidence Table')
-  await this.databaseObj.executeSql(
-    `create table if not exists evidence (docid TEXT PRIMARY KEY, title TEXT, content TEXT, type TEXT, updatedDate INTEGER)`,[]
-  ).then((res) => {
-    console.log(res);
-    
-  }).catch((er) => {
-    console.log(er);
-    this.utilService.erroToast('Error in create tables','storefront-outline');
-    
-  });
-
-  console.log('Calendar Table')
-  await this.databaseObj.executeSql(
-    `create table if not exists calendar (docid TEXT PRIMARY KEY, date DATE, content TEXT, updatedDate INTEGER)`,[]
-  ).then((res) => {
-    console.log(res);
-    
-  }).catch((er) => {
-    console.log(er);
-    this.utilService.erroToast('Error in create tables','storefront-outline');
-    
-  });
-
-  console.log('Awraadh Table')
-  await this.databaseObj.executeSql(
-    `create table if not exists dua (docid TEXT PRIMARY KEY, title TEXT, content TEXT, type TEXT,meaning TEXT, benifit TEXT, updatedDate INTEGER)`,[]
-  ).then((res) => {
-    console.log(res);
-    
-  }).catch((er) => {
-    console.log(er);
-    this.utilService.erroToast('Error in create tables','storefront-outline');
-    
-  });
-}
-
-/* SQL DML */
-
-//ADD Song
-async addSong(song: any){
-  console.log(song);
-  this.databaseObj.executeSql(
-    'INSERT INTO song (docid, title, content, author, type,updatedDate) VALUES (?,?,?,?,?,?)',[song.docid, song.title, song.content, song.author, song.type,song.updatedDate]
-  ).then((res) =>{
-    
-  }).catch((e) =>{
-    if(e.code === 6){
-      console.log('res1');
-      return 'Song already exists'
-    }
-    console.log('res2 ', e.message);
-    return 'error in add song '+JSON.stringify(e)  
-  });
-}
-
-//Get Songs
-async getSong(type: string){
-  return this.databaseObj.executeSql(
-    "SELECT * FROM song where type = ? order by title",[type]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    
-    return res
-  }).catch((e) =>{
-    return e.message;
-  });
-}
-
-//Delete Song
-deleteSong(id: string){
-  this.databaseObj.executeSql(
-    `DELETE from song WHERE docid = ?`,[id]
-  ).then(()=>{
-    console.log('song deleted successfully');
-    
-  }).catch((e) =>{
-    console.log('song errrrrrooror successfully', e);
-  })
-}
-
-//Update Song
-async updateSong(song: any){
-  return this.databaseObj.executeSql(
-    `Update song set title=?, content=?,author=?, type=?, updatedDate=? where docid=?`,[song.title,song.content,song.author,song.type,song.updatedDate,song.docid]
-  ).then(()=>{
-    return 'song Updated successfully'
-  }).catch((e) =>{
-    return 'error in Update song'
-  })
-}
-//Get All Songs from SQL
-getAllSong(){
-  this.databaseObj.executeSql(
-    "SELECT * FROM song order by updatedDate",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    for(var i=0; i< res.rows.length; i++) {
-      this.oldSong.push(res.rows.item(i));
-    }
-     
-  }).catch((e) =>{
-    return 'error in getSong'
-  });
-}
-
-/* Angular Firestore DML */
+/* Songs */
 
 //Get From Firestore
-getAllfromFire(){
-  const curTime = Number(localStorage.getItem('songref'));
-  console.log(curTime);
-  return this.afs.collection(`songs`,(
-    ref: { 
-    where: (arg0: string, arg1: string, arg2: any) => 
-      { (): any; new(): any; 
-        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
-    }; }
-    )=>
-    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+getSong(type: String){
+  return this.afs.collection(`songs`,ref=>{
+    return ref.where('type','==',type).orderBy('title');
+  }).snapshotChanges().pipe(
       map((actions: any)=>{
         return actions.map((a: any)=>{
           const data = a.payload.doc.data();
@@ -222,47 +62,7 @@ getAllfromFire(){
     );
 }
 
-// Manipulate data to SQL from Firebase
-getFromFireBase(){
-  this.getAllSong();
-  this.getAllfromFire().subscribe((re: any)=>{
-    console.log('Length from db ', re.length);
-    if(re.length > 0){
-      for(var i = 0; i<re.length; i++){
-        console.log(re[i]);
-        console.log(this.oldSong);
-        const check = this.oldSong.find((b: any) =>re[i].docid === b.docid);
-        if(check){
-          console.log('data found for ', check.docid);
-          if(re[i].deleted){
-            console.log(re[i]);
-            console.log(check);
-            this.deleteSong(check.docid);
-          }else{
-            if(re[i].author.length == 0){
-              re[i].author = 'Unknown'
-            }
-            this.updateSong(re[i]);
-          }
-          
-        }else{
-          console.log('Data not found for', re[i].docid);
-          if(re[i].author.length == 0){
-            re[i].author = 'Unknown'
-          }
-          this.addSong(re[i]);
-          
-        }
-      }
-      this.utilService.successToast('Song List Updated','bookmark','success');
-    }else{
-      this.utilService.successToast('Song List Upto Date','cloud-done','tertiary');
-  }
-  });
- 
-  const curTime = new Date().getTime();
-  localStorage.setItem('songref',curTime.toString());
-}
+
 
 // Add Song into Firebase
 sendToFirebase(song: any){
@@ -276,15 +76,15 @@ sendToFirebase(song: any){
 }
 
 // Update Song in Firebase
-async updateFireBase(song: Song){
-  this.afs.collection('songs').doc(song.docid).set(song);   
+async updateFireBase(song: any){
+  this.afs.collection('songs').doc(song.docid).set(song);
 }
 
 
 //Delete Song in Firebase
 async deleteFireBase(song: any){
   const time = new Date().getTime();
-  this.afs.collection('songs').doc(song.docid).update({deleted: true, updatedDate: time});
+  this.afs.collection('songs').doc(song.docid).delete();
 }
 
 /* Login */
@@ -295,7 +95,7 @@ LoginWithEmail(form: any){
 /* Logout */
 logout(){
   console.log(this.ngAuth.user);
-  return this.ngAuth.signOut(); 
+  return this.ngAuth.signOut();
 }
 
 /* Get authenticated user */
@@ -315,105 +115,16 @@ setUser(user: any){
 
 /* *******************************Ziyaram Detail******************************************/
 
-/********SQL************** */
-
-//ADD Ziyaram
-async addZiyaram(ziyaram: any){
-  console.log(ziyaram);
-  this.databaseObj.executeSql(
-    'INSERT INTO ziyaram (docid, name, description,location, day, long, lat, imageUrl, updatedDate) VALUES (?,?,?,?,?,?,?,?,?)',[ziyaram.docid, ziyaram.name, ziyaram.description,ziyaram.location, ziyaram.day, ziyaram.long, ziyaram.lat, ziyaram.imageUrl, ziyaram.updatedDate]
-  ).then((res) =>{
-    
-  }).catch((e) =>{
-    if(e.code === 6){
-      console.log('res1');
-      return 'Ziyaram Detail already exists'
-    }
-    console.log('res2 ', e.message);
-    return 'error in add ziyaram '+JSON.stringify(e)  
-  });
-}
-
-// Get Ziyaram
-async getZiyarams(){
-  return this.databaseObj.executeSql(
-    "SELECT * FROM ziyaram order by name",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    
-    return res
-  }).catch((e) =>{
-    return e.message;
-  });
-}
-
-//Delete Ziyaram
-deleteZiyaram(id: string){
-  this.databaseObj.executeSql(
-    `DELETE from ziyaram WHERE docid = ?`,[id]
-  ).then(()=>{
-    console.log('ziyaram deleted successfully');
-    
-  }).catch((e) =>{
-    console.log('ziyaram deleted errrrrrooror ', e);
-  })
-}
-
-//Update Ziyaram
-async updateZiyaram(ziyaram: any){
-  return this.databaseObj.executeSql(
-    `Update ziyaram set name=?, description=?,location=?, day=?, long=?, lat=?, imageUrl=?, updatedDate=? where docid=?`,[ziyaram.name,ziyaram.description,ziyaram.location,ziyaram.day,ziyaram.long,ziyaram.lat, ziyaram.imageUrl,ziyaram.updatedDate,ziyaram.docid]
-  ).then(()=>{
-    console.log('successss ziyaram');
-    
-    return 'Ziyaram Updated successfully'
-    
-    
-  }).catch((e) =>{
-    console.log('error ziyaram ',e);
-    
-    return 'error in Update Ziyaram'
-  })
-}
-//Get All Ziyaram from SQL
-getAllZiyaram(){
-  this.databaseObj.executeSql(
-    "SELECT * FROM ziyaram order by updatedDate",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    for(var i=0; i< res.rows.length; i++) {
-      this.oldZiyaram.push(res.rows.item(i));
-    }
-     
-  }).catch((e) =>{
-    return 'error in getZiyaram'
-  });
-}
-
-/******FireStore************ */
 
 //Add Ziyaram
 addZiyaramDetail(data: any){
   if(this.user){
-    data.updatedDate = new Date().getTime();
-    data.deleted = false;
     return this.afs.collection('ziyarams').add(data).then((re: any)=>{
       console.log(re);
       return 'added'
     }).catch((er: any)=>{
       console.log('errr');
     });
-// console.log('Chjeclk');
-
-//     if(this.afs.collection(`ziyaramRequests`).docid(data.docid).get()){
-//       console.log('Correct');
-      
-//     }else{
-//       console.log('Not Correct');
-      
-//     }
-
-  
   }else{
     return this.afs.collection('ziyaramRequests').add(data).then((re: any)=>{
       console.log(re);
@@ -422,21 +133,15 @@ addZiyaramDetail(data: any){
       console.log('errr');
     });
   }
-  
+
 }
 
 //Get All Ziyaram From fire
-getAllZiyaramfromFire(){
-  const curTime = Number(localStorage.getItem('ziyaramref'));
-  console.log(curTime);
-  return this.afs.collection(`ziyarams`,(
-    ref: { 
-    where: (arg0: string, arg1: string, arg2: any) => 
-      { (): any; new(): any; 
-        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
-    }; }
-    )=>
-    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+getZiyarams(){
+
+  return this.afs.collection(`ziyarams`,ref=>{
+    return ref.orderBy('name');
+  }).snapshotChanges().pipe(
       map((actions: any)=>{
         return actions.map((a: any)=>{
           const data = a.payload.doc.data();
@@ -461,141 +166,34 @@ getZiyaramRequests(){
 }
 
 // Update Ziyaram in Firebase
+a: Subscription;
 async updateZiyaramFireBase(ziyaram: any){
-  this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);  
-  let a = this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).get();
-  a.subscribe((re: any)=>{
+  this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);
+  this.a = this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).get().subscribe((re: any)=>{
     if(re.exists){
       this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).delete();
     }
-    
+
   })
-  a.unsubscribe;
+  this.a.unsubscribe();
 }
 
 
 //Delete Ziyaram in Firebase
 async deleteZiyaramFireBase(ziyaram: any){
   const time = new Date().getTime();
-  this.afs.collection('ziyarams').doc(ziyaram.docid).update({deleted: true, updatedDate: time});
-}
-async deleteZiyaramRequestFireBase(data: any){
-  this.afs.collection(`ziyaramRequests`).doc(data.docid).delete();
+  this.afs.collection('ziyarams').doc(ziyaram.docid).delete();
 }
 
-/****************Refresh Event************* */
-async getZiyaramFromFireBase(){
-  this.getAllZiyaram();
-  this.getAllZiyaramfromFire().subscribe((re: any)=>{
-    console.log('Length from db ', re.length);
-    if(re.length > 0){
-      for(var i = 0; i<re.length; i++){
-        console.log(re[i]);
-        console.log(this.oldZiyaram);
-        const check = this.oldZiyaram.find((b: any) =>re[i].docid === b.docid);
-        if(check){
-          console.log('data found for ', check.docid);
-          if(re[i].deleted){
-            console.log(re[i]);
-            console.log(check);
-            this.deleteZiyaram(check.docid);
-          }else{
-            
-            this.updateZiyaram(re[i]);
-          }
-          
-        }else{
-          console.log('Data not found for', re[i].docid);
-          
-          this.addZiyaram(re[i]);
-          
-        }
-      }
-      this.utilService.successToast('Ziyaram List Updated','bookmark','success');
-     
-    }else{
-      this.utilService.successToast('Ziyaram List Upto Date','cloud-done','tertiary');
-      
-  }
-  });
- 
-  const curTime = new Date().getTime();
-  localStorage.setItem('ziyaramref',curTime.toString());
-
-  //return true;
-}
-
-/* *******************************Evidence Detail******************************************/
-
-/********SQL************** */
-//ADD Evidence
-async addEvidence(evidence: any){
-  console.log(evidence);
-  this.databaseObj.executeSql(
-    'INSERT INTO evidence (docid, title, content, type, updatedDate) VALUES (?,?,?,?,?)',[evidence.docid, evidence.title, evidence.content, evidence.type, evidence.updatedDate]
-  ).then((res) =>{
-    
-  }).catch((e) =>{
-    if(e.code === 6){
-      console.log('res1');
-      return 'Evidence Detail already exists'
-    }
-    console.log('res2 ', e.message);
-    return 'error in add evidence '+JSON.stringify(e)  
+async deleteZiyaramRequestFirebase(ziyaram: any){
+  this.afs.collection('ziyaramRequest').doc(ziyaram.docid).delete().then(()=>{
+    return 'deleted'
+  }).catch((er: any)=>{
+    return 'error';
   });
 }
 
-// Get Evidence
-async getEvidence(){
-  return this.databaseObj.executeSql(
-    "SELECT * FROM evidence order by title",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    
-    return res
-  }).catch((e) =>{
-    return e.message;
-  });
-}
-
-//Delete Evidence
-deleteEvidence(id: string){
-  this.databaseObj.executeSql(
-    `DELETE from evidence WHERE docid = ?`,[id]
-  ).then(()=>{
-    console.log('Evidence deleted successfully');
-    
-  }).catch((e) =>{
-    console.log('Evidence deleted errrrrrooror ', e);
-  })
-}
-
-//Update Evidence
-async updateEvidence(evidence: any){
-  return this.databaseObj.executeSql(
-    `Update evidence set title=?, content=?, type=?, updatedDate=? where docid=?`,[evidence.title,evidence.content,evidence.type,evidence.updatedDate,evidence.docid]
-  ).then(()=>{
-    return 'Evidence Updated successfully'
-  }).catch((e) =>{
-    return 'error in Update Evidence'
-  })
-}
-//Get All Evidence from SQL
-getAllEvidence(){
-  this.databaseObj.executeSql(
-    "SELECT * FROM evidence order by updatedDate",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    for(var i=0; i< res.rows.length; i++) {
-      this.oldEvidence.push(res.rows.item(i));
-    }
-     
-  }).catch((e) =>{
-    return 'error in getEvidence'
-  });
-}
-
-/******FireStore************ */
+/********************************Evidance*********************** */
 //Add Evidence
 addEvidenceDetail(data: any){
   return this.afs.collection('evidence').add(data).then((re: any)=>{
@@ -608,17 +206,10 @@ addEvidenceDetail(data: any){
 
 
 //Get All Evidence From fire
-getAllEvidencefromFire(){
-  const curTime = Number(localStorage.getItem('evidenceref'));
-  console.log(curTime);
-  return this.afs.collection(`evidence`,(
-    ref: { 
-    where: (arg0: string, arg1: string, arg2: any) => 
-      { (): any; new(): any; 
-        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
-    }; }
-    )=>
-    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+getEvidence(){
+  return this.afs.collection(`evidence`, ref=>{
+    return ref.orderBy('title');
+  }).snapshotChanges().pipe(
       map((actions: any)=>{
         return actions.map((a: any)=>{
           const data = a.payload.doc.data();
@@ -631,125 +222,17 @@ getAllEvidencefromFire(){
 
 // Update Evidence in Firebase
 async updateEvidenceFireBase(evidence: any){
-  this.afs.collection('evidence').doc(evidence.docid).set(evidence);   
+  this.afs.collection('evidence').doc(evidence.docid).set(evidence);
 }
 
 
 //Delete Evidence in Firebase
 async deleteaevidenceFireBase(evidence: any){
   const time = new Date().getTime();
-  this.afs.collection('evidence').doc(evidence.docid).update({deleted: true, updatedDate: time});
+  this.afs.collection('evidence').doc(evidence.docid).delete();
 }
-/****************Refresh Event************* */
-getEvidenceFromFireBase(){
-  this.getAllEvidence();
-  this.getAllEvidencefromFire().subscribe((re: any)=>{
-    console.log('Length from db ', re.length);
-    if(re.length > 0){
-      for(var i = 0; i<re.length; i++){
-        console.log(re[i]);
-        console.log(this.oldEvidence);
-        const check = this.oldEvidence.find((b: any) =>re[i].docid === b.docid);
-        if(check){
-          console.log('data found for ', check.docid);
-          if(re[i].deleted){
-            console.log(re[i]);
-            console.log(check);
-            this.deleteEvidence(check.docid);
-          }else{
-            
-            this.updateEvidence(re[i]);
-          }
-          
-        }else{
-          console.log('Data not found for', re[i].docid);
-        
-          this.addEvidence(re[i]);
-          
-        }
-      }
-      this.utilService.successToast('Evidence List Updated','bookmark','success');
-    }else{
-      this.utilService.successToast('Evidence List Upto Date','cloud-done','tertiary');
-  }
-  });
- 
-  const curTime = new Date().getTime();
-  localStorage.setItem('evidenceref',curTime.toString());
-}
-
 /* *******************************Calendar Detail******************************************/
 
-/********SQL************** */
-//ADD Calendar
-async addCalendar(calendar: any){
-  console.log(calendar);
-  this.databaseObj.executeSql(
-    'INSERT INTO calendar (docid, date, content, updatedDate) VALUES (?,?,?,?)',[calendar.docid, calendar.date, calendar.content, calendar.updatedDate]
-  ).then((res) =>{
-    
-  }).catch((e) =>{
-    if(e.code === 6){
-      console.log('res1');
-      return 'Calendar Detail already exists'
-    }
-    console.log('res2 ', e.message);
-    return 'error in add calendar '+JSON.stringify(e)  
-  });
-}
-
-// Get Calendar
-async getCalendar(){
-  return this.databaseObj.executeSql(
-    "SELECT * FROM calendar order by date",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    
-    return res
-  }).catch((e) =>{
-    return e.message;
-  });
-}
-
-//Delete Calendar
-deleteCalendar(id: string){
-  this.databaseObj.executeSql(
-    `DELETE from calendar WHERE docid = ?`,[id]
-  ).then(()=>{
-    console.log('Calendar deleted successfully');
-    
-  }).catch((e) =>{
-    console.log('Calendar deleted errrrrrooror ', e);
-  })
-}
-
-//Update Calendar
-async updateCalendar(calendar: any){
-  return this.databaseObj.executeSql(
-    `Update calendar set date=?, content=?, updatedDate=? where docid=?`,[calendar.date,calendar.content,calendar.updatedDate,calendar.docid]
-  ).then(()=>{
-    return 'Calendar Updated successfully'
-  }).catch((e) =>{
-    return 'error in Update Calendar'
-  })
-}
-//Get All Calendar from SQL
-getAllCalendar(){
-  this.databaseObj.executeSql(
-    "SELECT * FROM calendar",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    for(var i=0; i< res.rows.length; i++) {
-      this.oldCalendar.push(res.rows.item(i));
-    }
-     
-  }).catch((e) =>{
-    return 'error in getCalendar'
-  });
-}
-
-
-/******FireStore************ */
 addCalendarDetail(data: any){
   return this.afs.collection('calendar').add(data).then((re: any)=>{
     console.log(re);
@@ -758,202 +241,50 @@ addCalendarDetail(data: any){
     console.log('errr');
   });
 }
-
-
-
 //Get All Calendar From fire
-getAllCalendarfromFire(){
-  const curTime = Number(localStorage.getItem('calendarref'));
-  console.log(curTime);
-  return this.afs.collection(`calendar`,(
-    ref: { 
-    where: (arg0: string, arg1: string, arg2: any) => 
-      { (): any; new(): any; 
-        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
-    }; }
-    )=>
-    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+getCalendar(){
+  return this.afs.collection(`calendar`, ref => {
+    return ref.orderBy('date');
+  }).snapshotChanges().pipe(
       map((actions: any)=>{
         return actions.map((a: any)=>{
           const data = a.payload.doc.data();
           const docid = a.payload.doc.id;
           return {docid, ...data}
         })
-      })  
+      })
     );
-
-    
 }
 
 // Update calendar in Firebase
 async updateCalendarFireBase(calendar: any){
-  console.log(calendar);
-  
-  this.afs.collection('calendar').doc(calendar.docid).set(calendar);   
+  this.afs.collection('calendar').doc(calendar.docid).set(calendar);
 }
 
 
 //Delete Calendar in Firebase
 async deletecalendarFireBase(evidence: any){
   const time = new Date().getTime();
-  this.afs.collection('calendar').doc(evidence.docid).update({deleted: true, updatedDate: time});
+  this.afs.collection('calendar').doc(evidence.docid).delete();
 }
-
-/***********Refresh Event*************/
-
-async getCalendarFromFireBase(){
-  this.getAllCalendar();
-  this.getAllCalendarfromFire().subscribe((re: any)=>{
-    console.log('Length from db ', re.length);
-    if(re.length > 0){
-      for(var i = 0; i<re.length; i++){
-        console.log(re[i]);
-        console.log(this.oldCalendar);
-        const check = this.oldCalendar.find((b: any) =>re[i].docid === b.docid);
-        if(check){
-          console.log('data found for ', check.docid);
-          if(re[i].deleted){
-            console.log(re[i]);
-            console.log(check);
-            this.deleteCalendar(check.docid);
-          }else{
-            
-            this.updateCalendar(re[i]);
-          }
-          
-        }else{
-          console.log('Data not found for', re[i].docid);
-        
-          this.addCalendar(re[i]);
-          
-        }
-      }
-      this.utilService.successToast('Calendar List Updated','bookmark','success');
-      
-      
-    }else{
-      this.utilService.successToast('Calendar List Upto Date','cloud-done','tertiary');
-      
-      
-  }
-  });
- 
-  const curTime = new Date().getTime();
-  localStorage.setItem('calendarref',curTime.toString());
-
-  
-}
-
-
-
 
 /* *******************************Duas Detail******************************************/
 
-/********SQL************** */
-
-//ADD Dua
-async addDua(dua: any){
-  console.log(dua);
-  this.databaseObj.executeSql(
-    'INSERT INTO dua (docid, title, content,meaning, benifit, type, updatedDate) VALUES (?,?,?,?,?,?,?)',[dua.docid, dua.title, dua.content,dua.meaning, dua.benifit, dua.type,  dua.updatedDate]
-  ).then((res) =>{
-    
-  }).catch((e) =>{
-    if(e.code === 6){
-      console.log('res1');
-      return 'Detail already exists'
-    }
-    console.log('res2 ', e.message);
-    return 'error in add dua '+JSON.stringify(e)  
-  });
-}
-
-// Get Dua
-async getDuas(){
-  return this.databaseObj.executeSql(
-    "SELECT * FROM dua order by title",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    
-    return res
-  }).catch((e) =>{
-    return e.message;
-  });
-}
-
-//Delete Dua
-deleteDua(id: string){
-  this.databaseObj.executeSql(
-    `DELETE from dua WHERE docid = ?`,[id]
-  ).then(()=>{
-    console.log('Dua deleted successfully');
-    
-  }).catch((e) =>{
-    console.log('Dua deleted errrrrrooror ', e);
-  })
-}
-
-//Update Dua
-async updateDua(dua: any){
-  return this.databaseObj.executeSql(
-    `Update dua set title=?, content=?,meaning=?, benifit=?, type=?,updatedDate=? where docid=?`,[dua.title,dua.content,dua.meaning,dua.benifit,dua.type,dua.updatedDate,dua.docid]
-  ).then(()=>{
-    console.log('successss dua');
-    
-    return 'Dua Updated successfully'
-    
-    
-  }).catch((e) =>{
-    console.log('error dua update ',e);
-    
-    return 'error in Update Dua'
-  })
-}
-//Get All Dua from SQL
-getAllDua(){
-  this.databaseObj.executeSql(
-    "SELECT * FROM dua order by updatedDate",[]
-  ).then((res) =>{
-    console.log('results',res.rows.length);
-    for(var i=0; i< res.rows.length; i++) {
-      this.oldDua.push(res.rows.item(i));
-    }
-     
-  }).catch((e) =>{
-    return 'error in getDua'
-  });
-}
-
-/******FireStore************ */
-
 //Add Dua
 addDuaDetail(data: any){
-  
-    data.updatedDate = new Date().getTime();
-    data.deleted = false;
     return this.afs.collection('duas').add(data).then((re: any)=>{
       console.log(re);
       return 'added'
     }).catch((er: any)=>{
       console.log('errr');
     });
-
- 
-  
 }
 
 //Get All Duas From fire
-getAllDuafromFire(){
-  const curTime = Number(localStorage.getItem('duaref'));
-  console.log(curTime);
-  return this.afs.collection(`duas`,(
-    ref: { 
-    where: (arg0: string, arg1: string, arg2: any) => 
-      { (): any; new(): any; 
-        orderBy: { (arg0: string, arg1: string): any; new(): any; }; 
-    }; }
-    )=>
-    ref.where('updatedDate','>=',curTime).orderBy('updatedDate', 'asc')).snapshotChanges().pipe(
+getDuas(){
+  return this.afs.collection(`duas`, ref => {
+    return ref.orderBy('title');
+  }).snapshotChanges().pipe(
       map((actions: any)=>{
         return actions.map((a: any)=>{
           const data = a.payload.doc.data();
@@ -974,51 +305,10 @@ async updateDuaFireBase(dua: any){
 //Delete Dua in Firebase
 async deleteDuaFireBase(dua: any){
   const time = new Date().getTime();
-  this.afs.collection('duas').doc(dua.docid).update({deleted: true, updatedDate: time});
+  this.afs.collection('duas').doc(dua.docid).delete();
 }
 
 
-/****************Refresh Event************* */
-async getDuaFromFireBase(){
-  this.getAllDua();
-  this.getAllDuafromFire().subscribe((re: any)=>{
-    console.log('Length from db ', re.length);
-    if(re.length > 0){
-      for(var i = 0; i<re.length; i++){
-        console.log(re[i]);
-        console.log(this.oldDua);
-        const check = this.oldDua.find((b: any) =>re[i].docid === b.docid);
-        if(check){
-          console.log('data found for ', check.docid);
-          if(re[i].deleted){
-            console.log(re[i]);
-            console.log(check);
-            this.deleteDua(check.docid);
-          }else{
-            
-            this.updateDua(re[i]);
-          }
-          
-        }else{
-          console.log('Data not found for', re[i].docid);
-          
-          this.addDua(re[i]);
-          
-        }
-      }
-      this.utilService.successToast('List Updated','bookmark','success');
-     
-    }else{
-      this.utilService.successToast('List Upto Date','cloud-done','tertiary');
-      
-  }
-  });
- 
-  const curTime = new Date().getTime();
-  localStorage.setItem('duaref',curTime.toString());
-
-  //return true;
-}
 
 /*************************First ALert Dialog******************** */
 sendAlertContent(data: any){
@@ -1030,7 +320,9 @@ sendAlertContent(data: any){
 }
 
 getAlertContent(){
-  return this.afs.collection('alerts',(ref: { orderBy: (arg0: string, arg1: string) => any; })=> ref.orderBy('date', 'desc')).snapshotChanges().pipe(
+  return this.afs.collection('alerts',ref => {
+    return ref.orderBy('date','desc');
+  }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{
         const docid = a.payload.doc.id;
@@ -1042,8 +334,6 @@ getAlertContent(){
 }
 
 async updateAlertContent(data: any){
-  console.log(data);
-  
   this.afs.collection('alerts').doc(data.docid).set(data);
 }
 
@@ -1055,9 +345,9 @@ getTodayContent(){
   const dt = Date.parse(new Date().toDateString());
   console.log(dt);
   console.log(new Date(dt));
-  return this.afs.collection('alerts',(ref: { where: (arg0: string, arg1: string, arg2: number) => any; })=> ref.where(
-    'date','==', dt
-  )).snapshotChanges().pipe(
+  return this.afs.collection('alerts',ref => {
+    return ref.where('date', '==', dt);
+  }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{
         const docid = a.payload.doc.id;
@@ -1066,69 +356,10 @@ getTodayContent(){
       })
     })
   )
+
 }
 
 
-/******************************************* */
-
-async deleteAll(){
-
-  localStorage.removeItem('songref');
-  localStorage.removeItem('ziyaramref');
-  localStorage.removeItem('calendarref');
-  localStorage.removeItem('evidenceref');
-  localStorage.removeItem('duaref');
-  //await this.createDatabase();
-  // return this.databaseObj.executeSql('delete from ziyaram',[]).then(()=>{
-  //   return 'All Songs deleted successfully';
-  // }).catch((e)=>{
-  //  return 'Problem in deleteAll '+JSON.stringify(e)
-  //})
-
-//   console.log(this.curTime);
-//   this.curTime = new Date().getTime();
-// console.log(this.curTime);
-
-
-  // const t = new Date();
-  // console.log(t);
-  // console.log(t.getTime());
-  // setTimeout(()=>{
-  //   const t1 = new Date(1243814960000);
-  //   console.log(t1);
-  // },3000)
-
-  // const t = Number(localStorage.getItem('ref'));
-  // console.log(typeof(t));
-  // console.log(typeof(t.toString()));
-  
-
-
-  this.databaseObj.executeSql(`drop table ziyaram`,[]).then((res)=>{
-    console.log(res);
-    
-  });
-
-  // this.databaseObj.executeSql(
-  //   "SELECT updatedDate FROM song",[]
-  // ).then((res) =>{
-  //   console.log('results',res.rows);
-  //   //return res
-  //   for(var i=0; i< res.rows.length; i++) {
-      
-  //     const t = new Date(Number(res.rows.item(i).updatedDate.substring(18,28)));
-  //     console.log(t);
-  //   }
-  // }).catch((e) =>{
-  //   return 'error in getSong'
-  // });
-}
-
-// check(){
-//   this.afs.collection('test').add({'id':'id','chec':'chec'});
-//   console.log('hiiiiiiiiiiiiiiiii');
-  
-// }
 }
 
 

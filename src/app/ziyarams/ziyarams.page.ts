@@ -81,7 +81,7 @@ export class ZiyaramsPage implements AfterViewInit {
 
   dist: any[];
   anyReq: boolean = false;
-
+  btn: string = "visibile";
   locationStat: string = "Locate Ziyaram Position"
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
@@ -100,8 +100,7 @@ export class ZiyaramsPage implements AfterViewInit {
       this.net=re;
       console.log(re);
       
-      if(re){
-        this.db.getZiyaramRequests().subscribe((re: any) =>{
+      this.db.getZiyaramRequests().subscribe((re: any) =>{
           console.log(re);
           if(re.length > 0){
             this.anyReq = true;
@@ -111,7 +110,7 @@ export class ZiyaramsPage implements AfterViewInit {
           }
           
         })
-      }
+      
     });
     this.obsr.user.subscribe(re=>{
       this.obj = re
@@ -143,8 +142,10 @@ export class ZiyaramsPage implements AfterViewInit {
     console.log('ziyaram view entering');
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-        if(!this.isEditOpen && !this.isModalOpen){
+        if(!this.isModalOpen){
           this.route.navigateByUrl('/dashboard');
+        }else{
+          this.isModalOpen = false
         }
       
     })
@@ -158,15 +159,11 @@ export class ZiyaramsPage implements AfterViewInit {
 
   async getZiyarams(){
     this.spinner = true;
-   return this.db.getZiyarams().then((data)=>{
+   this.db.getZiyarams().subscribe((data)=>{
       console.log('Ziyaram entering ', data);
-      this.ziyarams = [];
-      console.log('Ziyaram entering', this.ziyarams.length);
-      if(data.rows.length > 0){
+      if(data.length > 0){
         this.anyContent = true;
-        for(var i=0; i< data.rows.length; i++) {
-          this.ziyarams.push(data.rows.item(i));
-        }
+        this.ziyarams = data;
         console.log('song', this.ziyarams);
         this.Permziyarams = this.ziyarams;
       }else{
@@ -175,36 +172,32 @@ export class ZiyaramsPage implements AfterViewInit {
       this.spinner = false;
       
       
-    }).catch((e)=>{
-      this.spinner = false;
-      console.log(e);
-      this.utilService.erroToast(e,'analytics-outline');
-      })
+    })
   }
-async handleRefresh(event: any) {
-  if(this.net){
-    this.spinner = true;
-    setTimeout(() => {
-      this.db.getZiyaramFromFireBase().then((re)=>{
-        event.target.complete();
-        console.log('AAAAAAAAA');
-      });
+// async handleRefresh(event: any) {
+//   if(this.net){
+//     this.spinner = true;
+//     setTimeout(() => {
+//       this.db.getZiyaramFromFireBase().then((re)=>{
+//         event.target.complete();
+//         console.log('AAAAAAAAA');
+//       });
       
      
-    }, 2000);
+//     }, 2000);
 
-    setTimeout(async ()=>{
-      console.log('BBBBBBBB');
-      this.getZiyarams();
-      this.spinner = false;
-    },4000)
+//     setTimeout(async ()=>{
+//       console.log('BBBBBBBB');
+//       this.getZiyarams();
+//       this.spinner = false;
+//     },4000)
         
-  }else{
-    event.target.complete();
-    this.utilService.NetworkToast();
-  }
+//   }else{
+//     event.target.complete();
+//     this.utilService.NetworkToast();
+//   }
   
-}
+// }
 
 promo(data: any){
   this.cardSpinner = true;
@@ -416,7 +409,7 @@ async deleteZiyaramRequest(data: any){
           handler: () =>{
             this.spinner = true;
             console.log('delete Confirmed');
-             this.db.deleteZiyaramRequestFireBase(data).then((re)=>{
+             this.db.deleteZiyaramRequestFirebase(data).then((re)=>{
               this.spinner = false;
               console.log(re);
               
@@ -466,15 +459,14 @@ setArray(){
   }
 }
 
-// setProvince(province:string){
-//   this.province = province;
-//   this.modal.dismiss();
-// }
-
-// setDistrict(dist:string){
-//   this.district = dist;
-//   this.modal2.dismiss();
-// }
+logScrollStart(event: any){
+  console.log('scrolling');
+  this.btn = "hidden";
+  setTimeout(() =>{
+    this.btn = "visible";
+  },2500)
+  
+}
 
 
 }

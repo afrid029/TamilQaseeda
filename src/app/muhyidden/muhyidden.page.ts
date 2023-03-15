@@ -57,14 +57,13 @@ ionViewDidEnter(){
   console.log('Muhiview entering');
   
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-    if(this.isEditOpen || this.isModalOpen){
-      console.log('Model Opened');
-      
+    if(this.isEditOpen){
+      this.isEditOpen = false;
+    }else if(this.isModalOpen){
+      this.isModalOpen = false
     }else{
-      console.log('Go to home');
-      this.route.navigateByUrl('home');
-    }
-
+        this.route.navigateByUrl('/home');
+      }
     
   })
  }
@@ -75,17 +74,13 @@ ionViewDidEnter(){
   this.subs.unsubscribe();
  }
 
-async getSongs() {
+getSongs() {
   this.spinner = true;
-  this.db.getSong("muhi").then((data)=>{
+  this.db.getSong("muhi").subscribe((data)=>{
     console.log('song entering');
-    this.songs = [];
-    console.log('song entering', this.songs.length);
-    if(data.rows.length > 0){
+    if(data.length > 0){
       this.anyContent = true;
-      for(var i=0; i< data.rows.length; i++) {
-        this.songs.push(data.rows.item(i));
-      }
+      this.songs = data;
       console.log('song', this.songs);
       this.Permsongs = this.songs;
     }else{
@@ -93,11 +88,7 @@ async getSongs() {
     }
     this.spinner = false;
     
-  }).catch((e)=>{
-    this.spinner = false;
-    console.log(e);
-    this.util.erroToast(e,'alert-circle-outline')
-    })
+  })
 }
   
 handleSearch(){
@@ -142,8 +133,7 @@ EditSong(data: any){
   this.editSong.content = data.content;
   this.editSong.author = data.author;
   this.editSong.type = data.type;
-  this.editSong.deleted = false;
-  this.editSong.updatedDate = data.updatedDate;  
+  
 }
 
 async deleteSong(data: any){
@@ -190,7 +180,7 @@ updateSong(){
   if(this.net){
     this.spinner = true;
     this.isEditOpen = false;
-    this.editSong.updatedDate = new Date().getTime();
+   
     this.db.updateFireBase(this.editSong).then(()=>{
       this.spinner = false;
       this.util.successToast('Song updated successfully','thumbs-up-outline','success');

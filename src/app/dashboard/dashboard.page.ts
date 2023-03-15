@@ -28,7 +28,7 @@ export class DashboardPage {
     public alertCtrl: AlertController, public db: DatabaseService, public utilService: UtillService,
     public obsr: ObsrService) {
 
-    
+
 
     this.obsr.network.subscribe(re=>{
       this.net=re;
@@ -39,23 +39,22 @@ export class DashboardPage {
       this.obj = re;
     })
 
-    
-    
+
+
    }
    ionViewDidEnter(){
     console.log('view entering');
-    
     this.subs = this.platform.backButton.subscribeWithPriority(1,()=>{
-      console.log('Dashboard ',this.constructor.name); 
+      console.log('Dashboard ',this.constructor.name);
 
         this.toExit();
-      
+
     })
    }
 
    ionViewWillLeave(){
     console.log('view leaving');
-    
+
     this.subs.unsubscribe();
    }
    async toExit(){
@@ -67,7 +66,7 @@ export class DashboardPage {
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');  
+            console.log('cancelled');
             }
         },{
           text: 'Exit',
@@ -91,18 +90,14 @@ export class DashboardPage {
     // }
     setTimeout(()=>{
       this.route.navigateByUrl(val);
-      
+
     },10);
-    this.isAddModalOpen = false;    
+    this.isAddModalOpen = false;
     //this.subs.unsubscribe();
-    
+
   }
-  
-  
-  /************temp************************ */
-    delete(){
-      this.db.deleteAll();
-    }
-  
+
+
+
 
 }

@@ -2,8 +2,8 @@ import { CapacitorConfig } from '@capacitor/cli';
 import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'TamilQaseeda2.0',
+  appId: 'com.mafd.ahlussunnahtamil',
+  appName: 'AhlussunnahTamil',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {

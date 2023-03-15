@@ -4,6 +4,7 @@ import { DatabaseService } from './services/database.service';
 import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
 import { UtillService } from './services/utill.service';
+import { distinctUntilChanged, share, Subscription, take, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -26,24 +27,13 @@ export class AppComponent {
   i: number = 0;
   length: number;
   isModalOpen: boolean = false;
- 
+  isAboutOpen: boolean = false;
+
   constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController, private db: DatabaseService) {
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
-    this.data.createDatabase().then(()=>{
-       const a = setInterval(()=>{
-        if (this.obsr.database) {
-          console.log('received');
-          this.data.createTables();
-          clearInterval(a);
-          
-        }else{
-          console.log('not received');
-        }
-       },1000)
-       
-      });
+
 
       this.obsr.user.subscribe(re=>{
         this.obj = re;
@@ -81,60 +71,38 @@ export class AppComponent {
   leaveAnimation = (baseEl: HTMLElement) => {
     return this.enterAnimation(baseEl).direction('reverse');
   }
+
    ngOnInit(){
     console.log('Appcomponent');
-    this.db.getTodayContent().subscribe((cont: any)=>{
+
+   let o = this.db.getTodayContent().pipe(take(1));
+   o.subscribe((cont: any)=>{
       console.log('Alerts Count ', cont.length);
-      if(cont.length > 0){
-        this.alerts = cont;
-        this.length = cont.length;
-        this.openModal(true);
 
-        // const inter = setInterval(()=>{
-        //   if(this.i === cont.length){
-        //     clearInterval(inter);
-        //     console.log('cleared interval');
-        //     this.i = 0;
-            
-        //   }
-        //   console.log('cheking ',this.i);
-          
+        if(cont.length > 0){
+          console.log(cont.length);
+          this.alerts = cont;
+          this.length = cont.length;
+          this.openModal(true);
+        }
 
-        //   if(!this.isModalOpen){
-        //     this.isModalOpen = true;
-        //     this.content = cont[this.i];
-        //   }
-        // },1000)
-
-
-        // for(let i=0; i<cont.length; i++){
-        //   this.content = cont[i];
-        //   console.log(this.content);
-          
-        //   this.isModalOpen = true;
-        //   const inter = setInterval(()=>{
-        //     if(!this.isModalOpen){
-        //       console.log('okokokok');
-              
-        //       clearInterval(inter)
-        //     }
-        //   },1000)
-
-        // }
-      }
-      
-    })
+    });
     //this.openModal(false);
-    
+
+
    }
+
    async openModal(state: boolean){
     // const modal = this.modalCtrl.create({
-      
+
     // })
 
     if(state){
-      this.content = this.alerts[this.i];
-      this.i = this.i + 1;
+      const k = this.i
+      console.log(k);
+
+      this.content = this.alerts[k];
+      this.i = k + 1;
       this.isModalOpen = true;
     }
 
@@ -144,7 +112,7 @@ export class AppComponent {
         this.i = 0;
       }else{
         console.log(this.i, this.length);
-        
+
         this.isModalOpen = false;
         setTimeout(()=>{
           this.content = this.alerts[this.i];
@@ -153,15 +121,15 @@ export class AppComponent {
         },500)
       }
     }
-    
-  
+
+
 
    }
 
      ionViewWillEnter(){
-      
-      
-   
+
+
+
    }
 
    openLogin(){
@@ -179,21 +147,21 @@ export class AppComponent {
       this.spinner = true;
 
         this.data.LoginWithEmail(this.login).then((res: any)=>{
-          
+
           console.log(res.user?.uid);
           this.data.setUser(res.user);
           this.obsr.user.next(true);
-        
+
           console.log('loggged');
           this.spinner = false;
           this.isLoginOpen = false;
-  
+
           setTimeout(()=>{
             this.login = {'email':'', 'password':''}
           this.utilService.successToast('Logged in Successfully','radio-button-on-outline','success')
           },10);
-          
-            
+
+
         }).catch((er: any)=>{
           this.spinner = false;
           if(er.code === 'auth/invalid-email'){
@@ -205,14 +173,14 @@ export class AppComponent {
           }else{
             this.utilService.erroToast('Wrong Password','close-circle-outline')
            }
-            
+
         });
-      
+
     }else{
       this.utilService.NetworkToast();
     }
   }
-   
+
   Logout(){
     if(this.net){
       this.closeMenu();
@@ -240,12 +208,13 @@ export class AppComponent {
     this.isLoginOpen = false;
     this.menuctrl.close();
   }
-  /************************************** */
 
- 
-  delete(){
-    this.data.deleteAll();
+
+  openAboutUs(state: boolean){
+    this.isAboutOpen = state;
+
+
   }
 
-  
+
 }

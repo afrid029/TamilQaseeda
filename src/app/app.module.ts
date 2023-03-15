@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TabsComponentComponent } from './tabs-component/tabs-component.component';
 
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -36,6 +36,7 @@ import { DatePipe } from '@angular/common';
   AngularFireDatabaseModule,
   OnlineStatusModule,
   SharedModuleModule,
+  AngularFirestoreModule.enablePersistence(),
   NgCalendarModule],
   providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
   bootstrap: [AppComponent],

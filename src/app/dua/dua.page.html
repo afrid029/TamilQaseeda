@@ -13,15 +13,15 @@
    </div>
 
    <div class="bar primary">
-    <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
+    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search dua / salawat"><ion-icon  name="search"></ion-icon></ion-input>
     <div class="close">
       <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
     </div>
     </div>
-
+<!-- 
    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
 
   <ion-list class="lst">
     <div class="lstcont">

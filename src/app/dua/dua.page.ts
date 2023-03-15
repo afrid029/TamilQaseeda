@@ -74,22 +74,22 @@ export class DuaPage implements OnInit {
     this.spinner = true;
 
   
-    return this.db.getDuas().then((data)=>{
+    return this.db.getDuas().subscribe((data)=>{
       console.log('Dua entering ', data);
       this.dua = [];
       this.salawat = [];
   
       console.log('Dua entering ', this.dua.length, this.salawat.length);
-      if(data.rows.length > 0){
+      if(data.length > 0){
         
-        for(var i=0; i< data.rows.length; i++) {
+        for(var i=0; i< data.length; i++) {
           
-          if(data.rows.item(i).type === 'dua'){
+          if(data[i].type === 'dua'){
             this.duaAnyContent = true;
-            this.dua.push(data.rows.item(i));
+            this.dua.push(data[i]);
           }else{
             this.salAnyContent = true;
-            this.salawat.push(data.rows.item(i));
+            this.salawat.push(data[i]);
           }
         }
   
@@ -109,34 +109,30 @@ export class DuaPage implements OnInit {
       
       
       
-    }).catch((e)=>{
-      console.log(e);
-      this.spinner = false;
-      this.utilService.erroToast(e,'analytics-outline');
-      })
+    })
   
   }
 
-  async handleRefresh(event: any) {
+  // async handleRefresh(event: any) {
   
-    if(this.net){
-      this.spinner = true
-      setTimeout(() => {
-        this.db.getDuaFromFireBase();
-        console.log('refreshed ');
-        event.target.complete();
-      }, 2000);
+  //   if(this.net){
+  //     this.spinner = true
+  //     setTimeout(() => {
+  //       this.db.getDuaFromFireBase();
+  //       console.log('refreshed ');
+  //       event.target.complete();
+  //     }, 2000);
   
-      setTimeout(()=>{
-       this.getDua();
-        this.spinner = false;
-      },4000)
+  //     setTimeout(()=>{
+  //      this.getDua();
+  //       this.spinner = false;
+  //     },4000)
           
-    }else{
-      event.target.complete();
-      this.utilService.NetworkToast();
-    }
-  }
+  //   }else{
+  //     event.target.complete();
+  //     this.utilService.NetworkToast();
+  //   }
+  // }
   private slide: any;
 setSwiperInstance(event: any){
   console.log(event.activeIndex);
@@ -204,8 +200,7 @@ editDetail(data: any){
   this.editAwraath.meaning = data.meaning;
   this.editAwraath.benifit = data.benifit;
   this.editAwraath.type = data.type;
-  this.editAwraath.updatedDate = data.updatedDate;
-  this.editAwraath.deleted = false;
+
   
   console.log(this.editAwraath);
   
@@ -252,8 +247,6 @@ update(){
   if(this.net){
     this.spinner = true;
     this.isEditOpen = false;
-    this.editAwraath.updatedDate = new Date().getTime();
-    this.editAwraath.deleted = false;
     this.db.updateDuaFireBase(this.editAwraath).then(()=>{
       this.spinner = false;
       this.utilService.successToast('Updated successfully','thumbs-up-outline','success');

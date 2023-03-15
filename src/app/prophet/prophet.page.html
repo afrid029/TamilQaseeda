@@ -16,7 +16,7 @@
    </div>
 
   <div class="bar primary">
-    <ion-input class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search"><ion-icon  name="search"></ion-icon></ion-input>
+    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
     <div class="close">
       <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
     </div>

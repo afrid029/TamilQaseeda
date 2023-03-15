@@ -44,14 +44,13 @@ export class AjmeerPage {
     console.log('Ajmeer view entering');
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      if(this.isEditOpen || this.isModalOpen){
-        console.log('Model Opened');
-        
+      if(this.isEditOpen){
+        this.isEditOpen = false;
+      }else if(this.isModalOpen){
+        this.isModalOpen = false
       }else{
-        console.log('Go to home');
-        this.route.navigateByUrl('home');
-      }
-  
+          this.route.navigateByUrl('/home');
+        }
       
     })
    }
@@ -76,18 +75,11 @@ export class AjmeerPage {
 
   async getSongs() {
     this.spinner = true;
-    this.db.getSong("ajmeer").then((data)=>{
+    this.db.getSong("ajmeer").subscribe((data)=>{
       console.log('song entering');
-      this.songs = [];
-      console.log('song entering', this.songs.length);
-      if(data.rows.length > 0){
+      if(data.length > 0){
         this.anyContent = true;
-        for(var i=0; i< data.rows.length; i++) {
-          console.log('Author name ',data.rows.item(i).author.length);
-          
-          this.songs.push(data.rows.item(i));
-        }
-        console.log('song', this.songs);
+        this.songs = data;
         this.Permsongs = this.songs;
         
       }else{
@@ -95,11 +87,7 @@ export class AjmeerPage {
       }
       this.spinner = false;
       
-    }).catch((e)=>{
-      this.spinner = false;
-      console.log(e);
-      this.util.erroToast(e,'alert-circle-outline')
-      })
+    })
   }
 
   handleSearch(){
@@ -144,8 +132,7 @@ setOpen(id: boolean){
     this.editSong.content = data.content;
     this.editSong.author = data.author;
     this.editSong.type = data.type;
-    this.editSong.deleted = false;
-    this.editSong.updatedDate = data.updatedDate;  
+    
   }
 
   async deleteSong(data: any){
@@ -191,7 +178,6 @@ setOpen(id: boolean){
     if(this.net){
       this.spinner = true;
       this.isEditOpen = false;
-      this.editSong.updatedDate = new Date().getTime();
       this.db.updateFireBase(this.editSong).then(()=>{
         this.spinner = false;
         this.util.successToast('Song updated successfully','thumbs-up-outline','success');

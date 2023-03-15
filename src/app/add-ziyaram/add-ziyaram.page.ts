@@ -155,9 +155,7 @@ export class AddZiyaramPage implements OnInit {
       }
     })
    }
-   ngAfterViewInit() {
-    
-   }
+  
    
 
    createCaptcha(){
@@ -193,9 +191,20 @@ export class AddZiyaramPage implements OnInit {
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       console.log('Dashboard ',this.constructor.name); 
       //this.router.navigateByUrl('/dashboard');
-      this.location.back();
+      //this.location.back();
+      this.goBack();
       this.clearMap();
     })
+   }
+
+   goBack(){
+    console.log(this.update);
+    
+    if(this.update){
+      this.router.navigateByUrl('/ziyarams')
+    }else{
+      this.router.navigateByUrl('/dashboard');
+    }
    }
    clearMap(){
     this.obsr.LocSelected.next(false);
@@ -299,6 +308,9 @@ export class AddZiyaramPage implements OnInit {
               this.obsr.longtitude.next(-1);
               this.btnvalid = false;
               this.ziyaram = {};
+              this.province = "";
+              this.district = "";
+              this.place = "";
               if(this.admin){
                 this.utill.successToast('Ziyaram Detail Successfully Added','cloud-upload-sharp','warning')
               }else{
@@ -389,8 +401,6 @@ export class AddZiyaramPage implements OnInit {
             console.log(this.ziyaram.lat, this.ziyaram.long);
             this.ziyaram.long = this.obsr.longtitude.getValue();
             this.ziyaram.lat = this.obsr.latitude.getValue();
-            this.ziyaram.updatedDate = new Date().getTime();
-            this.ziyaram.deleted = false;
             console.log(this.ziyaram.lat, this.ziyaram.long);
   
             this.datasc.updateZiyaramFireBase(this.ziyaram).then(async (re: any)=>{
@@ -403,6 +413,9 @@ export class AddZiyaramPage implements OnInit {
               this.obsr.longtitude.next(-1);
               this.btnvalid = false;
               this.ziyaram = {name:'',description:'',location:'',day:'',long:'',lat:'',imageUrl:''};
+              this.province = "";
+              this.district = "";
+              this.place = "";
               this.utill.successToast('Ziyaram Details Updated Successfully','thumbs-up-outline','success')
             }).catch((e: any)=>{
               this.spinner = false;

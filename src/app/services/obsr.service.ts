@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { OnlineStatusService } from 'ngx-online-status';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 
 @Injectable({
@@ -15,7 +16,8 @@ export class ObsrService {
   public MapClicked = new BehaviorSubject(false);
   public LocSelected = new BehaviorSubject(false);
   public genrelUser = new BehaviorSubject(false);
-  constructor(private online: OnlineStatusService) { 
+  constructor(private online: OnlineStatusService,
+    public afs: AngularFirestore) { 
     if(this.online.getStatus()){
       console.log("Connected");
       this.network.next(true);
@@ -38,5 +40,6 @@ export class ObsrService {
       this.user.next(false);
     }
   }
+
 
 }

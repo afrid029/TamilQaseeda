@@ -125,9 +125,14 @@ export class CalendarPage {
     console.log('calendarview entering');
     
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      if(!this.isModalOpen && !this.isEditModalOpen){
-        this.route.navigateByUrl('/dashboard');
-      }
+      if(this.isEditModalOpen){
+        this.isEditModalOpen = false;
+      }else if(this.isModalOpen){
+        this.isModalOpen = false
+      }else{
+          this.route.navigateByUrl('/dashboard');
+        }
+      
     })
     console.log(localStorage.getItem('calendarref'));
     
@@ -157,11 +162,11 @@ export class CalendarPage {
     this.oct= [];
     this.nov = [];
     this.dec = [];
-    return this.db.getCalendar().then((data)=>{
-      console.log('calendar ',data.rows);
-      for(var i = 0; i<data.rows.length; i++){
-        console.log(data.rows.item(i));
-        const d = new Date(data.rows.item(i).date);
+    return this.db.getCalendar().subscribe((data)=>{
+      console.log('calendar ',data);
+      for(var i = 0; i<data.length; i++){
+        console.log(data);
+        const d = new Date(data[i].date);
         const year = d.getFullYear();
         const month = d.getMonth();
         const day = d.getDate();
@@ -169,10 +174,10 @@ export class CalendarPage {
         const currYear = currDate.getFullYear();
        
 
-        console.log(data.rows.item(i).date.split('-')[2]);
+        console.log(data[i].date.split('-')[2]);
         
         events.push({
-          title: data.rows.item(i).content,
+          title: data[i].content,
           startTime: new Date(Date.UTC(year,month,day)),
           endTime: new Date(Date.UTC(year,month,day+1)),
           allDay: true
@@ -181,107 +186,107 @@ export class CalendarPage {
         if(month == 0){
           
           this.jan.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         }else if(month ==1){
           this.feb.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         }else if(month ==2){
           this.mar.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==3){
           this.apr.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         }else if(month ==4){
           this.may.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==5){
           this.jun.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==6){
           this.jul.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==7){
           this.aug.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==8){
           this.sep.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==9){
           this.oct.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==10){
           this.nov.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         
         }else if(month ==11){
           this.dec.push({
-            docid: data.rows.item(i).docid,
-            year: data.rows.item(i).date.split('-')[0],
-            month: data.rows.item(i).date.split('-')[1],
-            day: data.rows.item(i).date.split('-')[2],
-            content: data.rows.item(i).content
+            docid: data[i].docid,
+            year: data[i].date.split('-')[0],
+            month: data[i].date.split('-')[1],
+            day: data[i].date.split('-')[2],
+            content: data[i].content
           })
         }
         
@@ -297,25 +302,25 @@ export class CalendarPage {
    
    }
   
-async handleRefresh(event: any) {
-  if(this.net){
-    this.spinner = true;
-    setTimeout(() => {
-      this.db.getCalendarFromFireBase();
-      console.log('refreshed ');
-      event.target.complete();
-    }, 500);
+// async handleRefresh(event: any) {
+//   if(this.net){
+//     this.spinner = true;
+//     setTimeout(() => {
+//       this.db.getCalendarFromFireBase();
+//       console.log('refreshed ');
+//       event.target.complete();
+//     }, 500);
 
-    setTimeout(()=>{
-      this.getCalendar();
-      this.spinner = false
-    },4000)
+//     setTimeout(()=>{
+//       this.getCalendar();
+//       this.spinner = false
+//     },4000)
         
-  }else{
-    event.target.complete();
-    this.utilService.NetworkToast();
-  }
-}
+//   }else{
+//     event.target.complete();
+//     this.utilService.NetworkToast();
+//   }
+// }
 
 setmodel(state: boolean){
   this.isModalOpen = state;
@@ -341,8 +346,6 @@ update(){
   if(this.net){
     this.spinner = true;
     this.isEditModalOpen = false;
-    this.editEvent.updatedDate = new Date().getTime();
-    this.editEvent.deleted = false;
     this.db.updateCalendarFireBase(this.editEvent).then(() => {
       this.spinner = false;
       this.utilService.successToast('Calendar event successfully','thumbs-up-outline','success');
@@ -421,7 +424,6 @@ onCurrentDateChanged(ev: Date) {
   console.log('Currently viewed date: ' + ev);
 }
 
-/**************************************************************/
 
 
 

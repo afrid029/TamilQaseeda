@@ -70,7 +70,14 @@ export class WallalertPage implements OnInit {
 
   ionViewDidEnter() {
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      this.router.navigateByUrl('/dashboard');
+      if(this.isEditOpen){
+        this.isEditOpen = false;
+      }else if(this.isModalOpen){
+        this.isModalOpen = false
+      }else{
+          this.router.navigateByUrl('/dashboard');
+        }
+      
     })
 
   }
@@ -87,7 +94,7 @@ export class WallalertPage implements OnInit {
   onSubmit(){
     console.log(this.alert);
     if(this.net){
-      //this.spinner = true;
+      this.spinner = true;
       console.log(typeof(this.alert.date));
 
       const dt = Date.parse(new Date(this.alert.date).toDateString());
