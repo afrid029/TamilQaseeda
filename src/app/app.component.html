@@ -10,6 +10,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
+      <ion-item (click)="closeMenu()" [routerLink] = "['/moulids']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="heart-half-sharp"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;மௌலிதுகள்</ion-label>
+      </ion-item>
       <ion-item (click)="closeMenu()" [routerLink] = "['/home']">
         <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="musical-notes-sharp"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;தமிழ் ஹஸீதா தளம்</ion-label>
       </ion-item>
@@ -85,7 +88,7 @@
               <img alt="Dialog-Box" class="alert"/>
 
               <div class="content">
-                <h5 >
+                <h5 style="font-size: 4vw;">
                   {{content.mcontent}}
 
                 </h5>
@@ -137,9 +140,10 @@
                 <br><br>
                 1.இலங்கையில் உள்ள புனித வலிமார்களின் ஸியாரங்களின் தகவல்கள் (அமைவிடம், அறிமுகம், புகைப்படம்)<br>
                 2.கொள்கை விளக்க ஆதாரங்கள்<br>
-                3.இஸ்லாமிய துஆக்கள் மற்றும் ஸலவாத்துக்கள்<br>
-                4.இஸ்லாமிய புனித தினங்கள்<br>
-                5.தமிழ் ஹஸீதாக்கள்<br><br>
+                3.மௌலிதுகள்<br>
+                4.இஸ்லாமிய துஆக்கள் மற்றும் ஸலவாத்துக்கள்<br>
+                5.இஸ்லாமிய புனித தினங்கள்<br>
+                6.தமிழ் ஹஸீதாக்கள்<br><br>
 
                 போன்ற தகவல்கள் உள்வாங்கப்பட்டுள்ளது. <br><br>
 

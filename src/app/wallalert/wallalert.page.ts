@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModuleFactory, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -33,7 +34,7 @@ export class WallalertPage implements OnInit {
     this.obsr.network.subscribe(re=>{
       this.net =re;
     });
-    
+
     this.obsr.user.subscribe(re=>{
       this.obj =re;
     })
@@ -44,8 +45,8 @@ export class WallalertPage implements OnInit {
   ionViewWillEnter(){
     console.log('View will enter');
     this.getData();
-    
-    
+
+
   }
 
   getData(){
@@ -62,9 +63,9 @@ export class WallalertPage implements OnInit {
         this.anyContent = false;
       }
       this.spinner = false;
-      
-      
-      
+
+
+
     })
   }
 
@@ -77,7 +78,7 @@ export class WallalertPage implements OnInit {
       }else{
           this.router.navigateByUrl('/dashboard');
         }
-      
+
     })
 
   }
@@ -91,7 +92,7 @@ export class WallalertPage implements OnInit {
     this.slide = event
   }
 
-  onSubmit(){
+  onSubmit(form: NgForm){
     console.log(this.alert);
     if(this.net){
       this.spinner = true;
@@ -103,17 +104,18 @@ export class WallalertPage implements OnInit {
       this.db.sendAlertContent(this.alert).then((re: any)=>{
         this.spinner = false;
         this.alert = {};
+        form.resetForm();
         this.utils.successToast('Successfully Added','cloud-upload-sharp','warning')
 
       }).catch((err: any)=>{
         this.spinner = false;
-        this.utils.erroToast(err.message, 'snow-outline'); 
+        this.utils.erroToast(err.message, 'snow-outline');
       })
 
     }else{
       this.utils.NetworkToast();
     }
-    
+
   }
 
   setViewModel(state: boolean){
@@ -136,7 +138,7 @@ export class WallalertPage implements OnInit {
     if(data.scontent){
       this.editAlert.scontent = data.scontent;
     }
-    
+
     const dt = new Date(data.date);
     const year = dt.toLocaleDateString("dafault",{year: "numeric"});
     const month = dt.toLocaleDateString("dafault",{month: "2-digit"});
@@ -163,14 +165,14 @@ export class WallalertPage implements OnInit {
       }).catch(er =>{
         this.spinner = false;
         console.log(er.message);
-        
+
         this.utils.erroToast('Something Went Wrong', 'bug-outline');
       });
     }else{
       this.utils.NetworkToast();
     }
-    
-    
+
+
   }
 
   async deleteAlert(data: any){
@@ -184,7 +186,7 @@ export class WallalertPage implements OnInit {
             role: 'cancel',
             handler: () =>{
               console.log('cancelled');
-              
+
             }
           },{
             text: 'Delete',
@@ -198,7 +200,7 @@ export class WallalertPage implements OnInit {
                 }).catch((er)=>{
                   this.utils.erroToast('Something Went Wrong', 'bug-outline');
                 });
-              
+
             }
           }
         ]

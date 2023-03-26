@@ -59,18 +59,15 @@ ion-modal {
    // background-color: rgb(15, 15, 15) !important;
     // --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
-  
-  // ion-modal::part(backdrop) {
-  //   background: rgb(0, 0, 8);
-  //   opacity: 1;
-  // }
+
+
+
 
 
   .lst::before{
-        
+
         content: "";
         background-image: url(./assets/pictures/bg.png);
-        
       position: fixed;
       background-size: cover;
       background-position: center;
@@ -83,8 +80,8 @@ ion-modal {
       z-index: -1;
       opacity: 0.1;
     }
- 
-  
+
+
   ion-modal ion-toolbar {
     --background: rgba(168, 227, 250, 0.781);
     --color: rgb(24, 1, 1);

@@ -7,11 +7,15 @@
         color: rgb(255, 255, 255);
     }
 
-    .edit {
-        background-color: rgb(18, 173, 245);
+    .edit{
+      border: 1px solid rgb(238, 232, 232);
+      color: #ffffff;
+      background-color: #3477ce;
     }
     .del{
-        background-color: rgba(201, 35, 13, 0.877);
+      color: rgb(255, 255, 255);
+      border: 1px solid rgb(238, 232, 232);
+      background-color: #c74d07;
     }
     .search{
         background-color: rgb(243, 237, 237);
@@ -23,22 +27,15 @@
     .close{
         color: black;
     }
-    .bar {
-        background-color: rgba(224, 224, 224, 0.562);
-    }
+
     .home {
         color: #ffffff;
     }
 
-    .tool {
-        width: 100%;
-        height: 100%;
-        background-image: url(../../assets/pictures/qaseeda/darkheadmuhiy.jpg);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-              
-        }
-    
+        .img {
+          content: url(../../assets/pictures/qaseeda/darkheadmuhiy.jpg);
+      }
+
 }
 
 @media (prefers-color-scheme: light){
@@ -46,15 +43,19 @@
     //     background-color: rgba(203, 245, 225, 0.315);
     //     border: 2px solid rgb(0, 83, 28);
     // }
-    
+
     .items{
         color: rgb(0, 0, 0);
     }
-    .edit {
-        background-color: rgb(18, 173, 245);
-    }
     .del{
-        background-color: rgba(201, 35, 13, 0.877);
+      color: #c74d07 !important;
+      border: 1px solid #c74d07 !important;
+      background-color: white !important;
+    }
+    .edit{
+      border: 1px solid #3477ce;
+      color: #3477ce;
+      background-color: white !important ;
     }
     .search{
         background-color: rgb(189, 189, 189);
@@ -66,29 +67,21 @@
     .close{
         color: black;
     }
-    .bar {
-        background-color: rgba(224, 224, 224, 0.562);
-    }
+
 
     .home {
         color: #fdc103;
     }
 
-    .tool {
-        width: 100%;
-        height: 100%;
-        background-image: url(../../assets/pictures/qaseeda/headmuhiy.jpg);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-              
-        }
-    
+        .img {
+          content: url(../../assets/pictures/qaseeda/headmuhiy.jpg);
+      }
+
 }
 
 .cont{
-    //margin-top: 8% !important;
-    height: 92%; 
-    width: 100%; 
+    height: 82vh;
+    width: 100%;
     overflow-y: scroll;
    border-radius: 16px;
 
@@ -104,35 +97,35 @@
     display: none;
 }
 .items {
-    text-align:justify; 
-    font-weight: 500; 
-    white-space: pre-wrap; 
+    text-align:justify;
+    font-weight: 500;
+    white-space: pre-wrap;
     margin-top: 10px;
     font-size: 11px;
-    
+
 }
 .edit {
     border-radius: 78px !important;
     float: left;
-    width: 12%;
-    height: 35px;
+    width: 7vw;
+    height: 7vw;
     text-align: center;
-    
-    padding: 12px 5px;
-    margin-left: 2px;
-    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .del {
-   
-    margin-left: 8px;
+
+    margin-left: 4vw;
 }
 .icon {
-    color:white;
-    font-size: 16px;
+    //color:white;
+    font-size: 3vw;
 }
 .auth{
-    height: auto; 
-    overflow-y: scroll; 
+    height: auto;
+    overflow-y: scroll;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -140,7 +133,7 @@
 
 
 .lst{
-    padding-top: 16%;
+    padding-top: 7vh;
     padding-left: 2%;
     padding-right:2%;
     padding-bottom: 15%;
@@ -150,7 +143,7 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size:100% 100%;
-   
+
 }
 
 .lstcont{
@@ -158,11 +151,11 @@
     padding-bottom: 5%;
     max-height: auto;
     overflow-y: scroll;
+    margin-top: 1vh;
+
 }
 .bar {
     width: 100%;
-   margin-top: 1%;
-
     z-index: 3;
     position: fixed;
     padding-bottom: 2%;
@@ -170,17 +163,17 @@
 
 }
 .search {
-    width: 95%;
+    width: 96%;
     border-radius: 16px;
     margin-left: 2%;
     float: left;
     padding-left: 1%;
- 
+    height: 45px;
     position:fixed;
     margin-bottom: 4%;
     margin-top: 2%;
-  
-   
+
+
 }
 
 .search ion-icon{
@@ -189,7 +182,7 @@
 }
 
 .close{
-    margin-top: 4%;
+    margin-top: 2.4vh;
     float: right;
     font-size: 25px;
     margin-right: 5%;
@@ -198,5 +191,12 @@
     width:30px;
 
 }
+.tool {
+  width: 100%;
+  height: auto;
+  margin-top: 2vh;
+
+
+  }
 
 

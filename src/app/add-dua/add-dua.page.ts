@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
@@ -36,28 +37,29 @@ export class AddDuaPage implements OnInit {
     if(menu === 'salawat'){
       this.type = 'ஸலவாத்து'
     }
-   
+
   }
 
-  submit(){
+  submit(form: NgForm){
     if(this.net){
       this.spinner = true;
       this.duas.updatedDate = new Date().getTime();
       console.log(this.duas);
-      
-      
+
+
       this.datasc.addDuaDetail(this.duas).then(async (data: any) => {
         this.spinner = false;
         this.route.navigateByUrl('dashboard');
         this.duas = {};
+        form.resetForm();
         this.util.successToast('Successfully Added','cloud-upload-sharp','warning')
       }).catch((er: any)=>{
         this.spinner = false;
-        console.log('Error encountered ', er.message);   
-        this.util.erroToast(er.message, 'snow-outline'); 
+        console.log('Error encountered ', er.message);
+        this.util.erroToast(er.message, 'snow-outline');
       })
     }else{
-  
+
       this.util.NetworkToast();
     }
 

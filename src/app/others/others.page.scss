@@ -1,0 +1,197 @@
+@media (prefers-color-scheme: dark){
+
+  .items{
+      color: rgb(255, 255, 255);
+  }
+
+  .edit{
+    border: 1px solid rgb(238, 232, 232);
+    color: #ffffff;
+    background-color: #3477ce;
+  }
+  .del{
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(238, 232, 232);
+    background-color: #c74d07;
+  }
+  .search{
+      background-color: rgb(243, 237, 237);
+      color: black;
+  }
+  .search ion-icon{
+      color: rgb(15, 15, 15);
+  }
+  .close{
+      color: black;
+  }
+
+  .home {
+      color: #ffffff;
+  }
+  .img {
+    content: url(../../assets/pictures/qaseeda/darkheadother.jpg);
+  }
+
+}
+
+@media (prefers-color-scheme: light){
+
+  .items{
+      color: rgb(0, 0, 0);
+  }
+  .del{
+    color: #c74d07 !important;
+    border: 1px solid #c74d07 !important;
+    background-color: white !important;
+  }
+  .edit{
+    border: 1px solid #3477ce;
+    color: #3477ce;
+    background-color: white !important ;
+  }
+
+  .search{
+      background-color: rgb(189, 189, 189);
+      color: black;
+  }
+  .search ion-icon{
+      color: rgb(15, 15, 15);
+  }
+  .close{
+      color: black;
+  }
+
+
+  .home {
+      color: #fdc103;
+  }
+
+
+      .img{
+        content: url(../../assets/pictures/qaseeda/headother.jpg);
+      }
+
+}
+
+.cont{
+  height: 82vh;
+  width: 100%;
+  overflow-y: scroll;
+ border-radius: 16px;
+
+}
+.cont::-webkit-scrollbar {
+  display: none;
+}
+.cont ion-item ion-label {
+  padding-left: 2%;
+  font-size: 12px;
+}
+.lstcont::-webkit-scrollbar{
+  display: none;
+}
+.items {
+  text-align:justify;
+  font-weight: 500;
+  white-space: pre-wrap;
+  margin-top: 10px;
+  font-size: 11px;
+
+}
+.edit {
+  border-radius: 78px !important;
+  float: left;
+  width: 7vw;
+  height: 7vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.del {
+
+  margin-left: 4vw;
+}
+.icon {
+  //color:white;
+  font-size: 3vw;
+}
+.auth{
+  height: auto;
+  overflow-y: scroll;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.lst{
+  padding-top: 7vh;
+  padding-left: 2%;
+  padding-right:2%;
+  padding-bottom: 15%;
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+
+}
+
+.lstcont{
+  height: 100%;
+  padding-bottom: 5%;
+  margin-top: 1vh;
+  max-height: auto;
+  overflow-y: scroll;
+}
+.bar {
+  width: 100%;
+  z-index: 3;
+  position: fixed;
+  padding-bottom: 2%;
+  float: left;
+
+}
+.search {
+  width: 96%;
+  border-radius: 16px;
+  margin-left: 2%;
+  float: left;
+  padding-left: 1%;
+height: 45px;
+  position:fixed;
+  margin-bottom: 4%;
+  margin-top: 2%;
+
+
+}
+
+.search ion-icon{
+  margin-left: 5%;
+  font-size: 20px;
+}
+
+.close{
+  margin-top: 2.4vh;;
+  float: right;
+  font-size: 25px;
+  margin-right: 5%;
+  position: relative;
+  z-index: 5;
+  width:30px;
+  display: flex;
+  align-items: center;
+
+}
+.tool {
+width: 100%;
+height: auto;
+margin-top: 2vh;
+
+
+}
+
+

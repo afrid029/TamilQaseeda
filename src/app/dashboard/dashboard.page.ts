@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
-import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
+import { AlertController, IonModal, IonRouterOutlet, Platform } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
@@ -16,6 +16,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage {
+  @ViewChild(IonModal) modal: IonModal;
   obj: Boolean;
   net: Boolean;
   isLoginPageOpen: boolean = false;
@@ -85,7 +86,7 @@ export class DashboardPage {
 
   navigateTo(val: any){
     console.log(val);
-
+    
     setTimeout(()=>{
       this.route.navigateByUrl(val);
 

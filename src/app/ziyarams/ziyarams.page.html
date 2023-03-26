@@ -1,11 +1,7 @@
 <html class="addBody">
-<ion-header>
   <div class="tool">
-    <ion-buttons slot="start">
-      <ion-back-button style="visibility: hidden;" (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
-      </ion-buttons>
+    <img class="img" alt="">
   </div>
-</ion-header>
 
 
 <ion-content [scrollEvents]="true" >
@@ -14,7 +10,7 @@
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
     <div class="bar primary">
-      <ion-input style="font-style: italic; font-size: 10px;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
+      <ion-input style="font-style: italic; font-size: 3vw;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
 
       <div class="close">
         <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
@@ -49,7 +45,7 @@
                 </div>
               </div>
 
-              <div *ngIf="!obj" class="cont">
+              <div *ngIf="!obj" (scroll)="logScrollStart($event)" class="cont">
                 <div *ngFor = "let s of ziyarams">
                   <ion-item style="background-color: rgb(238, 238, 238);">
                     <ion-label (click) = "promo(s)">
@@ -80,8 +76,17 @@
             <div class="head">
               <ion-text>Ziyaram Requests</ion-text>
             </div>
-            <div *ngIf="anyReq" style="margin-top: 18%;" class="cont">
+            <div *ngIf="anyReq"  class="cont1">
               <div *ngFor = "let s of ZiyaramRequests">
+                <ion-item style="background-color: rgb(238, 238, 238);">
+                  <ion-label (click) = "promo(s)">{{s.name}}</ion-label>
+                  <div (click)="EditZiyaram(s)" class="edit">
+                    <ion-icon class="icon" name="pencil"></ion-icon>
+                  </div>
+                  <div (click)="deleteZiyaramRequest(s)" class="edit del">
+                    <ion-icon class="icon" name="trash"></ion-icon>
+                  </div>
+                </ion-item>
                 <ion-item style="background-color: rgb(238, 238, 238);">
                   <ion-label (click) = "promo(s)">{{s.name}}</ion-label>
                   <div (click)="EditZiyaram(s)" class="edit">
@@ -120,10 +125,12 @@
 
         <ion-content class="modalBody">
           <ion-card>
-            <img alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
-            <div *ngIf="cardSpinner" style="position:fixed;transform: scale(3); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;">
-              <ion-spinner name="bubbles" [paused]="false" color="primary"></ion-spinner>
-             </div>
+            <img style="display: flex; justify-content: center;" alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
+
+             <div *ngIf="cardSpinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;
+                opacity: 0.7;">
+                  <ion-spinner name="lines-small" [paused]="false" color="primary"></ion-spinner>
+              </div>
             <ion-card-header>
               <ion-card-title style="width: 100%; font-weight: 700; font-size: medium;">{{currZiyaram.name}}</ion-card-title>
               <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>

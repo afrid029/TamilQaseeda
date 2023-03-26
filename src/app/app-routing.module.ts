@@ -74,6 +74,18 @@ const routes: Routes = [
     path: 'wallalert',
     loadChildren: () => import('./wallalert/wallalert.module').then( m => m.WallalertPageModule)
   },
+  {
+    path: 'others',
+    loadChildren: () => import('./others/others.module').then( m => m.OthersPageModule)
+  },
+  {
+    path: 'moulids',
+    loadChildren: () => import('./moulids/moulids.module').then( m => m.MoulidsPageModule)
+  },
+  {
+    path: 'moulidview',
+    loadChildren: () => import('./moulidview/moulidview.module').then( m => m.MoulidviewPageModule)
+  },
  
 ];
 @NgModule({

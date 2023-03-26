@@ -24,7 +24,7 @@
       <ion-card-subtitle class="ccontent" font-size="10px">Qathasallahussirrahul Azeez</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
-  
+
   <ion-card [routerLink] = "['/ajmeer']" class="card">
     <img alt="Silhouette of mountains" src="../../assets/madina.png" />
     <ion-card-header>
@@ -33,3 +33,8 @@
       <ion-card-subtitle class="ccontent" font-size="10px">Chisthi, Ajmeeri</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
+
+
+
+
+  <div class="txt"><ion-label >m`;Y];]_d;dh`; jkpo;</ion-label></div>

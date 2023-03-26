@@ -1,13 +1,7 @@
 <html class="addBody">
-  <ion-header>
-
-    <div class="tool">
-      <ion-buttons slot="start">
-      <ion-back-button (click)="unsbr()" class="home" defaultHref="home" icon="home"></ion-back-button>
-      </ion-buttons>
-
-    </div>
-  </ion-header>
+  <div class="tool">
+    <img class="img" alt="">
+  </div>
 
   <ion-content>
     <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
@@ -55,7 +49,7 @@
       <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "songs.length === 0" >
 
           <ion-chip style="width:76%;">
-            <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+            <ion-label style="margin: 0 auto;  text-align: center"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
           </ion-chip>
 
       </div>

@@ -169,13 +169,21 @@ getZiyaramRequests(){
 a: Subscription;
 async updateZiyaramFireBase(ziyaram: any){
   this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);
-  this.a = this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).get().subscribe((re: any)=>{
+ // alert('Updated ziyaram');
+  this.afs.collection('ziyaramRequests').doc(ziyaram.docid).get().subscribe((re)=>{
+    console.log(re.exists);
+
     if(re.exists){
-      this.afs.collection(`ziyaramRequests`).doc(ziyaram.docid).delete();
+
+
+
+      this.afs.collection('ziyaramRequests').doc(ziyaram.docid).delete();
+
     }
 
-  })
-  this.a.unsubscribe();
+
+
+  });
 }
 
 
@@ -186,7 +194,7 @@ async deleteZiyaramFireBase(ziyaram: any){
 }
 
 async deleteZiyaramRequestFirebase(ziyaram: any){
-  this.afs.collection('ziyaramRequest').doc(ziyaram.docid).delete().then(()=>{
+  this.afs.collection('ziyaramRequests').doc(ziyaram.docid).delete().then(()=>{
     return 'deleted'
   }).catch((er: any)=>{
     return 'error';

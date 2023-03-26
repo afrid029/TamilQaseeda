@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IonModal, ToastController } from '@ionic/angular';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -17,10 +18,10 @@ import { UtillService } from '../services/utill.service';
 
 
 export class AddPage {
-  @ViewChild(IonModal) 
+  @ViewChild(IonModal)
   modal : IonModal;
 
-  song: any = {title:'',content:'',author:'',type:'',updatedDate:0, deleted: false};
+  song: any = {title:'',content:'',author:'',type:'',vali: '',updatedDate:0, deleted: false};
   net: Boolean;
   type: string;
   typeSelected: boolean = true;
@@ -33,35 +34,37 @@ export class AddPage {
     private router: Router,
     private toast:ToastController,
     public util: UtillService) {
-    
+
       this.obsr.network.subscribe(re=>{
         this.net = re;
       })
-    
+
    }
-  submit(){
+  submit(form: NgForm){
     if(this.net){
       this.spinner = true;
       this.song.updatedDate = new Date().getTime();
       console.log(this.song);
-    
+
       this.db.sendToFirebase(this.song).then(async (re: any)=>{
         console.log(re);
         this.spinner = false;
         this.router.navigateByUrl('dashboard')
         this.song = {};
+        this.type = "";
+        form.resetForm();
         this.util.successToast('Song Successfully Added','cloud-upload-sharp','warning')
-            
+
       }).catch((e: any)=>{
         this.spinner = false;
-          console.log('Error encountered ', e.message);   
-          this.util.erroToast(e.message, 'snow-outline');  
+          console.log('Error encountered ', e.message);
+          this.util.erroToast(e.message, 'snow-outline');
       });
     }else{
         this.util.NetworkToast();
-      }   
+      }
   }
- 
+
 
   setTypeVal(val: any){
     this.modal.dismiss();
@@ -78,10 +81,12 @@ export class AddPage {
     }
     if(val === 'ajmeer'){
       this.type = 'ஹாஜா நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்'
+    }if(val === 'other'){
+      this.type = 'other'
     }
 
   }
 
- 
+
 
 }

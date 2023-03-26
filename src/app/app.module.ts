@@ -21,6 +21,7 @@ import { IonRouterOutlet } from '@ionic/angular';
 import { SharedModuleModule } from './modules/shared-module/shared-module.module';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { DatePipe } from '@angular/common';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -36,7 +37,8 @@ import { DatePipe } from '@angular/common';
   OnlineStatusModule,
   SharedModuleModule,
   AngularFirestoreModule.enablePersistence(),
-  NgCalendarModule],
+  NgCalendarModule,
+PdfViewerModule],
   providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
   bootstrap: [AppComponent],
 })

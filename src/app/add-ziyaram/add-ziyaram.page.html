@@ -63,8 +63,8 @@
 
 
     <div class="cont">
-      <ion-button *ngIf="!update"  color="success" (click)="submit()" [disabled]="addForm.invalid || btnvalid || !selected || !fileSelected" type="submit" style="display: flex"  class = "btn">Add </ion-button>
-      <ion-button *ngIf="update"  color="warning" (click)="updateDetail()" [disabled]="addForm.invalid || btnvalid || !selected ||  !fileSelected" type="submit" style="display: flex"  class = "btn">Update</ion-button>
+      <ion-button *ngIf="!update"  color="success" (click)="submit(addForm)" [disabled]="addForm.invalid || btnvalid || !selected || fileSelected" type="submit" style="display: flex"  class = "btn">Add </ion-button>
+      <ion-button *ngIf="update"  color="warning" (click)="updateDetail(addForm)" [disabled]="addForm.invalid || btnvalid || !selected ||  fileSelected" type="submit" style="display: flex"  class = "btn">Update</ion-button>
     </div>
    </form>
   </ion-card-header>

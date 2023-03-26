@@ -1,153 +1,9 @@
-// @media (prefers-color-scheme: dark){
-
-//     .bg {
-//         background-image: url(../../assets/home/darkhomebg.png);
-       
-//     }
-//     .card{
-//         background-color: rgb(236, 231, 220);
-//     }
-//     .muham {
-//         background-image: url(../../assets/home/darkmuham.png);
-//     }
-//     .muhi {
-//         background-image: url(../../assets/home/darkmuham.png);
-//     }
-//     .shahul {
-//         background-image: url(../../assets/home/darkmuham.png);
-//     }
-//     .kwaja {
-//         background-image: url(../../assets/home/darkmuham.png);
-//     }
-//     .img {
-//         content: url("../../assets/home/darkbanner.png");
-//     }
-    
-// }
-
-// @media (prefers-color-scheme: light){
-//     .bg {
-//         background-image: url(../../assets/home/homebg.png);
-        
-//     }
-//     .card{
-//         background-color: rgb(6, 105, 31);
-//     }
-//     .muham {
-//         background-image: url(../../assets/home/muham.png);
-//     }
-//     .muhi {
-//         background-image: url(../../assets/home/muham.png);
-//     }
-//     .shahul {
-//         background-image: url(../../assets/home/muham.png);
-//     }
-//     .kwaja {
-//         background-image: url(../../assets/home/muham.png);
-//     }
-
-//     .img {
-//         content: url("../../assets/home/lightbanner.png");
-//     }
-//     // .toolbar{
-//     //     --background: rgb(5, 109, 23);
-//     // }
-// }
-// .title {
-// font-family: papa !important;
-// text-align: center;
-// }
-
-// .toolbar {
-
-// color: white;
-
-// }
-
-// .bg{
-//     background-size: 100% 100%;
-//     height: 98%;
-    
-// }
-// .myc {
-//     width: 96%;
-//     padding: 2%;
-//     min-height: 10%;
-//     height: 100%;
-//     max-height: 98%;
-//     overflow-y: scroll;
-//     background-color: rgba(245, 245, 220, 0);
-    
-    
-// }
-
-
-// .card {
-//     display: inline;
-//     width: 48%;
-//     margin-left: 1%;
-//     margin-right: 1%;
-//     float: left;
-//     position: relative;
-//     height: 25% !important;
-//     overflow-y: scroll;
-//     background-attachment: fixed;
-//     background-repeat: no-repeat;
-//     background-size:100% 100%;
-   
-// }
-
-
-
-// // .card::-webkit-scrollbar {
-// //     display: none;
-// // }
-// // .ctitle {
-// //     // font-family: kiddu !important;
-// //     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-// //     font-size: 17px;
-// //     text-align: center;
-// // }
-
-// // .ccontent {
-// //    // font-family: nallur !important;
-// //    font-size: 12px;
-// //    text-align: center;
-// // }
-
-// .menu {
-//     height: 100%;
-// }
-
-// .btn{
-//     display:block;
-// }
-
-// .tool {
-//     width: 100%;
-//     height: 6%;
-//     // background-image: url(../../assets/home/lightbanner.png);
-//     // background-repeat: no-repeat;
-//     // background-size: 100% 120%;
-          
-//     }
-
-    
-
-
-
-
-
-
-
-
-
 
 @font-face {
     font-family: nts;
     src: url('./../../assets/fonts/nctsn.ttf');
   }
-  
+
 @media (prefers-color-scheme: dark){
     .haseetha {
         content: url(../../assets/pictures/dashboard/qaseedahomedarkicon.jpg);
@@ -164,17 +20,18 @@
     .dua{
       content: url(../../assets/pictures/dashboard/duahomedarkicon.jpg);
     }
+    .moulid {
+      content: url(../../assets/pictures/dashboard/moulidhomedark.jpg);
+    }
     .bg {
         background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
     }
-    .ban{
-        color: rgb(255, 255, 255);
-        border: 2px solid rgb(255, 255, 255);
-        box-shadow: 0 0 6px 0 #848485;
-        background-image: url(../../assets/pictures/dashboard/headingdarkbg.jpg);        
-      }
+
     .addmenu{
       background-color: #000000;
+    }
+    .img1{
+      content: url(../../assets/pictures/dashboard/headingdarkbg.png);
     }
 }
 
@@ -194,40 +51,42 @@
     .dua{
         content: url(../../assets/pictures/dashboard/duahomelighticon.jpg);
     }
+    .moulid {
+      content: url(../../assets/pictures/dashboard/moulidhomelight.jpg);
+    }
     .bg{
         background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
     }
-    .ban{
-        color: rgb(255, 255, 255);
-        border: 2px solid rgb(78, 76, 76);
-        box-shadow: 0 0 6px 0 #969797;
-        background-image: url(../../assets/pictures/dashboard/headingbg.jpg);        
-      }
+
       .addmenu{
         background-color: #ffffff;
       }
+      .img1{
+        content: url(../../assets/pictures/dashboard/headingbg.png);
+      }
 }
-  
+
   .bg{
-    
+
     background-repeat: no-repeat;
-    background-size: 100% 98%;
+    background-size: 100% 100%;
     position: fixed;
     height: 100%;
+
     justify-content: space-around;
     overflow-x: scroll;
-   
+
   }
   .ban{
-   
-    border-radius: 8px;
+
+   display: flex;
+   justify-content: center;
     background-repeat: no-repeat;
-    background-size:100% 100% ;
+    background-size:350px 50px ;
     margin: 2%;
-    //padding-top: 2%;
-    width: 96%; height: 10%; z-index: 1;
+    width: 350px; height: 50px; z-index: 1;
     overflow-x: hidden;
-    
+
   }
   .bg::-webkit-scrollbar{
     display: none;
@@ -242,52 +101,52 @@
     max-width: 100%;
     padding: 3px;
     overflow: scroll;
-    
+
     display: grid;
     font-size: 3.5vh;
     justify-content: center;
     align-items: center;
-
-
-    // -moz-transform: translateX(100%);
-    // -webkit-transform: translateX(100%);
-    // transform: translateX(100%);
-  
-    // -moz-animation: my-animation 25s linear infinite;
-    // -webkit-animation: my-animation 25s linear infinite;
-    // animation: my-animation 25s linear infinite;
   }
 
-  // @keyframes my-animation {
-  //   from {
-  //     -moz-transform: translateX(100%);
-  //     -webkit-transform: translateX(100%);
-  //     transform: translateX(100%);
-  //   }
-  //   to {
-  //     -moz-transform: translateX(-100%);
-  //     -webkit-transform: translateX(-100%);
-  //     transform: translateX(-100%);
-  //   }
-  // }
+
   .img {
     width: 80%;
-    height: auto;
+    height: 40vh;
     display: flex;
+    justify-content: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-radius: 5%;
-    
-  }
-  
+    margin-top: 7vh;
 
-  .haseetha, .ziyaram, .evidence, .calendar, .dua{
+
+  }
+
+  .img1{
+
+    width: 90vw;
+    height: auto;
+    display: flex;
+    background-size: 350px 50px;
+    background-repeat: no-repeat;
+
+  }
+
+
+  .haseetha, .ziyaram, .evidence, .calendar, .dua, .moulid{
     border-radius: 5%;
+    width: 40vh !important;
+    height: 40vh !important;
   }
 
   .addmodal{
-    height: 42%; 
-   top:56%;
+    height: 42%;
+    top:56%;
   }
-  
-  
+ ion-modal .list-ios, .list-md {
+  border-radius: 16px;
+ }
+
+
+
+

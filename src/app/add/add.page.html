@@ -32,21 +32,26 @@
       <ion-input [(ngModel)]="song.author" type="text" name="author"></ion-input>
     </ion-item>
 
-   
+
       <ion-item id="optionmodal">
         <ion-label >Select Type</ion-label>
         <p style="font-size: 15px; text-align: center;">{{type}}</p>
       </ion-item>
-     
+
+      <ion-item *ngIf="type === 'other'" lines="full">
+        <ion-label position="floating">இறைநேசரின் பெயர்</ion-label>
+        <ion-input [(ngModel)]="song.vali" type="text" name="vali" required></ion-input>
+      </ion-item>
+
     <div class="cont">
-      <ion-button type="submit" [disabled]="addForm.invalid || typeSelected" style="display: flex;" (click)="submit()" class = "btn">Add</ion-button>
+      <ion-button type="submit" [disabled]="addForm.invalid || typeSelected" style="display: flex;" (click)="submit(addForm)" class = "btn">Add</ion-button>
     </div>
    </form>
   </ion-card-header>
 </ion-card>
 </ion-content>
 
-<ion-modal #modal trigger="optionmodal" [initialBreakpoint]="0.40" [breakpoints]="[0,0.40]" class="addmodal" backdropDismiss="false" >
+<ion-modal #modal trigger="optionmodal" [initialBreakpoint]="0.25" [breakpoints]="[0,0.40,.50]" class="addmodal" backdropDismiss="false" >
   <ng-template>
     <ion-header>
       <ion-toolbar color="dark">
@@ -61,8 +66,9 @@
         <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;"(click)="setTypeVal('muhi')">முஹியித்தீன் அப்துல் காதிர் ஜீலானி கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
         <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('shahul')">ஷாஹுல் ஹமீது நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
         <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('ajmeer')">ஹாஜா நாயகம் கத்தஸல்லாஹுஸ்ஸிர்ரஹுல் அஸீஸ்</ion-item>
+        <ion-item style="font-size:15px; text-align: center; margin-bottom: 10px;" (click)="setTypeVal('other')">Others</ion-item>
       </ion-list>
-      
+
     </ion-content>
   </ng-template>
 </ion-modal>

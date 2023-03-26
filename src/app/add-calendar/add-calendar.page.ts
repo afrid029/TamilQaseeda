@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
@@ -21,25 +22,26 @@ export class AddCalendarPage implements OnInit {
 
   ngOnInit() {
   }
-  submit(){
+  submit(form: NgForm){
     if(this.net){
       this.spinner = true;
       this.calendar.updatedDate = new Date().getTime();
       console.log(this.calendar);
-      
+
 
       this.datasc.addCalendarDetail(this.calendar).then(async (re: any)=>{
         this.spinner = false;
         this.route.navigateByUrl('dashboard');
         this.calendar = {};
+        form.resetForm();
         this.util.successToast('Calendar Detail Successfully Added','cloud-upload-sharp','warning')
       }).catch((er: any)=>{
         this.spinner = false;
-        this.util.erroToast(er.message, 'snow-outline'); 
+        this.util.erroToast(er.message, 'snow-outline');
       })
 
     }else{
-     
+
       this.util.NetworkToast();
     }
   }

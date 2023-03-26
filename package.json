@@ -40,6 +40,7 @@
     "firebase": "^9.14.0",
     "ionic2-calendar": "^1.0.1",
     "ionicons": "^6.0.4",
+    "ng2-pdf-viewer": "^9.1.4",
     "ngx-online-status": "^2.0.0",
     "rxjs": "~7.5.0",
     "swiper": "^8.4.7",

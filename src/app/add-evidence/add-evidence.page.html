@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-     
+
       <ion-back-button defaultHref="dashboard"></ion-back-button>
       <ion-title>Add Religious Evidence</ion-title>
     </ion-buttons>
@@ -27,14 +27,14 @@
       <ion-label position="floating">விபரம்</ion-label>
       <ion-textarea [(ngModel)]="evidence.content" style="max-height: 300px; overflow-y: true"  [autoGrow]="true" name="content"required></ion-textarea>
     </ion-item>
-    
+
       <ion-item id = "menuModal" lines="full">
        <ion-label position="floating">பிரதான பிரிவு</ion-label><br>
        <p><b>{{menu}}</b></p>
       </ion-item>
 
     <div class="cont">
-      <ion-button (click)="submit()" style = "display: flex;"type="submit" [disabled]="addForm.invalid || menuSelected"  class = "btn">Add</ion-button>
+      <ion-button (click)="submit(addForm)" style = "display: flex;"type="submit" [disabled]="addForm.invalid || menuSelected"  class = "btn">Add</ion-button>
     </div>
    </form>
   </ion-card-header>
@@ -61,7 +61,7 @@
           <ion-select-option value="fikh">பிஃக்ஹ்</ion-select-option>
           <ion-select-option value="other">ஏனையவை</ion-select-option>
         </ion-select> -->
-        
+
       </ion-list>
     </ion-content>
   </ng-template>

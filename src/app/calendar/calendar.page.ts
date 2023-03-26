@@ -164,6 +164,19 @@ export class CalendarPage {
     this.dec = [];
     return this.db.getCalendar().subscribe((data)=>{
       console.log('calendar ',data);
+      events = [];
+      this.jan = [];
+      this.feb = [];
+      this.mar = [];
+      this.apr = [];
+      this.may = [];
+      this.jun = [];
+      this.jul = [];
+      this.aug = [];
+      this.sep = [];
+      this.oct = [];
+      this.nov = [];
+      this.dec = [];
       for(var i = 0; i<data.length; i++){
         console.log(data);
         const d = new Date(data[i].date);
@@ -184,7 +197,6 @@ export class CalendarPage {
         })
 
         if(month == 0){
-
           this.jan.push({
             docid: data[i].docid,
             year: data[i].date.split('-')[0],
@@ -294,7 +306,7 @@ export class CalendarPage {
 
 
       this.spinner = false;
-      this,this.eventSource = events;
+      this.eventSource = events;
 
     })
    }

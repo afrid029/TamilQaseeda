@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonModal, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 export interface imgFile {
   name: string;
@@ -93,6 +94,14 @@ export class AddZiyaramPage implements OnInit {
       console.log(ev);
 
 
+    })
+    this.obsr.user.subscribe((re)=>{
+      this.admin = re;
+      if(!re){
+        this.title = "Send Ziyaram Details"
+      }else{
+        this.title = "Add Ziyaram Details"
+      }
     })
     this.obsr.network.subscribe((re)=>{
       this.net = re;
@@ -202,7 +211,7 @@ export class AddZiyaramPage implements OnInit {
 
   }
 
-  submit(){
+  submit(form: NgForm){
     console.log(this.ziyaram);
 
     if(this.net){
@@ -263,9 +272,12 @@ export class AddZiyaramPage implements OnInit {
               this.obsr.longtitude.next(-1);
               this.btnvalid = false;
               this.ziyaram = {};
+              this.clearFile();
+              this.perc = 0;
               this.province = "";
               this.district = "";
               this.place = "";
+              form.resetForm();
               if(this.admin){
                 this.utill.successToast('Ziyaram Detail Successfully Added','cloud-upload-sharp','warning')
               }else{
@@ -296,7 +308,7 @@ export class AddZiyaramPage implements OnInit {
 
   }
 
-  updateDetail(){
+  updateDetail(form: NgForm){
     console.log(this.file);
     if(this.net){
       this.spinner = true;
@@ -368,9 +380,12 @@ export class AddZiyaramPage implements OnInit {
               this.obsr.longtitude.next(-1);
               this.btnvalid = false;
               this.ziyaram = {name:'',description:'',location:'',day:'',long:'',lat:'',imageUrl:''};
+              this.clearFile();
+              this.perc = 0;
               this.province = "";
               this.district = "";
               this.place = "";
+              form.resetForm();
               this.utill.successToast('Ziyaram Details Updated Successfully','thumbs-up-outline','success')
             }).catch((e: any)=>{
               this.spinner = false;
