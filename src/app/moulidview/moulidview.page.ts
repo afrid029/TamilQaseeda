@@ -15,6 +15,9 @@ export class MoulidviewPage implements OnInit {
 
   constructor(public active: ActivatedRoute,
     public platform: Platform,public route: Router) {
+
+   }
+   ionViewDidEnter(){
     this.active.queryParams.subscribe(params=>{
       if(params && params['source']){
         this.pdfSrc = params['source'];
@@ -30,8 +33,6 @@ export class MoulidviewPage implements OnInit {
 
       }
     })
-   }
-   ionViewDidEnter(){
     console.log('Moulidh view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{

@@ -150,12 +150,13 @@
 
             </ion-item>
             <br>
-            <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
-            <ion-item>
+            <div *ngIf="currAwraath.meaning">
+               <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
+               <ion-item>
+                  <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6;">{{currAwraath.meaning}}</p>
+                </ion-item>
+            </div>
 
-              <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6;">{{currAwraath.meaning}}</p>
-
-            </ion-item>
             <br>
             <div *ngIf="currAwraath.benifit">
               <ion-label  style=" color: rgb(177, 55, 55); font-weight:800; font-size: 11px; opacity: 1 !important;">பலன் : </ion-label>
@@ -199,7 +200,7 @@
 
           <ion-item lines="full">
             <ion-label position="floating">பொருள்</ion-label>
-            <ion-textarea [(ngModel)]="editAwraath.meaning" class="textarea"  [autoGrow]="true" name="meaning" required></ion-textarea>
+            <ion-textarea [(ngModel)]="editAwraath.meaning" class="textarea"  [autoGrow]="true" name="meaning"></ion-textarea>
           </ion-item>
 
           <ion-item lines="full">

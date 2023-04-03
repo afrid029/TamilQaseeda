@@ -138,8 +138,8 @@
                 &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
             </ion-card-header>
 
-            <ion-card-content style="white-space: pre-line;">
-              {{currZiyaram.description}}
+            <ion-card-content  style="white-space: pre-line;">
+              <span *ngIf="currZiyaram.description">{{currZiyaram.description}}</span>
 
               <ion-button color="danger" style="display:flex" (click)="launchGoogleMap()">Launch Google Map</ion-button>
 

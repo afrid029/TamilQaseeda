@@ -62,7 +62,7 @@ export class MoulidsPage implements OnInit {
     if (name === "muhi") {
       const send:NavigationExtras = {
         queryParams: {
-          source: "../../assets/pdf/சுப்ஹான மௌலிது.pdf"
+          source: "../../assets/pdf/முஹ்யித்தீன் மௌலிது.pdf"
         }
       }
       this.route.navigate(['moulidview'], send);
@@ -70,7 +70,7 @@ export class MoulidsPage implements OnInit {
     if (name === "shahul") {
       const send:NavigationExtras = {
         queryParams: {
-          source: "../../assets/pdf/சுப்ஹான மௌலிது.pdf"
+          source: "../../assets/pdf/மீரான் சாஹிபு மௌலிது.pdf"
         }
       }
       this.route.navigate(['moulidview'], send);
@@ -78,7 +78,7 @@ export class MoulidsPage implements OnInit {
     if (name === "hasan") {
       const send:NavigationExtras = {
         queryParams: {
-          source: "../../assets/pdf/சுப்ஹான மௌலிது.pdf"
+          source: "../../assets/pdf/ஹஸன் - ஹுஸைன் மௌலிது.pdf"
         }
       }
       this.route.navigate(['moulidview'], send);
@@ -86,7 +86,15 @@ export class MoulidsPage implements OnInit {
     if (name === "badr") {
       const send:NavigationExtras = {
         queryParams: {
-          source: "../../assets/pdf/சுப்ஹான மௌலிது.pdf"
+          source: "../../assets/pdf/பத்ர் மௌலிது.pdf"
+        }
+      }
+      this.route.navigate(['moulidview'], send);
+    }
+    if (name === "ajmeer") {
+      const send:NavigationExtras = {
+        queryParams: {
+          source: "../../assets/pdf/க்வாஜா நாயகம் மௌலிது.pdf"
         }
       }
       this.route.navigate(['moulidview'], send);

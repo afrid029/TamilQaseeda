@@ -217,7 +217,7 @@ launchGoogleMap(){
         app: app
     })
     }else{
-      alert("App not available");
+      this.utilService.erroToast('App is not available', 'close-circle-outline');
     }
   })
 }
