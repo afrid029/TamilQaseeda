@@ -83,7 +83,6 @@ async updateFireBase(song: any){
 
 //Delete Song in Firebase
 async deleteFireBase(song: any){
-  const time = new Date().getTime();
   this.afs.collection('songs').doc(song.docid).delete();
 }
 
@@ -189,7 +188,6 @@ async updateZiyaramFireBase(ziyaram: any){
 
 //Delete Ziyaram in Firebase
 async deleteZiyaramFireBase(ziyaram: any){
-  const time = new Date().getTime();
   this.afs.collection('ziyarams').doc(ziyaram.docid).delete();
 }
 
@@ -236,7 +234,6 @@ async updateEvidenceFireBase(evidence: any){
 
 //Delete Evidence in Firebase
 async deleteaevidenceFireBase(evidence: any){
-  const time = new Date().getTime();
   this.afs.collection('evidence').doc(evidence.docid).delete();
 }
 /* *******************************Calendar Detail******************************************/
@@ -272,7 +269,6 @@ async updateCalendarFireBase(calendar: any){
 
 //Delete Calendar in Firebase
 async deletecalendarFireBase(evidence: any){
-  const time = new Date().getTime();
   this.afs.collection('calendar').doc(evidence.docid).delete();
 }
 
@@ -312,7 +308,6 @@ async updateDuaFireBase(dua: any){
 
 //Delete Dua in Firebase
 async deleteDuaFireBase(dua: any){
-  const time = new Date().getTime();
   this.afs.collection('duas').doc(dua.docid).delete();
 }
 

@@ -14,7 +14,7 @@ import { UtillService } from '../services/utill.service';
 export class AddDuaPage implements OnInit {
   @ViewChild('menuModal') modal: IonModal;
   net: boolean = false;
-  duas: any = {title:'', content: '', meaning: '', benifit:'', type: '', updatedDate:0, deleted: false};
+  duas: any = {title:'', content: '', meaning: '', benifit:'', type: ''};
   typeSelected: boolean = true;
   type: String;
   spinner: boolean= false;
@@ -43,7 +43,6 @@ export class AddDuaPage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      this.duas.updatedDate = new Date().getTime();
       console.log(this.duas);
 
 

@@ -75,7 +75,7 @@
 
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
-          <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author }}</ion-label>
+          <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author ? currSong.author : 'Unknown' }}</ion-label>
         </ion-chip>
         <p style="white-space: pre-line; text-align: center; font-size: 13px;"> {{ currSong.content }}
         </p>

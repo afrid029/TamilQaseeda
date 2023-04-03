@@ -14,7 +14,7 @@ import { UtillService } from '../services/utill.service';
 export class AddEvidencePage implements OnInit {
   @ViewChild('menuModal') modal: IonModal;
 
-  evidence: any = {title:'',content:'',type:'', updatedDate:0, deleted: false}
+  evidence: any = {title:'',content:'',type:''}
   net: Boolean;
   spinner: boolean = false;
   menu: string;
@@ -32,7 +32,6 @@ export class AddEvidencePage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      this.evidence.updatedDate = new Date().getTime();
       console.log(this.evidence);
 
 

@@ -11,7 +11,7 @@ import { UtillService } from '../services/utill.service';
   styleUrls: ['./add-calendar.page.scss'],
 })
 export class AddCalendarPage implements OnInit {
-  calendar: any = {date:'', content: '', updatedDate:0, deleted: false};
+  calendar: any = {date:'', content: ''};
   net: Boolean;
   spinner: boolean = false;
   constructor(public datasc: DatabaseService, public util: UtillService, public obsr: ObsrService, public route: Router){
@@ -25,7 +25,6 @@ export class AddCalendarPage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      this.calendar.updatedDate = new Date().getTime();
       console.log(this.calendar);
 
 

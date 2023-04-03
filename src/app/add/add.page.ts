@@ -21,7 +21,7 @@ export class AddPage {
   @ViewChild(IonModal)
   modal : IonModal;
 
-  song: any = {title:'',content:'',author:'',type:'',vali: '',updatedDate:0, deleted: false};
+  song: any = {title:'',content:'',author:'',type:'',vali: ''};
   net: Boolean;
   type: string;
   typeSelected: boolean = true;
@@ -43,13 +43,13 @@ export class AddPage {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      this.song.updatedDate = new Date().getTime();
       console.log(this.song);
 
       this.db.sendToFirebase(this.song).then(async (re: any)=>{
         console.log(re);
         this.spinner = false;
-        this.router.navigateByUrl('dashboard')
+        this.typeSelected = true;
+        this.router.navigateByUrl('dashboard');
         this.song = {};
         this.type = "";
         form.resetForm();
