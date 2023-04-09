@@ -34,8 +34,8 @@ export class ProphetPage {
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
-  
-  
+
+
     this.obsr.user.subscribe(re=>{
       this.obj = re
     });
@@ -54,7 +54,7 @@ ionViewWillEnter(){
 }
 ionViewDidEnter(){
   console.log('Prophview entering');
-  
+
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
     if(this.isEditOpen){
       this.isEditOpen = false;
@@ -63,21 +63,21 @@ ionViewDidEnter(){
     }else{
         this.route.navigateByUrl('/home');
       }
-    
+
   })
  }
 
  ionViewWillLeave(){
   console.log('Proph view leaving');
-  
+
  this.subs.unsubscribe();
-  
+
  }
- 
+
 
 getSongs() {
   this.spinner = true;
- 
+
   this.db.getSong("prophet").subscribe((data)=>{
     console.log('song entering');
     if(data.length > 0){
@@ -89,18 +89,18 @@ getSongs() {
       this.anyContent = false;
     }
     this.spinner = false
-    
+
   })
 }
-  
+
 handleSearch(){
   if(this.searchKey.length > 0){
     this.vis = "visible";
     this.songs = [];
     this.Permsongs.forEach((s: any)=>{
-      if(s.title.includes(this.searchKey)){
+      if(s.title.includes(this.searchKey) || s.content.includes(this.searchKey)){
         this.songs.push(s);
-      } 
+      }
     })
     console.log(this.songs.length);
   }else{
@@ -108,10 +108,10 @@ handleSearch(){
     this.songs = this.Permsongs;
   }
 }
- 
+
 clearSearch(){
     console.log('Clicked ', this.Permsongs);
-    this.searchKey = ''; 
+    this.searchKey = '';
 }
 setOpen(id: boolean){
   this.isModalOpen = id;
@@ -119,13 +119,13 @@ setOpen(id: boolean){
 }
 
 ionModalDidDismiss(){
-  this.isModalOpen = false;  
+  this.isModalOpen = false;
 }
 
 promo(data: any){
   console.log(data.docid);
   this.currSong = data;
-  this.isModalOpen = true;  
+  this.isModalOpen = true;
 }
 
 EditSong(data: any){
@@ -135,7 +135,7 @@ EditSong(data: any){
   this.editSong.content = data.content;
   this.editSong.author = data.author;
   this.editSong.type = data.type;
-  
+
 }
 
 async deleteSong(data: any){
@@ -149,7 +149,7 @@ async deleteSong(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -164,7 +164,7 @@ async deleteSong(data: any){
                 this.spinner = false;
                 this.util.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]

@@ -3,10 +3,7 @@
   src: url(../assets/fonts/TAU_GUNN.TTF);
 }
 
-ion-app{
-    // margin-top: 4%;
-    // margin-bottom: 2%;
-}
+
 
 ion-menu::part(container){
     border-radius: 0 20px 20px 0;
@@ -180,4 +177,11 @@ opacity: 0.15;
 .alert{
   content: url(../assets/pictures/alert.png);
 
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5vh;
+  font-weight: 600;
 }

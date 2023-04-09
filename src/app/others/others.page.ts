@@ -96,7 +96,7 @@ export class OthersPage {
       this.vis = "visible";
       this.songs = [];
       this.Permsongs.forEach((s: any)=>{
-        if(s.title.includes(this.searchKey)){
+        if(s.title.includes(this.searchKey) || s.content.includes(this.searchKey)){
           this.songs.push(s);
         }
       })

@@ -5,8 +5,10 @@
    </div>
   <ion-menu contentId="main-content">
     <ion-header>
+
+
       <ion-toolbar (click)="closeMenu()" [routerLink]="['/dashboard']" color="warning">
-        <ion-title style="font-weight: 600; text-align: center;">Ahlussunnah Tamil</ion-title>
+        <p class="title">Ahlussunnah Tamil</p>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
@@ -47,6 +49,29 @@
 
          </form>
         </div>
+
+
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Hazeetha</ion-label>
+      </ion-item>
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
+      </ion-item>
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-evidence']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Religious Topic</ion-label>
+      </ion-item>
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-calendar']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Calendar Event</ion-label>
+      </ion-item>
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-dua']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
+      </ion-item>
+      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/wallalert']">
+        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Manage Daily Alerts</ion-label>
+      </ion-item>
+
+
+
       <ion-item (click)="openAboutUs(true)">
         <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="information-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;About Us</ion-label>
      </ion-item>

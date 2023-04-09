@@ -34,7 +34,7 @@ export class AjmeerPage {
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
- 
+
     this.obsr.user.subscribe(re=>{
       this.obj = re;
     })
@@ -42,7 +42,7 @@ export class AjmeerPage {
 
   ionViewDidEnter(){
     console.log('Ajmeer view entering');
-    
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       if(this.isEditOpen){
         this.isEditOpen = false;
@@ -51,13 +51,13 @@ export class AjmeerPage {
       }else{
           this.route.navigateByUrl('/home');
         }
-      
+
     })
    }
 
    ionViewWillLeave(){
     console.log('Ajmeer view leaving');
-    
+
     this.subs.unsubscribe();
    }
 
@@ -81,12 +81,12 @@ export class AjmeerPage {
         this.anyContent = true;
         this.songs = data;
         this.Permsongs = this.songs;
-        
+
       }else{
         this.anyContent = false;
       }
       this.spinner = false;
-      
+
     })
   }
 
@@ -95,9 +95,9 @@ export class AjmeerPage {
       this.vis = "visible";
       this.songs = [];
       this.Permsongs.forEach((s: any)=>{
-        if(s.title.includes(this.searchKey)){
+        if(s.title.includes(this.searchKey) || s.content.includes(this.searchKey)){
           this.songs.push(s);
-        } 
+        }
       })
       console.log(this.songs.length);
     }else{
@@ -108,7 +108,7 @@ export class AjmeerPage {
 
 clearSearch(){
     console.log('Clicked ', this.Permsongs);
-    this.searchKey = ''; 
+    this.searchKey = '';
 }
 
 setOpen(id: boolean){
@@ -119,10 +119,10 @@ setOpen(id: boolean){
     this.isModalOpen = false;
   }
   promo(data: any){
-  
+
     console.log(data.docid);
     this.currSong = data;
-    this.isModalOpen = true;  
+    this.isModalOpen = true;
   }
 
   EditSong(data: any){
@@ -132,7 +132,7 @@ setOpen(id: boolean){
     this.editSong.content = data.content;
     this.editSong.author = data.author;
     this.editSong.type = data.type;
-    
+
   }
 
   async deleteSong(data: any){
@@ -146,7 +146,7 @@ setOpen(id: boolean){
             role: 'cancel',
             handler: () =>{
               console.log('cancelled');
-              
+
             }
           },{
             text: 'Delete',
@@ -161,7 +161,7 @@ setOpen(id: boolean){
                   this.spinner = false;
                   this.util.erroToast('Something Went Wrong', 'bug-outline');
                 });
-              
+
             }
           }
         ]

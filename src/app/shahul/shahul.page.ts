@@ -34,7 +34,7 @@ export class ShahulPage {
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
-  
+
     this.obsr.user.subscribe(re=>{
       this.obj = re
     });
@@ -53,7 +53,7 @@ ionViewWillEnter(){
 }
 ionViewDidEnter(){
   console.log('shahulview entering');
-  
+
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
     if(this.isEditOpen){
       this.isEditOpen = false;
@@ -62,13 +62,13 @@ ionViewDidEnter(){
     }else{
         this.route.navigateByUrl('/home');
       }
-    
+
   })
  }
 
  ionViewWillLeave(){
   console.log('shahul view leaving');
-  
+
   this.subs.unsubscribe();
  }
 
@@ -85,18 +85,18 @@ async getSongs() {
       this.anyContent = false;
     }
     this.spinner = false;
-    
+
   })
 }
-  
+
 handleSearch(){
   if(this.searchKey.length > 0){
     this.vis = "visible";
     this.songs = [];
     this.Permsongs.forEach((s: any)=>{
-      if(s.title.includes(this.searchKey)){
+      if(s.title.includes(this.searchKey) || s.content.includes(this.searchKey)){
         this.songs.push(s);
-      } 
+      }
     })
     console.log(this.songs.length);
   }else{
@@ -104,10 +104,10 @@ handleSearch(){
     this.songs = this.Permsongs;
   }
 }
- 
+
 clearSearch(){
     console.log('Clicked ', this.Permsongs);
-    this.searchKey = ''; 
+    this.searchKey = '';
 }
 setOpen(id: boolean){
   this.isModalOpen = id;
@@ -115,13 +115,13 @@ setOpen(id: boolean){
 }
 
 ionModalDidDismiss(){
-  this.isModalOpen = false;  
+  this.isModalOpen = false;
 }
 
 promo(data: any){
   console.log(data.docid);
   this.currSong = data;
-  this.isModalOpen = true;  
+  this.isModalOpen = true;
 }
 
 EditSong(data: any){
@@ -131,7 +131,7 @@ EditSong(data: any){
   this.editSong.content = data.content;
   this.editSong.author = data.author;
   this.editSong.type = data.type;
-  
+
 }
 
 async deleteSong(data: any){
@@ -145,7 +145,7 @@ async deleteSong(data: any){
           role: 'cancel',
           handler: () =>{
             console.log('cancelled');
-            
+
           }
         },{
           text: 'Delete',
@@ -160,7 +160,7 @@ async deleteSong(data: any){
                 this.spinner = false;
                 this.util.erroToast('Something Went Wrong', 'bug-outline');
               });
-            
+
           }
         }
       ]
