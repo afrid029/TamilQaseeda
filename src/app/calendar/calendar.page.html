@@ -93,7 +93,11 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
+
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -121,7 +125,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -149,7 +156,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -178,7 +188,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -206,7 +219,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -234,7 +250,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -262,7 +281,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -290,7 +312,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -318,7 +343,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -346,7 +374,10 @@
                 {{d.day}}
               </div>
               <div class="detail">
-                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <ion-label>{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
@@ -375,6 +406,8 @@
               </div>
               <div class="detail">
                 <ion-label>{{d.content}} - {{d.year}}</ion-label>
+                <br>
+                <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
               </div>
 
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
