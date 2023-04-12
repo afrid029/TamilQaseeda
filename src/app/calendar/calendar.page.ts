@@ -202,7 +202,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
         }else if(month ==1){
           this.feb.push({
@@ -210,7 +211,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
         }else if(month ==2){
           this.mar.push({
@@ -218,7 +220,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==3){
@@ -227,7 +230,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
         }else if(month ==4){
           this.may.push({
@@ -235,7 +239,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==5){
@@ -244,7 +249,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==6){
@@ -253,7 +259,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==7){
@@ -262,7 +269,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==8){
@@ -271,7 +279,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==9){
@@ -280,7 +289,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==10){
@@ -289,7 +299,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
 
         }else if(month ==11){
@@ -298,7 +309,8 @@ export class CalendarPage {
             year: data[i].date.split('-')[0],
             month: data[i].date.split('-')[1],
             day: data[i].date.split('-')[2],
-            content: data[i].content
+            content: data[i].content,
+            isl: data[i].isl
           })
         }
 
@@ -330,7 +342,8 @@ updateClick(data: any){
   this.editEvent = {
     docid: data.docid,
     date: d,
-    content: data.content
+    content: data.content,
+    isl: data.isl
   }
 
   // this.editEvent = data;

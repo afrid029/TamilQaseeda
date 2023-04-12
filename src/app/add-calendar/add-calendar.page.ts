@@ -11,7 +11,7 @@ import { UtillService } from '../services/utill.service';
   styleUrls: ['./add-calendar.page.scss'],
 })
 export class AddCalendarPage implements OnInit {
-  calendar: any = {date:'', content: ''};
+  calendar: any = {date:'', content: '', isl: ''};
   net: Boolean;
   spinner: boolean = false;
   constructor(public datasc: DatabaseService, public util: UtillService, public obsr: ObsrService, public route: Router){

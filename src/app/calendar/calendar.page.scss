@@ -97,7 +97,7 @@
 .edit {
   border-radius: 78px !important;
   float: left;
-  width: 7vw;
+  width: 10vw;
   height: 7vw;
   text-align: center;
   display: flex;
@@ -115,24 +115,30 @@
 }
 .detail{
 
-  white-space: nowrap;
+  white-space: initial;
   width: 100%;
   overflow: scroll;
   text-overflow: clip;
-  padding-left: 8vw;
+  padding-left: 2vw;
+  text-align: justify;
   font-size: small;
 }
+
+.label{
+  white-space: initial !important;
+  text-align: start !important;;
+}
 .date{
-  position: fixed;
+
   background-color: rgba(120, 177, 158, 0.644);
   border: 2px dashed rgb(94, 77, 3);
   border-radius: 7px;;
-  width: 10%;
+  width: 14vw;
   display: flex;
   justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
   height: 34px;
-  padding: 8px;
-  padding-left: 10px !important;
   font-size: small;
 
 }
@@ -255,6 +261,7 @@
       font-size: 3vw !important;
       height: 8vh;
       display: contents;
+      white-space: inherit !important;
 
     }
 

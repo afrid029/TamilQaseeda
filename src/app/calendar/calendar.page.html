@@ -59,13 +59,23 @@
           <h5>January</h5>
           <div *ngIf="jan.length > 0">
             <ion-item *ngFor="let d of jan">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">{{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label class = "label">{{d.content}} - {{d.year}}
+                  <br>
+                  <span *ngIf="d.isl"><small><ion-icon style="margin-top: 7px;" name="ellipsis-vertical-circle-outline"></ion-icon>&nbsp;&nbsp; {{d.isl}}</small></span>
+                </ion-label>
+
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="jan.length === 0">
@@ -79,13 +89,21 @@
           <h5>February</h5>
           <div *ngIf="feb.length > 0">
             <ion-item *ngFor="let d of feb">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="feb.length === 0">
@@ -98,9 +116,14 @@
         <ion-list style="padding-left: 15px;" lines="inset">
           <h5>March</h5>
           <div *ngIf="mar.length > 0">
-            <ion-item style="height: 25%;" *ngFor="let d of mar">
+            <ion-item *ngFor="let d of mar">
+              <div class="date">
+                {{d.day}}
+              </div>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
+              </div>
 
-                  <b class="date">{{d.day}}</b><ion-label  class="detail">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
                 <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
                   <ion-icon class="icon" name="pencil"></ion-icon>
                 </div>
@@ -122,14 +145,23 @@
           <h5>April</h5>
           <div *ngIf="apr.length > 0">
             <ion-item *ngFor="let d of apr">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
+
           </div>
           <div style="width: 100%;" *ngIf="apr.length === 0">
             <ion-item>
@@ -142,13 +174,21 @@
           <h5>May</h5>
           <div *ngIf="may.length > 0">
             <ion-item *ngFor="let d of may">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="may.length === 0">
@@ -162,13 +202,21 @@
           <h5>June</h5>
           <div *ngIf="jun.length > 0">
             <ion-item *ngFor="let d of jun">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="jun.length === 0">
@@ -182,13 +230,21 @@
           <h5>July</h5>
           <div *ngIf="jul.length > 0">
             <ion-item *ngFor="let d of jul">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="jul.length === 0">
@@ -202,13 +258,21 @@
           <h5>August</h5>
           <div *ngIf="aug.length > 0">
             <ion-item *ngFor="let d of aug">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="aug.length === 0">
@@ -222,13 +286,21 @@
           <h5>September</h5>
           <div *ngIf="sep.length > 0">
             <ion-item *ngFor="let d of sep">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="sep.length === 0">
@@ -242,13 +314,21 @@
           <h5>October</h5>
           <div *ngIf="oct.length > 0">
             <ion-item *ngFor="let d of oct">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="oct.length === 0">
@@ -262,13 +342,21 @@
           <h5>November</h5>
           <div *ngIf="nov.length > 0">
             <ion-item *ngFor="let d of nov">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="nov.length === 0">
@@ -282,13 +370,21 @@
           <h5>December</h5>
           <div *ngIf="dec.length > 0">
             <ion-item *ngFor="let d of dec">
-              <b class="date">{{d.day}}</b><ion-label  class="detail ">&nbsp;&nbsp;&nbsp; {{d.content}} - {{d.year}}</ion-label>
-              <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
-                <ion-icon class="icon" name="pencil"></ion-icon>
+              <div class="date">
+                {{d.day}}
               </div>
-              <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
-                <ion-icon class="icon" name="trash"></ion-icon>
+              <div class="detail">
+                <ion-label>{{d.content}} - {{d.year}}</ion-label>
               </div>
+
+                <div (click)="updateClick(d)" *ngIf="obj"  class="edit">
+                  <ion-icon class="icon" name="pencil"></ion-icon>
+                </div>
+                <div (click)="deleteClick(d)" *ngIf="obj" class="edit del">
+                  <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+
+
             </ion-item>
           </div>
           <div style="width: 100%;" *ngIf="dec.length === 0">
@@ -319,6 +415,11 @@
         <ion-item lines="full">
           <ion-label position="floating">திகதி</ion-label>
           <ion-input id="ddd" [(ngModel)]="editEvent.date" name="date" type="date" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">இஸ்லாமிய திகதி</ion-label>
+          <ion-input  [(ngModel)]="editEvent.isl" name="isl" type="text" ></ion-input>
         </ion-item>
 
         <ion-item lines="full">
