@@ -13,7 +13,7 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./google-map.page.scss'],
 })
 export class GoogleMapPage implements OnInit {
-  
+
   @ViewChild('map')
   mapRef!: ElementRef<HTMLIonModalElement>;
   newMap!: GoogleMap;
@@ -30,15 +30,15 @@ export class GoogleMapPage implements OnInit {
   val: string = "hiii";
 
   constructor(public obsr: ObsrService, public router: Router, public location: Location, public utill: UtillService, public platform: Platform) {
-   
+
    }
    ionViewDidEnter(){
     console.log('Map view entering');
-    
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       //  this.location.back();
       //  this.clearMap()
-      
+
     })
    }
    clearMap(){
@@ -71,34 +71,34 @@ export class GoogleMapPage implements OnInit {
   ngAfterViewInit() {
     this.interval = setInterval(()=>{
       if(this.select){
-        this.test = true; 
+        this.test = true;
       }else{
         this.test = false;
       }
       console.log(this.val);
-      
+
     },1000)
-    
+
     this.myLoc().then((re)=>{
       console.log(re);
-      
+
       this.viewMap();
     }).catch((er)=>{
       console.log(er);
       clearInterval(this.interval);
       this.location.back();
       this.utill.erroToast('Allow Location Service In Settings','./../../assets/icon/map-location-solid.svg')
-      
+
     });
     // setTimeout(()=>{
-      
+
     // },2000)
   }
     async myLoc(){
-       this.loc = await Geolocation.getCurrentPosition();
+       this.loc = await Geolocation.getCurrentPosition({enableHighAccuracy: true});
        console.log(this.loc);
-       
-       
+
+
       }
 
       async viewMap(){
@@ -129,15 +129,15 @@ export class GoogleMapPage implements OnInit {
                   a:1
                 },
                 title: 'Selected Location'
-            }       
+            }
           );
-    
+
           this.id = markerId1;
           this.obsr.MapClicked.next(true);
           console.log('jnjbjh');
-          
+
         }
-    
+
         const markerId = await this.newMap.addMarker(
           {
               coordinate: {
@@ -151,14 +151,10 @@ export class GoogleMapPage implements OnInit {
                 a:1
               },
               title: 'My Location'
-          }       
+          }
         );
         console.log(this.obsr.latitude.value);
-        
-    
-        
-    
-    
+
         this.newMap.setOnMapClickListener(async (re)=>{
           console.log(re);
           if(this.clicked){
@@ -175,11 +171,11 @@ export class GoogleMapPage implements OnInit {
           this.obsr.MapClicked.next(true);
           this.id = myMark;
           console.log(myMark);
-          
+
           this.obsr.latitude.next(re.latitude);
           this.obsr.longtitude.next(re.longitude);
         })
-  
+
   }
 
 
@@ -196,12 +192,25 @@ export class GoogleMapPage implements OnInit {
     clearInterval(this.interval);
   }
 
-  goFurther(){
+  goFurther(check: boolean){
    // this.newMap.destroy();
     //document.documentElement.style.setProperty(`--ion-background-color`, 'white')
+    if(check){
+      this.obsr.latitude.next(this.loc.coords.latitude);
+      this.obsr.longtitude.next(this.loc.coords.longitude);
+      this.obsr.LocSelected.next(true);
+      this.obsr.MapClicked.next(true);
+    }
     this.router.navigateByUrl('add-ziyaram');
     //this.location.back();
     clearInterval(this.interval);
+  }
+
+  async clearLoc(){
+    this.obsr.LocSelected.next(false);
+    this.obsr.MapClicked.next(false);
+    await this.newMap.removeMarker(this.id);
+
   }
 
 }

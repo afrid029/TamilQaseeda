@@ -10,6 +10,7 @@ import { IonModal, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { log } from 'console';
 
 export interface imgFile {
   name: string;
@@ -136,9 +137,11 @@ export class AddZiyaramPage implements OnInit {
         this.update = true;
         const s = this.ziyaram.location;
         const ar = s.split(',');
-        this.place = ar[0];
-        this.district = ar[1];
-        this.province = ar[2];
+        ///console.log(ar.slice(0,ar.length -2).toString());
+
+        this.place = ar.slice(0,ar.length -2).toString();
+        this.district = ar[ar.length - 2];
+        this.province = ar[ar.length - 1];
         this.fileSelected = false;
         this.obsr.latitude.next(this.ziyaram.lat);
         console.log(this.obsr.latitude.getValue());
