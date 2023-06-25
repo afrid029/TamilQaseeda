@@ -16,7 +16,7 @@ export class UtillService {
       duration:3500,
       position:'bottom',
       color:'danger',
-     
+
     });
 
     to.present();

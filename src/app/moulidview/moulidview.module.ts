@@ -8,6 +8,8 @@ import { MoulidviewPageRoutingModule } from './moulidview-routing.module';
 
 import { MoulidviewPage } from './moulidview.page';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsModule,
     IonicModule,
     MoulidviewPageRoutingModule,
-    PdfViewerModule
+    PdfViewerModule,
+    NgxExtendedPdfViewerModule
   ],
   declarations: [MoulidviewPage]
 })

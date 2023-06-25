@@ -43,6 +43,7 @@
     "ionic2-calendar": "^1.0.1",
     "ionicons": "^6.0.4",
     "ng2-pdf-viewer": "^9.1.4",
+    "ngx-extended-pdf-viewer": "^17.3.0",
     "ngx-online-status": "^2.0.0",
     "rxjs": "~7.5.0",
     "swiper": "^8.4.7",

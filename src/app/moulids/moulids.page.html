@@ -5,35 +5,36 @@
 </div>
 <ion-content  id="main-content">
 <img class="qaseedahome" alt="">
-
-<div class="bg">
-  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
-  opacity: 0.7;">
-    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-   </div>
-
-
-<ion-card class="myc">
-  <ion-card (click)="viewMoulidh('muham')" id="id1" class="card muham">
-  </ion-card>
-
-  <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
-  </ion-card>
-
-  <ion-card (click)="viewMoulidh('shahul')" id="id1" class="card shahul">
-  </ion-card>
-
-  <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
-  </ion-card>
-
-  <ion-card (click)="viewMoulidh('badr')" id="id1" class="card badr">
-  </ion-card>
-
-  <ion-card (click)="viewMoulidh('ajmeer')" id="id1" class="card ajmeer">
-  </ion-card>
-
-</ion-card>
-</div>
+  <div class="glass">
+    <div class="bg">
+      <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+      opacity: 0.7;">
+        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+       </div>
+    
+    
+    <ion-card class="myc">
+      <ion-card (click)="viewMoulidh('muham')" id="id1" class="card muham">
+      </ion-card>
+    
+      <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
+      </ion-card>
+    
+      <ion-card (click)="viewMoulidh('shahul')" id="id1" class="card shahul">
+      </ion-card>
+    
+      <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
+      </ion-card>
+    
+      <ion-card (click)="viewMoulidh('badr')" id="id1" class="card badr">
+      </ion-card>
+    
+      <ion-card (click)="viewMoulidh('ajmeer')" id="id1" class="card ajmeer">
+      </ion-card>
+    
+    </ion-card>
+    </div>
+  </div>
 </ion-content>
 
 

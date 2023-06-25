@@ -9,7 +9,7 @@ import { last, Subscription } from 'rxjs';
   styleUrls: ['./moulidview.page.scss'],
 })
 export class MoulidviewPage implements OnInit {
-  pdfSrc: String = ""
+  pdfSrc: string = ""
   title: String = '';
   subs: Subscription;
 

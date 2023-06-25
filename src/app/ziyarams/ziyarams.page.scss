@@ -39,6 +39,15 @@
 
         box-shadow: 0 0 6px 0 #cfcfcf;
     }
+
+    .lstcont {
+      /* From https://css.glass */
+     background: rgba(185, 181, 181, 0.39);
+     border-radius: 16px;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+     backdrop-filter: blur(5px);
+     -webkit-backdrop-filter: blur(14px);
+   }
 }
 
 @media (prefers-color-scheme: dark){
@@ -80,6 +89,15 @@
         color: #e9e6e6;
         box-shadow: 0 0 6px 0 #ffffff;
     }
+
+    .lstcont {
+      /* From https://css.glass */
+     background: rgba(0, 0, 0, 0.39);
+     border-radius: 16px;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+     backdrop-filter: blur(5px);
+     -webkit-backdrop-filter: blur(14px);
+   }
 
 }
 
@@ -156,8 +174,7 @@
 
 .lst{
     // padding-top: 2%;
-    padding-left: 2%;
-    padding-right:2%;
+  
     height: 100%;
     width: 100%;
     position:fixed;
@@ -169,7 +186,8 @@
 
 .lstcont{
     height: 100%;
-    margin-top: 1vh;
+    padding: 0.5 vh;
+    margin-top: 0.5vh;
 
     max-height: auto;
     overflow-y: scroll;

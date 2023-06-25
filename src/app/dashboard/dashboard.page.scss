@@ -23,8 +23,21 @@
     .moulid {
       content: url(../../assets/pictures/dashboard/moulidhomedark.jpg);
     }
-    .bg {
-        background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
+    .bgInner {
+       // background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
+       /* From https://css.glass */
+      background: rgba(0,0,0, 0.15);
+      border-radius: 30px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(9.1px);
+      -webkit-backdrop-filter: blur(9.1px);
+
+      height: 90vh;
+      margin: 4px;
+      top: 6vh;
+          /* left: 40px; */
+      position: relative;
+
     }
 
     .addmenu{
@@ -54,8 +67,20 @@
     .moulid {
       content: url(../../assets/pictures/dashboard/moulidhomelight.jpg);
     }
-    .bg{
-        background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
+    .bgInner{
+       //background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
+       /* From https://css.glass */
+      background: rgba(255, 223, 223, 0.06);
+      border-radius: 30px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(9.1px);
+      -webkit-backdrop-filter: blur(9.1px);
+
+      height: 90vh;
+      margin: 4px;
+      top: 6vh;
+          /* left: 40px; */
+      position: relative;
     }
 
       .addmenu{
@@ -68,6 +93,8 @@
 
   .bg{
 
+    background-image: url(../../assets/pictures/dashboard/dashboard.jpg);
+
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: fixed;
@@ -75,6 +102,7 @@
 
     justify-content: space-around;
     overflow-x: scroll;
+
 
   }
   .ban{
@@ -145,6 +173,28 @@
   }
  ion-modal .list-ios, .list-md {
   border-radius: 16px;
+ }
+
+
+ .sample {
+  /* From https://css.glass */
+ /* From https://css.glass */
+background: rgba(137, 137, 137, 0.11);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.1px);
+-webkit-backdrop-filter: blur(9.1px);
+
+ }
+
+
+
+ .list-md {
+  background-color: transparent !important;
+ }
+
+ .sample::part(native) {
+  background-color: transparent !important;
  }
 
 

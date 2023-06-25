@@ -36,6 +36,14 @@
       background-image: url(../../assets/pictures/qaseeda/darkother.jpg);
     }
 
+    .glass {
+      background: rgba(0, 0, 0, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(9.1px);
+    }
+
 }
 
 @media (prefers-color-scheme: light){
@@ -61,6 +69,13 @@
 
     .img {
         content: url(../../assets/pictures/qaseeda/qaseedalightbanner.jpg);
+    }
+    .glass{
+      background: rgba(240, 238, 238, 0.26);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5.1px);
+      -webkit-backdrop-filter: blur(9.1px);
     }
    
 }
@@ -89,7 +104,11 @@ color: white;
 .qaseedahome {
     content: url(../../assets/pictures/bg.png);
     position: fixed;
-    opacity: 0.1;
+    //opacity: 0.1;
+
+    /* From https://css.glass */
+
+
     width: 100%;
     height: 100%;
 }
