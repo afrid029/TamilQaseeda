@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AngularFireList } from '@angular/fire/compat/database';
 import {DatabaseService} from '../services/database.service';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -28,7 +27,7 @@ export class AddPage {
 
   spinner: boolean = false;
 
-  constructor(private db: DatabaseService, private sqlite: SQLite,
+  constructor(private db: DatabaseService,
     public afs: AngularFirestore,
     public obsr: ObsrService,
     private router: Router,

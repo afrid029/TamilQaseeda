@@ -1,3 +1,8 @@
+@font-face {
+  font-family: arabic;
+  src: url('./../../assets/fonts/arabic.ttf');
+}
+
 @media (prefers-color-scheme: dark){
     .home {
         color: #ffffff;
@@ -94,7 +99,7 @@
 }
 
 .lstcont{
- 
+
   height: 100%;
    max-height: auto;
   overflow-y: scroll;
@@ -125,7 +130,7 @@
   height: 77vh;
   width: 100%;
   overflow-y: scroll;
-  border-radius:2%;
+  border-radius:16px;
 
 }
 .cont ion-item ion-label {
@@ -193,10 +198,6 @@
 
 }
 
-.itm {
-  background-color: rgb(238, 238, 238);
-  // border-radius: 14px;
-}
 .cont::-webkit-scrollbar{
   display: none;
 }
@@ -204,4 +205,14 @@
   width: 100%;
   height: auto;
   margin-top: 2vh;
+}
+
+.detail {
+  font-size: 13px;
+  width: 100%;
+  font-weight: 400;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-family: arabic;
+  text-align: justify;
 }

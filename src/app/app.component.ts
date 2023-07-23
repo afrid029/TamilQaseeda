@@ -31,7 +31,7 @@ export class AppComponent {
 
   constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController, private db: DatabaseService) {
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
-      AndroidFullScreen.immersiveMode();
+      //AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
 
 

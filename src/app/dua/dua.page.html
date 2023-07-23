@@ -145,23 +145,23 @@
         <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px">
           <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
 
-            <ion-item>
-              <p style="text-align: center; font-size: 20px; width: 100%; font-weight: 800;">{{currAwraath.content}}</p>
+            <ion-item style="border-radius: 10px;">
+              <p class="detail">{{currAwraath.content}}</p>
 
             </ion-item>
             <br>
             <div *ngIf="currAwraath.meaning">
                <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
-               <ion-item>
-                  <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6;">{{currAwraath.meaning}}</p>
+               <ion-item style="border-radius: 10px;">
+                  <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;">{{currAwraath.meaning}}</p>
                 </ion-item>
             </div>
 
             <br>
             <div *ngIf="currAwraath.benifit">
               <ion-label  style=" color: rgb(177, 55, 55); font-weight:800; font-size: 11px; opacity: 1 !important;">பலன் : </ion-label>
-              <ion-item >
-                <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6;"><i>{{currAwraath.benifit}}</i></p>
+              <ion-item style="border-radius: 10px;" >
+                <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;"><i>{{currAwraath.benifit}}</i></p>
               </ion-item>
             </div>
 

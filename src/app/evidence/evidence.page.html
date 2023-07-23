@@ -37,7 +37,7 @@
 
             <div *ngIf="obj" class="cont">
               <div *ngFor = "let s of aqeeda">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item >
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -54,7 +54,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of aqeeda">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item>
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                 </ion-item>
               </div>
@@ -89,7 +89,7 @@
 
             <div  *ngIf="obj" class="cont">
               <div *ngFor = "let s of fiqh">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item >
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -105,7 +105,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of fiqh">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item>
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
 
                 </ion-item>
@@ -141,7 +141,7 @@
 
             <div *ngIf="obj" class="cont">
               <div *ngFor = "let s of other">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item>
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
                   <div (click)="EditEvidence(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -157,7 +157,7 @@
 
             <div *ngIf="!obj" class="cont">
               <div *ngFor = "let s of other">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item>
                   <ion-label (click)="promo(s)">{{s.title}}</ion-label>
 
                 </ion-item>

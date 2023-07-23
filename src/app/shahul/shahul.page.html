@@ -22,7 +22,7 @@
     <div *ngIf = "anyContent">
       <div *ngIf = "obj" class="cont">
         <div *ngFor = "let song of songs">
-            <ion-item style="background-color: rgb(238, 238, 238);">
+            <ion-item>
               <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
               <div (click) = "EditSong(song)" class="edit">
                 <ion-icon class="icon" name="pencil"></ion-icon>
@@ -38,7 +38,7 @@
 
       <div class="cont" *ngIf = "!obj">
         <div *ngFor = "let song of songs">
-          <ion-item style="background-color: rgb(238, 238, 238);">
+          <ion-item >
             <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
 
           </ion-item>

@@ -28,7 +28,7 @@
 
               <div *ngIf="obj" (scroll)="logScrollStart($event)"  class="cont" >
                 <div *ngFor = "let s of ziyarams">
-                  <ion-item style="background-color: rgb(238, 238, 238);">
+                  <ion-item >
                     <ion-label (click) = "promo(s)">
                       <h6 style="white-space: initial;">{{s.name}}</h6>
                       <p><small><ion-icon name="location-outline"></ion-icon>&nbsp; {{s.location}}</small></p>
@@ -47,7 +47,7 @@
 
               <div *ngIf="!obj" (scroll)="logScrollStart($event)" class="cont">
                 <div *ngFor = "let s of ziyarams">
-                  <ion-item style="background-color: rgb(238, 238, 238);">
+                  <ion-item>
                     <ion-label (click) = "promo(s)">
                       <h6 style="white-space: initial;">{{s.name}}</h6>
                       <p><small><ion-icon name="location-outline"></ion-icon>&nbsp; {{s.location}}</small></p></ion-label>
@@ -78,7 +78,7 @@
             </div>
             <div *ngIf="anyReq"  class="cont1">
               <div *ngFor = "let s of ZiyaramRequests">
-                <ion-item style="background-color: rgb(238, 238, 238);">
+                <ion-item >
                   <ion-label style="white-space: initial;" (click) = "promo(s)">{{s.name}}</ion-label>
                   <div (click)="EditZiyaram(s)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>

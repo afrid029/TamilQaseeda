@@ -55,9 +55,9 @@
 
       <ion-content class=" modalBody">
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>January</h5>
-          <div *ngIf="jan.length > 0">
+          <div class="month" *ngIf="jan.length > 0">
             <ion-item *ngFor="let d of jan">
               <div class="date">
                 {{d.day}}
@@ -97,9 +97,9 @@
           </div>
 
         </ion-list>
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>February</h5>
-          <div *ngIf="feb.length > 0">
+          <div class="month" *ngIf="feb.length > 0">
             <ion-item *ngFor="let d of feb">
               <div class="date">
                 {{d.day}}
@@ -139,9 +139,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>March</h5>
-          <div *ngIf="mar.length > 0">
+          <div class="month" *ngIf="mar.length > 0">
             <ion-item *ngFor="let d of mar">
               <div class="date">
                 {{d.day}}
@@ -180,9 +180,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>April</h5>
-          <div *ngIf="apr.length > 0">
+          <div class="month" *ngIf="apr.length > 0">
             <ion-item *ngFor="let d of apr">
               <div class="date">
                 {{d.day}}
@@ -222,9 +222,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>May</h5>
-          <div *ngIf="may.length > 0">
+          <div class="month" *ngIf="may.length > 0">
             <ion-item *ngFor="let d of may">
               <div class="date">
                 {{d.day}}
@@ -263,9 +263,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list  lines="inset">
           <h5>June</h5>
-          <div *ngIf="jun.length > 0">
+          <div class="month" *ngIf="jun.length > 0">
             <ion-item *ngFor="let d of jun">
               <div class="date">
                 {{d.day}}
@@ -304,9 +304,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>July</h5>
-          <div *ngIf="jul.length > 0">
+          <div class="month" *ngIf="jul.length > 0">
             <ion-item *ngFor="let d of jul">
               <div class="date">
                 {{d.day}}
@@ -345,9 +345,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>August</h5>
-          <div *ngIf="aug.length > 0">
+          <div class="month" *ngIf="aug.length > 0">
             <ion-item *ngFor="let d of aug">
               <div class="date">
                 {{d.day}}
@@ -386,9 +386,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>September</h5>
-          <div *ngIf="sep.length > 0">
+          <div class="month" *ngIf="sep.length > 0">
             <ion-item *ngFor="let d of sep">
               <div class="date">
                 {{d.day}}
@@ -427,9 +427,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>October</h5>
-          <div *ngIf="oct.length > 0">
+          <div class="month" *ngIf="oct.length > 0">
             <ion-item *ngFor="let d of oct">
               <div class="date">
                 {{d.day}}
@@ -468,9 +468,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
+        <ion-list lines="inset">
           <h5>November</h5>
-          <div *ngIf="nov.length > 0">
+          <div class="month" *ngIf="nov.length > 0">
             <ion-item *ngFor="let d of nov">
               <div class="date">
                 {{d.day}}
@@ -509,9 +509,9 @@
           </div>
         </ion-list>
 
-        <ion-list style="padding-left: 15px;" lines="inset">
-          <h5>December</h5>
-          <div *ngIf="dec.length > 0">
+        <ion-list lines="inset">
+          <h5 >December</h5>
+          <div class="month" *ngIf="dec.length > 0">
             <ion-item *ngFor="let d of dec">
               <div class="date">
                 {{d.day}}

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -21,7 +20,7 @@ import { IonRouterOutlet } from '@ionic/angular';
 import { SharedModuleModule } from './modules/shared-module/shared-module.module';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { DatePipe } from '@angular/common';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -37,9 +36,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
   OnlineStatusModule,
   SharedModuleModule,
   AngularFirestoreModule.enablePersistence(),
-  NgCalendarModule,
-PdfViewerModule],
-  providers: [SQLite,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
+  NgCalendarModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
