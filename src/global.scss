@@ -193,6 +193,73 @@ ngx-extended-pdf-viewer .toolbar{
 
 // justify-content: center;
 }
+.al {
+  .alert-wrapper {
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.432);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.8px);
+-webkit-backdrop-filter: blur(7.8px);
+border: 1px solid rgba(255, 255, 255, 0.3);
 
+height: 22vh;
+    // .alert-head{
+    //   -background-color: aqua;
+    // }
+  .alert-button-group{
+    justify-content: center;
+    margin-top: auto;
+    flex: auto;
+  }
+  .alert-button-role-confirm{
+    //background-color: rgb(141, 223, 125);
+    height: max-content;
+    align-self: center;
+    //border-radius: 9px;
+    width: 45%;
+
+    /* From https://css.glass */
+background: rgba(235, 47, 0, 0.651);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(17.8px);
+-webkit-backdrop-filter: blur(17.8px);
+border: 1px solid rgba(235, 47, 0, 0.16);
+
+    .alert-button-inner{
+      justify-content: center;
+      color: antiquewhite;
+    }
+
+
+  }
+
+  .alert-button-role-cancel{
+    height: max-content;
+    align-self: center;
+    //border-radius: 9px;
+    width: 45%;
+
+    /* From https://css.glass */
+background: rgba(180, 177, 176, 0.49);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(17.8px);
+-webkit-backdrop-filter: blur(17.8px);
+border: 1px solid rgba(235, 47, 0, 0.16);
+
+    .alert-button-inner{
+      justify-content: center;
+      color: rgb(53, 52, 52);
+    }
+  }
+
+  }
+}
+
+ion-label {
+  font-weight: 510;
+}
 
 

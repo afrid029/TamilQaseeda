@@ -24,7 +24,7 @@
         <div *ngFor = "let song of songs">
             <ion-item>
               <ion-label (click) = "promo(song)">
-                <h6>{{ song.title }}</h6>
+                {{ song.title }}
               <p><small><ion-icon name="heart-circle-outline" ></ion-icon>&nbsp; {{song.vali}}</small></p></ion-label>
               <div (click) = "EditSong(song)" class="edit">
                 <ion-icon class="icon" name="pencil"></ion-icon>
@@ -42,7 +42,7 @@
         <div *ngFor = "let song of songs">
           <ion-item>
             <ion-label (click) = "promo(song)">
-              <h6>{{ song.title }}</h6>
+              {{ song.title }}
             <p><small><ion-icon name="heart-circle-outline" ></ion-icon>&nbsp; {{song.vali}}</small></p></ion-label>
           </ion-item>
       </div>

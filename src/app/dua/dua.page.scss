@@ -204,7 +204,7 @@
 .tool {
   width: 100%;
   height: auto;
-  margin-top: 2vh;
+  //margin-top: 2vh;
 }
 
 .detail {
@@ -215,4 +215,8 @@
   padding-bottom: 16px;
   font-family: arabic;
   text-align: justify;
+}
+
+ion-label {
+  font-weight: 510;
 }

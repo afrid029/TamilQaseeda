@@ -50,7 +50,7 @@ export class AppComponent {
     const backdropAnimation = this.animationCtrl
       .create()
       .addElement(root?.querySelector('ion-backdrop')!)
-      .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+      .fromTo('opacity', '0.00001', 'var(--backdrop-opacity)');
 
     const wrapperAnimation = this.animationCtrl
       .create()

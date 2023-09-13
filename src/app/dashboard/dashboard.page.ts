@@ -62,12 +62,13 @@ export class DashboardPage {
     console.log('Can exit noew');
     const alert = await this.alertCtrl.create({
       header: 'Exit ?',
+      cssClass: 'al',
       buttons:[
         {
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            console.log('cancelld');
             }
         },{
           text: 'Exit',
@@ -86,7 +87,7 @@ export class DashboardPage {
 
   navigateTo(val: any){
     console.log(val);
-    
+
     setTimeout(()=>{
       this.route.navigateByUrl(val);
 

@@ -20,9 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-          <meta-data
-            android:name="android:keepScreenOn"
-            android:value="true" />
+            <meta-data android:name="android:keepScreenOn" android:value="true" />
         </activity>
 
         <provider
@@ -32,7 +30,10 @@
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
         </provider>
-         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBWTpiUf6Zbjzcu2hEOSgrPMYVCQ7VPWIw" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBWTpiUf6Zbjzcu2hEOSgrPMYVCQ7VPWIw"
+        />
     </application>
 
     <!-- Permissions -->
