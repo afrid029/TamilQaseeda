@@ -221,13 +221,15 @@
 }
 
 .cont{
-    margin-top: 2vh !important;
-    height: 90%;
+    margin-top: 5vh !important;
+    height: 80vh;
     //margin-bottom: 3vh;
     width: 100%;
     //max-height: 100%;
     overflow-y: scroll;
-    border-radius:2%;
+    border-radius:6%;
+    padding-left: 2%;
+    padding-right:2%;
 
 }
 .cont ion-item ion-label {
