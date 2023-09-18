@@ -222,14 +222,14 @@
 
 .cont{
     margin-top: 5vh !important;
-    height: 80vh;
+    height: 78vh;
     //margin-bottom: 3vh;
-    width: 100%;
+    width: 98%;
     //max-height: 100%;
     overflow-y: scroll;
     border-radius:6%;
-    padding-left: 2%;
-    padding-right:2%;
+    padding-left: 1%;
+    padding-right:1%;
 
 }
 .cont ion-item ion-label {
@@ -245,8 +245,13 @@
     height:4vh;
     border-radius: 4px;
     text-align: center;
+    justify-items:center;
+    align-items: center;
     // min-height: 35px;
     // max-height: 35px;
+}
+.head ion-icon{
+  margin: 0 2vw;
 }
 .head ion-text{
     font-size: 15px;

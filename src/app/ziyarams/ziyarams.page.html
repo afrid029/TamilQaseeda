@@ -145,13 +145,15 @@
 </ion-content>
 
 <ion-fab [style.visibility]="btn"  vertical="bottom" horizontal="start">
-  <ion-fab-button size="small" color="danger">
-    <ion-icon size="small" name="navigate"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="end">
+  <!-- <ion-fab-button size="small" color="success"> -->
+    <ion-button [routerLink] = "['/add-ziyaram']"  shape="round" color="warning" style="text-transform: capitalize;">
+      <ion-icon slot="start"  name="add-sharp" size="medium"></ion-icon> Request
+    </ion-button>
+  <!-- </ion-fab-button> -->
+  <!-- <ion-fab-list side="end">
     <ion-button [routerLink] = "['/add-ziyaram']" color="warning" size="small" shape="round">
       Send Ziyaram Details
     </ion-button>
-  </ion-fab-list>
+  </ion-fab-list> -->
 </ion-fab>
 </html>

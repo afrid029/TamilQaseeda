@@ -116,7 +116,12 @@
   height:4vh;
   border-radius: 4px;
   text-align: center;
+  justify-items:center;
+  align-items: center;
 
+}
+.head ion-icon{
+  margin: 0 2vw;
 }
 .head ion-text{
   font-size: 15px;
@@ -129,7 +134,7 @@
 }
 .cont{
   margin-top: 5vh !important;
-  height: 81vh;
+  height: 79vh;
   width: 98%;
   overflow-y: scroll;
   border-radius:5%;

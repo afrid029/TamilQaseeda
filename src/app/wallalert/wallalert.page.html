@@ -23,7 +23,7 @@
               <!--For div-->
               <div *ngFor="let d of datas">
                 <ion-item class="itm">
-                  <ion-label (click)="promo(d)" style="width: 80%">{{d.mcontent}}</ion-label>
+                  <ion-label (click)="promo(d)" style="width: 80%">{{d.title}}</ion-label>
                   <p style="font-size: small; color: rgb(99, 97, 97);">{{d.date | date:'dd/MM/yyyy'}}</p>
                   <div (click)="loadUpdate(d)" class="edit">
                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -65,6 +65,11 @@
               <form #addForm = "ngForm" validate>
                 <ion-list lines="inset">
                   <ion-item>
+                    <ion-label position="floating">Title</ion-label>
+                    <ion-input type = "text" [(ngModel)]="alert.title" name="title" max="5" style="max-height: 300px; overflow-y: scroll;" required></ion-input>
+                  </ion-item>
+
+                  <ion-item>
                     <ion-label position="floating">Main Content</ion-label>
                     <ion-textarea [(ngModel)]="alert.mcontent" name="mcontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll;" required></ion-textarea>
                   </ion-item>
@@ -103,6 +108,10 @@
         <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px">
           <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
             <ion-list>
+              <h5>Title</h5>
+              <ion-item>
+                <p style="text-align: justify;">{{viewAlert.title}}</p>
+              </ion-item>
               <h5>Main Content</h5>
               <ion-item>
                 <p style="text-align: justify;">{{viewAlert.mcontent}}</p>
@@ -135,6 +144,11 @@
       <ion-content class="ion-padding modalBody">
         <form  #addForm = "ngForm" validate>
           <ion-list lines="inset">
+
+            <ion-item>
+              <ion-label position="floating">Title</ion-label>
+              <ion-textarea [(ngModel)]="editAlert.title" name="mtitle" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll;" required></ion-textarea>
+            </ion-item>
             <ion-item>
               <ion-label position="floating">Main Content</ion-label>
               <ion-textarea [(ngModel)]="editAlert.mcontent" name="mcontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll;" required></ion-textarea>

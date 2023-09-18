@@ -134,6 +134,7 @@ export class WallalertPage implements OnInit {
 
   loadUpdate(data: any){
     this.editAlert.docid = data.docid;
+    this.editAlert.title = data.title;
     this.editAlert.mcontent = data.mcontent;
     if(data.scontent){
       this.editAlert.scontent = data.scontent;
