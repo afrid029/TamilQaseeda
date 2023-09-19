@@ -428,7 +428,7 @@ logScrollStart(event: any){
   this.btn = "hidden";
   setTimeout(() =>{
     this.btn = "visible";
-  },2500)
+  },1500)
 
 }
 
