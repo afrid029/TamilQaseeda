@@ -3,87 +3,7 @@
   opacity: 0.7;">
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
-  <ion-menu contentId="main-content">
-    <ion-header>
-
-
-      <ion-toolbar (click)="closeMenu()" [routerLink]="['/dashboard']" color="warning">
-        <p class="title">Ahlussunnah Tamil</p>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-item (click)="closeMenu()" [routerLink] = "['/moulids']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="heart-half-sharp"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;மௌலிதுகள்</ion-label>
-      </ion-item>
-      <ion-item (click)="closeMenu()" [routerLink] = "['/home']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="musical-notes-sharp"></ion-icon><ion-label style="font-size: medium; float: left;" >&nbsp;&nbsp;தமிழ் ஹஸீதா தளம்</ion-label>
-      </ion-item>
-      <ion-item (click)="closeMenu()" [routerLink] = "['/ziyarams']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="location-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
-      </ion-item>
-      <ion-item (click)="closeMenu()" [routerLink] = "['/evidence']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="bulb-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
-      </ion-item>
-     <ion-item (click)="closeMenu()" [routerLink] = "['/calendar']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="calendar-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
-    </ion-item>
-    <ion-item (click)="closeMenu()" [routerLink] = "['/dua']">
-      <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="book-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
-  </ion-item>
-
-      <ion-item (click)="openLogin()">
-         <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="person-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Admin Login</ion-label>
-      </ion-item>
-      <div style="border: 1px solid black; border-radius: 4px; padding: 4px;" *ngIf="isLoginOpen">
-        <form  #logForm = "ngForm" validate>
-          <ion-item lines="full">
-            <ion-label position="floating">Email</ion-label>
-            <ion-input  [(ngModel)]="login.email" name="email" type="email" required ></ion-input>
-          </ion-item>
-
-          <ion-item lines="full">
-            <ion-label position="floating">Password</ion-label>
-            <ion-input  [(ngModel)]="login.password" type="password" name="password" required></ion-input>
-          </ion-item>
-          <ion-button  style="margin-top:12%;display: flex;" type="submit" [disabled]="logForm.invalid" (click)="LoginAdmin()" class = "btn">Login</ion-button>
-
-         </form>
-        </div>
-
-
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Hazeetha</ion-label>
-      </ion-item>
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
-      </ion-item>
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-evidence']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Religious Topic</ion-label>
-      </ion-item>
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-calendar']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Calendar Event</ion-label>
-      </ion-item>
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-dua']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
-      </ion-item>
-      <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/wallalert']">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;Manage Daily Alerts</ion-label>
-      </ion-item>
-
-
-
-      <ion-item (click)="openAboutUs(true)">
-        <ion-icon style="font-size: 20px; float: left; color: rgb(133, 42, 0);" name="information-circle-outline"></ion-icon><ion-label style="font-size: medium; float: left;">&nbsp;&nbsp;About Us</ion-label>
-     </ion-item>
-     <ion-button (click) = "Logout()" *ngIf="obj" style="display: flex; ">Logout</ion-button>
-    </ion-content>
-
-
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-  </div>
-
-  <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+    <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
     <ng-template>
 
         <ion-card class="card" >
@@ -127,6 +47,93 @@
 
       </ng-template>
 
+  </ion-modal>
+
+  <ion-modal  backdropDismiss="false" [isOpen]="isTopicOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+    <ng-template>
+        <ion-card class="card1" >
+          <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(185, 151, 106); ">
+            <h3><b>Ahlussunnah Tamil</b></h3>
+            <ion-button fill="clear" class="closebtn" (click)="openTitle(false)">
+              <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
+            </ion-button>
+          </ion-card-header>
+          <ion-card-content class="alt">
+
+            <ion-item (click)="closeMenu()" [routerLink] = "['/moulids']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="heart-half-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(29, 61, 10)" >&nbsp;&nbsp;மௌலிதுகள்</ion-label>
+            </ion-item>
+            <ion-item (click)="closeMenu()" [routerLink] = "['/home']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="musical-notes-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)" >&nbsp;&nbsp;தமிழ் கஸீதா தளம்</ion-label>
+            </ion-item>
+            <ion-item (click)="closeMenu()" [routerLink] = "['/ziyarams']">
+              <ion-icon style="font-size: 20px; float: left; color:rgb(29, 61, 10);" name="location-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
+            </ion-item>
+            <ion-item (click)="closeMenu()" [routerLink] = "['/evidence']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="bulb-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
+            </ion-item>
+           <ion-item (click)="closeMenu()" [routerLink] = "['/calendar']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="calendar-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
+          </ion-item>
+          <ion-item (click)="closeMenu()" [routerLink] = "['/dua']">
+            <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="book-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
+        </ion-item>
+
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77);">&nbsp;&nbsp;Add Hazeetha</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
+              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-evidence']">
+              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Religious Topic</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-calendar']">
+              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Calendar Event</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-dua']">
+              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/wallalert']">
+              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Daily Alerts</ion-label>
+            </ion-item>
+
+            <ion-button (click) = "Logout()" *ngIf="obj" style="display: flex; ">Logout</ion-button>
+
+          </ion-card-content>
+
+        </ion-card>
+      </ng-template>
+
+  </ion-modal>
+
+
+  <ion-modal class="logModel" backdropDismiss="false" [isOpen]="isLoginOpen">
+    <ng-template >
+      <ion-content>
+        <div (click)="openLogin()" style="padding: 10px; display: flex; position: fixed;" >
+          <ion-icon style="font-size: 32px; color: black" name="close"></ion-icon>
+        </div>
+
+        <div class="logBody">
+          <img src="../assets/pictures/logo.webp" alt="">
+          <h5>Ahlussunnah Tamil </h5>
+          <form  #logForm = "ngForm" validate>
+            <ion-item lines="full">
+              <ion-label style="color: rgb(56, 55, 55);" position="floating">Email</ion-label>
+              <ion-input  style="color: rgb(88, 88, 88);"  [(ngModel)]="login.email" name="email" type="email" required ></ion-input>
+            </ion-item>
+
+            <ion-item lines="full">
+              <ion-label style="color: rgb(56, 55, 55);" position="floating">Password</ion-label>
+              <ion-input style="color: rgb(88, 88, 88);"  [(ngModel)]="login.password" type="password" name="password" required></ion-input>
+            </ion-item>
+            <ion-button  style="margin-top:12%;display: flex;" type="submit" [disabled]="logForm.invalid" (click)="LoginAdmin()" class = "btn">Login</ion-button>
+
+           </form>
+        </div>
+      </ion-content>
+    </ng-template>
   </ion-modal>
 
 
@@ -187,12 +194,38 @@
         </ion-row>
         </ion-card>
       </ng-template>
-
   </ion-modal>
 
 
-
     <ion-router-outlet></ion-router-outlet>
+
+<footer >
+  <ion-tabs class = "footer">
+    <ion-tab-bar slot="bottom">
+
+      <ion-tab-button  [routerLink]="['/']"  >
+        <ion-icon name="home"></ion-icon>
+        Home
+      </ion-tab-button>
+
+      <ion-tab-button (click)="openTitle(true)" >
+        <ion-icon name="library"></ion-icon>
+        Topics
+      </ion-tab-button>
+
+      <ion-tab-button (click)="openLogin()" >
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Admin
+      </ion-tab-button>
+
+      <ion-tab-button (click)="openAboutUs(true)" >
+        <ion-icon name="grid"></ion-icon>
+        About Us
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+</footer>
 
 
 </ion-app>

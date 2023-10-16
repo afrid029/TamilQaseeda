@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
-  styleUrls: ['./add.page.scss'],
+  styleUrls: ['./add.page.scss','./add.scss'],
 })
 
 

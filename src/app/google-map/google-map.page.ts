@@ -102,6 +102,7 @@ export class GoogleMapPage implements OnInit {
       }
 
       async viewMap(){
+
         this.newMap = await GoogleMap.create({
           id: 'my-cool-map',
           element: this.mapRef.nativeElement,
@@ -114,6 +115,8 @@ export class GoogleMapPage implements OnInit {
             zoom: 12,
           },
         });
+
+    
 
         if(this.obsr.latitude.getValue() !== -1 && this.obsr.longtitude.getValue() !== -1){
           const markerId1 = await this.newMap.addMarker(

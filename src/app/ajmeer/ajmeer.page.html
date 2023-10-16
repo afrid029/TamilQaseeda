@@ -23,7 +23,7 @@
       <div *ngIf = "obj" class="cont">
         <div *ngFor = "let song of songs">
             <ion-item >
-              <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
+              <ion-label style="white-space: initial" (click) = "promo(song)">{{ song.title }}</ion-label>
               <div (click) = "EditSong(song)" class="edit">
                 <ion-icon class="icon" name="pencil"></ion-icon>
               </div>
@@ -39,7 +39,7 @@
       <div class="cont" *ngIf = "!obj">
         <div *ngFor = "let song of songs">
           <ion-item >
-            <ion-label (click) = "promo(song)">{{ song.title }}</ion-label>
+            <ion-label style="white-space: initial" (click) = "promo(song)">{{ song.title }}</ion-label>
 
           </ion-item>
       </div>
@@ -96,9 +96,9 @@
         </ion-toolbar>
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
-          <ion-input style="font-size: 10px;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
+          <ion-input style="font-size: 10px; color: black;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
         </ion-chip>
-        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; font-size: 15px;" [autoGrow] = "true"></ion-textarea>
+        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center;  color: black; font-size: 15px;" [autoGrow] = "true"></ion-textarea>
       </ion-content>
 
     </ng-template>

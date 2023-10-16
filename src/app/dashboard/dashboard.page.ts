@@ -81,9 +81,7 @@ export class DashboardPage {
     await alert.present();
   }
 
-  async setAddModel(val: boolean){
-    this.isAddModalOpen = val;
-  }
+
 
   navigateTo(val: any){
     console.log(val);

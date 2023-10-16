@@ -4,89 +4,99 @@
   //src: url('./../../assets/fonts/arabic.ttf');
 }
 
-@media (prefers-color-scheme: dark){
-    .home {
-        color: #ffffff;
-    }
-
-    .img {
-        content: url(../../assets/pictures/dua/duadarkbanner.jpg);
-    }
-    .edit{
-      border: 1px solid rgb(238, 232, 232);
-      color: #ffffff;
-      background-color: #3477ce;
-    }
-    .del{
-      color: rgb(255, 255, 255);
-      border: 1px solid rgb(238, 232, 232);
-      background-color: #c74d07;
-    }
-    .head{
-      background-color: #b5b6b07a;
-      color: #e9e6e6;
-      box-shadow: 0 0 6px 0 #ffffff;
-  }
-
-  .search{
-    background-color: rgb(243, 237, 237);
-    color: black;
-  }
-  .search ion-icon{
-      color: rgb(15, 15, 15);
-  }
-  .lstcont {
-    /* From https://css.glass */
-   background: rgba(0, 0, 0, 0.39);
-   border-radius: 16px;
-   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(5px);
-   -webkit-backdrop-filter: blur(14px);
- }
-
-}
-@media (prefers-color-scheme: light){
-    .home {
-        color: #fdc103;
-    }
-
-    .img {
-      content: url(../../assets/pictures/dua/dualightbanner.jpg);;
-    }
-    .del{
-      color: #c74d07 !important;
-      border: 1px solid #c74d07 !important;
-      background-color: white !important;
-    }
-    .edit{
-      border: 1px solid #3477ce;
-      color: #3477ce;
-      background-color: white !important ;
-    }
-    .head{
-      background-color: #eff7cbb9;
-      color: #141414;
-
-      box-shadow: 0 0 6px 0 #cfcfcf;
-  }
-
-  .search{
-    background-color: rgb(189, 189, 189);
-    color: black;
-  }
-  .search ion-icon{
-      color: rgb(15, 15, 15);
-  }
-  .lstcont {
-    /* From https://css.glass */
-   background: rgba(185, 181, 181, 0.39);
-   border-radius: 16px;
-   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(5px);
-   -webkit-backdrop-filter: blur(14px);
- }
+@font-face {
+  font-family: 'cnb';
+  src: url(../../assets/fonts/TMOTCNB_Ship.TTF);
 }
 
+// @media (prefers-color-scheme: dark){
+//     .home {
+//         color: #ffffff;
+//     }
+
+//     // .img {
+//     //     content: url(../../assets/pictures/dua/duadarkbanner.jpg);
+//     // }
+//     .edit{
+//       border: 1px solid rgb(238, 232, 232);
+//       color: #ffffff;
+//       background-color: #3477ce;
+//     }
+//     .del{
+//       color: rgb(255, 255, 255);
+//       border: 1px solid rgb(238, 232, 232);
+//       background-color: #c74d07;
+//     }
+//     .head{
+//       background-color: #b5b6b07a;
+//       color: #e9e6e6;
+//       box-shadow: 0 0 6px 0 #ffffff;
+//   }
+
+//   .search{
+//     background-color: rgb(243, 237, 237);
+//     color: black;
+//   }
+//   .search ion-icon{
+//       color: rgb(15, 15, 15);
+//   }
+//   .lstcont {
+//     /* From https://css.glass */
+//    background: rgba(0, 0, 0, 0.39);
+//    border-radius: 16px;
+//    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//    backdrop-filter: blur(5px);
+//    -webkit-backdrop-filter: blur(14px);
+//  }
+
+// }
+// @media (prefers-color-scheme: light){
+
+// }
+
+.img {
+  content: url(../../assets/pictures/dua/dualightbanner.webp);;
+}
+
+.home {
+  color: #fdc103;
+}
+
+
+.del{
+color: #c74d07 !important;
+border: 1px solid #c74d07 !important;
+background-color: white !important;
+}
+.edit{
+border: 1px solid #3477ce;
+color: #3477ce;
+background-color: white !important ;
+}
+.head{
+background-color: #eff7cbb9;
+color: #141414;
+
+box-shadow: 0 0 6px 0 #cfcfcf;
+}
+
+.search{
+background-color: rgb(189, 189, 189);
+color: black;
+}
+.search ion-icon{
+color: rgb(15, 15, 15);
+}
+.lstcont {
+/* From https://css.glass */
+background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+/*******************************************/
 
 .lst{
   padding-top: 0.4vh;
@@ -134,7 +144,7 @@
 }
 .cont{
   margin-top: 5vh !important;
-  height: 79vh;
+  height: 72vh;
   width: 98%;
   overflow-y: scroll;
   border-radius:5%;
@@ -228,4 +238,69 @@
 
 ion-label {
   font-weight: 510;
+}
+
+.modalBody{
+  background-color: #ffffff;
+}
+
+.qursi
+{
+  //height: 95vh;
+  overflow-y: scroll;
+  margin-top: 5vh !important;
+  background-color: rgba(245, 245, 220, 0);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+
+.box{
+  display: inline;
+  width: 46vw;
+  height: 46vw;
+  margin: 1vw;
+  border: #141414;
+  background-color: #e0e0e096;
+  border-radius: 10px;
+
+  align-items: center;
+
+//   /* From https://css.glass */
+// background: rgba(185, 182, 182, 0.822);
+// border-radius: 16px;
+// box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+// backdrop-filter: blur(13.7px);
+// -webkit-backdrop-filter: blur(13.7px);
+// border: 1px solid rgba(185, 182, 182, 0.3);
+
+  ion-card-title{
+    font-size: 8vw;
+    font-weight: 750;
+    color:black;
+  }
+
+  h5{
+    font-size: 3vw !important;
+    color: #707070;
+  }
+
+  h6{
+    font-size: 12px;
+    color: #555555;
+    font-family: 'cnb';
+    padding: 0px 1px;
+  }
+
+
+}
+
+.box:nth-child(85){
+  ion-card-title{
+    font-size: 5vw;
+    font-weight: 750;
+    color:black;
+  }
 }

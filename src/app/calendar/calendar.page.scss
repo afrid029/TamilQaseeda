@@ -1,56 +1,62 @@
-@media (prefers-color-scheme: dark){
-    .home {
-        color: #ffffff;
-    }
+// @media (prefers-color-scheme: dark){
+//     .home {
+//         color: #ffffff;
+//     }
 
-    .img {
-      content: url(../../assets/pictures/calendar/calendardarkbanner.jpg);
-    }
-    .edit{
-      border: 1px solid rgb(238, 232, 232);
-      color: #ffffff;
-      background-color: #3477ce;
-    }
-    .del{
-      color: rgb(255, 255, 255);
-      border: 1px solid rgb(238, 232, 232);
-      background-color: #c74d07;
-    }
-    .lstcont {
-      /* From https://css.glass */
-     background: rgba(0, 0, 0, 0.39);
-     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-     backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(14px);
-   }
+//     // .img {
+//     //   content: url(../../assets/pictures/calendar/calendardarkbanner.jpg);
+//     // }
+//     .edit{
+//       border: 1px solid rgb(238, 232, 232);
+//       color: #ffffff;
+//       background-color: #3477ce;
+//     }
+//     .del{
+//       color: rgb(255, 255, 255);
+//       border: 1px solid rgb(238, 232, 232);
+//       background-color: #c74d07;
+//     }
+//     .lstcont {
+//       /* From https://css.glass */
+//      background: rgba(0, 0, 0, 0.39);
+//      border-radius: 16px;
+//      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//      backdrop-filter: blur(5px);
+//      -webkit-backdrop-filter: blur(14px);
+//    }
+// }
+// @media (prefers-color-scheme: light){
+
+// }
+
+.img {
+  content: url(../../assets/pictures/calendar/calendarlightbanner.webp);
 }
-@media (prefers-color-scheme: light){
-    .home {
-        color: #fdc103;
-    }
 
-    .img {
-      content: url(../../assets/pictures/calendar/calendarlightbanner.jpg);
-    }
-    .del{
-      color: #c74d07 !important;
-      border: 1px solid #c74d07 !important;
-    }
-    .edit{
-      border: 1px solid #3477ce;
-      color: #3477ce;
-    }
-
-    .lstcont {
-      /* From https://css.glass */
-     background: rgba(185, 181, 181, 0.39);
-     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-     backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(14px);
-   }
+.home {
+  color: #fdc103;
 }
+
+
+.del{
+color: #c74d07 !important;
+border: 1px solid #c74d07 !important;
+}
+.edit{
+border: 1px solid #3477ce;
+color: #3477ce;
+}
+
+.lstcont {
+/* From https://css.glass */
+background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+/***************************************/
 
 .delAlert{
   --background-color: #fdc103 !important;
@@ -186,6 +192,18 @@
     font-weight: 600;
   }
 
+ .modalBody{
+  background-color: #ecebeb;
+
+  ion-list{
+    background-color: #dfdcdc;
+  }
+
+  h5{
+    color: black;
+  }
+ }
+
 
 :host ::ng-deep{
     .swiper-slide{
@@ -223,6 +241,7 @@
       border-radius: 30px;
       font-size: 4vw;
       vertical-align: middle !important;
+      color: black;
     }
     thead tr {
       height: 5vh;
@@ -300,6 +319,4 @@
       white-space: inherit !important;
 
     }
-
-
   }

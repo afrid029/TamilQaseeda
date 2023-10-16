@@ -1,6 +1,6 @@
 <html class="addBody">
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class = "tool">
     <ion-buttons slot="start">
 
       <ion-back-button defaultHref="dashboard"></ion-back-button>
@@ -54,9 +54,9 @@
   <ion-modal #menuModal trigger="menuModal" [initialBreakpoint]="0.30" [breakpoints]="[0,0.30]" class="addmodal" backdropDismiss="false" >
     <ng-template>
       <ion-header>
-        <ion-toolbar color="dark">
+        <ion-toolbar class = "tb">
           <ion-buttons slot="end">
-            <ion-button (click)="menuModal.dismiss()">Close</ion-button>
+            <ion-button style = "color:white" (click)="menuModal.dismiss()">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>

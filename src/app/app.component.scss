@@ -15,18 +15,20 @@ ion-menu::part(container){
   box-shadow: 4px 0px 16px #81708169;
 }
 
-@media (prefers-color-scheme: dark){
-    ion-menu::part(container){
-        border-radius: 0 20px 20px 0;
-      box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
-      background-color: rgb(32, 32, 32);
-    }
-}
-@media (prefers-color-scheme: light){
-    ion-menu::part(container){
-      box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.589);
-      background-color: rgb(253, 253, 253);
-    }
+// @media (prefers-color-scheme: dark){
+//     ion-menu::part(container){
+//         border-radius: 0 20px 20px 0;
+//       box-shadow: 4px 0px 16px rgba(129, 112, 129, 0.411);
+//       background-color: rgb(32, 32, 32);
+//     }
+// }
+// @media (prefers-color-scheme: light){
+
+// }
+
+ion-menu::part(container){
+  box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.589);
+  background-color: rgb(253, 253, 253);
 }
 
 
@@ -77,7 +79,7 @@ ion-menu::part(container){
 .alt::before{
 
   content: "";
-  background-image: url(../assets/pictures/bg.png);
+  background-image: url(../assets/pictures/bg.webp);
 
 position: fixed;
 background-size: cover;
@@ -182,7 +184,7 @@ opacity: 0.15;
 
 
 .alert{
-  content: url(../assets/pictures/alert.png);
+  content: url(../assets/pictures/alert.webp);
 
 }
 
@@ -213,3 +215,38 @@ opacity: 0.15;
   font-size: 6vw;
   font-family: 'ship';
 }
+
+.logModel{
+  background-color: rgba(194, 25, 25, 0);
+
+  --height: 60vh;
+  --width: 90vw;
+}
+  .logBody{
+      justify-items: center;
+      align-items: center;
+      display:grid;
+      padding: 10px 0;
+
+      img{
+        width: 35;
+        height: 35vw;
+      }
+
+      h5{
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 750;
+        color: rgb(18 96 8);
+      }
+}
+
+.footer{
+  /* From https://css.glass */
+background: rgba(54, 4, 4, 0);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10.8px);
+-webkit-backdrop-filter: blur(10.8px);
+}
+
+

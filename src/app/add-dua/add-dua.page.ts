@@ -9,7 +9,7 @@ import { UtillService } from '../services/utill.service';
 @Component({
   selector: 'app-add-dua',
   templateUrl: './add-dua.page.html',
-  styleUrls: ['./add-dua.page.scss'],
+  styleUrls: ['./add-dua.page.scss','./../add/add.scss'],
 })
 export class AddDuaPage implements OnInit {
   @ViewChild('menuModal') modal: IonModal;

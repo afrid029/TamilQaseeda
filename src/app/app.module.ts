@@ -22,6 +22,9 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { DatePipe } from '@angular/common';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 
+import { HttpClientModule } from  '@angular/common/http';
+
+
 
 
 
@@ -35,6 +38,7 @@ import { DatePipe } from '@angular/common';
   AngularFireDatabaseModule,
   OnlineStatusModule,
   SharedModuleModule,
+  HttpClientModule,
   AngularFirestoreModule.enablePersistence(),
   NgCalendarModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],

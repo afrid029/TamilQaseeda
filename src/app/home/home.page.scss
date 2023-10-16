@@ -12,73 +12,80 @@
     src: url(../../assets/fonts/ncnallur.ttf);
 }
 
-@media (prefers-color-scheme: dark){
+// @media (prefers-color-scheme: dark){
 
-    .card{
-        background-color: rgb(236, 231, 220);
-    }
-    .muham {
-        background-image: url(../../assets/pictures/qaseeda/darkmuham.jpg);
-    }
-    .muhi {
-        background-image: url(../../assets/pictures/qaseeda/darkmuhiy.jpg);
-    }
-    .shahul {
-        background-image: url(../../assets/pictures/qaseeda/darkshahul.jpg);
-    }
-    .kwaja {
-        background-image: url(../../assets/pictures/qaseeda/darkkwaja.jpg);
-    }
-    .img {
-        content: url(../../assets/pictures/qaseeda/qaseedadarkbanner.jpg);
-    }
-    .other{
-      background-image: url(../../assets/pictures/qaseeda/darkother.jpg);
-    }
+//     .card{
+//         background-color: rgb(236, 231, 220);
+//     }
+//     // .muham {
+//     //     background-image: url(../../assets/pictures/qaseeda/darkmuham.jpg);
+//     // }
+//     // .muhi {
+//     //     background-image: url(../../assets/pictures/qaseeda/darkmuhiy.jpg);
+//     // }
+//     // .shahul {
+//     //     background-image: url(../../assets/pictures/qaseeda/darkshahul.jpg);
+//     // }
+//     // .kwaja {
+//     //     background-image: url(../../assets/pictures/qaseeda/darkkwaja.jpg);
+//     // }
+//     // .img {
+//     //     content: url(../../assets/pictures/qaseeda/qaseedadarkbanner.jpg);
+//     // }
+//     // .other{
+//     //   background-image: url(../../assets/pictures/qaseeda/darkother.jpg);
+//     // }
 
-    .glass {
-      background: rgba(0, 0, 0, 0.28);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4.1px);
-  -webkit-backdrop-filter: blur(9.1px);
-    }
+//     .glass {
+//       background: rgba(0, 0, 0, 0.28);
+//   border-radius: 16px;
+//   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//   backdrop-filter: blur(4.1px);
+//   -webkit-backdrop-filter: blur(9.1px);
+//     }
 
+// }
+
+// @media (prefers-color-scheme: light){
+
+
+
+// }
+
+.muham {
+  background-image: url(../../assets/pictures/qaseeda/muham.webp);
+}
+.muhi {
+  background-image: url(../../assets/pictures/qaseeda/muhiy.webp);
+}
+.shahul {
+  background-image: url(../../assets/pictures/qaseeda/shahul.webp);
+}
+.kwaja {
+  background-image: url(../../assets/pictures/qaseeda/kwaja.webp);
+}
+.other{
+background-image: url(../../assets/pictures/qaseeda/other.webp);
 }
 
-@media (prefers-color-scheme: light){
-
-    .card{
-        background-color: rgb(6, 105, 31);
-    }
-    .muham {
-        background-image: url(../../assets/pictures/qaseeda/muham.jpg);
-    }
-    .muhi {
-        background-image: url(../../assets/pictures/qaseeda/muhiy.jpg);
-    }
-    .shahul {
-        background-image: url(../../assets/pictures/qaseeda/shahul.jpg);
-    }
-    .kwaja {
-        background-image: url(../../assets/pictures/qaseeda/kwaja.jpg);
-    }
-    .other{
-      background-image: url(../../assets/pictures/qaseeda/other.jpg);
-    }
-
-    .img {
-        content: url(../../assets/pictures/qaseeda/qaseedalightbanner.jpg);
-    }
-    .glass{
-      background: rgba(240, 238, 238, 0.26);
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5.1px);
-      -webkit-backdrop-filter: blur(9.1px);
-    }
-
+.img {
+  content: url(../../assets/pictures/qaseeda/qaseedalightbanner.webp);
 }
+
+.card{
+  background-color: rgb(6, 105, 31);
+}
+
+.glass{
+background: rgba(240, 238, 238, 0.26);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.1px);
+-webkit-backdrop-filter: blur(9.1px);
+}
+
+/*************************************************/
+
 .title {
 font-family: papa !important;
 text-align: center;
@@ -102,7 +109,7 @@ color: white;
 
 
 .qaseedahome {
-    content: url(../../assets/pictures/bg.png);
+    content: url(../../assets/pictures/bg.webp);
     position: fixed;
     //opacity: 0.1;
 

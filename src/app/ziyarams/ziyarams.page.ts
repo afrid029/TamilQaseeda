@@ -24,8 +24,7 @@ export class ZiyaramsPage implements AfterViewInit {
   @ViewChild('modal1') modal: IonModal;
   @ViewChild('modal2') modal2: IonModal;
 
-  img: string = "./../../assets/pictures/noImage.png";
-  img1: string = "./../../assets/pictures/noImage.png";
+  img: string = "./../../assets/pictures/ani.gif";
   currImg: string;
   isModalOpen: boolean = false;
   anyContent: boolean = false;
@@ -177,7 +176,7 @@ export class ZiyaramsPage implements AfterViewInit {
 
 
 promo(data: any){
-  this.cardSpinner = true;
+  //this.cardSpinner = true;
   console.log(data.docid);
   this.currZiyaram = data;
   this.isModalOpen = true;
@@ -188,24 +187,31 @@ promo(data: any){
       if(this.currZiyaram.imageUrl !== ''){
         this.img = this.currZiyaram.imageUrl;
 
+      }else{
+        this.img = "./../../assets/pictures/noImage.webp";
       }
-      this.cardSpinner = false;
+
     },2000)
   }else{
-    this.cardSpinner = false;
+    //this.cardSpinner = false;
     this.utilService.NetworkToast();
   }
+  //this.cardSpinner = false;
 
 }
 
 missImage(event: any){
   //alert('Image missed')
-  this.img = this.img1;
+  this.img = "./../../assets/pictures/noImage.webp";
+  // setTimeout(() =>{
+  //   this.img = this.img1;
+  // },5000)
+
 }
 
 setViewModel(val: any){
   this.isModalOpen=val;
-  this.img = "./../../assets/pictures/noImage.png";
+  this.img = "./../../assets/pictures/ani.gif";
 }
 launchGoogleMap(){
   LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then((isAvailable)=>{

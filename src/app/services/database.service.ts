@@ -8,6 +8,7 @@ import { UtillService } from './utill.service';
 import { ObsrService } from './obsr.service';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 
 
@@ -30,7 +31,7 @@ export class DatabaseService {
     private utilService:UtillService,
     private obsr: ObsrService,
     private injector:Injector, private datePipe: DatePipe, private afs: AngularFirestore,
-    private ngAuth: AngularFireAuth) {
+    private ngAuth: AngularFireAuth, private storage: AngularFireStorage) {
 
       this.obsr.network.subscribe(re=>{
         this.network = re;
@@ -188,11 +189,15 @@ async updateZiyaramFireBase(ziyaram: any){
 
 //Delete Ziyaram in Firebase
 async deleteZiyaramFireBase(ziyaram: any){
-  this.afs.collection('ziyarams').doc(ziyaram.docid).delete();
+  this.afs.collection('ziyarams').doc(ziyaram.docid).delete().then(()=>{
+    this.storage.storage.refFromURL(ziyaram.imageUrl).delete();
+  });
+
 }
 
 async deleteZiyaramRequestFirebase(ziyaram: any){
   this.afs.collection('ziyaramRequests').doc(ziyaram.docid).delete().then(()=>{
+    this.storage.storage.refFromURL(ziyaram.imageUrl).delete();
     return 'deleted'
   }).catch((er: any)=>{
     return 'error';

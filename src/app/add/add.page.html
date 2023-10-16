@@ -1,8 +1,8 @@
 <html class="addBody">
-<ion-header>
-  <ion-toolbar>
+<ion-header style="background-color: aqua;">
+  <ion-toolbar class = "tool">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="dashboard"></ion-back-button>
+      <ion-back-button  defaultHref="dashboard"></ion-back-button>
       <ion-title>Add Hazeetha </ion-title>
     </ion-buttons>
   </ion-toolbar>
@@ -51,12 +51,12 @@
 </ion-card>
 </ion-content>
 
-<ion-modal #modal trigger="optionmodal" [initialBreakpoint]="0.25" [breakpoints]="[0,0.40,.50]" class="addmodal" backdropDismiss="false" >
+<ion-modal #modal trigger="optionmodal" [initialBreakpoint]="0.25" [breakpoints]="[0,0.40,0.50,0.6]" class="addmodal" backdropDismiss="false" >
   <ng-template>
     <ion-header>
-      <ion-toolbar color="dark">
+      <ion-toolbar class = "tb">
         <ion-buttons slot="end">
-          <ion-button (click)="modal.dismiss()">Close</ion-button>
+          <ion-button style="color:white" (click)="modal.dismiss()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>

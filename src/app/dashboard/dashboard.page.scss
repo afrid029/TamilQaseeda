@@ -4,96 +4,101 @@
     src: url('./../../assets/fonts/nctsn.ttf');
   }
 
-@media (prefers-color-scheme: dark){
-    .haseetha {
-        content: url(../../assets/pictures/dashboard/qaseedahomedarkicon.jpg);
-    }
-    .ziyaram {
-        content: url(../../assets/pictures/dashboard/ziyaramhomedarkicon.jpg);
-    }
-    .evidence{
-        content: url(../../assets/pictures/dashboard/evidancehomedarkicon.jpg);
-    }
-    .calendar {
-        content: url(../../assets/pictures/dashboard/calendarhomedarkicon.jpg);
-    }
-    .dua{
-      content: url(../../assets/pictures/dashboard/duahomedarkicon.jpg);
-    }
-    .moulid {
-      content: url(../../assets/pictures/dashboard/moulidhomedark.jpg);
-    }
-    .bgInner {
-       // background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
-       /* From https://css.glass */
-      background: rgba(0,0,0, 0.15);
-      border-radius: 30px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(9.1px);
-      -webkit-backdrop-filter: blur(9.1px);
+// @media (prefers-color-scheme: dark){
+//     // .haseetha {
+//     //     content: url(../../assets/pictures/dashboard/qaseedahomedarkicon.jpg);
+//     // }
+//     // .ziyaram {
+//     //     content: url(../../assets/pictures/dashboard/ziyaramhomedarkicon.jpg);
+//     // }
+//     // .evidence{
+//     //     content: url(../../assets/pictures/dashboard/evidancehomedarkicon.jpg);
+//     // }
+//     // .calendar {
+//     //     content: url(../../assets/pictures/dashboard/calendarhomedarkicon.jpg);
+//     // }
+//     // .dua{
+//     //   content: url(../../assets/pictures/dashboard/duahomedarkicon.jpg);
+//     // }
+//     // .moulid {
+//     //   content: url(../../assets/pictures/dashboard/moulidhomedark.jpg);
+//     // }
+//     .bgInner {
+//        // background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
+//        /* From https://css.glass */
+//       background: rgba(0,0,0, 0.15);
+//       border-radius: 30px;
+//       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//       backdrop-filter: blur(9.1px);
+//       -webkit-backdrop-filter: blur(9.1px);
 
-      height: 90vh;
-      margin: 4px;
-      top: 6vh;
-          /* left: 40px; */
-      position: relative;
+//       height: 90vh;
+//       margin: 4px;
+//       top: 6vh;
+//           /* left: 40px; */
+//       position: relative;
 
-    }
+//     }
 
-    .addmenu{
-      background-color: #000000;
-    }
-    .img1{
-      content: url(../../assets/pictures/dashboard/headingdarkbg.png);
-    }
+//     .addmenu{
+//       background-color: #000000;
+//     }
+
+// }
+
+// @media (prefers-color-scheme: light){
+
+
+
+// }
+
+.img1{
+  content: url(../../assets/pictures/dashboard/headingbg.webp);
 }
 
-@media (prefers-color-scheme: light){
-    .haseetha {
-        content: url(../../assets/pictures/dashboard/qaseedahomelighticon.jpg);
-    }
-    .ziyaram {
-        content: url(../../assets/pictures/dashboard/ziyaramhomelighticon.jpg);
-    }
-    .evidence{
-        content: url(../../assets/pictures/dashboard/evidancehomelighticon.jpg);
-    }
-    .calendar {
-        content: url(../../assets/pictures/dashboard/calendarhomelighticon.jpg);
-    }
-    .dua{
-        content: url(../../assets/pictures/dashboard/duahomelighticon.jpg);
-    }
-    .moulid {
-      content: url(../../assets/pictures/dashboard/moulidhomelight.jpg);
-    }
-    .bgInner{
-       //background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
-       /* From https://css.glass */
-      background: rgba(255, 223, 223, 0.06);
-      border-radius: 30px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(9.1px);
-      -webkit-backdrop-filter: blur(9.1px);
-
-      height: 90vh;
-      margin: 4px;
-      top: 6vh;
-          /* left: 40px; */
-      position: relative;
-    }
-
-      .addmenu{
-        background-color: #ffffff;
-      }
-      .img1{
-        content: url(../../assets/pictures/dashboard/headingbg.png);
-      }
+.haseetha {
+  content: url(../../assets/pictures/dashboard/qaseedahomelighticon.webp);
+}
+.ziyaram {
+  content: url(../../assets/pictures/dashboard/ziyaramhomelighticon.webp);
+}
+.evidence{
+  content: url(../../assets/pictures/dashboard/evidancehomelighticon.webp);
+}
+.calendar {
+  content: url(../../assets/pictures/dashboard/calendarhomelighticon.webp);
+}
+.dua{
+  content: url(../../assets/pictures/dashboard/duahomelighticon.webp);
+}
+.moulid {
+content: url(../../assets/pictures/dashboard/moulidhomelight.webp);
 }
 
+.bgInner{
+  //background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
+  /* From https://css.glass */
+ background: rgba(255, 223, 223, 0.06);
+ border-radius: 30px;
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+ backdrop-filter: blur(9.1px);
+ -webkit-backdrop-filter: blur(9.1px);
+
+ height: 90vh;
+ margin: 4px;
+ top: 6vh;
+     /* left: 40px; */
+ position: relative;
+}
+
+ .addmenu{
+   background-color: #ffffff;
+ }
+
+ /********************************************/
   .bg{
 
-    background-image: url(../../assets/pictures/dashboard/dashboard.jpg);
+    background-image: url(../../assets/pictures/dashboard/dashboard.webp);
 
     background-repeat: no-repeat;
     background-size: 100% 100%;

@@ -1,51 +1,53 @@
-@media (prefers-color-scheme: light){
-    .home {
-        color: #fdc103;
-    }
+// @media (prefers-color-scheme: light){
 
-    .img {
-      content: url(../../assets/pictures/welcome/daybanner.jpg);
-    }
-    .del{
-        color: #c74d07 !important;
-        border: 1px solid #c74d07 !important;
-        background-color: white !important;;
-    }
-    .edit{
-         border: 1px solid #3477ce;
-        color: #3477ce;
-        background-color: white !important ;
-          }
-    .head{
-        background-color: #eff7cbb9;
-        color: #141414;
-        box-shadow: 0 0 6px 0 #cfcfcf;
-    }
+// }
+
+// @media (prefers-color-scheme: dark){
+//     .home {
+//         color: #ffffff;
+//     }
+
+//     .img {
+//       content: url(../../assets/pictures/welcome/nightbanner.jpg);
+//     }
+//     .edit{
+//        border: 1px solid rgb(238, 232, 232);
+//         color: #ffffff;
+//         background-color: #3477ce;
+//     }
+//     .del{
+//         color: rgb(255, 255, 255);
+//         border: 1px solid rgb(238, 232, 232);
+//         background-color: #c74d07;
+//     }
+//     .head{
+//         background-color: #b5b6b07a;
+//         color: #e9e6e6;
+//         box-shadow: 0 0 6px 0 #ffffff;
+//     }
+// }
+
+.home {
+  color: #fdc103;
 }
 
-@media (prefers-color-scheme: dark){
-    .home {
-        color: #ffffff;
+.img {
+content: url(../../assets/pictures/welcome/daybanner.webp);
+}
+.del{
+  color: #c74d07 !important;
+  border: 1px solid #c74d07 !important;
+  background-color: white !important;;
+}
+.edit{
+   border: 1px solid #3477ce;
+  color: #3477ce;
+  background-color: white !important ;
     }
-
-    .img {
-      content: url(../../assets/pictures/welcome/nightbanner.jpg);
-    }
-    .edit{
-       border: 1px solid rgb(238, 232, 232);
-        color: #ffffff;
-        background-color: #3477ce;
-    }
-    .del{
-        color: rgb(255, 255, 255);
-        border: 1px solid rgb(238, 232, 232);
-        background-color: #c74d07;
-    }
-    .head{
-        background-color: #b5b6b07a;
-        color: #e9e6e6;
-        box-shadow: 0 0 6px 0 #ffffff;
-    }
+.head{
+  background-color: #eff7cbb9;
+  color: #141414;
+  box-shadow: 0 0 6px 0 #cfcfcf;
 }
 
 .tool {
@@ -118,8 +120,8 @@
     justify-content: center;
   }
   .cont{
-    margin-top: 2vh !important;
-    height: 80vh;
+    margin-top: 4vh !important;
+    height: 75vh;
     width: 100%;
     overflow-y: scroll;
     border-radius:2%;
@@ -136,4 +138,8 @@
   }
   .swiper{
     padding-top: 0px !important;
+  }
+
+  ion-input, ion-textarea {
+    color: black;
   }

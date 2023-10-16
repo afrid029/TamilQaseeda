@@ -1,110 +1,116 @@
-@media (prefers-color-scheme: light){
-
-    .items{
-        color: rgb(0, 0, 0);
-    }
-    .edit {
-      border: 1px solid #3477ce;
-      color: #3477ce;
-      background-color: white !important ;
-    }
-    .del{
-      color: #c74d07 !important;
-      border: 1px solid #c74d07 !important;
-      background-color: white !important;
-    }
-
-    .search{
-        background-color: rgb(189, 189, 189);
-        color: black;
-    }
-    .search ion-icon{
-        color: rgb(15, 15, 15);
-    }
-    .close{
-        color: black;
-    }
+// @media (prefers-color-scheme: light){
 
 
-    .home {
-        color: #f1f1f0;
-    }
+// }
 
-    .img {
-      content:  url(../../assets/pictures/ziyaram/ziyaramlightbanner.jpg);
-    }
-    .head{
-        background-color: #eff7cbb9;
-        color: #141414;
+// @media (prefers-color-scheme: dark){
 
-        box-shadow: 0 0 6px 0 #cfcfcf;
-    }
+//     .items{
+//         color: rgb(255, 255, 255);
+//     }
 
-    .lstcont {
-      /* From https://css.glass */
-     background: rgba(185, 181, 181, 0.39);
-     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-     backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(14px);
-   }
+//     .edit {
+//       border: 1px solid rgb(238, 232, 232);
+//       color: #ffffff;
+//       background-color: #3477ce;
+//     }
+//     .del{
+//       color: rgb(255, 255, 255);
+//       border: 1px solid rgb(238, 232, 232);
+//       background-color: #c74d07;
+//     }
+//     .search{
+//         background-color: rgb(243, 237, 237);
+//         color: black;
+//     }
+//     .search ion-icon{
+//         color: rgb(15, 15, 15);
+//     }
+//     .close{
+//         color: black;
+//     }
+
+//     .home {
+//         color: #ffffff;
+//     }
+
+//         // .img{
+//         //   content: url(../../assets/pictures/ziyaram/ziyaramdarkbanner.jpg);
+//         // }
+//     .head{
+//         background-color: #b5b6b07a;
+//         color: #e9e6e6;
+//         box-shadow: 0 0 6px 0 #ffffff;
+//     }
+
+//     .lstcont {
+//       /* From https://css.glass */
+//      background: rgba(0, 0, 0, 0.39);
+//      border-radius: 16px;
+//      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//      backdrop-filter: blur(5px);
+//      -webkit-backdrop-filter: blur(14px);
+//    }
+
+// }
+
+.img {
+  content:  url(../../assets/pictures/ziyaram/ziyaramlightbanner.webp);
 }
 
-@media (prefers-color-scheme: dark){
-
-    .items{
-        color: rgb(255, 255, 255);
-    }
-
-    .edit {
-      border: 1px solid rgb(238, 232, 232);
-      color: #ffffff;
-      background-color: #3477ce;
-    }
-    .del{
-      color: rgb(255, 255, 255);
-      border: 1px solid rgb(238, 232, 232);
-      background-color: #c74d07;
-    }
-    .search{
-        background-color: rgb(243, 237, 237);
-        color: black;
-    }
-    .search ion-icon{
-        color: rgb(15, 15, 15);
-    }
-    .close{
-        color: black;
-    }
-
-    .home {
-        color: #ffffff;
-    }
-
-        .img{
-          content: url(../../assets/pictures/ziyaram/ziyaramdarkbanner.jpg);
-        }
-    .head{
-        background-color: #b5b6b07a;
-        color: #e9e6e6;
-        box-shadow: 0 0 6px 0 #ffffff;
-    }
-
-    .lstcont {
-      /* From https://css.glass */
-     background: rgba(0, 0, 0, 0.39);
-     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-     backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(14px);
-   }
-
+.items{
+  color: rgb(0, 0, 0);
 }
+.edit {
+border: 1px solid #3477ce;
+color: #3477ce;
+background-color: white !important ;
+}
+.del{
+color: #c74d07 !important;
+border: 1px solid #c74d07 !important;
+background-color: white !important;
+}
+
+.search{
+  background-color: rgb(189, 189, 189);
+  color: black;
+}
+.search ion-icon{
+  color: rgb(15, 15, 15);
+}
+.close{
+  color: black;
+}
+
+
+.home {
+  color: #f1f1f0;
+}
+
+
+.head{
+  background-color: #eff7cbb9;
+  color: #141414;
+
+  box-shadow: 0 0 6px 0 #cfcfcf;
+}
+
+.lstcont {
+/* From https://css.glass */
+background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+/***************************/
 
 .cont{
-    height: 85vh;
+    height: 77vh;
     width: 100%;
-    margin-top: 2.5vh;
+   // margin-top: 2.5vh;
     overflow-y: scroll;
     border-radius: 6%;
     margin-bottom: 2vh;
@@ -121,8 +127,8 @@
 }
 .cont1{
     //margin-top: 10% !important;
-    margin-top: 4vh !important;
-    height: 80vh,;
+    margin-top: 5vh !important;
+    height: 70vh,;
     width: 98%;
     padding-left: 1%;
     padding-right:1%;
@@ -177,9 +183,9 @@
 }
 
 .lst{
-    // padding-top: 2%;
+    //padding-top: 7vh;
 
-    height: 100%;
+    //height: 100%;
     width: 100%;
     position:fixed;
     background-attachment: fixed;
@@ -192,15 +198,14 @@
     height: 100%;
     padding: 0.5 vh;
     margin-top: 0.5vh;
-
+    //padding-bottom: 5%;
     max-height: auto;
     overflow-y: scroll;
 
 }
 .bar {
     width: 100%;
-    margin-top: 10px;
-
+    //margin-top: 1vh;
     z-index: 3;
     position: fixed;
     padding-bottom: 2%;
@@ -238,13 +243,7 @@
 
 }
 
-.auth{
-    height: auto;
-    overflow-y: scroll;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+
 .head{
   position: fixed;
   display: flex;
@@ -266,14 +265,18 @@
 }
 
 ion-fab-button {
-    --background-activated: #87d361;
+    --background-activated: #c4e9b2;
 }
 .tool {
   width: 100%;
   height: auto;
  // margin-top: 2vh;
-
-
-  }
+}
+.mainImg{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  //width: 100%;
+}
 
 

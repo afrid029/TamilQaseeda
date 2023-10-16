@@ -9,7 +9,7 @@ import { UtillService } from '../services/utill.service';
 @Component({
   selector: 'app-add-evidence',
   templateUrl: './add-evidence.page.html',
-  styleUrls: ['./add-evidence.page.scss'],
+  styleUrls: ['./add-evidence.page.scss','./../add/add.scss'],
 })
 export class AddEvidencePage implements OnInit {
   @ViewChild('menuModal') modal: IonModal;

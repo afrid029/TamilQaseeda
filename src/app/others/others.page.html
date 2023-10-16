@@ -10,7 +10,7 @@
    </div>
 
   <div class="bar primary">
-    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+    <ion-input style="font-style: italic; font-size: smaller; color: black;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
     <div class="close">
       <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
     </div>
@@ -23,9 +23,9 @@
       <div *ngIf = "obj" class="cont">
         <div *ngFor = "let song of songs">
             <ion-item>
-              <ion-label (click) = "promo(song)">
+              <ion-label style="white-space: initial" (click) = "promo(song)">
                 {{ song.title }}
-              <p><small><ion-icon name="heart-circle-outline" ></ion-icon>&nbsp; {{song.vali}}</small></p></ion-label>
+              <p><small><ion-icon style=" color: rgb(73, 73, 73);" name="heart-circle-outline" ></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);">{{song.vali}}</span></small></p></ion-label>
               <div (click) = "EditSong(song)" class="edit">
                 <ion-icon class="icon" name="pencil"></ion-icon>
               </div>
@@ -41,9 +41,9 @@
       <div class="cont" *ngIf = "!obj">
         <div *ngFor = "let song of songs">
           <ion-item>
-            <ion-label (click) = "promo(song)">
+            <ion-label style="white-space: initial" (click) = "promo(song)">
               {{ song.title }}
-            <p><small><ion-icon name="heart-circle-outline" ></ion-icon>&nbsp; {{song.vali}}</small></p></ion-label>
+            <p ><small><ion-icon style=" color: rgb(138, 137, 137);"  name="heart-circle-outline" ></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);">{{song.vali}}</span></small></p></ion-label>
           </ion-item>
       </div>
 
@@ -52,14 +52,14 @@
       <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "songs.length === 0" >
 
         <ion-chip style="width:76%;">
-          <ion-label style="margin: 0 auto;  text-align: center"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+          <ion-label style="margin: 0 auto;  text-align: center; color: black;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
         </ion-chip>
 
     </div>
     </div>
     <div class="cont" *ngIf = "!anyContent">
       <ion-chip style="width:95%; top:48%">
-        <ion-label style="margin: 0 auto;" >பாடல்கள் விரைவில் இணைக்கப்படும்</ion-label>
+        <ion-label style="margin: 0 auto; color: black" >பாடல்கள் விரைவில் இணைக்கப்படும்</ion-label>
       </ion-chip>
     </div>
   </div>
@@ -70,19 +70,19 @@
     <ng-template>
 
         <ion-toolbar color="success">
-          <ion-title style="font-size: 14px">{{ currSong.title }}</ion-title>
+          <ion-title style="font-size: 14px; color: black ">{{ currSong.title }}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
-          <ion-label style="font-size: 10px;"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author ? currSong.author : 'Unknown' }}</ion-label>
+          <ion-label style="font-size: 10px;  color: black"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author ? currSong.author : 'Unknown' }}</ion-label>
         </ion-chip>
         <ion-chip class="auth">
-          <ion-label style="font-size: 10px;">இயற்றப்பட்டவர்: <br><br> {{currSong.vali}}</ion-label>
+          <ion-label style="font-size: 10px;  color: black">இயற்றப்பட்டவர்: <br><br> {{currSong.vali}}</ion-label>
         </ion-chip>
-        <p style="white-space: pre-line; text-align: center; font-size: 13px;"> {{ currSong.content }}
+        <p style="white-space: pre-line; text-align: center; font-size: 13px;  color: black"> {{ currSong.content }}
         </p>
       </ion-content>
     </ng-template>
@@ -102,12 +102,12 @@
         </ion-toolbar>
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
-          <ion-input style="font-size: 10px;" (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
+          <ion-input style="font-size: 10px;  color: black" (ionChange) = "onFieldChange()" [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
         </ion-chip>
         <ion-chip class="auth" >
-          <ion-input style="font-size: 10px;" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.vali"><b>இயற்றப்பட்டவர்: </b><br><br> </ion-input>
+          <ion-input style="font-size: 10px;  color: black" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.vali"><b>இயற்றப்பட்டவர்: </b><br><br> </ion-input>
         </ion-chip>
-        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; font-size: 15px;" [autoGrow] = "true"></ion-textarea>
+        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; font-size: 15px;  color: black" [autoGrow] = "true"></ion-textarea>
       </ion-content>
 
     </ng-template>

@@ -8,7 +8,7 @@ import { UtillService } from '../services/utill.service';
 @Component({
   selector: 'app-add-calendar',
   templateUrl: './add-calendar.page.html',
-  styleUrls: ['./add-calendar.page.scss'],
+  styleUrls: ['./add-calendar.page.scss','./../add/add.scss'],
 })
 export class AddCalendarPage implements OnInit {
   calendar: any = {date:'', content: '', isl: ''};

@@ -1,105 +1,111 @@
-@media (prefers-color-scheme: light){
-
-    .items{
-        color: rgb(0, 0, 0);
-    }
-    .edit {
-      border: 1px solid #3477ce;
-      color: #3477ce;
-      background-color: white !important ;
-    }
-    .del{
-      color: #c74d07 !important;
-      border: 1px solid #c74d07 !important;
-      background-color: white !important;;
-    }
-
-    .search{
-        background-color: rgb(189, 189, 189);
-        color: black;
-    }
-    .search ion-icon{
-        color: rgb(15, 15, 15);
-    }
-    .close{
-        color: black;
-    }
+// @media (prefers-color-scheme: light){
 
 
-    .home {
-        color: #fdc103;
-    }
+// }
 
+// @media (prefers-color-scheme: dark){
+//     .items{
+//         color: rgb(255, 255, 255);
+//     }
 
-    .img {
-      content : url(../../assets/pictures/evidence/evidancelightbanner.jpg);
-    }
-    .head{
-        background-color: #eff7cbb9;
-        color: #141414;
+//     .edit {
+//       border: 1px solid rgb(238, 232, 232);
+//       color: #ffffff;
+//       background-color: #3477ce;
+//     }
+//     .del{
+//       color: rgb(255, 255, 255);
+//       border: 1px solid rgb(238, 232, 232);
+//       background-color: #c74d07;
+//     }
+//     .search{
+//         background-color: rgb(243, 237, 237);
+//         color: black;
+//     }
+//     .search ion-icon{
+//         color: rgb(15, 15, 15);
+//     }
+//     .close{
+//         color: black;
+//     }
 
-        box-shadow: 0 0 6px 0 #cfcfcf;
-    }
+//     .home {
+//         color: #ffffff;
+//     }
 
-    .lstcont {
-      /* From https://css.glass */
-    background: rgba(185, 181, 181, 0.39);
-     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-     backdrop-filter: blur(5px);
-     -webkit-backdrop-filter: blur(14px);
-   }
+//     // .img {
+//     //   content:  url(../../assets/pictures/evidence/evidencedarkbanner.jpg);
+//     // }
+
+//     .head{
+//         background-color: #b5b6b07a;
+//         color: #e9e6e6;
+//         box-shadow: 0 0 6px 0 #ffffff;
+//     }
+//     .lstcont {
+//        /* From https://css.glass */
+//        background: rgba(0, 0, 0, 0.39);
+//       border-radius: 16px;
+//       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+//       backdrop-filter: blur(5px);
+//       -webkit-backdrop-filter: blur(14px);
+//     }
+
+// }
+
+.img {
+  content : url(../../assets/pictures/evidence/evidancelightbanner.webp);
 }
 
-@media (prefers-color-scheme: dark){
-    .items{
-        color: rgb(255, 255, 255);
-    }
-
-    .edit {
-      border: 1px solid rgb(238, 232, 232);
-      color: #ffffff;
-      background-color: #3477ce;
-    }
-    .del{
-      color: rgb(255, 255, 255);
-      border: 1px solid rgb(238, 232, 232);
-      background-color: #c74d07;
-    }
-    .search{
-        background-color: rgb(243, 237, 237);
-        color: black;
-    }
-    .search ion-icon{
-        color: rgb(15, 15, 15);
-    }
-    .close{
-        color: black;
-    }
-
-    .home {
-        color: #ffffff;
-    }
-
-    .img {
-      content:  url(../../assets/pictures/evidence/evidencedarkbanner.jpg);
-    }
-
-    .head{
-        background-color: #b5b6b07a;
-        color: #e9e6e6;
-        box-shadow: 0 0 6px 0 #ffffff;
-    }
-    .lstcont {
-       /* From https://css.glass */
-       background: rgba(0, 0, 0, 0.39);
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
+.items{
+  color: rgb(0, 0, 0);
 }
+.edit {
+border: 1px solid #3477ce;
+color: #3477ce;
+background-color: white !important ;
+}
+.del{
+color: #c74d07 !important;
+border: 1px solid #c74d07 !important;
+background-color: white !important;;
+}
+
+.search{
+  background-color: rgb(189, 189, 189);
+  color: black;
+}
+.search ion-icon{
+  color: rgb(15, 15, 15);
+}
+.close{
+  color: black;
+}
+
+
+.home {
+  color: #fdc103;
+}
+
+
+
+.head{
+  background-color: #eff7cbb9;
+  color: #141414;
+
+  box-shadow: 0 0 6px 0 #cfcfcf;
+}
+
+.lstcont {
+/* From https://css.glass */
+background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+/*************************/
 
 .items {
     text-align:justify;
@@ -222,7 +228,7 @@
 
 .cont{
     margin-top: 5vh !important;
-    height: 78vh;
+    height: 71vh;
     //margin-bottom: 3vh;
     width: 98%;
     //max-height: 100%;
@@ -271,6 +277,7 @@
   width: 100%;
   height: auto;
   //margin-top: 2vh;
-
-
+  }
+  .modalBody{
+    background-color: #ecebeb;
   }

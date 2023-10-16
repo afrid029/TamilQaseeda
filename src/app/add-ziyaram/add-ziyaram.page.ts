@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { log } from 'console';
 
+
 export interface imgFile {
   name: string;
   filepath: string;
@@ -20,7 +21,7 @@ export interface imgFile {
 @Component({
   selector: 'app-add-ziyaram',
   templateUrl: './add-ziyaram.page.html',
-  styleUrls: ['./add-ziyaram.page.scss'],
+  styleUrls: ['./add-ziyaram.page.scss','./../add/add.scss'],
 })
 
 
@@ -411,6 +412,8 @@ export class AddZiyaramPage implements OnInit {
   }
   setOpen(value: boolean){
     this.chekService();
+
+
   }
 
   async chekService(){

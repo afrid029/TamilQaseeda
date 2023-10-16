@@ -31,7 +31,7 @@
                   <ion-item >
                     <ion-label (click) = "promo(s)">
                       <ion-label style="white-space: initial; font-weight: 510;">{{s.name}}</ion-label>
-                      <p><small><ion-icon name="location-outline"></ion-icon>&nbsp; {{s.location}}</small></p>
+                      <p><small><ion-icon style=" color: rgb(138, 137, 137);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
                     </ion-label>
                     <div (click)="EditZiyaram(s)" class="edit">
                       <ion-icon class="icon" name="pencil"></ion-icon>
@@ -50,8 +50,9 @@
                   <ion-item>
                     <ion-label (click) = "promo(s)">
                       <h6 style="white-space: initial; font-weight: 510;">{{s.name}}</h6>
-                      <p><small><ion-icon name="location-outline"></ion-icon>&nbsp; {{s.location}}</small></p></ion-label>
-                  </ion-item>
+                      <p><small><ion-icon style=" color: rgb(68, 68, 68);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
+                   </ion-label>
+                </ion-item>
                 </div>
               </div>
 
@@ -113,15 +114,18 @@
           </ion-toolbar>
 
         <ion-content class="modalBody">
-          <ion-card>
-            <img style="display: flex; justify-content: center;" alt="Silhouette of mountains" src="{{img}}" (error)="missImage($event)" />
+          <ion-card style="background-color: aliceblue;">
+            <div class = 'mainImg'>
+              <img  alt="Image Not Found" src="{{img}}" (error)="missImage($event)" />
+
+            </div>
 
              <div *ngIf="cardSpinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;
                 opacity: 0.7;">
                   <ion-spinner name="lines-small" [paused]="false" color="primary"></ion-spinner>
               </div>
             <ion-card-header>
-              <ion-card-title style="width: 100%; font-weight: 700; font-size: medium;">{{currZiyaram.name}}</ion-card-title>
+              <ion-card-title style="width: 100%; font-weight: 700; font-size: medium; color: black;">{{currZiyaram.name}}</ion-card-title>
               <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>
               <ion-card-subtitle *ngIf = "currZiyaram.day !== ''"><small> <ion-icon name="calendar-outline"></ion-icon>
                 &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
@@ -147,7 +151,7 @@
 <ion-fab [style.visibility]="btn"  vertical="bottom" horizontal="start">
   <!-- <ion-fab-button size="small" color="success"> -->
     <ion-button [routerLink] = "['/add-ziyaram']"  shape="round" color="warning" style="text-transform: capitalize;">
-      <ion-icon slot="start"  name="add-sharp" size="medium"></ion-icon> New
+      <ion-icon slot="start"  name="add-sharp" size="medium"></ion-icon> Add
     </ion-button>
   <!-- </ion-fab-button> -->
   <!-- <ion-fab-list side="end">

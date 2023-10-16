@@ -5,6 +5,7 @@ import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
 import { UtillService } from './services/utill.service';
 import { distinctUntilChanged, share, Subscription, take, takeUntil } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -28,8 +29,36 @@ export class AppComponent {
   length: number;
   isModalOpen: boolean = false;
   isAboutOpen: boolean = false;
+  isTopicOpen: boolean = false;
 
-  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController, private db: DatabaseService) {
+  constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController,
+    private db: DatabaseService, private http: HttpClient) {
+      // const googleMapsLink = 'https://maps.app.goo.gl/xuqDg7WM6wu141EWA';
+
+      // const api ='https://maps.googleapis.com/maps/api/geocode/json';
+
+      // const queryParams = {
+      //   address: 'https://maps.app.goo.gl/xuqDg7WM6wu141EWA',
+      //   key: 'AIzaSyBWTpiUf6Zbjzcu2hEOSgrPMYVCQ7VPWIw', // Replace with your API key
+      // };
+
+      // this.http.get<any>(api, { params: queryParams }).subscribe(re=>{
+      //   console.log('geo',re);
+      // });
+
+    // this.geo.geocode(googleMapsLink).then(
+    //   (result) => {
+    //     const latitude = result.latitude;
+    //     const longitude = result.longitude;
+
+    //     console.log(latitude, longitude);
+    //   },
+    //   (error) => {
+    //     console.error(error);
+    //   }
+    // );
+
+
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       //AndroidFullScreen.immersiveMode();
     }).catch(console.warn)
@@ -126,12 +155,6 @@ export class AppComponent {
 
    }
 
-     ionViewWillEnter(){
-
-
-
-   }
-
    openLogin(){
       if(!this.obj){
         this.isLoginOpen = !this.isLoginOpen;
@@ -185,6 +208,7 @@ export class AppComponent {
     if(this.net){
       this.closeMenu();
       this.spinner = true;
+      this.isTopicOpen = false;
 
       setTimeout(()=>{
         this.data.logout().catch((er: any)=>{
@@ -195,6 +219,7 @@ export class AppComponent {
           this.obsr.user.next(false);
           // this.isLoginPageOpen=false;
           this.spinner = false;
+
             console.log('logggedout');
             this.utilService.successToast('Logged out Successfully','radio-button-on-outline','warning');
         });
@@ -205,16 +230,19 @@ export class AppComponent {
   }
 
   closeMenu(){
-    this.isLoginOpen = false;
-    this.menuctrl.close();
+    this.openTitle(false);
   }
 
 
   openAboutUs(state: boolean){
     this.isAboutOpen = state;
-
-
   }
+
+  openTitle(state: boolean){
+    this.isTopicOpen = state;
+  }
+
+
 
 
 }

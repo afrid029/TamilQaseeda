@@ -1,0 +1,34 @@
+.tool
+{
+  --background: crimson;
+}
+
+ion-title{
+  color: aliceblue;
+}
+
+ion-back-button{
+  color: aliceblue;
+}
+
+ion-card {
+  background-color: white;
+}
+
+ion-input, ion-textarea {
+  color: black;
+}
+
+ion-modal ion-item{
+  background-color: white;
+  color: black;
+}
+ion-list{
+  height: auto;
+  max-height: 50vh;
+  background-color: white;
+}
+
+.tb {
+  --background: black !important;
+}

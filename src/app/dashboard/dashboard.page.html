@@ -1,18 +1,14 @@
 
 <ion-content >
 
-
-
   <div class="bg">
     <div class="bgInner">
+
 
    <!-- <div class="ban" > -->
     <div style = "display: flex; justify-content: center; width: 100%; margin-top: 3vh; position: fixed;">
       <div class="img1"></div>
     </div>
-
-
-
 
   <swiper
   [loop]="true"
@@ -73,76 +69,5 @@
     </div>
   </div>
 
-
-     <ion-fab *ngIf = "obj" vertical="bottom" horizontal="end" slot="fixed" (click)="setAddModel(true)" >
-      <ion-fab-button color="secondary">
-        <ion-icon name="add" mode="md"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
-
-
-    <!-----------------------------------Add Model--------------------------------->
-    <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isAddModalOpen">
-      <ng-template>
-
-        <ion-content class="ion-padding addmenu">
-          <div style="display: flex;  justify-content: center ">
-            <ion-icon (click)="setAddModel(false)" name="chevron-down" size="large"></ion-icon>
-          </div>
-
-          <ion-list>
-            <ion-item class = 'sample' (click)="navigateTo('add')" >
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/haseetha.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label >
-                Add Hazeetha
-              </ion-label>
-            </ion-item>
-            <ion-item class = 'sample' (click)="navigateTo('add-ziyaram')">
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/ziyaram.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                Add Ziyaram
-              </ion-label>
-            </ion-item>
-            <ion-item class = 'sample' (click)="navigateTo('add-evidence')">
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/evidence.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                Add Religious Topic
-              </ion-label>
-            </ion-item>
-            <ion-item class = 'sample' (click)="navigateTo('add-calendar')">
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/calendar.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label>
-               Add Calendar Event
-              </ion-label>
-            </ion-item>
-            <ion-item class = 'sample' (click)="navigateTo('add-dua')">
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/dua.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label>
-               Add Duas & Salawats
-              </ion-label>
-            </ion-item>
-            <ion-item class = 'sample' (click)="navigateTo('wallalert')">
-              <ion-avatar slot="start">
-                <ion-img src="../../assets/icon/alert.jpg"></ion-img>
-              </ion-avatar>
-              <ion-label>
-               Manage Daily Alerts
-              </ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
 </ion-content>
 

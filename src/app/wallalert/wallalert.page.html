@@ -63,23 +63,23 @@
           </div>
             <div class="cont">
               <form #addForm = "ngForm" validate>
-                <ion-list lines="inset">
+                <ion-list style = "background-color: white" lines="inset">
                   <ion-item>
                     <ion-label position="floating">Title</ion-label>
-                    <ion-input type = "text" [(ngModel)]="alert.title" name="title" max="5" style="max-height: 300px; overflow-y: scroll;" required></ion-input>
+                    <ion-input type = "text" [(ngModel)]="alert.title" name="title" max="5" style="max-height: 300px; overflow-y: scroll; color:black" required></ion-input>
                   </ion-item>
 
                   <ion-item>
                     <ion-label position="floating">Main Content</ion-label>
-                    <ion-textarea [(ngModel)]="alert.mcontent" name="mcontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll;" required></ion-textarea>
+                    <ion-textarea [(ngModel)]="alert.mcontent" name="mcontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll; color:black" required></ion-textarea>
                   </ion-item>
                   <ion-item>
                     <ion-label position="floating">Sub Content</ion-label>
-                    <ion-textarea [(ngModel)]="alert.scontent" name="scontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll;"></ion-textarea>
+                    <ion-textarea [(ngModel)]="alert.scontent" name="scontent" [autoGrow]="true" style="max-height: 300px; overflow-y: scroll; color: black"></ion-textarea>
                   </ion-item>
-                  <ion-item>
+                  <ion-item >
                     <ion-label position="floating">For Date</ion-label>
-                    <ion-input type="date" name="date" [(ngModel)]="alert.date" required></ion-input>
+                    <ion-input style = "color: black" type="date" name="date" [(ngModel)]="alert.date" required></ion-input>
                   </ion-item>
 
                 </ion-list>
@@ -105,9 +105,9 @@
         </ion-toolbar>
 
       <ion-content class="modalBody">
-        <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px">
+        <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white">
           <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
-            <ion-list>
+            <ion-list style = "background-color: white">
               <h5>Title</h5>
               <ion-item>
                 <p style="text-align: justify;">{{viewAlert.title}}</p>
@@ -143,7 +143,7 @@
 
       <ion-content class="ion-padding modalBody">
         <form  #addForm = "ngForm" validate>
-          <ion-list lines="inset">
+          <ion-list style = "background-color: white" lines="inset">
 
             <ion-item>
               <ion-label position="floating">Title</ion-label>

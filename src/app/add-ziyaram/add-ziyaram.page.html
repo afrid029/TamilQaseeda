@@ -1,6 +1,6 @@
 <html class="addBody">
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class = "tool">
     <ion-buttons slot="start">
 
       <ion-back-button (click)="clearMap()" defaultHref="dashboard"></ion-back-button>
@@ -15,7 +15,7 @@
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
 
-<ion-card style="overflow-y: scroll; max-height: 80%;">
+<ion-card style="overflow-y: scroll; max-height: 90%;">
   <ion-card-header>
    <form  #addForm = "ngForm" validate>
     <ion-item lines="full">
@@ -77,9 +77,9 @@
 <ion-modal #modal trigger="provincemodal" [initialBreakpoint]="0.40" [breakpoints]="[0,0.40,0.65]" class="addmodal" backdropDismiss="false" >
   <ng-template>
     <ion-header>
-      <ion-toolbar color="dark">
+      <ion-toolbar class = "tb">
         <ion-buttons slot="end">
-          <ion-button (click)="modal.dismiss()">Close</ion-button>
+          <ion-button  style="color: white;" (click)="modal.dismiss()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -104,9 +104,9 @@
 <ion-modal #modal2 trigger="districtmodal" [initialBreakpoint]="0.22" [breakpoints]="[0,0.30,0.50]" class="addmodal" backdropDismiss="false" >
   <ng-template>
     <ion-header>
-      <ion-toolbar color="dark">
+      <ion-toolbar class = "tb">
         <ion-buttons slot="end">
-          <ion-button (click)="modal2.dismiss()">Close</ion-button>
+          <ion-button style="color: white;" (click)="modal2.dismiss()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
