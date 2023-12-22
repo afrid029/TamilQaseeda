@@ -214,18 +214,49 @@ setViewModel(val: any){
   this.img = "./../../assets/pictures/ani.gif";
 }
 launchGoogleMap(){
-  LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then((isAvailable)=>{
-    let app;
-    if(isAvailable){
-      app = LaunchNavigator.APP.GOOGLE_MAPS;
 
-      LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
-        app: app
+  if(this.platform.is('android')){
+    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then((isAvailable)=>{
+      let app;
+      if(isAvailable){
+        app = LaunchNavigator.APP.GOOGLE_MAPS;
+
+        LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
+          app: app
+      })
+      }else{
+        this.utilService.erroToast('App is not available', 'close-circle-outline');
+
+      }
     })
-    }else{
-      this.utilService.erroToast('App is not available', 'close-circle-outline');
+  }else {
+    let chk = true;
+    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then((isAvailable)=>{
+      let app;
+      if(isAvailable){
+        app = LaunchNavigator.APP.GOOGLE_MAPS;
+        chk = false;
+        LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
+          app: app
+      })
+      }
+    })
+
+    if(chk){
+      LaunchNavigator.isAppAvailable(LaunchNavigator.APP.APPLE_MAPS).then((isAvailable)=>{
+        let app;
+        if(isAvailable){
+          app = LaunchNavigator.APP.APPLE_MAPS;
+          LaunchNavigator.navigate([this.currZiyaram.lat, this.currZiyaram.long ], {
+            app: app
+        })
+        }else{
+          this.utilService.erroToast('App is not available', 'close-circle-outline');
+        }
+      })
     }
-  })
+  }
+
 }
 
 
