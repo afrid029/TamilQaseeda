@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { UtillService } from '../services/utill.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Platform } from '@ionic/angular';
+import { log } from 'console';
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.page.html',
@@ -40,8 +41,21 @@ export class GoogleMapPage implements OnInit {
       //  this.clearMap()
 
     })
+
+    this.myLoc().then((re)=>{
+      console.log(re);
+
+      this.viewMap();
+    }).catch((er)=>{
+      console.log(er);
+      clearInterval(this.interval);
+      this.location.back();
+      this.utill.erroToast('Allow Location Service In Settings','./../../assets/icon/map-location-solid.svg')
+
+    })
    }
    clearMap(){
+
     this.obsr.LocSelected.next(false);
     this.obsr.MapClicked.next(false);
     this.obsr.latitude.next(-1);
@@ -75,24 +89,31 @@ export class GoogleMapPage implements OnInit {
       }else{
         this.test = false;
       }
+
+      if(this.newMap){
+        alert('map is trhere');
+      }else{
+        alert('map is not therr ')
+      }
       console.log(this.val);
 
     },1000)
 
-    this.myLoc().then((re)=>{
-      console.log(re);
 
-      this.viewMap();
-    }).catch((er)=>{
-      console.log(er);
-      clearInterval(this.interval);
-      this.location.back();
-      this.utill.erroToast('Allow Location Service In Settings','./../../assets/icon/map-location-solid.svg')
+    console.log('after view init');
 
-    });
-    // setTimeout(()=>{
 
-    // },2000)
+    // this.myLoc().then((re)=>{
+    //   console.log(re);
+
+    //   this.viewMap();
+    // }).catch((er)=>{
+    //   console.log(er);
+    //   clearInterval(this.interval);
+    //   this.location.back();
+    //   this.utill.erroToast('Allow Location Service In Settings','./../../assets/icon/map-location-solid.svg')
+
+    // })
   }
     async myLoc(){
        this.loc = await Geolocation.getCurrentPosition({enableHighAccuracy: true});
@@ -116,7 +137,7 @@ export class GoogleMapPage implements OnInit {
           },
         });
 
-    
+
 
         if(this.obsr.latitude.getValue() !== -1 && this.obsr.longtitude.getValue() !== -1){
           const markerId1 = await this.newMap.addMarker(

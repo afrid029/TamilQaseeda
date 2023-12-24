@@ -80,8 +80,8 @@ display: none;
 .qaseedahome {
   content: url(../../assets/pictures/bg.webp);
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 
@@ -163,6 +163,27 @@ display: none;
 
 
   }
+
+  .muham {
+    background-image: url(../../assets/pictures/moulid/subhanamoulid.webp);
+  }
+  .muhi {
+    background-image: url(../../assets/pictures/moulid/muhiyidden.webp);
+  }
+  .shahul {
+    background-image: url(../../assets/pictures/moulid/shahemeeran.webp);
+  }
+  .hasan{
+    background-image: url(../../assets/pictures/moulid/hassanhussain.webp);
+  }
+  .ajmeer {
+    background-image: url(../../assets/pictures/moulid/ajmeer.webp);
+  }
+  .badr{
+  background-image: url(../../assets/pictures/moulid/badr.webp);
+  }
+
+
 
 //   .muham {
 //     background-image: url(../../assets/pictures/moulid/subhanamoulid.jpg);

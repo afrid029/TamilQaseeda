@@ -6,6 +6,7 @@ import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen'
 import { UtillService } from './services/utill.service';
 import { distinctUntilChanged, share, Subscription, take, takeUntil } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { StatusBar } from '@capacitor/status-bar';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AppComponent {
   isTopicOpen: boolean = false;
 
   constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController,
-    private db: DatabaseService, private http: HttpClient) {
+    private db: DatabaseService, private http: HttpClient, private platform: Platform) {
       // const googleMapsLink = 'https://maps.app.goo.gl/xuqDg7WM6wu141EWA';
 
       // const api ='https://maps.googleapis.com/maps/api/geocode/json';
@@ -61,7 +62,11 @@ export class AppComponent {
 
     AndroidFullScreen.isImmersiveModeSupported().then(()=>{
       //AndroidFullScreen.immersiveMode();
-    }).catch(console.warn)
+    }).catch(console.warn);
+
+    if(this.platform.is('ios')){
+      StatusBar.hide();
+    }
 
 
       this.obsr.user.subscribe(re=>{

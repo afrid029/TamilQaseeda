@@ -147,7 +147,7 @@ body{
 // }
 
 .addBody{
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(1, 71, 33);
  }
  .modalBody{
   background-color: rgb(255, 255, 255);
@@ -286,5 +286,36 @@ ion-input{
   color : black;
 }
 
+/****************************/
 
+// .ios-view{
+//   height: 98vh;
+//   margin-top: 2vh;
+// }
 
+// .ios .ios-view{
+//   height: 95vh;
+//   margin-top: 5vh;
+// }
+
+.ios .tool{
+  margin-top: 5vh;
+}
+
+.ios .cont{
+  height: 72vh !important;
+}
+
+// .ios .cont1{
+//   height: 65vh !important;
+//   margin-top: 2px !important;
+// }
+
+.ios #cont{
+  height: 67vh !important;
+  margin-top: 2vh !important;
+}
+
+.ios .listBtn{
+  margin-bottom: 14vh !important;
+}
