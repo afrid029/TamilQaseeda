@@ -31,6 +31,7 @@ export class AppComponent {
   isModalOpen: boolean = false;
   isAboutOpen: boolean = false;
   isTopicOpen: boolean = false;
+  isAndroid: boolean = true;
 
   constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController,
     private db: DatabaseService, private http: HttpClient, private platform: Platform) {
@@ -66,6 +67,9 @@ export class AppComponent {
 
     if(this.platform.is('ios')){
       StatusBar.hide();
+      this.isAndroid = false
+    }else if(this.platform.is('android')){
+      this.isAndroid = true;
     }
 
 
