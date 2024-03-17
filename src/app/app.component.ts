@@ -70,6 +70,7 @@ export class AppComponent {
       this.isAndroid = false
     }else if(this.platform.is('android')){
       this.isAndroid = true;
+      //StatusBar.hide();
     }
 
 

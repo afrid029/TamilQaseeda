@@ -4,10 +4,10 @@ android {
   compileSdk 33
   defaultConfig {
         applicationId "com.mafd.ahlussunnahtamil"
-        minSdkVersion rootProject.ext.minSdkVersion
-      targetSdk 33
-      versionCode 6
-        versionName "1.5"
+    minSdk rootProject.ext.minSdkVersion
+    targetSdk 33
+      versionCode 8
+        versionName '1.5.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
