@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Song } from '../add/Song';
-import { map, Observable } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UtillService } from './utill.service';
@@ -9,6 +9,7 @@ import { ObsrService } from './obsr.service';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+
 
 
 
@@ -268,6 +269,8 @@ getCalendar(){
 
 // Update calendar in Firebase
 async updateCalendarFireBase(calendar: any){
+
+  //console.log(calendar)
   this.afs.collection('calendar').doc(calendar.docid).set(calendar);
 }
 
@@ -276,6 +279,38 @@ async updateCalendarFireBase(calendar: any){
 async deletecalendarFireBase(evidence: any){
   this.afs.collection('calendar').doc(evidence.docid).delete();
 }
+
+//Refresh Calender
+
+async refreshCalendar(event: any[]){
+  //console.log(event);
+  //return this.afs.collection('calendar').doc(event.docid).set(event);
+  return event.forEach(data =>{
+      this.afs.collection('calendar').doc(data.docid).update({
+        date: data.date
+      }).then(()=>{
+        console.log('Updated');
+        this.utilService.successToast("All Calendar events updated successfully","document-lock-outline","favorite")
+
+      }).catch(er =>{
+
+       console.log(er);
+
+        this.afs.collection('Error').add({
+          docid: data.docid,
+          content: data.content,
+          isl: data.isl,
+          date: data.date,
+          error: er.message
+        });
+
+        this.utilService.erroToast("Something went wrong. Kindly inform to DBA","construct-outline")
+
+      })
+    })
+}
+
+
 
 /* *******************************Duas Detail******************************************/
 

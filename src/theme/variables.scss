@@ -3,6 +3,9 @@
 
 /** Ionic CSS Variables **/
 :root {
+  --ion-color-favorite: #2b8d40;
+
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -234,3 +237,8 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+.ion-color-favorite {
+  --ion-color-base: var(--ion-color-favorite);
+}
+

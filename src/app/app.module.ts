@@ -21,15 +21,7 @@ import { SharedModuleModule } from './modules/shared-module/shared-module.module
 import { NgCalendarModule } from 'ionic2-calendar';
 import { DatePipe } from '@angular/common';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
-
 import { HttpClientModule } from  '@angular/common/http';
-
-
-
-
-
-
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,8 +34,9 @@ import { HttpClientModule } from  '@angular/common/http';
   SharedModuleModule,
   HttpClientModule,
   AngularFirestoreModule.enablePersistence(),
-  NgCalendarModule],
+  NgCalendarModule
+],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

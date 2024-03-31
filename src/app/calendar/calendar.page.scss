@@ -1,33 +1,3 @@
-// @media (prefers-color-scheme: dark){
-//     .home {
-//         color: #ffffff;
-//     }
-
-//     // .img {
-//     //   content: url(../../assets/pictures/calendar/calendardarkbanner.jpg);
-//     // }
-//     .edit{
-//       border: 1px solid rgb(238, 232, 232);
-//       color: #ffffff;
-//       background-color: #3477ce;
-//     }
-//     .del{
-//       color: rgb(255, 255, 255);
-//       border: 1px solid rgb(238, 232, 232);
-//       background-color: #c74d07;
-//     }
-//     .lstcont {
-//       /* From https://css.glass */
-//      background: rgba(0, 0, 0, 0.39);
-//      border-radius: 16px;
-//      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-//      backdrop-filter: blur(5px);
-//      -webkit-backdrop-filter: blur(14px);
-//    }
-// }
-// @media (prefers-color-scheme: light){
-
-// }
 
 .img {
   content: url(../../assets/pictures/calendar/calendarlightbanner.webp);
@@ -35,6 +5,10 @@
 
 .home {
   color: #fdc103;
+}
+
+.addBody{
+  height: 86vh !important;
 }
 
 
@@ -86,13 +60,11 @@ backdrop-filter: blur(5px);
     height: 100%;
 
     max-height: auto;
-    overflow-y: scroll;
 }
 .cont{
     margin-top: 1vh !important;
     height: 92%;
     width: 100%;
-    overflow-y: scroll;
     border-radius:2%;
 
 }
@@ -107,9 +79,10 @@ backdrop-filter: blur(5px);
 }
 .listbtn{
   --background: rgb(8, 117, 66);
-  width: 45vw;
+
   font-size: 3.5vw;
-  margin-bottom: 25%;
+  display: grid;
+  margin-bottom: 2vh;
 }
 .modalBody{
   padding-top: 25px !important;
@@ -163,6 +136,7 @@ backdrop-filter: blur(5px);
   flex-wrap: wrap;
   height: 34px;
   font-size: small;
+  color: #333333;
 
 }
 .tool {
@@ -193,6 +167,26 @@ backdrop-filter: blur(5px);
     font-weight: 600;
   }
 
+  .Xbutton{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    //position: fixed;
+  }
+
+  .left{
+    --float: left;
+    width:48vw;
+    margin: 1vw;
+
+  }
+  .right{
+    --float: right;
+    width:48vw;
+    margin: 1vw;
+
+  }
+
  .modalBody{
   background-color: #ecebeb;
 
@@ -217,8 +211,8 @@ backdrop-filter: blur(5px);
       padding-top: 35px !important;
     }
     .swiper-wrapper{
-        height: 25.0vh !important;
-        top: 4.0vh !important;
+        height: 45vh !important;
+
     }
     .monthview-container{
       height: 100% !important;
@@ -309,7 +303,9 @@ backdrop-filter: blur(5px);
     }
     .event-detail-container{
       background-color: transparent !important;
-      padding-top: 2vh;
+      //padding-top: 2vh;
+      overflow-y: scroll;
+      height: 20vh;
 
 
     }
@@ -318,6 +314,7 @@ backdrop-filter: blur(5px);
       height: 8vh;
       display: contents;
       white-space: inherit !important;
+      color: black !important;
 
     }
   }

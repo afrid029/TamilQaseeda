@@ -3,13 +3,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
-import { AlertController, IonRouterOutlet, Platform, ToastController } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, IonicModule, Platform, ToastController } from '@ionic/angular';
 import { CalendarMode, QueryMode, Step } from 'ionic2-calendar';
 import { title } from 'process';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
+import { Console, log } from 'console';
 
 @Component({
   selector: 'app-calendar',
@@ -22,6 +23,7 @@ export class CalendarPage {
   net: Boolean;
   subs: Subscription;
   spinner:boolean = false;
+  spinner1:boolean = false;
   @ViewChild('cal')
   myCalendar: ElementRef | undefined;
   eventSource: any[]=[];
@@ -100,6 +102,8 @@ export class CalendarPage {
       spaceBetween: 10,
     },
   };
+
+
 
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
@@ -353,11 +357,14 @@ update(){
   if(this.net){
     this.spinner = true;
     this.isEditModalOpen = false;
+    //console.log(this.editEvent)
     this.db.updateCalendarFireBase(this.editEvent).then(() => {
       this.spinner = false;
-      this.utilService.successToast('Calendar event successfully','thumbs-up-outline','success');
+      this.utilService.successToast('Calendar event successfully updated','thumbs-up-outline','success');
     }).catch(er=>{
       this.spinner = false;
+      console.log(er);
+
       this.utilService.erroToast('Something Went Wrong', 'bug-outline');
     });
 
@@ -429,6 +436,60 @@ onCurrentDateChanged(ev: Date) {
   ev.setHours(0, 0, 0, 0);
   this.isToday = today.getTime() === ev.getTime();
   console.log('Currently viewed date: ' + ev);
+}
+
+async refresh(val: boolean) {
+  const ctrl = await this.alertctrl.create({
+    header: 'Are you confirm ?',
+    subHeader: val?'It will update all the dates to next year':'It will update all the dates to previous year',
+    cssClass: 'refAlert',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Confirm',
+        role: 'confirm',
+        handler: () =>{
+          console.log(this.eventSource);
+          this.spinner1 = true,
+
+          // this.eventSource.forEach((e)=>{
+          //   console.log(e.startTime);
+          // }
+
+          this.spinner = true;
+          let data : any = [];
+          //console.log(this.jan)
+          this.jan.concat(this.feb,this.mar,this.apr,this.may,this.jun,this.jul,this.aug,this.sep,this.oct,this.nov,this.dec).forEach((d)=>{
+            const p =  d.year + "-" + (d.month) + "-" + d.day;
+            const q = new Date(p)
+            const k = val? new Date(q.setDate(q.getDate() + 355)) : new Date(q.setDate(q.getDate() - 355)) ;
+            console.log(k);
+            data.push({
+              docid: d.docid,
+              date: k.getFullYear()+"-"+(k.getMonth()+1)+"-"+k.getDate()
+            })
+          });
+
+
+          this.db.refreshCalendar(data).then(()=>{
+            console.log('Okk')
+          }).catch(er=>{
+            console.log(er);
+
+          })
+
+          this.spinner1 = false;
+
+
+        }
+      }
+    ]
+  })
+
+  ctrl.present();
 }
 
 

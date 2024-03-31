@@ -157,12 +157,51 @@ body{
   .alert-title{
     color: black;
   }
+  .alert-sub-title{
+    color: rgb(60, 66, 66);
+  }
 
    button.alert-button:nth-child(1){
      color: black;
    }
    button.alert-button:nth-child(2){
      color: black;
+   }
+ }
+
+ ion-alert.refAlert {
+  --background: rgb(255, 255, 255) !important;
+  .alert-wrapper{
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+  }
+
+
+  .alert-title{
+    color: black;
+  }
+  .alert-sub-title{
+    color: rgb(60, 66, 66);
+  }
+
+  .alert-button-group{
+    display: flex;
+    justify-content: center;
+  }
+
+   button.alert-button:nth-child(1){
+     color: rgb(90, 7, 7);
+     font-weight: 650;
+     //background: rgb(95, 53, 53);
+     border-radius: 1rem;
+     border: 1px solid  rgb(90, 7, 7);
+
+   }
+   button.alert-button:nth-child(2){
+    color: rgb(218, 217, 217);
+    font-weight: 650;
+     background: rgb(85, 139, 66);
+     border-radius: 1rem;
    }
  }
 
@@ -318,4 +357,9 @@ ion-input{
 
 .ios .listBtn{
   margin-bottom: 14vh !important;
+}
+
+.alertClass
+{
+  text-align: center;
 }

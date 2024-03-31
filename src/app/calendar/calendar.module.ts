@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,7 +9,10 @@ import { CalendarPageRoutingModule } from './calendar-routing.module';
 import { CalendarPage } from './calendar.page';
 import { NgCalendarModule } from 'ionic2-calendar';
 
+
 @NgModule({
+
+  schemas : [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     FormsModule,
