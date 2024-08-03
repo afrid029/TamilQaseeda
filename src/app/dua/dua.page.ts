@@ -261,7 +261,7 @@ export class DuaPage implements OnInit {
     })
   }
   ionViewWillEnter(){
-    console.log('will Enter');
+    //console.log('will Enter');
    this.getDua();
   }
 
@@ -289,11 +289,11 @@ export class DuaPage implements OnInit {
 
 
     return this.db.getDuas().subscribe((data)=>{
-      console.log('Dua entering ', data);
+      //console.log('Dua entering ', data);
       this.dua = [];
       this.salawat = [];
 
-      console.log('Dua entering ', this.dua.length, this.salawat.length);
+      //console.log('Dua entering ', this.dua.length, this.salawat.length);
       if(data.length > 0){
 
         for(var i=0; i< data.length; i++) {
@@ -310,7 +310,7 @@ export class DuaPage implements OnInit {
         this.PermDua = this.dua;
         this.PermSalawat = this.salawat;
 
-        console.log('Duas ', this.dua, this.salawat);
+        //console.log('Duas ', this.dua, this.salawat);
 
       }
       this.spinner = false;
@@ -330,7 +330,7 @@ export class DuaPage implements OnInit {
 
   private slide: any;
 setSwiperInstance(event: any){
-  console.log(event.activeIndex);
+  //console.log(event.activeIndex);
   this.slide = event
 }
 
@@ -363,7 +363,7 @@ handleSearch(){
 }
 
 clearSearch(){
-  // console.log('Clicked ', this.Permevidence);
+  // //console.log('Clicked ', this.Permevidence);
   this.searchKey = '';
 }
 
@@ -387,7 +387,7 @@ promo(data: any){
 Title: String;
 
 editDetail(data: any){
-  console.log(data);
+  //console.log(data);
  // this.editAwraath = data;
  this.editAwraath.docid = data.docid;
   this.editAwraath.title = data.title;
@@ -397,7 +397,7 @@ editDetail(data: any){
   this.editAwraath.type = data.type;
 
 
-  console.log(this.editAwraath);
+  //console.log(this.editAwraath);
 
 
   this.setEditModel(true);
@@ -412,7 +412,7 @@ async deleteAwrath(data: any){
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -420,7 +420,7 @@ async deleteAwrath(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Confirmed');
+            //console.log('delete Confirmed');
              this.db.deleteDuaFireBase(data).then(()=>{
                 this.spinner = false;
                   this.utilService.successToast('Deleted successfully','trash-outline','warning');

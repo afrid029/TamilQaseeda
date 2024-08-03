@@ -36,7 +36,7 @@ export class DashboardPage {
     });
 
     this.obsr.user.subscribe(re=>{
-      console.log('User ',re);
+      //console.log('User ',re);
       this.obj = re;
     })
 
@@ -44,9 +44,9 @@ export class DashboardPage {
 
    }
    ionViewDidEnter(){
-    console.log('view entering');
+    //console.log('view entering');
     this.subs = this.platform.backButton.subscribeWithPriority(1,()=>{
-      console.log('Dashboard ',this.constructor.name);
+      //console.log('Dashboard ',this.constructor.name);
 
         this.toExit();
 
@@ -54,12 +54,12 @@ export class DashboardPage {
    }
 
    ionViewWillLeave(){
-    console.log('view leaving');
+    //console.log('view leaving');
 
     this.subs.unsubscribe();
    }
    async toExit(){
-    console.log('Can exit noew');
+    //console.log('Can exit noew');
     const alert = await this.alertCtrl.create({
       header: 'Exit ?',
       cssClass: 'al',
@@ -68,7 +68,7 @@ export class DashboardPage {
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelld');
+            //console.log('cancelld');
             }
         },{
           text: 'Exit',
@@ -84,7 +84,7 @@ export class DashboardPage {
 
 
   navigateTo(val: any){
-    console.log(val);
+    //console.log(val);
 
     setTimeout(()=>{
       this.route.navigateByUrl(val);

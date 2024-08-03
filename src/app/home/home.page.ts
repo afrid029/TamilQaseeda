@@ -33,7 +33,7 @@ export class HomePage {
       })
    }
   ionViewDidEnter(){
-    console.log('Homeview entering');
+    //console.log('Homeview entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       this.route.navigateByUrl('/dashboard');
@@ -43,7 +43,7 @@ export class HomePage {
    }
 
    ionViewWillLeave(){
-    console.log('Home view leaving');
+    //console.log('Home view leaving');
     this.subs.unsubscribe();
    }
 

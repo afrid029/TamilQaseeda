@@ -33,7 +33,7 @@ export class GoogleMapComponent implements OnInit {
 
   async myLoc(){
     this.loc = await Geolocation.getCurrentPosition();
-    console.log(this.loc);
+    //console.log(this.loc);
   }
 
   async viewMap(){
@@ -63,10 +63,10 @@ export class GoogleMapComponent implements OnInit {
             a:1
           },
           title: 'My Location'
-      }       
+      }
     );
-    console.log(this.obsr.latitude.value);
-    
+    //console.log(this.obsr.latitude.value);
+
 
     if(this.obsr.latitude.getValue() !== -1 && this.obsr.longtitude.getValue() !== -1){
       const markerId1 = await this.newMap.addMarker(
@@ -82,7 +82,7 @@ export class GoogleMapComponent implements OnInit {
               a:1
             },
             title: 'Selected Location'
-        }       
+        }
       );
 
       this.id = markerId1;
@@ -91,7 +91,7 @@ export class GoogleMapComponent implements OnInit {
 
 
     this.newMap.setOnMapClickListener(async (re)=>{
-      console.log(re);
+      //console.log(re);
       if(this.clicked){
         await this.newMap.removeMarker(this.id);
       }
@@ -105,8 +105,8 @@ export class GoogleMapComponent implements OnInit {
       this.obsr.LocSelected.next(true);
       this.obsr.MapClicked.next(true);
       this.id = myMark;
-      console.log(myMark);
-      
+      //console.log(myMark);
+
       this.obsr.latitude.next(re.latitude);
       this.obsr.longtitude.next(re.longitude);
     })

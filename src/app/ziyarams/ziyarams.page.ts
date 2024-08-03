@@ -97,10 +97,10 @@ export class ZiyaramsPage implements AfterViewInit {
   ngAfterViewInit(){
     this.obsr.network.subscribe(re=>{
       this.net=re;
-      console.log(re);
+      //console.log(re);
 
       this.db.getZiyaramRequests().subscribe((re: any) =>{
-          console.log(re);
+          //console.log(re);
           if(re.length > 0){
             this.anyReq = true;
             this.ZiyaramRequests = re;
@@ -129,16 +129,16 @@ export class ZiyaramsPage implements AfterViewInit {
         this.locationStat = 'Locate Ziyaram Position';
       }
 
-      console.log(this.locationStat);
+      //console.log(this.locationStat);
 
     })
     this.getZiyarams();
   }
   ionViewWillEnter(){
-    console.log('will Enter');
+    //console.log('will Enter');
   }
   ionViewDidEnter(){
-    console.log('ziyaram view entering');
+    //console.log('ziyaram view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
         if(!this.isModalOpen){
@@ -151,7 +151,7 @@ export class ZiyaramsPage implements AfterViewInit {
    }
 
    ionViewWillLeave(){
-    console.log('Ziyaram view leaving');
+    //console.log('Ziyaram view leaving');
 
     this.subs.unsubscribe();
    }
@@ -159,11 +159,11 @@ export class ZiyaramsPage implements AfterViewInit {
   async getZiyarams(){
     this.spinner = true;
    this.db.getZiyarams().subscribe((data)=>{
-      console.log('Ziyaram entering ', data);
+      //console.log('Ziyaram entering ', data);
       if(data.length > 0){
         this.anyContent = true;
         this.ziyarams = data;
-        console.log('song', this.ziyarams);
+        //console.log('song', this.ziyarams);
         this.Permziyarams = this.ziyarams;
       }else{
         this.anyContent = false;
@@ -177,7 +177,7 @@ export class ZiyaramsPage implements AfterViewInit {
 
 promo(data: any){
   //this.cardSpinner = true;
-  console.log(data.docid);
+  //console.log(data.docid);
   this.currZiyaram = data;
   this.isModalOpen = true;
 
@@ -261,7 +261,7 @@ launchGoogleMap(){
 
 
 handleSearch(){
-  console.log(this.Permziyarams);
+  //console.log(this.Permziyarams);
 
   if(this.searchKey.length > 0){
     this.vis = "visible";
@@ -272,7 +272,7 @@ handleSearch(){
         this.ziyarams.push(s);
       }
     })
-    console.log(this.ziyarams.length);
+    //console.log(this.ziyarams.length);
   }else{
     this.vis = "hidden";
     this.ziyarams = this.Permziyarams;
@@ -280,7 +280,7 @@ handleSearch(){
 }
 
 clearSearch(){
-    console.log('Clicked ', this.Permziyarams);
+    //console.log('Clicked ', this.Permziyarams);
     this.searchKey = '';
 }
 
@@ -324,18 +324,18 @@ async openActionSheet(event: any){
     this.fileUploadTask = this.storage.upload(fileStoragePath, file);
     this.percentageVal = this.fileUploadTask.percentageChanges();
     this.percentageVal.subscribe((per)=>{
-      console.log(per);
+      //console.log(per);
       this.perc = per/100;
 
     })
-    console.log(this.fileUploadTask);
+    //console.log(this.fileUploadTask);
     this.fileUploadTask.snapshotChanges().pipe(
       finalize(() => {
         // Retreive uploaded image storage path
         this.UploadedImageURL = imageRef.getDownloadURL();
         this.UploadedImageURL.subscribe(
           (resp) => {
-            console.log(resp);
+            //console.log(resp);
             this.editZiyaram.imageUrl = resp;
             this.utilService.successToast('Picture has been successfully uploaded.', 'cloud-done', 'success');
             this.btnvalid = false;
@@ -366,7 +366,7 @@ async deleteZiyaram(data: any){
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -374,7 +374,7 @@ async deleteZiyaram(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Conformed');
+            //console.log('delete Conformed');
              this.db.deleteZiyaramFireBase(data).then(()=>{
               this.spinner = false;
                   this.utilService.successToast('Ziyaram Detail deleted successfully','trash-outline','warning');
@@ -401,7 +401,7 @@ async deleteZiyaramRequest(data: any){
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -409,10 +409,10 @@ async deleteZiyaramRequest(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Confirmed');
+            //console.log('delete Confirmed');
              this.db.deleteZiyaramRequestFirebase(data).then((re)=>{
               this.spinner = false;
-              console.log(re);
+              //console.log(re);
 
                   this.utilService.successToast('Ziyaram Detail deleted successfully','trash-outline','warning');
               }).catch((er)=>{
@@ -461,7 +461,7 @@ setArray(){
 }
 
 logScrollStart(event: any){
-  console.log('scrolling');
+  //console.log('scrolling');
   this.btn = "hidden";
   setTimeout(() =>{
     this.btn = "visible";

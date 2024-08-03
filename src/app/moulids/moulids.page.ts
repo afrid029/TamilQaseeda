@@ -34,7 +34,7 @@ export class MoulidsPage implements OnInit {
    }
 
    ionViewDidEnter(){
-    console.log('Moulidh view entering');
+    //console.log('Moulidh view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       this.route.navigateByUrl('/dashboard');
@@ -46,7 +46,7 @@ export class MoulidsPage implements OnInit {
    }
 
    ionViewWillLeave(){
-    console.log('Moulidh view leaving');
+    //console.log('Moulidh view leaving');
     this.subs.unsubscribe();
    }
 

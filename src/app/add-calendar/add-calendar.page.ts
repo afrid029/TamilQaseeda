@@ -25,7 +25,7 @@ export class AddCalendarPage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      console.log(this.calendar);
+      ////console.log(this.calendar);
 
 
       this.datasc.addCalendarDetail(this.calendar).then(async (re: any)=>{

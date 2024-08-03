@@ -45,7 +45,7 @@ export class AppComponent {
       // };
 
       // this.http.get<any>(api, { params: queryParams }).subscribe(re=>{
-      //   console.log('geo',re);
+      //   //console.log('geo',re);
       // });
 
     // this.geo.geocode(googleMapsLink).then(
@@ -53,10 +53,10 @@ export class AppComponent {
     //     const latitude = result.latitude;
     //     const longitude = result.longitude;
 
-    //     console.log(latitude, longitude);
+    //     //console.log(latitude, longitude);
     //   },
     //   (error) => {
-    //     console.error(error);
+    //     //console.error(error);
     //   }
     // );
 
@@ -112,14 +112,14 @@ export class AppComponent {
   }
 
    ngOnInit(){
-    console.log('Appcomponent');
+    //console.log('Appcomponent');
 
    let o = this.db.getTodayContent().pipe(take(1));
    o.subscribe((cont: any)=>{
-      console.log('Alerts Count ', cont.length);
+      //console.log('Alerts Count ', cont.length);
 
         if(cont.length > 0){
-          console.log(cont.length);
+          //console.log(cont.length);
           this.alerts = cont;
           this.length = cont.length;
           this.openModal(true);
@@ -138,7 +138,7 @@ export class AppComponent {
 
     if(state){
       const k = this.i
-      console.log(k);
+      //console.log(k);
 
       this.content = this.alerts[k];
       this.i = k + 1;
@@ -150,7 +150,7 @@ export class AppComponent {
         this.isModalOpen = false;
         this.i = 0;
       }else{
-        console.log(this.i, this.length);
+        //console.log(this.i, this.length);
 
         this.isModalOpen = false;
         setTimeout(()=>{
@@ -181,11 +181,11 @@ export class AppComponent {
 
         this.data.LoginWithEmail(this.login).then((res: any)=>{
 
-          console.log(res.user?.uid);
+          //console.log(res.user?.uid);
           this.data.setUser(res.user);
           this.obsr.user.next(true);
 
-          console.log('loggged');
+          //console.log('loggged');
           this.spinner = false;
           this.isLoginOpen = false;
 
@@ -222,15 +222,15 @@ export class AppComponent {
 
       setTimeout(()=>{
         this.data.logout().catch((er: any)=>{
-          console.log('logout eroor');
+          //console.log('logout eroor');
         }).then((res: any)=>{
-          console.log('logout success');
+          //console.log('logout success');
           localStorage.removeItem('user');
           this.obsr.user.next(false);
           // this.isLoginPageOpen=false;
           this.spinner = false;
 
-            console.log('logggedout');
+            //console.log('logggedout');
             this.utilService.successToast('Logged out Successfully','radio-button-on-outline','warning');
         });
       },2000)

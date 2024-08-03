@@ -68,12 +68,12 @@ getSong(type: String){
 
 // Add Song into Firebase
 sendToFirebase(song: any){
-  console.log(song);
+  //console.log(song);
   return this.afs.collection('songs').add(song).then((re: any)=>{
-    console.log(re);
+    //console.log(re);
     return 'added'
   }).catch((er: any)=>{
-    console.log('errr');
+    //console.log('errr');
   });
 }
 
@@ -95,7 +95,7 @@ LoginWithEmail(form: any){
 
 /* Logout */
 logout(){
-  console.log(this.ngAuth.user);
+  //console.log(this.ngAuth.user);
   return this.ngAuth.signOut();
 }
 
@@ -121,17 +121,17 @@ setUser(user: any){
 addZiyaramDetail(data: any){
   if(this.user){
     return this.afs.collection('ziyarams').add(data).then((re: any)=>{
-      console.log(re);
+      //console.log(re);
       return 'added'
     }).catch((er: any)=>{
-      console.log('errr');
+      //console.log('errr');
     });
   }else{
     return this.afs.collection('ziyaramRequests').add(data).then((re: any)=>{
-      console.log(re);
+      //console.log(re);
       return 'added'
     }).catch((er: any)=>{
-      console.log('errr');
+      //console.log('errr');
     });
   }
 
@@ -172,7 +172,7 @@ async updateZiyaramFireBase(ziyaram: any){
   this.afs.collection('ziyarams').doc(ziyaram.docid).set(ziyaram);
  // alert('Updated ziyaram');
   this.afs.collection('ziyaramRequests').doc(ziyaram.docid).get().subscribe((re)=>{
-    console.log(re.exists);
+    //console.log(re.exists);
 
     if(re.exists){
 
@@ -209,10 +209,10 @@ async deleteZiyaramRequestFirebase(ziyaram: any){
 //Add Evidence
 addEvidenceDetail(data: any){
   return this.afs.collection('evidence').add(data).then((re: any)=>{
-    console.log(re);
+    //console.log(re);
     return 'added'
   }).catch((er: any)=>{
-    console.log('errr');
+    //console.log('errr');
   });
 }
 
@@ -246,10 +246,10 @@ async deleteaevidenceFireBase(evidence: any){
 
 addCalendarDetail(data: any){
   return this.afs.collection('calendar').add(data).then((re: any)=>{
-    console.log(re);
+    //console.log(re);
     return 'added'
   }).catch((er: any)=>{
-    console.log('errr');
+    //console.log('errr');
   });
 }
 //Get All Calendar From fire
@@ -270,7 +270,7 @@ getCalendar(){
 // Update calendar in Firebase
 async updateCalendarFireBase(calendar: any){
 
-  //console.log(calendar)
+  ////console.log(calendar)
   this.afs.collection('calendar').doc(calendar.docid).set(calendar);
 }
 
@@ -283,18 +283,18 @@ async deletecalendarFireBase(evidence: any){
 //Refresh Calender
 
 async refreshCalendar(event: any[]){
-  //console.log(event);
+  ////console.log(event);
   //return this.afs.collection('calendar').doc(event.docid).set(event);
   return event.forEach(data =>{
       this.afs.collection('calendar').doc(data.docid).update({
         date: data.date
       }).then(()=>{
-        console.log('Updated');
+        //console.log('Updated');
         this.utilService.successToast("All Calendar events updated successfully","document-lock-outline","favorite")
 
       }).catch(er =>{
 
-       console.log(er);
+       //console.log(er);
 
         this.afs.collection('Error').add({
           docid: data.docid,
@@ -317,10 +317,10 @@ async refreshCalendar(event: any[]){
 //Add Dua
 addDuaDetail(data: any){
     return this.afs.collection('duas').add(data).then((re: any)=>{
-      console.log(re);
+      //console.log(re);
       return 'added'
     }).catch((er: any)=>{
-      console.log('errr');
+      //console.log('errr');
     });
 }
 
@@ -386,8 +386,8 @@ async deleteAlertContent(data: any){
 
 getTodayContent(){
   const dt = Date.parse(new Date().toDateString());
-  console.log(dt);
-  console.log(new Date(dt));
+  //console.log(dt);
+  //console.log(new Date(dt));
   return this.afs.collection('alerts',ref => {
     return ref.where('date', '==', dt);
   }).snapshotChanges().pipe(

@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
-import { Console, log } from 'console';
 
 @Component({
   selector: 'app-calendar',
@@ -113,7 +112,7 @@ export class CalendarPage {
 
       this.obsr.network.subscribe(re=>{
         this.net=re;
-        console.log('Connecteffffffff');
+        //console.log('Connecteffffffff');
 
       });
 
@@ -126,7 +125,7 @@ export class CalendarPage {
    }
 
    ionViewDidEnter(){
-    console.log('calendarview entering');
+    //console.log('calendarview entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       if(this.isEditModalOpen){
@@ -138,14 +137,14 @@ export class CalendarPage {
         }
 
     })
-    console.log(localStorage.getItem('calendarref'));
+    //console.log(localStorage.getItem('calendarref'));
 
 
 
    }
 
    ionViewWillLeave(){
-    console.log('calendar view leaving');
+    //console.log('calendar view leaving');
 
     this.subs.unsubscribe();
    }
@@ -167,7 +166,7 @@ export class CalendarPage {
     this.nov = [];
     this.dec = [];
     return this.db.getCalendar().subscribe((data)=>{
-      console.log('calendar ',data);
+      //console.log('calendar ',data);
       events = [];
       this.jan = [];
       this.feb = [];
@@ -182,7 +181,7 @@ export class CalendarPage {
       this.nov = [];
       this.dec = [];
       for(var i = 0; i<data.length; i++){
-        console.log(data);
+        //console.log(data);
         const d = new Date(data[i].date);
         const year = d.getFullYear();
         const month = d.getMonth();
@@ -191,7 +190,7 @@ export class CalendarPage {
         const currYear = currDate.getFullYear();
 
 
-        console.log(data[i].date.split('-')[2]);
+        //console.log(data[i].date.split('-')[2]);
 
         events.push({
           title: data[i].content,
@@ -339,9 +338,9 @@ seteditmodel(state: boolean){
   this.isEditModalOpen = state;
 }
 updateClick(data: any){
-  console.log(data);
+  //console.log(data);
   const d = data.year + "-" + (data.month) + "-" + data.day;
-  console.log(d);
+  //console.log(d);
 
   this.editEvent = {
     docid: data.docid,
@@ -357,13 +356,13 @@ update(){
   if(this.net){
     this.spinner = true;
     this.isEditModalOpen = false;
-    //console.log(this.editEvent)
+    ////console.log(this.editEvent)
     this.db.updateCalendarFireBase(this.editEvent).then(() => {
       this.spinner = false;
       this.utilService.successToast('Calendar event successfully updated','thumbs-up-outline','success');
     }).catch(er=>{
       this.spinner = false;
-      console.log(er);
+      //console.log(er);
 
       this.utilService.erroToast('Something Went Wrong', 'bug-outline');
     });
@@ -374,7 +373,7 @@ update(){
 }
 
 async deleteClick(data: any){
-  console.log(data);
+  //console.log(data);
   if(this.net){
     const alert = await this.alertctrl.create({
       header: 'Are You Sure To Delete',
@@ -385,7 +384,7 @@ async deleteClick(data: any){
           role: 'cancel',
           cssClass : 'delAlert',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -393,7 +392,7 @@ async deleteClick(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Confirmed');
+            //console.log('delete Confirmed');
              this.db.deletecalendarFireBase(data).then(()=>{
                 this.spinner = false;
                   this.utilService.successToast('Calendar event deleted successfully','trash-outline','warning');
@@ -411,31 +410,29 @@ async deleteClick(data: any){
   }
 }
 onEventSelected(event: any) {
-  console.log(
-    'sas'
-  );
+  ////console.log('sas');
 
-  console.log(
-    'Event selected:' +
-      event.startTime +
-      '-' +
-      event.endTime +
-      ',' +
-      event.title
-  );
+  // //console.log(
+  //   'Event selected:' +
+  //     event.startTime +
+  //     '-' +
+  //     event.endTime +
+  //     ',' +
+  //     event.title
+  // );
 }
 onViewTitleChanged(title: string) {
   this.viewTitle = title;
-  console.log(
-    'view title changed: ' + title + ', this.viewTitle: ' + this.viewTitle
-  );
+  // //console.log(
+  //   'view title changed: ' + title + ', this.viewTitle: ' + this.viewTitle
+  // );
 }
 onCurrentDateChanged(ev: Date) {
   var today = new Date();
   today.setHours(0, 0, 0, 0);
   ev.setHours(0, 0, 0, 0);
   this.isToday = today.getTime() === ev.getTime();
-  console.log('Currently viewed date: ' + ev);
+  //console.log('Currently viewed date: ' + ev);
 }
 
 async refresh(val: boolean) {
@@ -452,21 +449,21 @@ async refresh(val: boolean) {
         text: 'Confirm',
         role: 'confirm',
         handler: () =>{
-          console.log(this.eventSource);
+          //console.log(this.eventSource);
           this.spinner1 = true,
 
           // this.eventSource.forEach((e)=>{
-          //   console.log(e.startTime);
+          //   //console.log(e.startTime);
           // }
 
           this.spinner = true;
           let data : any = [];
-          //console.log(this.jan)
+          ////console.log(this.jan)
           this.jan.concat(this.feb,this.mar,this.apr,this.may,this.jun,this.jul,this.aug,this.sep,this.oct,this.nov,this.dec).forEach((d)=>{
             const p =  d.year + "-" + (d.month) + "-" + d.day;
             const q = new Date(p)
             const k = val? new Date(q.setDate(q.getDate() + 355)) : new Date(q.setDate(q.getDate() - 355)) ;
-            console.log(k);
+            //console.log(k);
             data.push({
               docid: d.docid,
               date: k.getFullYear()+"-"+(k.getMonth()+1)+"-"+k.getDate()
@@ -475,9 +472,9 @@ async refresh(val: boolean) {
 
 
           this.db.refreshCalendar(data).then(()=>{
-            console.log('Okk')
+            //console.log('Okk')
           }).catch(er=>{
-            console.log(er);
+            //console.log(er);
 
           })
 

@@ -26,14 +26,14 @@ export class MoulidviewPage implements OnInit {
         ti = ti[ti.length - 1];
 
         ti = ti.substring(0, ti.indexOf('.'));
-        console.log(ti);
+        //console.log(ti);
         this.title = ti;
 
 
 
       }
     })
-    console.log('Moulidh view entering');
+    //console.log('Moulidh view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       this.route.navigateByUrl('/moulids');
@@ -45,7 +45,7 @@ export class MoulidviewPage implements OnInit {
    }
 
    ionViewWillLeave(){
-    console.log('Moulidh view leaving');
+    //console.log('Moulidh view leaving');
     this.subs.unsubscribe();
    }
 

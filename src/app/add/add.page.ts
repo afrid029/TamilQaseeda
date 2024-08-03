@@ -42,10 +42,10 @@ export class AddPage {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      console.log(this.song);
+      ////console.log(this.song);
 
       this.db.sendToFirebase(this.song).then(async (re: any)=>{
-        console.log(re);
+        ////console.log(re);
         this.spinner = false;
         this.typeSelected = true;
         this.router.navigateByUrl('dashboard');
@@ -56,7 +56,7 @@ export class AddPage {
 
       }).catch((e: any)=>{
         this.spinner = false;
-          console.log('Error encountered ', e.message);
+          ////console.log('Error encountered ', e.message);
           this.util.erroToast(e.message, 'snow-outline');
       });
     }else{

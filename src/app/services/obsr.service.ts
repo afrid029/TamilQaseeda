@@ -17,16 +17,16 @@ export class ObsrService {
   public LocSelected = new BehaviorSubject(false);
   public genrelUser = new BehaviorSubject(false);
   constructor(private online: OnlineStatusService,
-    public afs: AngularFirestore) { 
+    public afs: AngularFirestore) {
     if(this.online.getStatus()){
-      console.log("Connected");
+      //console.log("Connected");
       this.network.next(true);
     }else{
-      console.log("Disconnected");
+      //console.log("Disconnected");
       this.network.next(false);
     }
     this.online.status.subscribe(st =>{
-      console.log(st);
+      //console.log(st);
       if(st){
         this.network.next(true);
       }else{

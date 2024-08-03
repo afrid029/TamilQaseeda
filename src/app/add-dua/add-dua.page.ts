@@ -43,7 +43,7 @@ export class AddDuaPage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      console.log(this.duas);
+      //console.log(this.duas);
 
 
       this.datasc.addDuaDetail(this.duas).then(async (data: any) => {
@@ -54,7 +54,7 @@ export class AddDuaPage implements OnInit {
         this.util.successToast('Successfully Added','cloud-upload-sharp','warning')
       }).catch((er: any)=>{
         this.spinner = false;
-        console.log('Error encountered ', er.message);
+        //console.log('Error encountered ', er.message);
         this.util.erroToast(er.message, 'snow-outline');
       })
     }else{

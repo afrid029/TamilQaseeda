@@ -41,7 +41,7 @@ export class AjmeerPage {
   }
 
   ionViewDidEnter(){
-    console.log('Ajmeer view entering');
+    //console.log('Ajmeer view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       if(this.isEditOpen){
@@ -56,7 +56,7 @@ export class AjmeerPage {
    }
 
    ionViewWillLeave(){
-    console.log('Ajmeer view leaving');
+    //console.log('Ajmeer view leaving');
 
     this.subs.unsubscribe();
    }
@@ -65,18 +65,18 @@ export class AjmeerPage {
     this.subs.unsubscribe();
   }
   ionVieWillLoad() {
-    console.log('will load');
+    //console.log('will load');
   }
 
   ionViewWillEnter(){
-    console.log('will Enter');
+    //console.log('will Enter');
     this.getSongs();
   }
 
   async getSongs() {
     this.spinner = true;
     this.db.getSong("ajmeer").subscribe((data)=>{
-      console.log('song entering');
+      //console.log('song entering');
       if(data.length > 0){
         this.anyContent = true;
         this.songs = data;
@@ -99,7 +99,7 @@ export class AjmeerPage {
           this.songs.push(s);
         }
       })
-      console.log(this.songs.length);
+      //console.log(this.songs.length);
     }else{
       this.vis = "hidden";
       this.songs = this.Permsongs;
@@ -107,7 +107,7 @@ export class AjmeerPage {
   }
 
 clearSearch(){
-    console.log('Clicked ', this.Permsongs);
+    //console.log('Clicked ', this.Permsongs);
     this.searchKey = '';
 }
 
@@ -120,7 +120,7 @@ setOpen(id: boolean){
   }
   promo(data: any){
 
-    console.log(data.docid);
+    //console.log(data.docid);
     this.currSong = data;
     this.isModalOpen = true;
   }
@@ -145,7 +145,7 @@ setOpen(id: boolean){
             text: 'Cancel',
             role: 'cancel',
             handler: () =>{
-              console.log('cancelled');
+              //console.log('cancelled');
 
             }
           },{
@@ -153,7 +153,7 @@ setOpen(id: boolean){
             role: 'confirm',
             handler: () =>{
               this.spinner = true;
-              console.log('delete Conformed');
+              //console.log('delete Conformed');
                this.db.deleteFireBase(data).then(()=>{
                     this.spinner = false;
                     this.util.successToast('Song deleted successfully','trash-outline','warning');
@@ -173,8 +173,8 @@ setOpen(id: boolean){
   }
 
   updateSong(){
-    console.log('ready To update');
-    console.log(this.editSong);
+    //console.log('ready To update');
+    //console.log(this.editSong);
     if(this.net){
       this.spinner = true;
       this.isEditOpen = false;

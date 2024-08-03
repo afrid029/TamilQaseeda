@@ -46,15 +46,15 @@ unsbr(){
 }
 
 ionVieWillLoad() {
-    console.log('will load');
+    //console.log('will load');
 }
 
 ionViewWillEnter(){
-  console.log('will Enter');
+  //console.log('will Enter');
   this.getSongs();
 }
 ionViewDidEnter(){
-  console.log('Muhiview entering');
+  //console.log('Muhiview entering');
 
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
     if(this.isEditOpen){
@@ -69,7 +69,7 @@ ionViewDidEnter(){
  }
 
  ionViewWillLeave(){
-  console.log('Muhi view leaving');
+  //console.log('Muhi view leaving');
 
   this.subs.unsubscribe();
  }
@@ -77,11 +77,11 @@ ionViewDidEnter(){
 getSongs() {
   this.spinner = true;
   this.db.getSong("muhi").subscribe((data)=>{
-    console.log('song entering');
+    //console.log('song entering');
     if(data.length > 0){
       this.anyContent = true;
       this.songs = data;
-      console.log('song', this.songs);
+      //console.log('song', this.songs);
       this.Permsongs = this.songs;
     }else{
       this.anyContent = false;
@@ -100,7 +100,7 @@ handleSearch(){
         this.songs.push(s);
       }
     })
-    console.log(this.songs.length);
+    //console.log(this.songs.length);
   }else{
     this.vis = "hidden";
     this.songs = this.Permsongs;
@@ -108,7 +108,7 @@ handleSearch(){
 }
 
 clearSearch(){
-    console.log('Clicked ', this.Permsongs);
+    //console.log('Clicked ', this.Permsongs);
     this.searchKey = '';
 }
 setOpen(id: boolean){
@@ -121,7 +121,7 @@ ionModalDidDismiss(){
 }
 
 promo(data: any){
-  console.log(data.docid);
+  //console.log(data.docid);
   this.currSong = data;
   this.isModalOpen = true;
 }
@@ -147,7 +147,7 @@ async deleteSong(data: any){
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -155,7 +155,7 @@ async deleteSong(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Conformed');
+            //console.log('delete Conformed');
              this.db.deleteFireBase(data).then(()=>{
                   this.spinner = false;
                   this.util.successToast('Song deleted successfully','trash-outline','warning');
@@ -175,8 +175,8 @@ async deleteSong(data: any){
 }
 
 updateSong(){
-  console.log('ready To update');
-  console.log(this.editSong);
+  //console.log('ready To update');
+  //console.log(this.editSong);
   if(this.net){
     this.spinner = true;
     this.isEditOpen = false;

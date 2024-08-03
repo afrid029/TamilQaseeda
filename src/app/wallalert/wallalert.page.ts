@@ -43,7 +43,7 @@ export class WallalertPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter(){
-    console.log('View will enter');
+    //console.log('View will enter');
     this.getData();
 
 
@@ -53,12 +53,12 @@ export class WallalertPage implements OnInit {
     this.spinner = true;
    // this.db.getAlertContent();
     this.db.getAlertContent().subscribe((re: any)=>{
-      console.log('length : ',re.length);
+      //console.log('length : ',re.length);
       if(re.length > 0){
         this.anyContent = true;
         this.datas = re;
         this.datas.date = new Date(this.datas.date)
-        console.log(this.datas);
+        //console.log(this.datas);
       }else{
         this.anyContent = false;
       }
@@ -88,18 +88,18 @@ export class WallalertPage implements OnInit {
   }
   private slide: any;
   setSwiperInstance(event: any){
-    console.log(event.activeIndex);
+    //console.log(event.activeIndex);
     this.slide = event
   }
 
   onSubmit(form: NgForm){
-    console.log(this.alert);
+    //console.log(this.alert);
     if(this.net){
       this.spinner = true;
-      console.log(typeof(this.alert.date));
+      //console.log(typeof(this.alert.date));
 
       const dt = Date.parse(new Date(this.alert.date).toDateString());
-      console.log(dt);
+      //console.log(dt);
       this.alert.date = dt;
       this.db.sendAlertContent(this.alert).then((re: any)=>{
         this.spinner = false;
@@ -153,9 +153,9 @@ export class WallalertPage implements OnInit {
   }
 
   update(){
-    console.log(this.editAlert.date);
+    //console.log(this.editAlert.date);
     const dt = Date.parse(new Date(this.editAlert.date).toDateString());
-    console.log(dt);
+    //console.log(dt);
     this.editAlert.date = dt;
     if(this.net){
       this.spinner = true
@@ -165,7 +165,7 @@ export class WallalertPage implements OnInit {
         this.utils.successToast('Updated successfully','thumbs-up-outline','success');
       }).catch(er =>{
         this.spinner = false;
-        console.log(er.message);
+        //console.log(er.message);
 
         this.utils.erroToast('Something Went Wrong', 'bug-outline');
       });
@@ -186,7 +186,7 @@ export class WallalertPage implements OnInit {
             text: 'Cancel',
             role: 'cancel',
             handler: () =>{
-              console.log('cancelled');
+              //console.log('cancelled');
 
             }
           },{
@@ -194,7 +194,7 @@ export class WallalertPage implements OnInit {
             role: 'confirm',
             handler: () =>{
               this.spinner = true;
-              console.log('delete Confirmed');
+              //console.log('delete Confirmed');
                this.db.deleteAlertContent(data).then(()=>{
                   this.spinner = false;
                     this.utils.successToast('Deleted successfully','trash-outline','warning');

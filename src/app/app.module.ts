@@ -25,9 +25,11 @@ import { HttpClientModule } from  '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule,IonicModule.forRoot(),
+  AppRoutingModule,
   AngularFireAuthModule,
-  AngularFireStorageModule, FormsModule,
+  AngularFireStorageModule,
+  FormsModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireDatabaseModule,
   OnlineStatusModule,

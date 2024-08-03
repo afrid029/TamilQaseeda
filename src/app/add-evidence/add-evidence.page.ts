@@ -32,7 +32,7 @@ export class AddEvidencePage implements OnInit {
   submit(form: NgForm){
     if(this.net){
       this.spinner = true;
-      console.log(this.evidence);
+      //console.log(this.evidence);
 
 
       this.datasc.addEvidenceDetail(this.evidence).then(async (data: any) => {
@@ -43,7 +43,7 @@ export class AddEvidencePage implements OnInit {
         this.util.successToast('Evidence Successfully Added','cloud-upload-sharp','warning')
       }).catch((er: any)=>{
         this.spinner = false;
-        console.log('Error encountered ', er.message);
+        //console.log('Error encountered ', er.message);
         this.util.erroToast(er.message, 'snow-outline');
       })
     }else{

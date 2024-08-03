@@ -61,11 +61,11 @@ export class EvidencePage {
 
 
 ionViewWillEnter(){
-  console.log('will Enter');
+  //console.log('will Enter');
   this.getEvidence();
 }
 ionViewDidEnter(){
-  console.log('Evidence view entering');
+  //console.log('Evidence view entering');
 
   this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
     if(this.isEditOpen){
@@ -80,7 +80,7 @@ ionViewDidEnter(){
  }
 
  ionViewWillLeave(){
-  console.log('Evidence view leaving');
+  //console.log('Evidence view leaving');
 
   this.subs.unsubscribe();
  }
@@ -89,18 +89,18 @@ async getEvidence(){
   this.spinner = true;
 
   return this.db.getEvidence().subscribe((data)=>{
-    console.log('Ziyaram entering ', data);
+    //console.log('Ziyaram entering ', data);
     this.aqeeda = [];
     this.fiqh = [];
     this.other = [];
-    console.log('evidence entering ', this.aqeeda.length, this.fiqh.length, this.other.length);
+    //console.log('evidence entering ', this.aqeeda.length, this.fiqh.length, this.other.length);
     if(data.length > 0){
       let y;
       data.forEach((d: any)=>{
         y = d;
 
       })
-      console.log(y);
+      //console.log(y);
 
       for(var i=0; i< data.length; i++) {
 
@@ -119,7 +119,7 @@ async getEvidence(){
       this.PermAqeeda = this.aqeeda;
       this.PermFiqh = this.fiqh;
       this.PermOther = this.other;
-      console.log('Evidences ', this.aqeeda, this.fiqh, this.other);
+      //console.log('Evidences ', this.aqeeda, this.fiqh, this.other);
 
     }
     this.spinner = false;
@@ -144,12 +144,12 @@ setViewModel(val: any){
 
 private slide: any;
 setSwiperInstance(event: any){
-  console.log(event.activeIndex);
+  //console.log(event.activeIndex);
   this.slide = event
 }
 
 promo(data: any){
-  console.log(this.slide.activeIndex);
+  //console.log(this.slide.activeIndex);
   this.currEvidence = data;
   this.isModalOpen = true;
 }
@@ -196,7 +196,7 @@ async deleteEvidence(data: any){
           text: 'Cancel',
           role: 'cancel',
           handler: () =>{
-            console.log('cancelled');
+            //console.log('cancelled');
 
           }
         },{
@@ -204,7 +204,7 @@ async deleteEvidence(data: any){
           role: 'confirm',
           handler: () =>{
             this.spinner = true;
-            console.log('delete Confirmed');
+            //console.log('delete Confirmed');
              this.db.deleteaevidenceFireBase(data).then(()=>{
                 this.spinner = false;
                   this.utilService.successToast('Evidence Detail deleted successfully','trash-outline','warning');
@@ -258,7 +258,7 @@ handleSearch(){
 }
 
 clearSearch(){
-    
+
     this.searchKey = '';
 }
 

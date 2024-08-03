@@ -10,7 +10,6 @@ import { IonModal, Platform } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { log } from 'console';
 
 
 export interface imgFile {
@@ -93,7 +92,7 @@ export class AddZiyaramPage implements OnInit {
 
     this.platform.keyboardDidShow.subscribe((ev: any)=>{
       const { keyboardHeight  } = ev;
-      console.log(ev);
+      //console.log(ev);
 
 
     })
@@ -126,7 +125,7 @@ export class AddZiyaramPage implements OnInit {
         this.locationStat = 'Locate Ziyaram Position';
       }
 
-      console.log(this.locationStat);
+      //console.log(this.locationStat);
 
     })
 
@@ -138,14 +137,14 @@ export class AddZiyaramPage implements OnInit {
         this.update = true;
         const s = this.ziyaram.location;
         const ar = s.split(',');
-        ///console.log(ar.slice(0,ar.length -2).toString());
+        /////console.log(ar.slice(0,ar.length -2).toString());
 
         this.place = ar.slice(0,ar.length -2).toString();
         this.district = ar[ar.length - 2];
         this.province = ar[ar.length - 1];
         this.fileSelected = false;
         this.obsr.latitude.next(this.ziyaram.lat);
-        console.log(this.obsr.latitude.getValue());
+        //console.log(this.obsr.latitude.getValue());
 
         this.obsr.longtitude.next(this.ziyaram.long);
         this.obsr.LocSelected.next(true);
@@ -155,11 +154,11 @@ export class AddZiyaramPage implements OnInit {
 
 
    ionViewDidEnter(){
-    console.log('view entering');
+    //console.log('view entering');
 
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      console.log('Dashboard ',this.constructor.name);
+      //console.log('Dashboard ',this.constructor.name);
 
       this.goBack();
       this.clearMap();
@@ -167,7 +166,7 @@ export class AddZiyaramPage implements OnInit {
    }
 
    goBack(){
-    console.log(this.update);
+    //console.log(this.update);
 
     if(this.update){
       this.router.navigateByUrl('/ziyarams')
@@ -185,7 +184,7 @@ export class AddZiyaramPage implements OnInit {
 
 
   ionViewWillLeave(){
-    console.log('view leaving');
+    //console.log('view leaving');
     this.subs.unsubscribe();
   }
   ngOnInit() {
@@ -194,7 +193,7 @@ export class AddZiyaramPage implements OnInit {
 
   openActionSheet(event: any){
     this.file = event.target.files.item(0);
-    console.log(this.file);
+    //console.log(this.file);
     this.fileSelected = false;
     this.closeButton = true;
     this.newImage = true;
@@ -203,7 +202,7 @@ export class AddZiyaramPage implements OnInit {
 
 
   clearFile(){
-    console.log('Clear file');
+    //console.log('Clear file');
     this.newImage = false;
     this.inp.nativeElement.value='';
     this.closeButton = !this.closeButton;
@@ -216,7 +215,7 @@ export class AddZiyaramPage implements OnInit {
   }
 
   submit(form: NgForm){
-    console.log(this.ziyaram);
+    //console.log(this.ziyaram);
 
     if(this.net){
       this.spinner = true;
@@ -229,18 +228,18 @@ export class AddZiyaramPage implements OnInit {
       this.fileUploadTask = this.storage.upload(fileStoragePath, this.file);
       this.percentageVal = this.fileUploadTask.percentageChanges();
       this.percentageVal.subscribe((per)=>{
-        console.log(per);
+        //console.log(per);
         this.perc = per/100;
 
       })
-      console.log(this.fileUploadTask);
+      //console.log(this.fileUploadTask);
       this.fileUploadTask.snapshotChanges().pipe(
         finalize(() => {
           // Retreive uploaded image storage path
           this.UploadedImageURL = imageRef.getDownloadURL();
           this.UploadedImageURL.subscribe(
             (resp) => {
-              console.log(resp);
+              //console.log(resp);
 
               this.ziyaram.imageUrl = resp;
               this.isFileUploaded = true;
@@ -263,7 +262,7 @@ export class AddZiyaramPage implements OnInit {
         if(this.isFileUploaded){
 
             this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province;
-            console.log(this.ziyaram.location);
+            //console.log(this.ziyaram.location);
             this.ziyaram.long = this.obsr.longtitude.getValue();
             this.ziyaram.lat = this.obsr.latitude.getValue();
 
@@ -296,7 +295,7 @@ export class AddZiyaramPage implements OnInit {
 
             }).catch((e: any)=>{
               this.spinner = false;
-              console.log('Error encountered ', e.message);
+              //console.log('Error encountered ', e.message);
               this.utill.erroToast(e.message, 'snow-outline');
             });
 
@@ -313,7 +312,7 @@ export class AddZiyaramPage implements OnInit {
   }
 
   updateDetail(form: NgForm){
-    console.log(this.file);
+    //console.log(this.file);
     if(this.net){
       this.spinner = true;
       this.btnvalid = true;
@@ -330,18 +329,18 @@ export class AddZiyaramPage implements OnInit {
           this.fileUploadTask = this.storage.upload(fileStoragePath, this.file);
           this.percentageVal = this.fileUploadTask.percentageChanges();
           this.percentageVal.subscribe((per)=>{
-            console.log(per);
+            //console.log(per);
             this.perc = per/100;
 
           })
-          console.log(this.fileUploadTask);
+          //console.log(this.fileUploadTask);
           this.fileUploadTask.snapshotChanges().pipe(
             finalize(() => {
               // Retreive uploaded image storage path
               this.UploadedImageURL = imageRef.getDownloadURL();
               this.UploadedImageURL.subscribe(
                 (resp) => {
-                  console.log(resp);
+                  //console.log(resp);
 
                   this.ziyaram.imageUrl = resp;
                   this.isFileUploaded = true;
@@ -369,10 +368,10 @@ export class AddZiyaramPage implements OnInit {
         if(this.isFileUploaded){
 
             this.ziyaram.location = this.place.charAt(0).toUpperCase() + this.place.slice(1) + "," + this.district + ","+this.province;
-            console.log(this.ziyaram.lat, this.ziyaram.long);
+            //console.log(this.ziyaram.lat, this.ziyaram.long);
             this.ziyaram.long = this.obsr.longtitude.getValue();
             this.ziyaram.lat = this.obsr.latitude.getValue();
-            console.log(this.ziyaram.lat, this.ziyaram.long);
+            //console.log(this.ziyaram.lat, this.ziyaram.long);
 
             this.datasc.updateZiyaramFireBase(this.ziyaram).then(async (re: any)=>{
               this.spinner = false;
@@ -393,7 +392,7 @@ export class AddZiyaramPage implements OnInit {
               this.utill.successToast('Ziyaram Details Updated Successfully','thumbs-up-outline','success')
             }).catch((e: any)=>{
               this.spinner = false;
-              console.log('Error encountered ', e.message);
+              //console.log('Error encountered ', e.message);
               this.utill.erroToast(e.message, 'snow-outline');
             });
 
