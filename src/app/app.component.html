@@ -69,6 +69,9 @@
             <ion-item (click)="closeMenu()" [routerLink] = "['/ziyarams']">
               <ion-icon style="font-size: 20px; float: left; color:rgb(29, 61, 10);" name="location-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
             </ion-item>
+            <ion-item (click)="closeMenu()" [routerLink] = "['/qand-a']">
+              <ion-icon style="font-size: 20px; float: left; color:rgb(29, 61, 10);" name="help-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;கேள்வி - பதில் பக்கம்</ion-label>
+            </ion-item>
             <ion-item (click)="closeMenu()" [routerLink] = "['/evidence']">
               <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="bulb-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
             </ion-item>
@@ -84,6 +87,9 @@
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
               <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
+            </ion-item>
+            <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/floating-text']">
+              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Floating Text</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-evidence']">
               <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Religious Topic</ion-label>

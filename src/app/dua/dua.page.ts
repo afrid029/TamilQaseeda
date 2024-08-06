@@ -236,7 +236,8 @@ export class DuaPage implements OnInit {
                   ];
 
   searchKey: String;
-  vis: String = "hidden";
+  vis: String = "hidden"
+  asma: String = "hidden"
 
   isModalOpen: boolean = false;
   isEditOpen: boolean = false;
@@ -328,23 +329,30 @@ export class DuaPage implements OnInit {
   }
 
 
-  private slide: any;
+  public slide: any;
 setSwiperInstance(event: any){
-  //console.log(event.activeIndex);
-  this.slide = event
+
+  if(event.activeIndex == 0){
+    this.asma = "hidden"
+  }else{
+    this.asma = "visible"
+  }
+  this.slide = event;
+  console.log("this.slide.activeIndex");
 }
 
 handleSearch(){
   if(this.searchKey.length > 0){
     this.vis = "visible";
-    if(this.slide.activeIndex == 0){
+    if(this.slide.activeIndex == 1){
+      console.log("this.slide.activeIndex");
       this.dua = [];
       this.PermDua.forEach((s: any)=>{
         if(s.title.toLowerCase().includes(this.searchKey.toLowerCase())){
           this.dua.push(s);
         }
       })
-    }else if(this.slide.activeIndex == 1){
+    }else if(this.slide.activeIndex == 2){
       this.salawat = [];
       this.PermSalawat.forEach((s: any)=>{
         if(s.title.toLowerCase().includes(this.searchKey.toLowerCase())){

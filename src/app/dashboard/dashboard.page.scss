@@ -4,76 +4,17 @@
     src: url('./../../assets/fonts/nctsn.ttf');
   }
 
-// @media (prefers-color-scheme: dark){
-//     // .haseetha {
-//     //     content: url(../../assets/pictures/dashboard/qaseedahomedarkicon.jpg);
-//     // }
-//     // .ziyaram {
-//     //     content: url(../../assets/pictures/dashboard/ziyaramhomedarkicon.jpg);
-//     // }
-//     // .evidence{
-//     //     content: url(../../assets/pictures/dashboard/evidancehomedarkicon.jpg);
-//     // }
-//     // .calendar {
-//     //     content: url(../../assets/pictures/dashboard/calendarhomedarkicon.jpg);
-//     // }
-//     // .dua{
-//     //   content: url(../../assets/pictures/dashboard/duahomedarkicon.jpg);
-//     // }
-//     // .moulid {
-//     //   content: url(../../assets/pictures/dashboard/moulidhomedark.jpg);
-//     // }
-//     .bgInner {
-//        // background-image: url(../../assets/pictures/dashboard/dashboarddarkbg.jpg);
-//        /* From https://css.glass */
-//       background: rgba(0,0,0, 0.15);
-//       border-radius: 30px;
-//       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-//       backdrop-filter: blur(9.1px);
-//       -webkit-backdrop-filter: blur(9.1px);
 
-//       height: 90vh;
-//       margin: 4px;
-//       top: 6vh;
-//           /* left: 40px; */
-//       position: relative;
+  @font-face {
+    font-family: gunn;
+    src: url('./../../assets/fonts/TAU_GUNN.TTF');
+  }
 
-//     }
-
-//     .addmenu{
-//       background-color: #000000;
-//     }
-
-// }
-
-// @media (prefers-color-scheme: light){
-
-
-
-// }
 
 .img1{
   content: url(../../assets/pictures/dashboard/headingbg.webp);
 }
 
-.haseetha {
-  content: url(../../assets/pictures/dashboard/qaseedahomelighticon.webp);
-}
-.ziyaram {
-  content: url(../../assets/pictures/dashboard/ziyaramhomelighticon.webp);
-}
-.evidence{
-  content: url(../../assets/pictures/dashboard/evidancehomelighticon.webp);
-}
-.calendar {
-  content: url(../../assets/pictures/dashboard/calendarhomelighticon.webp);
-}
-.dua{
-  content: url(../../assets/pictures/dashboard/duahomelighticon.webp);
-}
-.moulid {
-content: url(../../assets/pictures/dashboard/moulidhomelight.webp);
-}
 
 .bgInner{
   //background-image: url(../../assets/pictures/dashboard/dashboardbg.jpg);
@@ -83,12 +24,13 @@ content: url(../../assets/pictures/dashboard/moulidhomelight.webp);
  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
  backdrop-filter: blur(9.1px);
  -webkit-backdrop-filter: blur(9.1px);
-
- height: 90vh;
+ height: 95vh;
  margin: 4px;
  top: 6vh;
+ width: 99vw;
      /* left: 40px; */
- position: relative;
+ position: fixed;
+ display: flex;
 }
 
  .addmenu{
@@ -103,57 +45,32 @@ content: url(../../assets/pictures/dashboard/moulidhomelight.webp);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: fixed;
+    display: flex;
+    align-items: center;
     height: 100%;
-
-    justify-content: space-around;
-    overflow-x: scroll;
+    width: 100vw;
+    justify-content: center;
+    z-index: 1;
 
 
   }
   .ban{
 
-   display: flex;
-   justify-content: center;
-    background-repeat: no-repeat;
-    background-size:350px 50px ;
-    margin: 2%;
-    width: 350px; height: 50px; z-index: 1;
-    overflow-x: hidden;
+  display: flex;
+  width: 90vw;
+  margin: 1vh 5vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   }
   .bg::-webkit-scrollbar{
     display: none;
 }
-  .txt{
-    font-family: nts !important;
-    font-weight: 500;
-    text-align: center;
-    max-height: 100%;
-    height: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    padding: 3px;
-    overflow: scroll;
-
-    display: grid;
-    font-size: 3.5vh;
-    justify-content: center;
-    align-items: center;
-  }
 
 
-  .img {
-    width: 80%;
-    height: 40vh;
-    display: flex;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border-radius: 5%;
-    margin-top: 7vh;
-
-
-  }
 
   .img1{
 
@@ -163,14 +80,10 @@ content: url(../../assets/pictures/dashboard/moulidhomelight.webp);
     background-size: 350px 50px;
     background-repeat: no-repeat;
 
+
   }
 
 
-  .haseetha, .ziyaram, .evidence, .calendar, .dua, .moulid{
-    border-radius: 5%;
-    width: 40vh !important;
-    height: 40vh !important;
-  }
 
   .addmodal{
     height: 42%;
@@ -206,5 +119,159 @@ backdrop-filter: blur(9.1px);
   background-color: green;
  }
 
+ .mainC {
+  height: 80vh;
+  max-height: 80vh;
+  overflow-y: scroll;
+ }
+
+ .mainC::-webkit-scrollbar {
+  display: none;
+ }
+
+ .box{
+  width: 93vw;
+  height: 58vh;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* From https://css.glass */
+background: rgba(165, 162, 162, 0.37);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(12.4px);
+-webkit-backdrop-filter: blur(12.4px);
+border: 1px solid rgba(165, 162, 162, 0.56);
+padding-top: 1vh;
+padding-bottom: 2vh;
+overflow-y: scroll;
+scroll-snap-type: y mandatory;
+margin-bottom: 2vh;
+
+ }
+ .box::-webkit-scrollbar{
+    display: none;
+ }
+
+ .heading{
+  height: 12vh;
+  width: 85vw;
+  background-color: #75797924;
+  border-radius: 15px;
+  justify-content:flex-start;
+  align-items: center;
+  display: flex;
+  position: relative;
+  margin: 1vh 0;
+  scroll-snap-align: end;
+  transition: transform 1s ease-in, opacity 1s ease-in-out;
+ }
+
+ .chip{
+  border-radius: 100%;
+  background-color: rgba(145, 153, 153, 0.479);
+  width: 8vh;
+  height: 8vh;
+  border-radius: 100%;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 0 2vw 0 2vw;
 
 
+ }
+
+ .heading:nth-child(1) .chip{
+  background-image: url(../../assets/pictures/dashboard/moulidhomelight.webp);
+
+ }
+
+ .heading:nth-child(2) .chip{
+  background-image: url(../../assets/pictures/dashboard/qaseedahomelighticon.webp);
+
+ }
+
+ .heading:nth-child(3) .chip{
+  background-image: url(../../assets/pictures/dashboard/ziyaramhomelighticon.webp);
+
+ }
+
+ .heading:nth-child(4) .chip{
+  background-image: url(../../assets/pictures/dashboard/qnahomelighticon.webp);
+}
+
+.heading:nth-child(5) .chip{
+  background-image: url(../../assets/pictures/dashboard/evidancehomelighticon.webp);
+
+ }
+
+ .heading:nth-child(6) .chip{
+  background-image: url(../../assets/pictures/dashboard/calendarhomelighticon.webp);
+
+ }
+
+ .heading:nth-child(7) .chip{
+  background-image: url(../../assets/pictures/dashboard/duahomelighticon.webp);
+
+ }
+ .topic {
+  width: 65vw;
+  height: 8vh;
+  font-family: nts;
+  align-content: center;
+  font-size: 1.5em;
+  text-align: center;
+  display: grid;
+  justify-content: space-around;
+  color: rgb(4, 1, 37);
+
+  text-shadow:
+                1px 1px 0 #ffffff,
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff;
+ }
+
+
+
+ .scrolling-text {
+  display: inline-block;
+  //padding-right: 100%;
+  margin-top: 1vh;
+  animation: scrollRightToLeft 35s linear 2s infinite ;
+  font-family: gunn;
+  font-size: 1rem;
+
+}
+
+@keyframes scrollRightToLeft {
+  from { transform: translateX(90vw); }
+  to { transform: translateX(-100%); }
+}
+
+.ScrollCont {
+  height: 5vh;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  width: 100vw;
+
+  /* From https://css.glass */
+background: rgba(7, 91, 35, 0.62);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4.8px);
+-webkit-backdrop-filter: blur(4.8px);
+border: 1px solid rgb(230, 255, 3);
+color: white;
+
+
+}
+
+.box2{
+  height: 12vh !important;
+  //background-color: aqua !important;
+}

@@ -7,6 +7,7 @@ import { UtillService } from './services/utill.service';
 import { distinctUntilChanged, share, Subscription, take, takeUntil } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StatusBar } from '@capacitor/status-bar';
+import {  Router } from '@angular/router';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class AppComponent {
   isAndroid: boolean = true;
 
   constructor(public data: DatabaseService, public obsr: ObsrService, public loadingCtrl: LoadingController,public utilService: UtillService, public menuctrl: MenuController, private modalCtrl: ModalController, private animationCtrl: AnimationController,
-    private db: DatabaseService, private http: HttpClient, private platform: Platform) {
+    private db: DatabaseService, private http: HttpClient, private platform: Platform, private router: Router) {
       // const googleMapsLink = 'https://maps.app.goo.gl/xuqDg7WM6wu141EWA';
 
       // const api ='https://maps.googleapis.com/maps/api/geocode/json';
@@ -232,6 +233,7 @@ export class AppComponent {
 
             //console.log('logggedout');
             this.utilService.successToast('Logged out Successfully','radio-button-on-outline','warning');
+            this.router.navigateByUrl('dashboard')
         });
       },2000)
     }else{

@@ -26,7 +26,7 @@
     <ion-list class="lst">
       <div class="lstcont">
 
-    <swiper [effect]="'coverflow'" (swiper)="setSwiperInstance($event)">
+    <swiper [effect]="'coverflow'" [speed]="400" (swiper)="setSwiperInstance($event)">
 
       <!---------------------Aqeeda Slide------------------------>
         <ng-template *ngIf="aqAnyContent "  swiperSlide>

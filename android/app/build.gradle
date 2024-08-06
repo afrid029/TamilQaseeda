@@ -6,7 +6,7 @@ android {
         applicationId "com.mafd.ahlussunnahtamil"
     minSdk rootProject.ext.minSdkVersion
     targetSdk 35
-    versionCode 10
+    versionCode 12
         versionName '1.6.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -17,10 +17,21 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
+
+  signingConfigs {
+    release {
+      keyAlias 'key0'
+      keyPassword 'Mafrid1997'
+      storeFile file('H:\\KeyPath\\ahlussunah_tamil.jks')
+      storePassword 'Mafrid1997'
+    }
+  }
+
 }
 
 repositories {

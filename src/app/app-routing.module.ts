@@ -85,7 +85,15 @@ const routes: Routes = [
   {
     path: 'moulidview',
     loadChildren: () => import('./moulidview/moulidview.module').then( m => m.MoulidviewPageModule)
+  },  {
+    path: 'qand-a',
+    loadChildren: () => import('./qand-a/qand-a.module').then( m => m.QandAPageModule)
   },
+  {
+    path: 'floating-text',
+    loadChildren: () => import('./floating-text/floating-text.module').then( m => m.FloatingTextPageModule)
+  },
+
  
 ];
 @NgModule({
