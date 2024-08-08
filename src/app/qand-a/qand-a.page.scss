@@ -1,0 +1,315 @@
+
+
+.img {
+  content:  url(../../assets/pictures/ziyaram/ziyaramlightbanner.webp);
+}
+
+
+.edit {
+border: 1px solid #3477ce;
+color: #3477ce;
+background-color: white !important ;
+}
+.del{
+color: #c74d07 !important;
+border: 1px solid #c74d07 !important;
+background-color: white !important;
+}
+
+// .search{
+//   background-color: rgb(189, 189, 189);
+//   color: black;
+// }
+// .search ion-icon{
+//   color: rgb(15, 15, 15);
+// }
+// .close{
+//   color: black;
+// }
+
+
+
+// .head{
+//   background-color: #eff7cbb9;
+//   color: #141414;
+
+//   box-shadow: 0 0 6px 0 #cfcfcf;
+// }
+
+.lstcont {
+/* From https://css.glass */
+background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+/***************************/
+
+.cont{
+    height: 77vh;
+    width: 100%;
+   // margin-top: 2.5vh;
+    overflow-y: scroll;
+    border-radius: 6%;
+    margin-bottom: 2vh;
+    padding-left: 2%;
+    padding-right:2%;
+
+}
+.cont::-webkit-scrollbar {
+    display: none;
+}
+.cont ion-item ion-label {
+    padding-left: 2%;
+    font-size: 12px;
+}
+.cont1{
+    //margin-top: 10% !important;
+    margin-top: 5vh !important;
+    height: 70vh,;
+    width: 98%;
+    padding-left: 1%;
+    padding-right:1%;
+    overflow-y: scroll;
+    border-radius: 6%;
+
+}
+.cont1::-webkit-scrollbar {
+    display: none;
+}
+.cont1 ion-item ion-label {
+    padding-left: 2%;
+    font-size: 12px;
+}
+.lstcont::-webkit-scrollbar{
+    display: none;
+}
+// .items {
+//     text-align:justify;
+//     font-weight: 500;
+//     white-space: pre-wrap;
+//     margin-top: 10px;
+//     font-size: 11px;
+
+// }
+.edit {
+  border-radius: 78px !important;
+  float: left;
+  width: 7vw;
+  height: 7vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.del {
+
+    margin-left: 4vw;
+}
+// .icon {
+//     //color:white;
+//     font-size: 3vw;
+// }
+
+// .auth{
+//     height: auto;
+//     overflow-y: scroll;
+//     width: 100%;
+//     padding-top: 10px;
+//     padding-bottom: 10px;
+// }
+
+.lst{
+    //padding-top: 7vh;
+
+    //height: 100%;
+    width: 100%;
+    position:fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+
+}
+
+.lstcont{
+    height: 100%;
+    padding: 0.5 vh;
+    margin-top: 0.5vh;
+    //padding-bottom: 5%;
+    max-height: auto;
+    overflow-y: scroll;
+
+}
+// .bar {
+//     width: 100%;
+//     //margin-top: 1vh;
+//     z-index: 3;
+//     position: fixed;
+//     padding-bottom: 2%;
+//     float: left;
+
+// }
+// .search {
+//     width: 96%;
+//     border-radius: 16px;
+//     margin-left: 2%;
+//     float: left;
+//     padding-left: 1%;
+//     height: 45px;
+//     position:fixed;
+//     margin-bottom: 4%;
+//     margin-top: 2%;
+
+
+// }
+
+// .search ion-icon{
+//     margin-left: 5%;
+//     font-size: 20px;
+// }
+
+// .close{
+//     margin-top: 2.4vh;
+//     float: right;
+//     font-size: 25px;
+//     margin-right: 5%;
+//     position: relative;
+//     z-index: 5;
+//     width:30px;
+
+
+// }
+
+
+// .head{
+//   position: fixed;
+//   display: flex;
+//   top:1%;
+//   z-index: 2;
+//   width: 98%;
+//   height:4vh;
+//   border-radius: 4px;
+//   text-align: center;
+// }
+// .head ion-text{
+//   font-size: 15px;
+//   font-weight: 1000;
+//   width: 100%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// ion-fab-button {
+//     --background-activated: #c4e9b2;
+// }
+.tool {
+  width: 100%;
+  height: auto;
+ // margin-top: 2vh;
+}
+.mainImg{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  //width: 100%;
+}
+
+.add{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+}
+
+.add h5{
+  margin-left: 1em;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.add ion-icon {
+  font-size: 1.5em;
+  color: white;
+}
+
+.row1{
+  display: flex;
+  justify-content: center;
+/* From https://css.glass */
+background: rgba(128, 124, 124, 0.37);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.6px);
+-webkit-backdrop-filter: blur(6.6px);
+}
+
+.row2{
+  display: flex;
+  justify-content: space-around;
+}
+
+.row2 ion-col{
+  //height: 10vh;
+  margin: 1vh 0px 1vh 0px;
+
+
+  /* From https://css.glass */
+background: rgba(245, 247, 147, 0.322);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(147, 247, 243, 0.3);
+}
+
+
+
+
+.ic{
+  margin: 1vh 1vw;
+}
+
+.ichead{
+  display: grid;
+  padding: 1vh 1vw;
+}
+
+.ictitle{
+  justify-self: start;
+  font-size: 0.9em;
+  width: 100%;
+  text-align: justify;
+}
+
+.icstitle{
+  justify-self: start;
+  font-size: 0.7em;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+  text-align: justify;
+}
+
+.iccontent{
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 1vw;
+}
+
+.iccontent h5{
+  font-size: 0.5em;
+}
+
+

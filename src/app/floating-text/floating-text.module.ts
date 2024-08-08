@@ -8,12 +8,16 @@ import { FloatingTextPageRoutingModule } from './floating-text-routing.module';
 
 import { FloatingTextPage } from './floating-text.page';
 
+import { SwiperModule } from 'swiper/angular';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FloatingTextPageRoutingModule
+    FloatingTextPageRoutingModule,
+    SwiperModule
   ],
   declarations: [FloatingTextPage]
 })

@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { QandAPageRoutingModule } from './qand-a-routing.module';
+import { AddQnAPageRoutingModule } from './add-qn-a-routing.module';
 
-import { QandAPage } from './qand-a.page';
-import { SwiperModule } from 'swiper/angular';
+import { AddQnAPage } from './add-qn-a.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    QandAPageRoutingModule,
-    SwiperModule
+    AddQnAPageRoutingModule
   ],
-  declarations: [QandAPage]
+  declarations: [AddQnAPage]
 })
-export class QandAPageModule {}
+export class AddQnAPageModule {}

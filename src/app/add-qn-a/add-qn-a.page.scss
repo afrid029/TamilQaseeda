@@ -1,0 +1,44 @@
+* {
+  color: black;
+}
+
+ion-content , ion-list{
+  background-color: azure !important;
+}
+.form{
+  height: 90vh;
+  overflow-y: scroll;
+  width: 100vw;
+}
+
+.form::-webkit-scrollbar {
+  display: none;
+}
+.que
+{
+  display: grid;
+  width: 94vw;
+  margin: 1vh 3vw;
+}
+
+.que p{
+  text-align: justify;
+}
+
+.que ion-list{
+  justify-self: start;
+  width: 95vw;
+
+}
+
+.que ion-list ion-item ion-label {
+  white-space: normal;
+}
+
+ion-button:nth-child(n) {
+  color: white !important;
+}
+
+ion-icon{
+  color: white !important;
+}

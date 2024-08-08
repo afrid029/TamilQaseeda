@@ -403,6 +403,97 @@ getTodayContent(){
 }
 
 
+/*************************Floating Banner Content******************** */
+sendBannerContent(data: any){
+  return this.afs.collection('banner').add(data).then((re: any)=>{
+    return 'added';
+  }).catch((err: any)=>{
+    this.utilService.erroToast('Something went wrong','storefront-outline');
+  })
+}
+
+getBannerContent(){
+  return this.afs.collection('banner',ref => {
+    return ref.orderBy('date','desc');
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
+async updateBannerContent(data: any){
+  this.afs.collection('banner').doc(data.docid).set(data);
+}
+
+async deleteBannerContent(data: any){
+  this.afs.collection('banner').doc(data.docid).delete();
+}
+
+getTodayBannerContent(){
+  const dt = Date.parse(new Date().toDateString());
+  console.log(dt);
+  console.log(new Date(dt));
+  return this.afs.collection('banner',ref => {
+    return ref.where('date', '==', dt);
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+
+}
+
+
+/*************************QnA Section********************** */
+AddQnA(data: any){
+  return this.afs.collection('qna').add(data).then((re: any)=>{
+    //console.log(re);
+    return 'added'
+  }).catch((er: any)=>{
+    //console.log('errr');
+  });
+}
+
+GetforAdmin(){
+  return this.afs.collection('qna',ref => {
+    return ref.orderBy('number','desc');
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
+GetforUsers(){
+  const dt = Date.parse(new Date().toDateString());
+  //console.log(dt);
+  //console.log(new Date(dt));
+  return this.afs.collection('qna',ref => {
+    return ref.where('startDate', '<=', dt).orderBy('startDate','desc').orderBy('number', 'desc');
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
 }
 
 

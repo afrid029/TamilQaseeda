@@ -11,7 +11,7 @@
   <ion-list class="lst">
     <div class="lstcont">
 
-      <swiper [effect]="'coverflow'" (swiper)="setSwiperInstance($event)">
+      <swiper [effect]="'coverflow'" [speed]="400" (swiper)="setSwiperInstance($event)">
 
         <ng-template swiperSlide>
 
@@ -48,7 +48,7 @@
                 <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "true" >
 
                   <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Search not found</ion-label>
+                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Contents not found</ion-label>
                   </ion-chip>
 
               </div>

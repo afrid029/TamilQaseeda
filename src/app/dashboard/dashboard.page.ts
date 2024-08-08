@@ -6,7 +6,7 @@ import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
@@ -24,6 +24,8 @@ export class DashboardPage {
   submitButton: boolean = true;
   login = {email:'', password:''};
   subs: Subscription;
+  banner: boolean = false;
+  content: any;
 
   constructor(public route: Router, public platform: Platform, public routerOutlet: IonRouterOutlet,
     public alertCtrl: AlertController, public db: DatabaseService, public utilService: UtillService,
@@ -42,6 +44,36 @@ export class DashboardPage {
 
 
 
+   }
+
+
+   //audioURL: string ="https://sonic-ca.instainternet.com/8020/stream";
+   ionViewWillEnter(){
+    let o = this.db.getTodayBannerContent().pipe(take(1));
+    o.subscribe((cont: any)=>{
+       console.log('Contents Count ', cont.length);
+
+         if(cont.length > 0){
+          this.banner = true;
+          this.content = cont;
+          // for(let z = 0; z < cont.length; z++){
+          //   this.content = this.content.concat("       ", cont[z].content);
+          //   console.log(cont[z]);
+
+          // }
+
+          console.log(this.content);
+
+           console.log(cont.length);
+          //  this.alerts = cont;
+          //  this.length = cont.length;
+          //  this.openModal(true);
+         }else{
+          this.banner = false;
+          this.content = "";
+         }
+
+     });
    }
    ionViewDidEnter(){
     //console.log('view entering');
@@ -91,6 +123,22 @@ export class DashboardPage {
 
     },10);
     this.isAddModalOpen = false;
+
+  }
+
+
+
+  playAudio(){
+
+    // var options: StreamingAudioOptions = {
+    //   initFullscreen: false,
+
+    // }
+
+
+    // //console.log(this.audioURL);
+
+    // this.stream.playAudio("https://sonic-ca.instainternet.com/8020/stream", options)
 
   }
 

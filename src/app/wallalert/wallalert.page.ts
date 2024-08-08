@@ -57,8 +57,7 @@ export class WallalertPage implements OnInit {
       if(re.length > 0){
         this.anyContent = true;
         this.datas = re;
-        this.datas.date = new Date(this.datas.date)
-        //console.log(this.datas);
+       
       }else{
         this.anyContent = false;
       }

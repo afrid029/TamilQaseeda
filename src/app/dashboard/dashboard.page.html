@@ -1,7 +1,9 @@
 
 <ion-content >
-  <div class = "ScrollCont">
-    <div class = "scrolling-text">ஷேக் ஹசீனா பிரதமர் பதவியை விட்டு வெளியேறினாலும், நாங்கள் மிகவும் கடினமான சூழ்நிலையில் இருந்தபோது.”  அவர் நம் நாட்டிற்கு 200 மில்லியன் டாலர்கள் வழங்கியதை மறக்கக் கூடாது </div>
+  <div *ngIf="banner" class = "ScrollCont">
+    <!-- <div *ngFor="let c of content" class="scrolling-text">{{c.content}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+
+    <div class = "scrolling-text">{{content[0].content}} </div>
 
   </div>
 
@@ -94,7 +96,11 @@
 
 
         <div class="box box2">
-
+           <!-- <ion-icon (click) = "playAudio()" style="font-size: 48px;" name="play-outline"></ion-icon>
+          <audio *ngIf="audioURL" controls>
+            <source [src]="audioURL" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio> -->
         </div>
 
       </div>

@@ -93,6 +93,10 @@ const routes: Routes = [
     path: 'floating-text',
     loadChildren: () => import('./floating-text/floating-text.module').then( m => m.FloatingTextPageModule)
   },
+  {
+    path: 'add-qn-a',
+    loadChildren: () => import('./add-qn-a/add-qn-a.module').then( m => m.AddQnAPageModule)
+  },
 
  
 ];
