@@ -1,6 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title style="font-weight: 700;color: black; text-align: center; background-color: white !important;">Add Quiz</ion-title>
+<ion-header style="background-color: white !important;">
+  <ion-toolbar style="background-color: white !important;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="qand-a" style="color: rgb(56, 128, 255);"  icon="caret-back"></ion-back-button>
+
+
+      <ion-title *ngIf="!isUpdateQuiz" style="font-weight: 700;color: rgb(56, 128, 255);; text-align: center; ">Add Quiz</ion-title>
+    <ion-title *ngIf="isUpdateQuiz" style="font-weight: 700;color: rgb(56, 128, 255); text-align: center; ">Update Quiz Info</ion-title>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -21,24 +28,12 @@
 
           <ion-item lines="inset" >
             <ion-label position="floating">Start Date</ion-label>
-            <ion-input type = "date" name="sdate" [(ngModel)]="quiz.startDate" required></ion-input>
+            <ion-input type = "date" name="sdate" min = "{{getMinDate()}}" [(ngModel)]="quiz.startDate" required></ion-input>
           </ion-item>
 
           <ion-item lines="inset" >
             <ion-label position="floating">End Date</ion-label>
-            <ion-input type = "date" name="edate" [(ngModel)]="quiz.endDate" required></ion-input>
-          </ion-item>
-
-          <ion-item lines="inset">
-            <div>
-              <img src="{{quiz.imageUrl}}" width="100%" alt="">
-              <ion-button style="display: flex; width: 100%;" color="primary" size="medium">
-                <input #fileInput type="file" accept="image/*" (change)="openActionSheet($event)"/><ion-button style="float: right;" (click)="clearFile()" fill="light" *ngIf="closeButton"><ion-icon   name="close-outline"></ion-icon></ion-button>
-              </ion-button>
-            </div>
-            <div *ngIf="perc">
-              <ion-progress-bar [value] = "perc"></ion-progress-bar>
-            </div>
+            <ion-input type = "date" name="edate" [(ngModel)]="quiz.endDate" min = "{{getMinDate()}}" required></ion-input>
           </ion-item>
 
           <div *ngFor="let d of quiz.questions" class="que" >
@@ -48,6 +43,8 @@
               <ion-item >{{d.ans2}}</ion-item>
               <ion-item >{{d.ans3}}</ion-item>
               <ion-item >{{d.ans4}}</ion-item>
+              <ion-item style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-item>
+
             </ion-list>
 
             <ion-item slot="end">
@@ -62,7 +59,8 @@
           </ion-item>
 
           <div style="margin: 1vh 2vw; border-radius: 16px;">
-            <ion-button (click)="PostQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="warning" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 || btnValid">Post Quiz</ion-button>
+            <ion-button *ngIf="!isUpdateQuiz" (click)="PostQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="warning" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Post Quiz</ion-button>
+            <ion-button *ngIf="isUpdateQuiz" (click)="UpdateQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="success" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Update Quiz</ion-button>
           </div>
 
       </ion-list>
@@ -106,8 +104,13 @@
                   <ion-input type="text" name="ans4" [(ngModel)] = "query.ans4" required></ion-input>
                 </ion-item>
 
-                <ion-button *ngIf="!isEditModel" [disabled]="addQue.invalid" (click) = "addList()" expand="full" color="warning" >Add in the list</ion-button>
-                <ion-button *ngIf="isEditModel" [disabled]="addQue.invalid" (click) = "updateList()" expand="full" color="success" >Update list</ion-button>
+                <ion-item style="background-color: rgba(255, 245, 104, 0.658); border-radius: 16px;">
+                  <ion-label position="floating" style="font-weight: bold;">Correct Answer </ion-label>
+                  <ion-input style="font-weight: bold;" type="number" name="crctAns" [(ngModel)] = "query.crctAns" required></ion-input>
+                </ion-item>
+
+                <ion-button *ngIf="!isEditModel" [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "addList()" expand="full" color="warning" >Add in the list</ion-button>
+                <ion-button *ngIf="isEditModel" [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "updateList()" expand="full" color="success" >Update list</ion-button>
               </ion-list>
             </form>
           </ion-card-content>

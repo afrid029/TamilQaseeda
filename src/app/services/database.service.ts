@@ -494,6 +494,48 @@ GetforUsers(){
   )
 }
 
+async UpdateQnA(data: any){
+  this.afs.collection('qna').doc(data.docid).set(data);
+}
+
+async deleteQnA(evidence: any){
+  this.afs.collection('qna').doc(evidence.docid).delete();
+}
+
+AlreadySentOrNot(mobile: any, data: any){
+
+  console.log(typeof(mobile));
+  console.log(data);
+
+
+  return this.afs.collection('response', ref=> {
+    return ref.where('quizid','==',data.docid).where('user.mobile','==',mobile);
+  }).get();
+}
+
+SubmitResponse(data: any){
+  return this.afs.collection('response').add(data).then((re: any)=>{
+    //console.log(re);
+    return 'added'
+  }).catch((er: any)=>{
+    //console.log('errr');
+  });
+}
+
+getResponseforQuiz(data: any){
+  return this.afs.collection('response',ref => {
+    return ref.where('quizid','==',data.docid).orderBy('date','desc');
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+     return data.map((a: any)=>{
+        const docid = a.payload.doc.id;
+        const doc = a.payload.doc.data();
+        return {docid, ...doc};
+      })
+    })
+  )
+}
+
 }
 
 

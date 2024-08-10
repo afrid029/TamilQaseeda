@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
-import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import { delay, finalize, Observable, Subscription, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UtillService } from '../services/utill.service';
 import { DatabaseService } from '../services/database.service';
 import { NgForm } from '@angular/forms';
@@ -22,26 +22,13 @@ export class AddQnAPage implements OnInit {
   isModalOpen: boolean = false;
   isEditModel: boolean = false
   subs: Subscription;
-  isFileUploaded: boolean = false;
-  file: any;
-  perc: number = 0;
   spinner: boolean = false;
   net: Boolean;
-  fileSelected: boolean = false;
-  closeButton: boolean = false;
-  currImg: string;
+  isUpdateQuiz: boolean = false;
 
-  btnValid: boolean = false;
-  imgName: string;
-  fileUploadTask: AngularFireUploadTask;
-  // Upload progress
-  percentageVal: Observable<any>;
-  UploadedImageURL: Observable<string>;
-  imgSize: number;
-
-  quiz: any = {number:'',startDate: '',endDate: '',imageUrl: '',status:'', questions:[]=[]};
-  query: any = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:''};
-
+  quiz: any = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};
+  query: any = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'', crctAns:''};
+  minDate: string;
 
 
   constructor(private platform: Platform,
@@ -49,12 +36,15 @@ export class AddQnAPage implements OnInit {
               private storage: AngularFireStorage,
               private utill: UtillService,
               private datasc: DatabaseService,
-              private obsr: ObsrService
+              private obsr: ObsrService,
+              private active: ActivatedRoute
 
   ) {
     this.obsr.network.subscribe((re)=>{
       this.net = re;
     });
+
+    this.minDate = new Date().toISOString().split('T')[0];
 
 
   }
@@ -63,14 +53,45 @@ export class AddQnAPage implements OnInit {
   }
 
 
-  ionViewDidEnter(){
+  ionViewWillEnter(){
     //console.log('ziyaram view entering');
+
+    this.active.queryParams.subscribe(params=>{
+      if(params && params['source']){
+        this.quiz = JSON.parse(params['source']);
+
+        let dt = new Date(this.quiz.startDate);
+        let year = dt.toLocaleDateString("dafault",{year: "numeric"});
+        let month = dt.toLocaleDateString("dafault",{month: "2-digit"});
+        let day = dt.toLocaleDateString("dafault",{day: "2-digit"});
+
+        let d = year + '-' + month+ '-' + day;
+        this.quiz.startDate = d;
+
+        dt = new Date(this.quiz.endDate);
+        year = dt.toLocaleDateString("dafault",{year: "numeric"});
+        month = dt.toLocaleDateString("dafault",{month: "2-digit"});
+        day = dt.toLocaleDateString("dafault",{day: "2-digit"});
+        d = year + '-' + month+ '-' + day;
+        this.quiz.endDate = d;
+
+
+        this.isUpdateQuiz = true;
+
+        console.log(this.quiz);
+
+      }else{
+        this.isUpdateQuiz = false;
+      }
+    })
+
+
     console.log(this.quiz);
 
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
         if(!this.isModalOpen){
-          this.route.navigateByUrl('/dashboard');
+          this.route.navigateByUrl('/qand-a');
         }else{
           this.isModalOpen = false
         }
@@ -79,44 +100,32 @@ export class AddQnAPage implements OnInit {
    }
 
    ionViewWillLeave(){
-    //console.log('Ziyaram view leaving');
-
+    console.log('Ziyaram view leaving');
+    this.quiz = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};
     this.subs.unsubscribe();
    }
-
-
-
-   openActionSheet(event: any){
-    this.file = event.target.files.item(0);
-    //console.log(this.file);
-    this.fileSelected = true;
-    this.closeButton = true;
-  }
-
-  clearFile(){
-    //console.log('Clear file');
-    this.inp.nativeElement.value='';
-    this.closeButton = !this.closeButton;
-    this.fileSelected = false;
-
-  }
 
   setViewModel(stat: boolean){
     this.isModalOpen = stat;
     if(!stat){
       this.isEditModel = false;
     }
-    this.query={id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:''};
+    this.query={id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'',crctAns:''};
 
   }
 
   addList(){
     this.query.id = Date.now();
+    this.query.crctAns = 'ans'+this.query.crctAns;
     this.quiz.questions.push(this.query);
     this.isModalOpen = false;
-    this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:''};
-    console.log(this.quiz.questions.length < 1);
+    this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'', crctAns:''};
+    //console.log(this.quiz.questions.length < 1);
 
+  }
+
+  getCorrectAns(obj: any){
+    return obj[obj.crctAns];
   }
 
   deleteList(id: any){
@@ -127,6 +136,7 @@ export class AddQnAPage implements OnInit {
 
   editList(id: any){
     this.query = this.quiz.questions.filter((q:any) => q.id === id)[0];
+    this.query.crctAns = this.query.crctAns[this.query.crctAns.length - 1];
     // console.log(this.query);
     // console.log(this.quiz.questions);
 
@@ -143,10 +153,11 @@ export class AddQnAPage implements OnInit {
     this.quiz.questions[index].ans2 = this.query.ans2;
     this.quiz.questions[index].ans3 = this.query.ans3;
     this.quiz.questions[index].ans4 = this.query.ans4;
+    this.quiz.questions[index].crctAns = 'ans'+this.query.crctAns;
 
     this.isEditModel = false;
     this.isModalOpen = false;
-    this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:''};
+    this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'',crctAns:''};
 
   }
 
@@ -158,65 +169,17 @@ export class AddQnAPage implements OnInit {
 
       this.quiz.status = "Active"
 
+
       this.spinner = true;
-      this.btnValid = true;
-      this.isFileUploaded = false;
-
-
-      if(this.fileSelected){
-        this.imgName = this.file.name;
-        const fileStoragePath = `Images1/${new Date().getTime()}_${this.file.name}`;
-        const imageRef = this.storage.ref(fileStoragePath);
-        this.fileUploadTask = this.storage.upload(fileStoragePath, this.file);
-        this.percentageVal = this.fileUploadTask.percentageChanges();
-        this.percentageVal.subscribe((per)=>{
-          //console.log(per);
-          this.perc = per/100;
-
-        })
-        //console.log(this.fileUploadTask);
-        this.fileUploadTask.snapshotChanges().pipe(
-          finalize(() => {
-            // Retreive uploaded image storage path
-            this.UploadedImageURL = imageRef.getDownloadURL();
-            this.UploadedImageURL.subscribe(
-              (resp) => {
-                //console.log(resp);
-
-                this.quiz.imageUrl = resp;
-                this.isFileUploaded = true;
-
-                this.utill.successToast('Picture has been successfully uploaded.', 'cloud-done', 'success');
-
-
-              },
-              (error) => {
-                this.utill.erroToast(error.message, 'cellular-outline');
-              }
-            );
-          }),
-          tap((snap: any) => {
-            this.imgSize = snap.totalBytes;
-          })
-        ).subscribe();
-
-      }else{
-        this.isFileUploaded = true;
-        this.quiz.imageUrl = '';
-      }
-
-      const adding = setInterval(()=>{
-        if(this.isFileUploaded){
 
 
 
             this.datasc.AddQnA(this.quiz).then(async (re: any)=>{
               this.spinner = false;
               this.route.navigateByUrl('qand-a');
-              this.btnValid = false;
-              this.quiz = {number:'',startDate: '',endDate: '',imageUrl: '',status:'', questions:[]=[]};;
-              this.clearFile();
-              this.perc = 0;
+              this.quiz = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};;
+
+
               form.resetForm();
 
                 this.utill.successToast('Quiz Successfully Added','cloud-upload-sharp','warning')
@@ -224,20 +187,50 @@ export class AddQnAPage implements OnInit {
 
             }).catch((e: any)=>{
               this.spinner = false;
-              //console.log('Error encountered ', e.message);
+              console.log('Error encountered ', e.message);
               this.utill.erroToast(e.message, 'snow-outline');
             });
 
-            clearInterval(adding);
-        }
-      },1000)
+      }else{
+        this.utill.NetworkToast();
+      }
+  }
+  UpdateQuiz(form: NgForm){
+    if(this.net){
+      this.quiz.endDate = Date.parse(new Date(this.quiz.endDate).toDateString());
+      this.quiz.startDate = Date.parse(new Date(this.quiz.startDate).toDateString());
+      const today = Date.parse(new Date().toDateString());
+      this.spinner = true;
+
+      this.datasc.UpdateQnA(this.quiz).then(()=>{
+              this.spinner = false;
+              this.route.navigateByUrl('qand-a');
+              this.quiz = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};
+              //form.resetForm();
+              this.utill.successToast('Updated successfully','thumbs-up-outline','success');
 
 
+            }).catch((e: any)=>{
+              this.spinner = false;
+              console.log('Error encountered ', e.message);
+              this.utill.erroToast(e.message, 'snow-outline');
+            });
 
-    }else{
-      this.utill.NetworkToast();
-    }
+      }else{
+        this.utill.NetworkToast();
+      }
 
+  }
+
+  getMinDate(){
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+
+    const localDate = `${year}-${month}-${day}`;
+
+   return localDate;
   }
 
 }

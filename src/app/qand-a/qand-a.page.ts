@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {  Router } from '@angular/router';
+import {  NavigationExtras, Router } from '@angular/router';
 import { Platform,  AlertController, IonModal } from '@ionic/angular';
 import {  Subscription } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
@@ -14,13 +14,18 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   templateUrl: './qand-a.page.html',
   styleUrls: ['./qand-a.page.scss'],
 })
-export class QandAPage implements AfterViewInit {
+export class QandAPage  {
 
   @ViewChild('modal1') modal: IonModal;
   @ViewChild('modal2') modal2: IonModal;
 
 
-  isModalOpen: boolean = false;
+  isQuizView: boolean = false;
+  isQuestionView: boolean = false;
+  isUserDetailView: boolean = false;
+  isAnswerSheet: boolean = false;
+  isCorrectioView: boolean = false;
+  isRevealView: boolean = false;
   anyContent: boolean = false;
   anyUserContent: boolean = false;
   isEditOpen: boolean = false;
@@ -29,11 +34,24 @@ export class QandAPage implements AfterViewInit {
   net: Boolean;
   subs: Subscription;
   spinner: boolean = false;
-  cardSpinner: boolean = false;
+  //cardSpinner: boolean = false;
 
   AdminData: any;
   UserData: any;
 
+
+  currQuiz: any; //for admin slide
+  Responses: any;
+  Answers: any;
+  RevealedAnswers: any;
+
+  clickedQuiz: any; // For Genrel User slide
+  user: any = {name:'',mobile:'',country:'',city:'',email:''};
+  progress:boolean = false;
+  btnValid: boolean = false;
+
+  correctCount: number;
+  totalCount: number;
 
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
@@ -47,12 +65,8 @@ export class QandAPage implements AfterViewInit {
     });
    }
 
-
-  ngAfterViewInit(){
-
-  }
   ionViewWillEnter(){
-    //console.log('View will enter');
+    console.log('View will enter');
     if(this.obj){
       this.getAdminData();
     }
@@ -63,11 +77,46 @@ export class QandAPage implements AfterViewInit {
     //console.log('ziyaram view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-        if(!this.isModalOpen){
-          this.route.navigateByUrl('/dashboard');
-        }else{
-          this.isModalOpen = false
-        }
+
+      if(!this.isQuestionView && !this.isUserDetailView && !this.isQuizView && !this.isAnswerSheet && !this.isCorrectioView && !this.isRevealView){
+        this.route.navigateByUrl('/dashboard');
+       }
+
+      if(this.isQuestionView){
+        this.isQuestionView = false;
+
+        setTimeout(()=>{
+          this.isQuizView = true;
+        }, 500);
+        // this.isQuizView = false
+      }
+
+      if(this.isQuizView){
+        this.isQuizView = false;
+          //this.currQuiz = null;
+      }
+
+      if(this.isUserDetailView){
+        this.isUserDetailView = false;
+      }
+
+      if(this.isAnswerSheet){
+        this.isAnswerSheet = false;
+      }
+
+      if(this.isCorrectioView){
+        this.isCorrectioView = false;
+
+        setTimeout(() =>{
+          this.isQuizView = true;
+        }, 500);
+      }
+
+      if(this.isRevealView){
+        this.isRevealView = false;
+      }
+
+
 
     })
    }
@@ -116,6 +165,225 @@ export class QandAPage implements AfterViewInit {
     this.route.navigateByUrl('add-qn-a')
    }
 
+   OpenQuiz(data: any){
+    //console.log(data);
+    this.currQuiz = {};
+    this.Responses=[];
+    this.progress = true;
+    this.isQuizView = true;
+    this.currQuiz = data;
+    this.db.getResponseforQuiz(data).subscribe(re=>{
+      console.log(re);
+      this.Responses = re;
+      this.progress=false;
+
+    })
+
+   }
+
+   closeQuizView(){
+    this.isQuizView = false;
+    this.currQuiz = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};
+   }
+
+   OpenQuestions(){
+    this.isQuizView = false;
+
+    setTimeout(()=>{
+      this.isQuestionView = true;
+    }, 500);
+
+   }
+
+   closeQuestions(){
+    this.isQuestionView = false;
+
+    setTimeout(()=>{
+      this.isQuizView = true;
+    }, 500);
+
+   }
+
+   getCorrectAns(obj: any){
+    return obj[obj.crctAns];
+  }
+
+   OpenQuestionsSheet(){
+
+    this.isQuizView = false;
+
+    setTimeout(() =>{
+      this.NavtoEdit();
+    }, 500)
+   }
+
+   NavtoEdit(){
+    const param:NavigationExtras = {
+      queryParams: {
+        source: JSON.stringify(this.currQuiz)
+      }
+    }
+    //this.currQuiz = null;
+
+    this.route.navigate(['add-qn-a'], param);
+   }
+
+   async DeleteQuiz(){
+    if(this.net){
+      const alert = await this.alertctrl.create({
+        header: 'Are You Sure To Delete',
+        cssClass: 'delAlert',
+        buttons:[
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () =>{
+              //console.log('cancelled');
+
+            }
+          },{
+            text: 'Delete',
+            role: 'confirm',
+            handler: () =>{
+              this.spinner = true;
+              //console.log('delete Conformed');
+               this.db.deleteQnA(this.currQuiz).then(()=>{
+                this.spinner = false;
+                this.isQuizView = false;
+                    this.utilService.successToast('Quiz deleted successfully','trash-outline','warning');
+                }).catch((er)=>{
+                  this.spinner = false;
+                  this.utilService.erroToast('Something Went Wrong', 'bug-outline');
+                });
+
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }else{
+      this.utilService.NetworkToast();
+    }
+   }
+
+   ///////////Users Slide//////////////////
+   temp :any;
+   UserClicked(data: any){
+    console.log(data);
+
+    if(data.status === 'Active'){
+      this.isUserDetailView = true;
+      //this.clickedQuiz = {...data};
+      this.clickedQuiz = structuredClone(data);
+
+    }
+
+  }
+
+  closeUserInfoView(){
+    this.isUserDetailView = false;
+  }
+
+
+  SaveUserInfo(){
+    this.progress = true;
+    const reg = new RegExp( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+    if(!reg.test(this.user.email)){
+      this.user.email = '';
+    }
+
+    this.db.AlreadySentOrNot(this.user.mobile, this.clickedQuiz).subscribe(d=>{
+      this.progress = false;
+      this.isUserDetailView = false;
+      if(d.size < 1){
+        setTimeout(() =>{
+          this.isAnswerSheet = true;
+        }, 500);
+
+      }else{
+        this.utilService.erroToast('User already sent the quiz', 'alert-circle-outline');
+      }
+
+    })
+
+    //this.isAnswerSheet = true;
+
+  }
+
+  closeAnswerSheet(){
+    this.isAnswerSheet = false;
+  }
+
+  SaveAnswer(){
+    //console.log(this.clickedQuiz);
+    this.progress = true
+    this.btnValid = true;
+    const data = {quizid:this.clickedQuiz.docid, date: Date.now(), user: this.user, answer: this.clickedQuiz.questions};
+    console.log(data);
+    this.db.SubmitResponse(data).then(async (re) =>{
+      this.clickedQuiz = null;
+      this.isAnswerSheet = false;
+      this.btnValid = false;
+      this.progress = false;
+      this.utilService.successToast('Thank You For Your Answer', 'checkmark-circle-outline','success');
+    })
+
+
+  }
+
+  checkAnswers(data: any){
+    this.correctCount = 0;
+    this.totalCount = 0;
+    this.Answers = {};
+
+    this.Answers = data;
+    this.totalCount = this.Answers.answer.length;
+
+    for(let i = 0; i < this.totalCount; i++){
+      if(this.Answers.answer[i].selected === this.Answers.answer[i].crctAns){
+        this.correctCount ++;
+      }
+    }
+    //console.log(this.correctCount);
+
+
+
+
+
+    this.isQuizView = false;
+
+    setTimeout(() =>{
+      this.isCorrectioView = true;
+    }, 500)
+  }
+
+  closeCorrectionSheet(){
+    this.isCorrectioView = false;
+
+    setTimeout(() =>{
+      this.isQuizView = true;
+    }, 500)
+  }
+
+  GetDate(){
+    return Date.parse(new Date().toDateString())
+  }
+
+  RevealAnswers(data: any){
+    // console.log(data);
+
+    this.RevealedAnswers = [];
+    this.RevealedAnswers = data;
+    this.isRevealView = true;
+
+  }
+
+  closeAnswerReveal(){
+    this.isRevealView = false;
+  }
+
+
+
 // logScrollStart(event: any){
 //   //console.log('scrolling');
 //   this.btn = "hidden";
@@ -124,5 +392,7 @@ export class QandAPage implements AfterViewInit {
 //   },1500)
 
 // }
+
+
 
 }
