@@ -1,7 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Song } from '../add/Song';
-import { map, Observable, throwError } from 'rxjs';
+import { map } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UtillService } from './utill.service';
@@ -376,20 +375,29 @@ getAlertContent(){
   )
 }
 
-async updateAlertContent(data: any){
-  this.afs.collection('alerts').doc(data.docid).set(data);
-}
 
 async deleteAlertContent(data: any){
   this.afs.collection('alerts').doc(data.docid).delete();
+  data.imageUrl.forEach((url: any) =>{
+    this.storage.storage.refFromURL(url).delete();
+  })
 }
 
 getTodayContent(){
-  const dt = Date.parse(new Date().toDateString());
-  //console.log(dt);
+  // const dt = Date.parse(new Date().toDateString());
+  // console.log(dt);
+
+  const now = new Date();
+
+  const startOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0)).getTime();
+
+    // Calculate the end of the current day in UTC
+    const endOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999)).getTime();
+
   //console.log(new Date(dt));
   return this.afs.collection('alerts',ref => {
-    return ref.where('date', '==', dt);
+    return ref.where('date', '>=', startOfDayUTC)
+    .where('date', '<=', endOfDayUTC);
   }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{
@@ -435,11 +443,16 @@ async deleteBannerContent(data: any){
 }
 
 getTodayBannerContent(){
-  const dt = Date.parse(new Date().toDateString());
-  console.log(dt);
-  console.log(new Date(dt));
+  const now = new Date();
+
+  const startOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0)).getTime();
+
+    // Calculate the end of the current day in UTC
+    const endOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999)).getTime();
+
   return this.afs.collection('banner',ref => {
-    return ref.where('date', '==', dt);
+    return ref.where('date', '>=', startOfDayUTC)
+    .where('date', '<=', endOfDayUTC);
   }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{
@@ -479,10 +492,17 @@ GetforAdmin(){
 
 GetforUsers(){
   const dt = Date.parse(new Date().toDateString());
+  const now = new Date();
+
+  const startOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0)).getTime();
+
+    // Calculate the end of the current day in UTC
+    const endOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999)).getTime();
+
   //console.log(dt);
   //console.log(new Date(dt));
   return this.afs.collection('qna',ref => {
-    return ref.where('startDate', '<=', dt).orderBy('startDate','desc').orderBy('number', 'desc');
+    return ref.where('startDate', '>=', startOfDayUTC).where('startDate', '<=',endOfDayUTC).orderBy('startDate','desc').orderBy('number', 'desc');
   }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{

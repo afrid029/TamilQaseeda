@@ -292,19 +292,23 @@ export class QandAPage  {
       this.user.email = '';
     }
 
-    this.db.AlreadySentOrNot(this.user.mobile, this.clickedQuiz).subscribe(d=>{
-      this.progress = false;
-      this.isUserDetailView = false;
-      if(d.size < 1){
-        setTimeout(() =>{
-          this.isAnswerSheet = true;
-        }, 500);
+    if(this.net){
+      this.db.AlreadySentOrNot(this.user.mobile, this.clickedQuiz).subscribe(d=>{
+        this.progress = false;
+        this.isUserDetailView = false;
+        if(d.size < 1){
+          setTimeout(() =>{
+            this.isAnswerSheet = true;
+          }, 500);
 
-      }else{
-        this.utilService.erroToast('User already sent the quiz', 'alert-circle-outline');
-      }
+        }else{
+          this.utilService.erroToast('User already sent the quiz', 'alert-circle-outline');
+        }
 
-    })
+      })
+    }else{
+      this.utilService.NetworkToast();
+    }
 
     //this.isAnswerSheet = true;
 
@@ -320,13 +324,17 @@ export class QandAPage  {
     this.btnValid = true;
     const data = {quizid:this.clickedQuiz.docid, date: Date.now(), user: this.user, answer: this.clickedQuiz.questions};
     console.log(data);
-    this.db.SubmitResponse(data).then(async (re) =>{
-      this.clickedQuiz = null;
-      this.isAnswerSheet = false;
-      this.btnValid = false;
-      this.progress = false;
-      this.utilService.successToast('Thank You For Your Answer', 'checkmark-circle-outline','success');
-    })
+    if(this.net){
+      this.db.SubmitResponse(data).then(async (re) =>{
+        this.clickedQuiz = null;
+        this.isAnswerSheet = false;
+        this.btnValid = false;
+        this.progress = false;
+        this.utilService.successToast('Thank You For Your Answer', 'checkmark-circle-outline','success');
+      })
+    }else {
+      this.utilService.NetworkToast();
+    }
 
 
   }
@@ -382,16 +390,6 @@ export class QandAPage  {
     this.isRevealView = false;
   }
 
-
-
-// logScrollStart(event: any){
-//   //console.log('scrolling');
-//   this.btn = "hidden";
-//   setTimeout(() =>{
-//     this.btn = "visible";
-//   },1500)
-
-// }
 
 
 

@@ -237,21 +237,22 @@ export class AddZiyaramPage implements OnInit {
         finalize(() => {
           // Retreive uploaded image storage path
           this.UploadedImageURL = imageRef.getDownloadURL();
-          this.UploadedImageURL.subscribe(
-            (resp) => {
-              //console.log(resp);
+          this.UploadedImageURL.subscribe({
+
+            next: (resp) =>{
+              //   //console.log(resp);
 
               this.ziyaram.imageUrl = resp;
               this.isFileUploaded = true;
 
               this.utill.successToast('Picture has been successfully uploaded.', 'cloud-done', 'success');
-
-
             },
-            (error) => {
+
+            error: (error: any) =>{
               this.utill.erroToast(error.message, 'cellular-outline');
             }
-          );
+            
+        });
         }),
         tap((snap: any) => {
           this.imgSize = snap.totalBytes;

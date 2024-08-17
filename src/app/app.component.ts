@@ -115,14 +115,20 @@ export class AppComponent {
    ngOnInit(){
     //console.log('Appcomponent');
 
-   let o = this.db.getTodayContent().pipe(take(1));
-   o.subscribe((cont: any)=>{
+   let obs = this.db.getTodayContent().pipe(take(1));
+   obs.subscribe((cont: any)=>{
       //console.log('Alerts Count ', cont.length);
 
         if(cont.length > 0){
           //console.log(cont.length);
-          this.alerts = cont;
-          this.length = cont.length;
+          this.length = 0;
+          for (let i = 0; i < cont.length; i++){
+            this.alerts.push(cont[i].imageUrl);
+            this.length = this.length + cont[i].imageUrl.length;
+          }
+
+          this.alerts = this.alerts.flat(Infinity);
+
           this.openModal(true);
         }
 
@@ -144,6 +150,8 @@ export class AppComponent {
       this.content = this.alerts[k];
       this.i = k + 1;
       this.isModalOpen = true;
+      console.log(this.content);
+
     }
 
     if(!state){
@@ -158,6 +166,8 @@ export class AppComponent {
           this.content = this.alerts[this.i];
           this.i = this.i + 1;
           this.isModalOpen = true;
+
+      console.log(this.content);
         },500)
       }
     }

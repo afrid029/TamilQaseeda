@@ -6,45 +6,31 @@
     <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
     <ng-template>
 
-        <ion-card class="card" >
-          <ion-card-header style="height: 10%;">
+      <ion-content>
+      </ion-content>
+        <ion-card style=" border-radius: 4vw;" class="card" >
+          <ion-card-header style="display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-flow: column;">
+            <img alt="" style="border-radius: 4vw;" src="{{content}}" />
+            <ion-card-title style="display: flex; justify-content: end;">
+              <ion-button (click)="openModal(false)" fill="outline" color="dark">
+                <ion-icon name="close-sharp"></ion-icon>
+                Close</ion-button>
+            </ion-card-title>
+          </ion-card-header>
 
-        </ion-card-header>
-          <ion-card-content class="alt1">
+          <!-- <ion-card-content class="alt1">
 
             <div  class="img">
               <ion-button fill="clear" class="closebtn1" (click)="openModal(false)">
                 <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
               </ion-button>
-              <img alt="Dialog-Box" class="alert"/>
-
-              <div class = 'bigTitle'>
-                <h5>{{content.title}}</h5>
-              </div>
-
-              <div class="content">
-
-
-                <h5 style="font-size: 4vw;">
-                  {{content.mcontent}}
-
-                </h5>
-<br><br><br>
-
-                  <h6 style="white-space: pre-line; font-size: smaller;"><i>
-                    "{{content.scontent}}" </i>
-                  </h6>
-
-              </div>
 
             </div>
-          </ion-card-content>
+          </ion-card-content> -->
         </ion-card>
-
-
-
-
-
       </ng-template>
 
   </ion-modal>
@@ -101,7 +87,7 @@
               <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/wallalert']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Daily Alerts</ion-label>
+              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Popup Images</ion-label>
             </ion-item>
 
             <ion-button (click) = "Logout()" *ngIf="obj" style="display: flex; ">Logout</ion-button>
@@ -187,7 +173,7 @@
                <b> அஹ்லுஸ் ஸுன்னாஹ் தமிழ்<br>
                 KASJ மீடியா<br>
                 0094-767774020<br>
-                kasjmedia@gmail.com<br></b>
+                kasjmedia&#64;gmail.com<br></b>
               </h5>
 
               <div style="justify-content: space-around; display: grid;text-align: center; ">

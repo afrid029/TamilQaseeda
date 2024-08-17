@@ -34,33 +34,49 @@
 
     </ion-card> -->
 
-    <ion-card class = 'myc'>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('muham')"  class="card muham">
+            <!-- <img src="../../assets/pictures/moulid/subhanamoulid.webp" > -->
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
+            <!-- <img src="../../assets/pictures/moulid/muhiyidden.webp" > -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
 
-      <ion-card (click)="viewMoulidh('muham')"  class="card muham">
-        <!-- <img src="../../assets/pictures/moulid/subhanamoulid.webp" > -->
-      </ion-card>
+      <ion-row>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('shahul')" class="card shahul">
+            <!-- <img src="../../assets/pictures/moulid/shahemeeran.webp" > -->
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
+            <!-- <img src="../../assets/pictures/moulid/hassanhussain.webp" > -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
 
-      <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
-        <!-- <img src="../../assets/pictures/moulid/muhiyidden.webp" > -->
-      </ion-card>
+      <ion-row>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('badr')" class="card badr">
+            <!-- <img src="../../assets/pictures/moulid/badr.webp" > -->
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="viewMoulidh('ajmeer')" class="card ajmeer">
+            <!-- <img src="../../assets/pictures/moulid/ajmeer.webp" > -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
 
-      <ion-card (click)="viewMoulidh('shahul')" class="card shahul">
-        <!-- <img src="../../assets/pictures/moulid/shahemeeran.webp" > -->
-      </ion-card>
+    </ion-grid>
 
-      <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
-        <!-- <img src="../../assets/pictures/moulid/hassanhussain.webp" > -->
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('badr')" class="card badr">
-        <!-- <img src="../../assets/pictures/moulid/badr.webp" > -->
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('ajmeer')" class="card ajmeer">
-        <!-- <img src="../../assets/pictures/moulid/ajmeer.webp" > -->
-      </ion-card>
-
-    </ion-card>
+   
 
 
     </div>

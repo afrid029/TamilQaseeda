@@ -1,12 +1,14 @@
-import { Component, NgModuleFactory, OnInit } from '@angular/core';
+import { Component, ElementRef, NgModuleFactory, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, Platform } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { finalize, Observable, Subscription, tap } from 'rxjs';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import { imgFile } from '../add-ziyaram/add-ziyaram.page';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
@@ -16,11 +18,15 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   styleUrls: ['./wallalert.page.scss'],
 })
 export class WallalertPage implements OnInit {
+
+
+  @ViewChild('fileInput') inp: ElementRef;
+
   net: boolean = false;
   obj: boolean = false;
   spinner: boolean = false;
   anyContent: boolean = false;
-  alert: any = {};
+  alert: any = {date:'', imageUrl:[]};
   datas: any = [];
 
   isModalOpen: boolean = false;
@@ -30,7 +36,30 @@ export class WallalertPage implements OnInit {
 
   subs: Subscription;
 
-  constructor(private obsr: ObsrService, private platform: Platform, private router: Router, private db: DatabaseService, private utils: UtillService, private alertctrl: AlertController) {
+  fileUploadTask: AngularFireUploadTask;
+  // Upload progress
+  percentageVal: Observable<any>;
+  // Track file uploading with snapshot
+  trackSnapshot: Observable<any>;
+  // Uploaded File URL
+  UploadedImageURL: Observable<string>;
+  // Uploaded image collection
+  files: Observable<imgFile[]>;
+  // Image specifications
+  imgName: string;
+  imgSize: number;
+  // File uploading status
+
+  images: any[];
+  fileSelected: boolean;
+  closeButton: boolean;
+  btnvalid: boolean;
+  isFileUploaded: boolean;
+  perc: number = 0;
+
+  constructor(private obsr: ObsrService, private platform: Platform, private router: Router,
+    private db: DatabaseService, private utils: UtillService, private alertctrl: AlertController,
+  private storage: AngularFireStorage) {
     this.obsr.network.subscribe(re=>{
       this.net =re;
     });
@@ -57,7 +86,7 @@ export class WallalertPage implements OnInit {
       if(re.length > 0){
         this.anyContent = true;
         this.datas = re;
-       
+
       }else{
         this.anyContent = false;
       }
@@ -91,87 +120,16 @@ export class WallalertPage implements OnInit {
     this.slide = event
   }
 
-  onSubmit(form: NgForm){
-    //console.log(this.alert);
-    if(this.net){
-      this.spinner = true;
-      //console.log(typeof(this.alert.date));
 
-      const dt = Date.parse(new Date(this.alert.date).toDateString());
-      //console.log(dt);
-      this.alert.date = dt;
-      this.db.sendAlertContent(this.alert).then((re: any)=>{
-        this.spinner = false;
-        this.alert = {};
-        form.resetForm();
-        this.utils.successToast('Successfully Added','cloud-upload-sharp','warning')
-
-      }).catch((err: any)=>{
-        this.spinner = false;
-        this.utils.erroToast(err.message, 'snow-outline');
-      })
-
-    }else{
-      this.utils.NetworkToast();
-    }
-
-  }
 
   setViewModel(state: boolean){
     this.isModalOpen = state;
   }
 
-  setEditModel(state: boolean){
-    this.isEditOpen = state;
-  }
 
   promo(data: any){
     this.setViewModel(true);
     this.viewAlert = data;
-
-  }
-
-  loadUpdate(data: any){
-    this.editAlert.docid = data.docid;
-    this.editAlert.title = data.title;
-    this.editAlert.mcontent = data.mcontent;
-    if(data.scontent){
-      this.editAlert.scontent = data.scontent;
-    }
-
-    const dt = new Date(data.date);
-    const year = dt.toLocaleDateString("dafault",{year: "numeric"});
-    const month = dt.toLocaleDateString("dafault",{month: "2-digit"});
-    const day = dt.toLocaleDateString("dafault",{day: "2-digit"});
-
-    const d = year + '-' + month+ '-' + day;
-    this.editAlert.date = d;
-
-    this.setEditModel(true);
-
-  }
-
-  update(){
-    //console.log(this.editAlert.date);
-    const dt = Date.parse(new Date(this.editAlert.date).toDateString());
-    //console.log(dt);
-    this.editAlert.date = dt;
-    if(this.net){
-      this.spinner = true
-      this.db.updateAlertContent(this.editAlert).then(()=>{
-        this.spinner = false;
-        this.isEditOpen = false;
-        this.utils.successToast('Updated successfully','thumbs-up-outline','success');
-      }).catch(er =>{
-        this.spinner = false;
-        //console.log(er.message);
-
-        this.utils.erroToast('Something Went Wrong', 'bug-outline');
-      });
-    }else{
-      this.utils.NetworkToast();
-    }
-
 
   }
 
@@ -194,6 +152,8 @@ export class WallalertPage implements OnInit {
             handler: () =>{
               this.spinner = true;
               //console.log('delete Confirmed');
+             // console.log(data);
+
                this.db.deleteAlertContent(data).then(()=>{
                   this.spinner = false;
                     this.utils.successToast('Deleted successfully','trash-outline','warning');
@@ -209,6 +169,120 @@ export class WallalertPage implements OnInit {
     }else{
       this.utils.NetworkToast();
     }
+  }
+
+  /*****************************************************************************************************/
+
+
+  openActionSheet(event: any){
+    this.images = event.target.files;
+    console.log(this.images);
+    this.fileSelected = false;
+    this.closeButton = true;
+
+  }
+
+
+  clearFile(){
+    //console.log('Clear file');
+    this.alert.imageUrl = [];
+    this.inp.nativeElement.value='';
+    this.closeButton = !this.closeButton;
+    this.fileSelected = true;
+
+
+  }
+
+  onSubmit(form: NgForm){
+    //console.log(this.ziyaram);
+
+    if(this.net){
+      this.spinner = true;
+      this.btnvalid = true;
+      this.isFileUploaded = false;
+      const length = this.images.length
+
+      for(let j = 0; j < length; j++){
+        console.log(j);
+        console.log(this.images[j]);
+
+
+        const fileStoragePath = `Images/TestAlert/${new Date().getTime()}_${this.images[j].name}`;
+        const imageRef = this.storage.ref(fileStoragePath);
+        this.fileUploadTask = this.storage.upload(fileStoragePath, this.images[j]);
+        this.percentageVal = this.fileUploadTask.percentageChanges();
+        this.percentageVal.subscribe((per)=>{
+          //console.log(per);
+          this.perc = per/100;
+
+        });
+
+        this.fileUploadTask.snapshotChanges().pipe(
+            finalize(() => {
+              // Retreive uploaded image storage path
+              this.UploadedImageURL = imageRef.getDownloadURL();
+              this.UploadedImageURL.subscribe({
+
+                next:(resp) =>{
+                  console.log(resp);
+                  this.alert.imageUrl.push(resp);
+                  this.perc = 0;
+                  if(j === length-1){
+                    this.isFileUploaded = true;
+                    this.utils.successToast('Picture(s) Uploaded Successfully.', 'cloud-done', 'success');
+
+                   }
+                },
+
+                error: (error: any) => {
+                  this.utils.erroToast(error.message, 'cellular-outline');
+                }
+              }
+              );
+            }),
+            tap((snap: any) => {
+              this.imgSize = snap.totalBytes;
+            })
+          ).subscribe();
+      }
+
+
+      const adding = setInterval(()=>{
+        if(this.isFileUploaded){
+
+          const dt = Date.parse(new Date(this.alert.date).toDateString());
+          //console.log(dt);
+          this.alert.date = dt;
+
+            this.db.sendAlertContent(this.alert).then(async (re: any)=>{
+              this.spinner = false;
+              this.router.navigateByUrl('dashboard');
+              this.btnvalid = false;
+              this.alert = {name:'', imageUrl: []};
+              this.clearFile();
+              this.perc = 0;
+              form.resetForm();
+              this.utils.successToast('Popup image Successfully Added','cloud-upload-sharp','warning')
+
+
+            }).catch((e: any)=>{
+              this.spinner = false;
+              //console.log('Error encountered ', e.message);
+              this.utils.erroToast(e.message, 'snow-outline');
+            });
+
+
+
+            clearInterval(adding);
+        }
+      },1000)
+
+
+
+    }else{
+      this.utils.NetworkToast();
+    }
+
   }
 
 }

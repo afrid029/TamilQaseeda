@@ -52,6 +52,7 @@ export class FloatingTextPage implements OnInit {
   getData(){
     this.spinner = true;
    // this.db.getAlertContent();
+   
     this.db.getBannerContent().subscribe((re: any)=>{
       //console.log('length : ',re.length);
       if(re.length > 0){
