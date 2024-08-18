@@ -52,7 +52,7 @@ export class FloatingTextPage implements OnInit {
   getData(){
     this.spinner = true;
    // this.db.getAlertContent();
-   
+
     this.db.getBannerContent().subscribe((re: any)=>{
       //console.log('length : ',re.length);
       if(re.length > 0){
@@ -99,9 +99,19 @@ export class FloatingTextPage implements OnInit {
       this.spinner = true;
       //console.log(typeof(this.alert.date));
 
-      const dt = Date.parse(new Date(this.content.date).toDateString());
+      const st = this.content.date.split('-');
+          //console.log(parseInt(st[0]));
+
+          const specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+
+          // Get the timestamp in milliseconds for this date
+          const timestampUTC = specificDateUTC.getTime();
+
+      //const dt = Date.parse(new Date(this.content.date).toDateString());
       //console.log(dt);
-      this.content.date = dt;
+      this.content.date = timestampUTC;
+
+
       this.db.sendBannerContent(this.content).then((re: any)=>{
         this.spinner = false;
         this.content = {};
@@ -150,10 +160,18 @@ export class FloatingTextPage implements OnInit {
   }
 
   update(){
+
+    const st = this.editContent.date.split('-');
+          //console.log(parseInt(st[0]));
+
+          const specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+
+          // Get the timestamp in milliseconds for this date
+          const timestampUTC = specificDateUTC.getTime();
     //console.log(this.editAlert.date);
-    const dt = Date.parse(new Date(this.editContent.date).toDateString());
+    //const dt = Date.parse(new Date(this.editContent.date).toDateString());
     //console.log(dt);
-    this.editContent.date = dt;
+    this.editContent.date = timestampUTC;
     if(this.net){
       this.spinner = true
       this.db.updateBannerContent(this.editContent).then(()=>{

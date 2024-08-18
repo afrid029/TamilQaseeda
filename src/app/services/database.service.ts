@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UtillService } from './utill.service';
@@ -395,6 +395,19 @@ getTodayContent(){
     const endOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 23, 59, 59, 999)).getTime();
 
   //console.log(new Date(dt));
+
+  // return this.afs.collection('alerts',ref => {
+  //   return ref.where('date', '==', dt);
+  // }).snapshotChanges().pipe(
+  //   map((data: any)=>{
+  //    return data.map((a: any)=>{
+  //       const docid = a.payload.doc.id;
+  //       const doc = a.payload.doc.data();
+  //       return {docid, ...doc};
+  //     })
+  //   })
+  // )
+
   return this.afs.collection('alerts',ref => {
     return ref.where('date', '>=', startOfDayUTC)
     .where('date', '<=', endOfDayUTC);
@@ -491,7 +504,7 @@ GetforAdmin(){
 }
 
 GetforUsers(){
-  const dt = Date.parse(new Date().toDateString());
+  // const dt = Date.parse(new Date().toDateString());
   const now = new Date();
 
   const startOfDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0)).getTime();
@@ -502,7 +515,7 @@ GetforUsers(){
   //console.log(dt);
   //console.log(new Date(dt));
   return this.afs.collection('qna',ref => {
-    return ref.where('startDate', '>=', startOfDayUTC).where('startDate', '<=',endOfDayUTC).orderBy('startDate','desc').orderBy('number', 'desc');
+    return ref.where('startDate', '<=', startOfDayUTC).orderBy('startDate','desc').orderBy('number', 'desc');
   }).snapshotChanges().pipe(
     map((data: any)=>{
      return data.map((a: any)=>{
@@ -554,6 +567,28 @@ getResponseforQuiz(data: any){
       })
     })
   )
+}
+
+isAnyQna(): Observable<any>{
+  const now = new Date();
+  const DayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0)).getTime();
+
+  return this.afs.collection('qna', ref =>{
+    return ref.where('endDate','>=', DayUTC);
+  }).snapshotChanges().pipe(
+    map((data: any)=>{
+
+      const newArr = data.filter((item: any) =>{return item.payload.doc.data().startDate <= DayUTC})
+      //console.log(newArr);
+
+      if(newArr.length > 0){
+        return true;
+      }
+
+      return false;
+    })
+  )
+
 }
 
 }

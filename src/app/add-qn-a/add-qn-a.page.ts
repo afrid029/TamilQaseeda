@@ -121,6 +121,7 @@ export class AddQnAPage implements OnInit {
     this.isModalOpen = false;
     this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'', crctAns:''};
     //console.log(this.quiz.questions.length < 1);
+    // console.log(this.quiz);
 
   }
 
@@ -136,8 +137,9 @@ export class AddQnAPage implements OnInit {
 
   editList(id: any){
     this.query = this.quiz.questions.filter((q:any) => q.id === id)[0];
+    //console.log(this.query);
     this.query.crctAns = this.query.crctAns[this.query.crctAns.length - 1];
-    // console.log(this.query);
+    //console.log(this.query);
     // console.log(this.quiz.questions);
 
     this.isEditModel = true;
@@ -159,13 +161,26 @@ export class AddQnAPage implements OnInit {
     this.isModalOpen = false;
     this.query = {id:'',qst: '', ans1:'', ans2:'', ans3:'', ans4:'',crctAns:''};
 
+
+
+
   }
 
   PostQuiz(form: NgForm){
     if(this.net){
-      this.quiz.endDate = Date.parse(new Date(this.quiz.endDate).toDateString());
-      this.quiz.startDate = Date.parse(new Date(this.quiz.startDate).toDateString());
-      const today = Date.parse(new Date().toDateString());
+      let st = this.quiz.endDate.split('-');
+          //console.log(parseInt(st[0]));
+      let specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+          // Get the timestamp in milliseconds for this date
+      let timestampUTC = specificDateUTC.getTime();
+      this.quiz.endDate = timestampUTC;
+
+       st = this.quiz.startDate.split('-');
+          //console.log(parseInt(st[0]));
+       specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+          // Get the timestamp in milliseconds for this date
+       timestampUTC = specificDateUTC.getTime();
+      this.quiz.startDate = timestampUTC;
 
       this.quiz.status = "Active"
 
@@ -197,9 +212,21 @@ export class AddQnAPage implements OnInit {
   }
   UpdateQuiz(form: NgForm){
     if(this.net){
-      this.quiz.endDate = Date.parse(new Date(this.quiz.endDate).toDateString());
-      this.quiz.startDate = Date.parse(new Date(this.quiz.startDate).toDateString());
-      const today = Date.parse(new Date().toDateString());
+
+      let st = this.quiz.endDate.split('-');
+          //console.log(parseInt(st[0]));
+      let specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+          // Get the timestamp in milliseconds for this date
+      let timestampUTC = specificDateUTC.getTime();
+      this.quiz.endDate = timestampUTC;
+
+       st = this.quiz.startDate.split('-');
+          //console.log(parseInt(st[0]));
+       specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+          // Get the timestamp in milliseconds for this date
+       timestampUTC = specificDateUTC.getTime();
+      this.quiz.startDate = timestampUTC;
+
       this.spinner = true;
 
       this.datasc.UpdateQnA(this.quiz).then(()=>{
@@ -224,9 +251,9 @@ export class AddQnAPage implements OnInit {
 
   getMinDate(){
     const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(now.getDate()).padStart(2, '0');
+    const year = now.getUTCFullYear();
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(now.getUTCDate()).padStart(2, '0');
 
     const localDate = `${year}-${month}-${day}`;
 

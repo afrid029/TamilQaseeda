@@ -62,10 +62,15 @@
 
       <ion-row>
         <ion-col size="4">
-          <ion-card (click)="navigateTo('qand-a')" class="ic">
+          <ion-card (click)="navigateTo('qand-a')" class="ic {{isBlink ? 'newQna' : null}}">
             <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qnahomelighticon.webp" />
+
             <ion-card-header class="ichead" >
-              <ion-card-subtitle class="ictitle"> Nfs;tp-gjpy;</ion-card-subtitle>
+              <!-- <ion-button style="position: relative;">Click</ion-button> -->
+               <!-- <div style="height: 5px; font-size: 3px; background-color: blue;">New</div> -->
+              <ion-card-subtitle class="ictitle">
+                Nfs;tp-gjpy;
+              </ion-card-subtitle>
 
             </ion-card-header>
 

@@ -83,7 +83,7 @@
                   </ion-item>
 
                 </ion-list>
-                <ion-button (click)="onSubmit(addForm);" [disabled]="addForm.invalid" color="warning" style="display: flex;">
+                <ion-button (click)="onSubmit(addForm);" [disabled]="addForm.invalid || fileSelected" color="warning" style="display: flex;">
                   <ion-icon  name="save-outline"></ion-icon>&nbsp;&nbsp; Add Alert
                 </ion-button>
 

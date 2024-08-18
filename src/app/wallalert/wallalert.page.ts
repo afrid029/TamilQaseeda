@@ -51,7 +51,7 @@ export class WallalertPage implements OnInit {
   // File uploading status
 
   images: any[];
-  fileSelected: boolean;
+  fileSelected: boolean = true;
   closeButton: boolean;
   btnvalid: boolean;
   isFileUploaded: boolean;
@@ -197,6 +197,7 @@ export class WallalertPage implements OnInit {
     //console.log(this.ziyaram);
 
     if(this.net){
+      // this.isFileUploaded = true;
       this.spinner = true;
       this.btnvalid = true;
       this.isFileUploaded = false;
@@ -207,7 +208,7 @@ export class WallalertPage implements OnInit {
         console.log(this.images[j]);
 
 
-        const fileStoragePath = `Images/TestAlert/${new Date().getTime()}_${this.images[j].name}`;
+        const fileStoragePath = `Images/Popups/${new Date().getTime()}_${this.images[j].name}`;
         const imageRef = this.storage.ref(fileStoragePath);
         this.fileUploadTask = this.storage.upload(fileStoragePath, this.images[j]);
         this.percentageVal = this.fileUploadTask.percentageChanges();
@@ -250,9 +251,24 @@ export class WallalertPage implements OnInit {
       const adding = setInterval(()=>{
         if(this.isFileUploaded){
 
-          const dt = Date.parse(new Date(this.alert.date).toDateString());
-          //console.log(dt);
-          this.alert.date = dt;
+          //console.log(this.alert.date);
+
+          const st = this.alert.date.split('-');
+          //console.log(parseInt(st[0]));
+
+          const specificDateUTC = new Date(Date.UTC(parseInt(st[0]), parseInt(st[1])-1, parseInt(st[2])));
+
+          // Get the timestamp in milliseconds for this date
+          const timestampUTC = specificDateUTC.getTime();
+
+          //console.log(timestampUTC);
+
+
+
+
+          // const dt = Date.parse(new Date(this.alert.date).toDateString());
+          // //console.log(dt);
+          this.alert.date = timestampUTC;
 
             this.db.sendAlertContent(this.alert).then(async (re: any)=>{
               this.spinner = false;

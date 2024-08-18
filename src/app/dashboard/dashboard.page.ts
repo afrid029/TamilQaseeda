@@ -27,12 +27,11 @@ export class DashboardPage {
   banner: boolean = false;
   content: any;
 
+  isBlink: boolean = false;
+
   constructor(public route: Router, public platform: Platform, public routerOutlet: IonRouterOutlet,
     public alertCtrl: AlertController, public db: DatabaseService, public utilService: UtillService,
     public obsr: ObsrService) {
-
-
-
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
@@ -49,6 +48,20 @@ export class DashboardPage {
 
    //audioURL: string ="https://sonic-ca.instainternet.com/8020/stream";
    ionViewWillEnter(){
+   this.db.isAnyQna().subscribe({
+    next: (result) =>{
+     // console.log(result);
+
+     this.isBlink = result;
+
+    },
+
+    error: (err)=>{
+      console.log(err);
+
+    }
+   })
+
     let o = this.db.getTodayBannerContent().pipe(take(1));
     o.subscribe((cont: any)=>{
        console.log('Contents Count ', cont.length);

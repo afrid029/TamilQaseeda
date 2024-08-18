@@ -322,10 +322,28 @@ export class QandAPage  {
     //console.log(this.clickedQuiz);
     this.progress = true
     this.btnValid = true;
-    const data = {quizid:this.clickedQuiz.docid, date: Date.now(), user: this.user, answer: this.clickedQuiz.questions};
+
+    const now = new Date();
+
+    // Extract year, month, and day from the current date
+    const year = now.getUTCFullYear();
+    const month = now.getUTCMonth(); // Months are zero-based
+    const day = now.getUTCDate();
+    const hour = now.getUTCHours();
+    const minute = now.getUTCMinutes();
+    const second = now.getUTCSeconds();
+
+    // Create a new Date object for midnight UTC of the current date
+    const startOfDayUTC = new Date(Date.UTC(year, month, day, hour, minute, second));
+
+    // Get the timestamp in milliseconds for the start of the day in UTC
+    const timestampUTC = startOfDayUTC.getTime();
+
+
+    const data = {quizid:this.clickedQuiz.docid, date: timestampUTC, user: this.user, answer: this.clickedQuiz.questions};
     console.log(data);
     if(this.net){
-      this.db.SubmitResponse(data).then(async (re) =>{
+      this.db.SubmitResponse(data).then((re) =>{
         this.clickedQuiz = null;
         this.isAnswerSheet = false;
         this.btnValid = false;

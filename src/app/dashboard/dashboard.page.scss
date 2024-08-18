@@ -123,6 +123,21 @@ backdrop-filter: blur(9.1px);
   background-color: rgba(250, 235, 215, 0);
   border-radius: 4vw;
   margin-top: 1vh;
+
+ }
+
+ .newQna{
+  border: 5px solid green;
+  animation: popup 2s infinite;
+  transition: linear;
+ }
+
+ @keyframes popup {
+   0% {border-color: green;}
+   25% {border-color:rgba(0, 128, 0, 0.74)}
+   50% {border-color: rgba(0, 128, 0, 0.404);}
+   75% {border-color: rgba(0, 128, 0, 0.171);}
+   100% {border-color: rgba(0, 128, 0, 0);}
  }
 
  .ichead{
