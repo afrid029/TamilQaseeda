@@ -189,11 +189,27 @@ border: 1px solid rgba(165, 162, 162, 0.56);
 }
 
 ion-grid {
-  height: 50vh !important;
+  //height: 50vh ;
     max-height: 65vh;
     overflow-y: scroll;
     margin-top: 1.5vh;
-}
+
+    animation: showing 0.6s ease-out
+  }
+
+  @keyframes showing {
+    0% {margin-right: 100vw;
+      //transform: scale(0);
+          }
+
+    90% {
+      margin-right: -5vw;
+    }
+    100% {margin-right: 0vw;
+      //transform: scale(1)
+      }
+  }
+
 
 ion-grid::-webkit-scrollbar {
   display: none;

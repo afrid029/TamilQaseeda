@@ -196,12 +196,12 @@
       </ng-template>
   </ion-modal>
 
-
     <ion-router-outlet></ion-router-outlet>
+
 
 <footer >
   <ion-tabs class = "footer">
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" #tabBar>
 
       <ion-tab-button  [routerLink]="['/']"  >
         <ion-icon name="home"></ion-icon>

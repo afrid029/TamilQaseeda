@@ -30,7 +30,7 @@ export class ZiyaramsPage implements AfterViewInit {
   anyContent: boolean = false;
   isEditOpen: boolean = false;
   submitButton: boolean = false;
-  vis: String = "hidden";
+  vis: boolean = true;
   searchKey: String;
   ziyarams : any = [];
   Permziyarams : any = [];
@@ -83,6 +83,9 @@ export class ZiyaramsPage implements AfterViewInit {
   btn: string = "visibile";
   locationStat: string = "Locate Ziyaram Position"
 
+  viewSet: boolean = false;
+  ReqView: boolean = false;
+
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
     private utilService: UtillService, public alertctrl: AlertController, public location: PlatformLocation, public storage: AngularFireStorage) {
@@ -104,6 +107,8 @@ export class ZiyaramsPage implements AfterViewInit {
           if(re.length > 0){
             this.anyReq = true;
             this.ZiyaramRequests = re;
+            // console.log(this.ZiyaramRequests.length);
+
           }else{
             this.ZiyaramRequests = [];
           }
@@ -135,7 +140,8 @@ export class ZiyaramsPage implements AfterViewInit {
     this.getZiyarams();
   }
   ionViewWillEnter(){
-    //console.log('will Enter');
+    console.log('will Enter');
+    this.ReqView = false;
   }
   ionViewDidEnter(){
     //console.log('ziyaram view entering');
@@ -148,7 +154,55 @@ export class ZiyaramsPage implements AfterViewInit {
         }
 
     })
-   }
+
+  const loading = setInterval(()=>{
+    this.updateCss();
+    if(this.viewSet){
+      clearInterval(loading);
+    }
+  },1000);
+
+ }
+
+ updateCss(){
+
+  const tool = document.querySelector('.ziytool') as HTMLElement;
+ const list = document.querySelector('.lstziy') as HTMLElement;
+ const listcont = document.querySelector('.lstcontziy') as HTMLElement;
+ const cont = document.querySelector('.contziy') as HTMLElement;
+  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+  const search = document.querySelector('.barziy') as HTMLElement;
+  //const swiper = document.querySelector('.swiper') as HTMLElement;
+
+  const main = document.querySelector('.mainziy') as HTMLElement;
+
+
+  if(tool && bar && search){
+
+
+    const dyHeight = tool.offsetHeight;
+    const barHeight = bar.offsetHeight;
+    const searchHeight = search.offsetHeight;
+
+    if(dyHeight > 0 && barHeight > 0 && searchHeight > 0){
+
+      main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+      list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+      listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
+      //swiper.style.height = `85vh`
+      this.viewSet = true;
+
+
+
+    }else {
+      console.log('Not enough height');
+
+    }
+
+ }
+
+ }
 
    ionViewWillLeave(){
     //console.log('Ziyaram view leaving');
@@ -163,7 +217,7 @@ export class ZiyaramsPage implements AfterViewInit {
       if(data.length > 0){
         this.anyContent = true;
         this.ziyarams = data;
-        //console.log('song', this.ziyarams);
+      // console.log( this.ziyarams.length);
         this.Permziyarams = this.ziyarams;
       }else{
         this.anyContent = false;
@@ -264,7 +318,7 @@ handleSearch(){
   //console.log(this.Permziyarams);
 
   if(this.searchKey.length > 0){
-    this.vis = "visible";
+    this.vis = false;
     this.ziyarams = [];
     this.Permziyarams.forEach((s: any)=>{
       if(s.name.toLowerCase().includes(this.searchKey.toLowerCase()) || s.location.toLowerCase().includes(this.searchKey.toLowerCase())){
@@ -274,7 +328,7 @@ handleSearch(){
     })
     //console.log(this.ziyarams.length);
   }else{
-    this.vis = "hidden";
+    this.vis = true;
     this.ziyarams = this.Permziyarams;
   }
 }
@@ -468,6 +522,10 @@ logScrollStart(event: any){
     this.btn = "visible";
   },1500)
 
+}
+
+pageTrans(){
+  this.ReqView = !this.ReqView
 }
 
 

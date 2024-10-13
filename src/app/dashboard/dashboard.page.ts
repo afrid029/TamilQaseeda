@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
-import { AlertController, IonModal, IonRouterOutlet, Platform } from '@ionic/angular';
+import { AlertController, IonGrid, IonModal, IonRouterOutlet, Platform } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
 import { UtillService } from '../services/utill.service';
@@ -15,8 +15,10 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage {
+export class DashboardPage  {
   @ViewChild(IonModal) modal: IonModal;
+
+
   obj: Boolean;
   net: Boolean;
   isLoginPageOpen: boolean = false;
@@ -26,12 +28,13 @@ export class DashboardPage {
   subs: Subscription;
   banner: boolean = false;
   content: any;
+  viewSet: boolean = false;
 
   isBlink: boolean = false;
 
   constructor(public route: Router, public platform: Platform, public routerOutlet: IonRouterOutlet,
     public alertCtrl: AlertController, public db: DatabaseService, public utilService: UtillService,
-    public obsr: ObsrService) {
+    public obsr: ObsrService, private render: Renderer2) {
     this.obsr.network.subscribe(re=>{
       this.net=re;
     });
@@ -41,10 +44,58 @@ export class DashboardPage {
       this.obj = re;
     })
 
+   }
+
+   ionViewDidEnter(){
+    //console.log('view entering');
+    this.subs = this.platform.backButton.subscribeWithPriority(1,()=>{
+      //console.log('Dashboard ',this.constructor.name);
+
+        this.toExit();
+
+    });
+
+    const loading = setInterval(()=>{
+      this.UpdateCss();
+      if(this.viewSet){
+        clearInterval(loading);
+      }
+    },1000);
+    this.UpdateCss();
+   }
+
+   UpdateCss(){
+
+      const banner = document.querySelector('.img1') as HTMLElement;
+      const audio = document.querySelector('.box2') as HTMLElement;
+    const grid = document.querySelector('.dgrid') as HTMLElement;
+    const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+
+    if(banner && grid && audio){
+      // console.log('viewd');
+
+      const bannerHeight = banner.offsetHeight;
+      const audioHeight = audio.offsetHeight;
+      const barHeight = bar.offsetHeight;
+
+      if(bannerHeight > 0 && audioHeight > 0 && barHeight > 0) {
+        grid.style.height = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
+        grid.style.maxHeight = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
+        console.log(bannerHeight);
+        console.log(audioHeight);
+
+        this.viewSet = true;
+
+      }else {
+        console.log('Not enough height');
+
+      }
+
 
 
    }
 
+   }
 
    //audioURL: string ="https://sonic-ca.instainternet.com/8020/stream";
    ionViewWillEnter(){
@@ -87,16 +138,11 @@ export class DashboardPage {
          }
 
      });
-   }
-   ionViewDidEnter(){
-    //console.log('view entering');
-    this.subs = this.platform.backButton.subscribeWithPriority(1,()=>{
-      //console.log('Dashboard ',this.constructor.name);
 
-        this.toExit();
 
-    })
+
    }
+
 
    ionViewWillLeave(){
     //console.log('view leaving');

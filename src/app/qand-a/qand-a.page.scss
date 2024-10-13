@@ -38,11 +38,11 @@ background-color: white !important;
 
 .lstcont {
 /* From https://css.glass */
-background: rgba(185, 181, 181, 0.39);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(14px);
+// background: rgba(185, 181, 181, 0.39);
+// border-radius: 16px;
+// box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+// backdrop-filter: blur(5px);
+// -webkit-backdrop-filter: blur(14px);
 }
 
 /***************************/
@@ -125,21 +125,28 @@ backdrop-filter: blur(5px);
 .lst{
     //padding-top: 7vh;
 
-    //height: 100%;
-    width: 100%;
-    position:fixed;
+    // //height: 100%;
+    // width: 100%;
+    // position:fixed;
+    // background-attachment: fixed;
+    // background-repeat: no-repeat;
+    // background-size:100% 100%;
+
+    background-size: 100vh auto;
+    height: 90vh;
+   // background: #b9ebc8c4;
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size:100% 100%;
+    background-image: url('../../assets/pictures/bg.webp');
+    background-position: center;
 
 }
 
 .lstcont{
     height: 100%;
-    padding: 0.5 vh;
-    margin-top: 0.5vh;
-    //padding-bottom: 5%;
-    max-height: auto;
+    // padding: 0.5 vh;
+    // margin-top: 0.5vh;
+    // //padding-bottom: 5%;
+    // max-height: auto;
     overflow-y: scroll;
 
 }
@@ -403,4 +410,52 @@ ion-card-content{
    }
 
 }
+}
+
+.adminV {
+  animation:adminroll 0.5s;
+  //animation-duration: 1s;
+}
+
+.normalV {
+  animation: normalroll 0.5s;
+}
+
+@keyframes adminroll {
+  0% {margin-left: 100vw; }
+  //50% { transform: translateX(50%); }
+  100% { margin-left: 0vw; }
+}
+
+@keyframes normalroll {
+  0% {margin-right: 100vw; }
+  100% { margin-right: 0vw; }
+}
+
+.toAdmin {
+  animation: toAdmin 0.5s;
+}
+
+@keyframes toAdmin{
+  0% {
+    padding-right: 45vw;
+    opacity: 0;
+  }
+  100% {
+    padding-right: 0vw;
+    opacity: 1;
+  }
+}
+
+.toUser{
+  animation: toUser 0.5s;
+}
+
+@keyframes toUser{
+  0% {margin-left: 45vw;
+      opacity: 0;}
+  100% {
+      margin-left: 0vw;
+      opacity: 1;
+  }
 }

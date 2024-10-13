@@ -22,21 +22,17 @@
 }
 
 
-
-.glass{
-background: rgba(240, 238, 238, 0.26);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.1px);
--webkit-backdrop-filter: blur(9.1px);
-}
-
 /*********************************/
 
 
 .bg{
-  background-size: 100% 100%;
+  background-size: 100vh auto;
   height: 90vh;
+ // background: #b9ebc8c4;
+  background-attachment: fixed;
+  background-image: url('../../assets/pictures/bg.webp');
+  background-position: center;
+  //content: url('../../assets/pictures/bg.webp');
 
 
 }
@@ -45,12 +41,7 @@ display: none;
 }
 
 
-.qaseedahome {
-  content: url(../../assets/pictures/bg.webp);
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-}
+
 
 .card {
   display: inline;
@@ -64,6 +55,8 @@ display: none;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  border-radius:5%;
+  padding: 5px;
 
  }
 
@@ -101,6 +94,34 @@ display: none;
   }
   .badr{
   background-image: url(../../assets/pictures/moulid/badr.webp);
+  }
+
+  ion-grid{
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+  ion-col{
+    transform: scale(1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    animation: zoomEnter 0.6s ease-out;
+  }
+
+  @keyframes zoomEnter {
+    0% {
+      transform: scale(0.2);
+    }
+    90% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 
 

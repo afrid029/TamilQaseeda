@@ -1,201 +1,231 @@
 <html class="addBody">
 
-<div class="tool">
+<div class="tool evitool">
   <img class="img" alt="">
 </div>
 
 
 
-<ion-content>
+<ion-content >
   <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
-    <div class="bar primary">
+    <!-- <div class="bar primary">
       <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by topic"><ion-icon  name="search"></ion-icon></ion-input>
       <div class="close">
         <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
-      </div>
+      </div> -->
 
       <!-- <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher> -->
 
-    </div>
+    <!-- </div> -->
 
-    <ion-list class="lst">
+    <ion-list class="lst lstevi">
       <div class="lstcont">
+        <div class="cont">
+          <ion-grid  class="grid">
 
-    <swiper [effect]="'coverflow'" [speed]="400" (swiper)="setSwiperInstance($event)">
+          <ion-row *ngIf="!isAqeeda" (click)="viewArticles('a')" class="smallTile">
+            <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/kolhai.webp" alt="">
+              <div>
+                mfPjhrhu; Mf;fq;fs;
+              </div>
+            </ion-col>
 
-      <!---------------------Aqeeda Slide------------------------>
-        <ng-template *ngIf="aqAnyContent "  swiperSlide>
+          </ion-row>
 
-          <div class="head">
+          <ion-row *ngIf="isAqeeda" class="bigTile">
+            <!-- <ion-col  size="3">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+            </ion-col> -->
+            <ion-col style="color: black"  size="12">
+              <div (click) = "viewArticles('a')" style="display: flex; justify-content: center;">
+                <ion-icon name="albums"></ion-icon>
+               </div>
 
-            <ion-text>அகீதா</ion-text>
-            <ion-icon name="caret-forward-outline"></ion-icon>
-          </div>
+              <div *ngIf="aqAnyContent" class="content">
+                <div class="bar">
+                  <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('a')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                  <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
+                </div>
+                <div *ngIf="obj" >
+                  <div *ngFor = "let s of aqeeda">
+                    <ion-item >
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                      <div (click)="EditEvidence(s)" class="edit">
+                        <ion-icon class="icon" name="pencil"></ion-icon>
+                      </div>
+                      <div (click)="deleteEvidence(s)" class="edit del">
+                        <ion-icon class="icon" name="trash"></ion-icon>
+                      </div>
 
-            <div *ngIf="obj" class="cont" id="cont">
-              <div *ngFor = "let s of aqeeda">
-                <ion-item >
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                  <div (click)="EditEvidence(s)" class="edit">
-                    <ion-icon class="icon" name="pencil"></ion-icon>
+                    </ion-item>
                   </div>
-                  <div (click)="deleteEvidence(s)" class="edit del">
-                    <ion-icon class="icon" name="trash"></ion-icon>
+
+
+                </div>
+
+                <div *ngIf="!obj" >
+                  <div *ngFor = "let s of aqeeda">
+                    <ion-item>
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                    </ion-item>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "aqeeda.length === 0" >
+
+                  <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                  </ion-chip>
+
+              </div>
+              </div>
+
+              <div *ngIf="!aqAnyContent">
+                <ion-chip>
+                  <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
+                </ion-chip>
+              </div>
+
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!isSunnath" (click)="viewArticles('s')" class="smallTile">
+            <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+              <div>
+                gp/f;`;rhu; Mf;fq;fs;
+              </div>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row *ngIf="isSunnath" class="bigTile">
+            <!-- <ion-col  size="3">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+            </ion-col> -->
+            <ion-col style="color: black"  size="12">
+             <div (click) = "viewArticles('s')" style="display: flex; justify-content: center;">
+              <ion-icon name="albums"></ion-icon>
+             </div>
+
+              <div *ngIf="fiqhAnyContent" class="content">
+                <div class="bar">
+                  <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('s')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                  <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
+                </div>
+                <div  *ngIf="obj" >
+                  <div *ngFor = "let s of fiqh">
+                    <ion-item >
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                      <div (click)="EditEvidence(s)" class="edit">
+                        <ion-icon class="icon" name="pencil"></ion-icon>
+                      </div>
+                      <div (click)="deleteEvidence(s)" class="edit del">
+                        <ion-icon class="icon" name="trash"></ion-icon>
+                      </div>
+                    </ion-item>
                   </div>
 
-                </ion-item>
-              </div>
 
+                </div>
 
-            </div>
+                <div *ngIf="!obj" >
+                  <div *ngFor = "let s of fiqh">
+                    <ion-item>
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
 
-            <div *ngIf="!obj" class="cont" id="cont">
-              <div *ngFor = "let s of aqeeda">
-                <ion-item>
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                </ion-item>
-              </div>
-            </div>
-            <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "aqeeda.length === 0" >
-
-              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-              </ion-chip>
-
-          </div>
-        </ng-template>
-
-        <ng-template *ngIf="!aqAnyContent"  swiperSlide>
-
-          <div class="head">
-
-            <ion-text>அகீதா</ion-text>
-            <ion-icon name="caret-forward-outline"></ion-icon>
-          </div>
-            <div class="cont">
-              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
-              </ion-chip>
-            </div>
-        </ng-template>
-
- <!---------------------Fiqh Slide------------------------>
-        <ng-template *ngIf="fiqhAnyContent "  swiperSlide>
-
-          <div class="head">
-            <ion-icon name="caret-back-outline"></ion-icon>
-            <ion-text>பிஃக்ஹ்</ion-text>
-            <ion-icon name="caret-forward-outline"></ion-icon>
-          </div>
-
-            <div  *ngIf="obj" class="cont" id="cont">
-              <div *ngFor = "let s of fiqh">
-                <ion-item >
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                  <div (click)="EditEvidence(s)" class="edit">
-                    <ion-icon class="icon" name="pencil"></ion-icon>
+                    </ion-item>
                   </div>
-                  <div (click)="deleteEvidence(s)" class="edit del">
-                    <ion-icon class="icon" name="trash"></ion-icon>
+                </div>
+                <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "fiqh.length === 0" >
+
+                  <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                  </ion-chip>
+
+              </div>
+              </div>
+
+              <div *ngIf="!fiqhAnyContent" >
+                <ion-chip>
+                  <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
+                </ion-chip>
+              </div>
+
+
+
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!isOther" (click)="viewArticles('o')" class="smallTile">
+            <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/other.webp" alt="">
+              <div>NtW Mf;fq;fs;</div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="isOther" class="bigTile">
+            <!-- <ion-col  size="3">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+            </ion-col> -->
+            <ion-col style="color: black"  size="12">
+             <div (click) = "viewArticles('o')" style="display: flex; justify-content: center;">
+              <ion-icon name="albums"></ion-icon>
+             </div>
+
+              <div *ngIf="othAnyContent" class="content">
+                <div class="bar">
+                  <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('o')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                  <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
+                </div>
+                <div  *ngIf="obj">
+                  <div *ngFor = "let s of other">
+                    <ion-item>
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                      <div (click)="EditEvidence(s)" class="edit">
+                        <ion-icon class="icon" name="pencil"></ion-icon>
+                      </div >
+                      <div (click)="deleteEvidence(s)" class="edit del">
+                        <ion-icon class="icon" name="trash"></ion-icon>
+                      </div>
+                    </ion-item>
                   </div>
-                </ion-item>
-              </div>
+                </div>
 
+                <div *ngIf="!obj">
+                  <div *ngFor = "let s of other">
+                    <ion-item>
+                      <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
 
-            </div>
-
-            <div *ngIf="!obj" class="cont" id="cont">
-              <div *ngFor = "let s of fiqh">
-                <ion-item>
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-
-                </ion-item>
-              </div>
-            </div>
-            <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "fiqh.length === 0" >
-
-              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-              </ion-chip>
-
-          </div>
-        </ng-template>
-
-        <ng-template *ngIf="!fiqhAnyContent"  swiperSlide>
-
-          <div class="head">
-            <ion-icon name="caret-back-outline"></ion-icon>
-            <ion-text>பிஃக்ஹ்</ion-text>
-            <ion-icon name="caret-forward-outline"></ion-icon>
-          </div>
-            <div class="cont">
-              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
-              </ion-chip>
-            </div>
-        </ng-template>
-
-         <!---------------------Otheer Slide------------------------>
-         <ng-template *ngIf="othAnyContent "  swiperSlide>
-
-          <div class="head">
-            <ion-icon name="caret-back-outline"></ion-icon>
-            <ion-text>ஏனையவை</ion-text>
-          </div>
-
-            <div *ngIf="obj" class="cont" id="cont">
-              <div *ngFor = "let s of other">
-                <ion-item>
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                  <div (click)="EditEvidence(s)" class="edit">
-                    <ion-icon class="icon" name="pencil"></ion-icon>
-                  </div >
-                  <div (click)="deleteEvidence(s)" class="edit del">
-                    <ion-icon class="icon" name="trash"></ion-icon>
+                    </ion-item>
                   </div>
-                </ion-item>
+                </div>
+                <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "other.length === 0" >
+
+                  <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                  </ion-chip>
+
+              </div>
               </div>
 
-
-            </div>
-
-            <div *ngIf="!obj" class="cont" id="cont">
-              <div *ngFor = "let s of other">
-                <ion-item>
-                  <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-
-                </ion-item>
+              <div *ngIf="!othAnyContent">
+                <ion-chip >
+                  <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
+                </ion-chip>
               </div>
-            </div>
+            </ion-col>
+          </ion-row>
 
-            <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "other.length === 0" >
-
-              <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-              </ion-chip>
-
-          </div>
-        </ng-template>
-
-        <ng-template *ngIf="!othAnyContent"  swiperSlide>
-
-          <div class="head">
-            <ion-icon name="caret-back-outline"></ion-icon>
-            <ion-text>ஏனையவை</ion-text>
-          </div>
-            <div class="cont">
-              <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
-                <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
-              </ion-chip>
-            </div>
-        </ng-template>
-
-      </swiper>
+          </ion-grid>
+        </div>
     </div>
     </ion-list>
 
@@ -211,8 +241,9 @@
 
         <ion-content class="modalBody">
           <ion-card style = " background-color: #ecebeb;">
-            <ion-card-content style="white-space: pre-line; text-align: justify; color: black;">{{currEvidence.content}}</
-              ion-card-content>
+            <ion-card-content style="white-space: pre-line; text-align: justify; color: black;">
+              {{currEvidence.content}}
+            </ion-card-content>
           </ion-card>
         </ion-content>
       </ng-template>

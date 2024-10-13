@@ -21,15 +21,6 @@ border: 1px solid #3477ce;
 color: #3477ce;
 }
 
-.lstcont {
-/* From https://css.glass */
-background: rgba(185, 181, 181, 0.39);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(14px);
-}
-
 /***************************************/
 
 .delAlert{
@@ -58,14 +49,33 @@ backdrop-filter: blur(5px);
 
 .lstcont{
     height: 100%;
-
     max-height: auto;
+    background: rgba(185, 181, 181, 0.39);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(14px);
+}
+
+@keyframes showing {
+  0% {//margin-right: 100vw;
+    transform: scale(0);
+        }
+
+  90% {
+    transform: scale(1.05);
+  }
+  100% {//margin-right: 0vw;
+    transform: scale(1)
+    }
 }
 .cont{
     margin-top: 1vh !important;
     height: 92%;
     width: 100%;
     border-radius:2%;
+
+animation: showing 0.6s ease-out
 
 }
 .cont::-webkit-scrollbar {
@@ -82,7 +92,8 @@ backdrop-filter: blur(5px);
 
   font-size: 3.5vw;
   display: grid;
-  margin-bottom: 2vh;
+  bottom: 2vh;
+  position: fixed;
 }
 .modalBody{
   padding-top: 25px !important;

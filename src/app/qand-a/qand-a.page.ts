@@ -53,6 +53,10 @@ export class QandAPage  {
   correctCount: number;
   totalCount: number;
 
+  adminView:boolean = false
+
+  viewSet: boolean = false;
+
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
    private obsr: ObsrService, private utilService: UtillService, public alertctrl: AlertController) {
@@ -71,6 +75,8 @@ export class QandAPage  {
       this.getAdminData();
     }
     this.getUserData();
+
+    this.adminView = false
 
   }
   ionViewDidEnter(){
@@ -119,7 +125,57 @@ export class QandAPage  {
 
 
     })
-   }
+
+
+
+  const loading = setInterval(()=>{
+    this.updateCss();
+    if(this.viewSet){
+      clearInterval(loading);
+    }
+  },1000);
+
+ }
+
+ updateCss(){
+
+  const tool = document.querySelector('.qnatool') as HTMLElement;
+ const list = document.querySelector('.lstqna') as HTMLElement;
+ const listcont = document.querySelector('.lstcontqna') as HTMLElement;
+ const cont = document.querySelector('.contqna') as HTMLElement;
+  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+  //const search = document.querySelector('.barziy') as HTMLElement;
+  //const swiper = document.querySelector('.swiper') as HTMLElement;
+
+  const main = document.querySelector('.mainqna') as HTMLElement;
+
+
+  if(tool && bar){
+
+
+    const dyHeight = tool.offsetHeight;
+    const barHeight = bar.offsetHeight;
+    //const searchHeight = search.offsetHeight;
+
+    if(dyHeight > 0 && barHeight > 0){
+
+      main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      //swiper.style.height = `85vh`
+      this.viewSet = true;
+
+
+
+    }else {
+      console.log('Not enough height');
+
+    }
+
+ }
+
+ }
 
    ionViewWillLeave(){
     //console.log('Ziyaram view leaving');
@@ -131,7 +187,7 @@ export class QandAPage  {
     this.spinner = true;
    // this.db.getAlertContent();
     this.db.GetforAdmin().subscribe((re: any)=>{
-      //console.log('length : ',re.length);
+      console.log('length : ',re.length);
       //
       if(re.length > 0){
         this.anyContent = true;
@@ -408,7 +464,9 @@ export class QandAPage  {
     this.isRevealView = false;
   }
 
-
+  pageTrans(){
+    this.adminView = !this.adminView;
+  }
 
 
 }

@@ -1,5 +1,5 @@
 <html class="addBody">
-  <div class="tool">
+  <div class="tool qnatool">
     <img class="img" alt="">
   </div>
 
@@ -18,101 +18,146 @@
 
     </div> -->
 
+    <div class="main mainqna">
+      <ion-list class="lst lstqna">
+        <div class="lstcont lstcontqna">
+          <div *ngIf="obj">
+            <div class="cont contqna">
+              <div class="toAdmin" *ngIf="!adminView" style="width: 100%; display: flex; flex-direction: row-reverse;">
+                <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Add Quiz
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-button>
+              </div>
 
-    <ion-list class="lst">
-      <div class="lstcont">
+              <div class="toUser" *ngIf="adminView" style="width: 100%; display: flex;">
+                <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Quiz Home
 
-        <swiper class="swipe" [effect]="'coverflow'">
-          <ng-template  swiperSlide>
+                </ion-button>
+              </div>
 
-            <div *ngIf="anyUserContent" class="cont">
-              <ion-grid>
-                <ion-row class = "row2">
-                  <ion-col *ngFor="let data of UserData" size="6">
-                    <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
-                      <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
-                      <ion-card-header class="ichead" >
-                        <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
-                        <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
-                      </ion-card-header>
+              <div class="normalV" *ngIf="!adminView" >
+                <div *ngIf="anyUserContent">
+                  <ion-grid>
+                    <ion-row class = "row2">
+                      <ion-col *ngFor="let data of UserData" size="6">
+                        <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
+                          <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                          <ion-card-header class="ichead" >
+                            <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                            <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                          </ion-card-header>
 
-                      <ion-card-content class="iccontent">
-                        <div class="date">
-                          <h5>Start Date </h5>
-                          <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
-                        </div>
-                        <div class="date">
-                          <h5>End Date </h5>
-                          <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
-                        </div>
-                      </ion-card-content>
-                    </ion-card>
-                  </ion-col>
-                </ion-row>
+                          <ion-card-content class="iccontent">
+                            <div class="date">
+                              <h5>Start Date </h5>
+                              <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                            </div>
+                            <div class="date">
+                              <h5>End Date </h5>
+                              <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                            </div>
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
 
-              </ion-grid>
+                    </ion-row>
+
+                  </ion-grid>
+                </div>
+                <div *ngIf="!anyUserContent">
+                  <ion-chip style="width:95%;  top: 25vh;">
+                    <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
+                  </ion-chip>
+                </div>
+              </div>
+
+              <div class="adminV" *ngIf="adminView" >
+                <ion-grid>
+                  <ion-row (click) = "navToAdd()" class="row1">
+                    <ion-col class="add"  size="8">
+                      <ion-icon name="add-circle"></ion-icon><h5>Add Quiz</h5>
+                    </ion-col>
+                  </ion-row >
+
+                  <ion-row *ngIf="anyContent" class = "row2">
+                    <ion-col *ngFor="let data of AdminData" size="6">
+                      <ion-card (click)="OpenQuiz(data)" class="ic">
+                        <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                        <ion-card-header class="ichead" >
+                          <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                          <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp;  {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                        </ion-card-header>
+
+                        <ion-card-content class="iccontent">
+                          <div class="date">
+                            <h5>Start Date </h5>
+                            <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                          </div>
+                          <div class="date">
+                            <h5>End Date </h5>
+                            <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                          </div>
+
+                        </ion-card-content>
+                      </ion-card>
+                    </ion-col>
+                  </ion-row>
+
+                </ion-grid>
+
+                <div *ngIf="!anyContent">
+                  <ion-chip style="width:95%;  top:25vh;">
+                    <ion-label style="margin: 0 auto;" >தரவுகள் பெறப்படவில்லை</ion-label>
+                  </ion-chip>
+                </div>
+
+              </div>
             </div>
 
-            <div *ngIf="!anyUserContent" class="cont">
-              <ion-chip style="width:95%;  top: 38%;">
-                <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
-              </ion-chip>
+          </div>
+
+          <div *ngIf="!obj">
+            <div class="cont contqna">
+              <div class="normalV">
+                <div *ngIf="anyUserContent">
+                  <ion-grid>
+                    <ion-row class = "row2">
+                      <ion-col *ngFor="let data of UserData" size="6">
+                        <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
+                          <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                          <ion-card-header class="ichead" >
+                            <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                            <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                          </ion-card-header>
+
+                          <ion-card-content class="iccontent">
+                            <div class="date">
+                              <h5>Start Date </h5>
+                              <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                            </div>
+                            <div class="date">
+                              <h5>End Date </h5>
+                              <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                            </div>
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
+                    </ion-row>
+
+                  </ion-grid>
+                </div>
+                <div *ngIf="!anyUserContent">
+                  <ion-chip style="width:95%;  top: 25vh;">
+                    <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
+                  </ion-chip>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-
-          </ng-template>
-
-          <ng-template *ngIf="obj" swiperSlide>
-
-
-            <div  class="cont">
-              <ion-grid>
-                <ion-row (click) = "navToAdd()" class="row1">
-                  <ion-col class="add"  size="8">
-                    <ion-icon name="add-circle"></ion-icon><h5>Add Quiz</h5>
-                  </ion-col>
-                </ion-row >
-
-                <ion-row *ngIf="anyContent" class = "row2">
-                  <ion-col *ngFor="let data of AdminData" size="6">
-                    <ion-card (click)="OpenQuiz(data)" class="ic">
-                      <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
-                      <ion-card-header class="ichead" >
-                        <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
-                        <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp;  {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
-                      </ion-card-header>
-
-                      <ion-card-content class="iccontent">
-                        <div class="date">
-                          <h5>Start Date </h5>
-                          <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
-                        </div>
-                        <div class="date">
-                          <h5>End Date </h5>
-                          <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
-                        </div>
-
-                      </ion-card-content>
-                    </ion-card>
-                  </ion-col>
-                </ion-row>
-
-              </ion-grid>
-            </div>
-
-
-            <div *ngIf="!anyContent" class="cont">
-              <ion-chip style="width:95%;  top: 38%;">
-                <ion-label style="margin: 0 auto;" >தரவுகள் பெறப்படவில்லை</ion-label>
-              </ion-chip>
-            </div>
-          </ng-template>
-
-        </swiper>
-      </div>
-
-    </ion-list>
-
+      </ion-list>
+    </div>
 
     <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isQuizView">
       <ng-template>

@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import {  AnimationController, IonRouterOutlet, LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {  AnimationController, IonRouterOutlet, IonTabBar, LoadingController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { DatabaseService } from './services/database.service';
 import { ObsrService } from './services/obsr.service';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
@@ -19,7 +19,10 @@ import {  Router } from '@angular/router';
 
 
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
+
+  @ViewChild('tabBar') tabBar: IonTabBar;
+
   obj: boolean = false;
   net: boolean = false;
   isLoginOpen: boolean = false;
@@ -67,7 +70,7 @@ export class AppComponent {
     }).catch(console.warn);
 
     if(this.platform.is('ios')){
-      StatusBar.hide();
+      //StatusBar.hide();
       this.isAndroid = false
     }else if(this.platform.is('android')){
       this.isAndroid = true;
@@ -111,6 +114,12 @@ export class AppComponent {
   leaveAnimation = (baseEl: HTMLElement) => {
     return this.enterAnimation(baseEl).direction('reverse');
   }
+
+  ngAfterViewInit(){
+    console.log("AfterViewInit");
+
+  }
+
 
    ngOnInit(){
     //console.log('Appcomponent');
@@ -185,14 +194,14 @@ export class AppComponent {
    }
 
 
-   LoginAdmin(){
+  LoginAdmin(){
     if(this.net){
       this.closeMenu();
       this.spinner = true;
 
-        this.data.LoginWithEmail(this.login).then((res: any)=>{
+       this.data.LoginWithEmail(this.login).then((res: any)=>{
 
-          //console.log(res.user?.uid);
+          //console.log(res);
           this.data.setUser(res.user);
           this.obsr.user.next(true);
 
@@ -203,6 +212,7 @@ export class AppComponent {
           setTimeout(()=>{
             this.login = {'email':'', 'password':''}
           this.utilService.successToast('Logged in Successfully','radio-button-on-outline','success')
+          this.router.navigateByUrl('dashboard')
           },10);
 
 
@@ -263,6 +273,7 @@ export class AppComponent {
   openTitle(state: boolean){
     this.isTopicOpen = state;
   }
+
 
 
 

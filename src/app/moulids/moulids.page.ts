@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController, IonRouterOutlet, Platform, ToastController } from '@ionic/angular';
 import { DatabaseService } from '../services/database.service';
@@ -19,6 +19,7 @@ export class MoulidsPage implements OnInit {
   net: Boolean;
   subs: Subscription;
   spinner: boolean = false;
+  viewSet: boolean = false;
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
     public toast: ToastController, private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
@@ -36,14 +37,23 @@ export class MoulidsPage implements OnInit {
    ionViewDidEnter(){
     //console.log('Moulidh view entering');
 
+
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       this.route.navigateByUrl('/dashboard');
+    });
 
 
-    })
+
+      const loading = setInterval(()=>{
+        this.updateCss();
+        if(this.viewSet){
+          clearInterval(loading);
+        }
+      },1000);
 
 
    }
+
 
    ionViewWillLeave(){
     //console.log('Moulidh view leaving');
@@ -101,7 +111,62 @@ export class MoulidsPage implements OnInit {
     }
    }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+    console.log('ngOnInit');
+    //this.updateCss();
+
+
+   }
+
+   updateCss(){
+
+    const tool = document.querySelector('.moutool') as HTMLElement;
+    const grid1 = document.querySelector('.mgrid') as HTMLElement;
+    const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+    const bg = document.querySelector('.bg') as HTMLElement;
+
+    if(tool && grid1 && bar){
+      // console.log('viewd');
+
+      // if(tool.offsetHeight > 0 && grid.offsetHeight > 0 && bar.offsetHeight > 0 && bg.offsetHeight > 0){
+      //   console.log('true');
+
+      // }else{
+      //   console.log('false');
+
+      // }
+
+      const dyHeight = tool.offsetHeight;
+      const barHeight = bar.offsetHeight;
+
+      console.log(tool.offsetHeight);
+      //console.log(grid);
+      console.log(bar.offsetHeight);
+      // console.log(bg.offsetHeight > 0);
+      // console.log(bg.offsetHeight);
+      console.log(grid1.offsetHeight);
+
+
+      if(dyHeight > 0 && barHeight > 0 ){
+        grid1.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+        grid1.style.maxHeight = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
+        //bg.style.height = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
+        console.log('changed ',grid1.style.height);
+        this.viewSet = true;
+
+
+      }else {
+        console.log('Not enough height');
+
+      }
+      console.log(grid1.offsetHeight);
+
+
+
+   }
+
+   }
+
+
 
 }

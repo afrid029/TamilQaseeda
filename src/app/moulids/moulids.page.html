@@ -1,11 +1,9 @@
 <html class="addBody ios-view">
 
-<div class="tool">
+<div class="tool moutool">
   <img class="img" alt="">
 </div>
 <ion-content  id="main-content">
-<img class="qaseedahome" alt="">
-  <div class="glass">
     <div class="bg">
       <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
       opacity: 0.7;">
@@ -13,29 +11,8 @@
        </div>
 
 
-    <!-- <ion-card class="myc">
-      <ion-card (click)="viewMoulidh('muham')"  class="card muham">
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('shahul')" id="id1" class="card shahul">
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('badr')" id="id1" class="card badr">
-      </ion-card>
-
-      <ion-card (click)="viewMoulidh('ajmeer')" id="id1" class="card ajmeer">
-      </ion-card>
-
-    </ion-card> -->
-
-    <ion-grid>
-      <ion-row>
+    <ion-grid class="mgrid">
+     <ion-row>
         <ion-col size="6">
           <ion-card (click)="viewMoulidh('muham')"  class="card muham">
             <!-- <img src="../../assets/pictures/moulid/subhanamoulid.webp" > -->
@@ -76,11 +53,9 @@
 
     </ion-grid>
 
-   
-
-
     </div>
-  </div>
+
+
 </ion-content>
 
 

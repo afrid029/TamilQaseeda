@@ -18,7 +18,7 @@ export class MuhyiddenPage {
   anyContent: boolean = false;
   isEditOpen: boolean = false;
   submitButton: boolean = false;
-  vis: String = "hidden";
+  vis: boolean = true;
   searchKey: String;
   songs : any = [];
   Permsongs : any = [];
@@ -28,6 +28,7 @@ export class MuhyiddenPage {
   net: boolean;
   subs: Subscription;
   spinner: boolean = false;
+  viewSet: boolean = false;
 
   constructor(public db: DatabaseService, public obs: ObsrService, public platform: Platform, public routerOutlet: IonRouterOutlet, public location: PlatformLocation, public util: UtillService, public alertctrl: AlertController,public route:Router,
     public obsr: ObsrService) {
@@ -66,6 +67,51 @@ ionViewDidEnter(){
       }
 
   })
+
+  const loading = setInterval(()=>{
+    this.updateCss();
+    if(this.viewSet){
+      clearInterval(loading);
+    }
+  },1000);
+
+ }
+
+ updateCss(){
+
+  const tool = document.querySelector('.muhtool') as HTMLElement;
+ const list = document.querySelector('.lstmuh') as HTMLElement;
+ const listcont = document.querySelector('.lstcontmuh') as HTMLElement;
+ const cont = document.querySelector('.contmuh') as HTMLElement;
+  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+  const search = document.querySelector('.barmuh') as HTMLElement;
+
+  const main = document.querySelector('.mainmuh') as HTMLElement;
+
+
+  if(tool && bar && search){
+
+
+    const dyHeight = tool.offsetHeight;
+    const barHeight = bar.offsetHeight;
+    const searchHeight = search.offsetHeight;
+
+    if(dyHeight > 0 && barHeight > 0 && searchHeight > 0){
+
+      main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+      list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+      listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
+      this.viewSet = true;
+
+
+    }else {
+      console.log('Not enough height');
+
+    }
+
+ }
+
  }
 
  ionViewWillLeave(){
@@ -93,7 +139,7 @@ getSongs() {
 
 handleSearch(){
   if(this.searchKey.length > 0){
-    this.vis = "visible";
+    this.vis = false;
     this.songs = [];
     this.Permsongs.forEach((s: any)=>{
       if(s.title.includes(this.searchKey) || s.content.includes(this.searchKey)){
@@ -102,7 +148,7 @@ handleSearch(){
     })
     //console.log(this.songs.length);
   }else{
-    this.vis = "hidden";
+    this.vis = true;
     this.songs = this.Permsongs;
   }
 }
@@ -199,6 +245,10 @@ onFieldChange(){
   }else{
     this.submitButton = false;
   }
+  }
+
+  redirect(){
+    this.route.navigateByUrl('/home');
   }
 
 }
