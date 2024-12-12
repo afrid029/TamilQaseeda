@@ -116,6 +116,7 @@ const list = document.querySelector('.lstevi') as HTMLElement;
   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
   // const search = document.querySelector('.barziy') as HTMLElement;
   //const swiper = document.querySelector('.swiper') as HTMLElement;
+  //const lines = document.querySelectorAll('.line') as NodeListOf<HTMLElement>
 
   // const main = document.querySelector('.mainziy') as HTMLElement;
 
@@ -138,6 +139,10 @@ const list = document.querySelector('.lstevi') as HTMLElement;
       // main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
       // cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
       list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - 1rem)`
+
+      // lines.forEach(line => {
+      //   line.style.width = `calc(100vw - 7rem)`
+      // })
       // content.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px)`
       // bigTile.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px + 3rem)`
       // listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`

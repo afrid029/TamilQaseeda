@@ -20,6 +20,15 @@ export class DuaPage implements OnInit {
   obj: Boolean;
   net: Boolean;
   spinner: boolean = false;
+  viewSet : boolean = false;
+
+  IsAsma: boolean = false;
+  IsDua: boolean = false;
+  IsSalawat: boolean = false;
+  opened: boolean = false;
+  rendered: boolean = false
+  contentFetched: boolean = false;
+
   arabic : any [] = ['الرَّحْمَنُ',
   'الرَّحِیْمُ',
   'الْمَلِكُ',
@@ -236,8 +245,8 @@ export class DuaPage implements OnInit {
                   ];
 
   searchKey: String;
-  vis: String = "hidden"
-  asma: String = "hidden"
+  vis: boolean = true
+ // asma: String = "hidden"
 
   isModalOpen: boolean = false;
   isEditOpen: boolean = false;
@@ -263,6 +272,13 @@ export class DuaPage implements OnInit {
   }
   ionViewWillEnter(){
     //console.log('will Enter');
+
+  this.IsAsma = false;
+  this.IsDua = false;
+  this.IsSalawat = false;
+  this.opened = false;
+  this.rendered= false
+  this.contentFetched = false;
    this.getDua();
   }
 
@@ -277,7 +293,68 @@ export class DuaPage implements OnInit {
         }
 
     })
+
+    const loading = setInterval(()=>{
+      this.updateCss();
+      if(this.viewSet){
+        clearInterval(loading);
+      }
+    },1000);
+
   }
+
+
+  updateCss(){
+
+    const tool = document.querySelector('.duatool') as HTMLElement;
+  const list = document.querySelector('.lstdua') as HTMLElement;
+   //const content = document.querySelector('.content') as HTMLElement;
+   const smallTile = document.querySelector('.smallTileDua') as HTMLElement;
+   //const bigTile = document.querySelector('.bigTile') as HTMLElement;
+  //  const listcont = document.querySelector('.lstcontziy') as HTMLElement;
+  //  const cont = document.querySelector('.contziy') as HTMLElement;
+    const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+    // const search = document.querySelector('.barziy') as HTMLElement;
+    //const swiper = document.querySelector('.swiper') as HTMLElement;
+
+    // const main = document.querySelector('.mainziy') as HTMLElement;
+
+
+    if(tool && bar){
+
+
+      const dyHeight = tool.offsetHeight;
+      const barHeight = bar.offsetHeight;
+      const sTile = smallTile.offsetHeight;
+      //const bTile = bigTile.offsetHeight;
+      // const searchHeight = search.offsetHeight;
+      console.log(sTile);
+
+
+
+
+      if(dyHeight > 0 && barHeight > 0 && sTile > 0){
+
+        // main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+        // cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+        list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - 1rem)`
+        // content.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px)`
+        // bigTile.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px + 3rem)`
+        // listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
+        //swiper.style.height = `85vh`
+        this.viewSet = true;
+
+
+
+      }else {
+        console.log('Not enough height');
+
+      }
+
+   }
+
+   }
+
   ionViewWillLeave(){
     this.subs.unsubscribe();
   }
@@ -330,29 +407,29 @@ export class DuaPage implements OnInit {
 
 
   public slide: any;
-setSwiperInstance(event: any){
+// setSwiperInstance(event: any){
 
-  if(event.activeIndex == 0){
-    this.asma = "hidden"
-  }else{
-    this.asma = "visible"
-  }
-  this.slide = event;
-  console.log("this.slide.activeIndex");
-}
+//   if(event.activeIndex == 0){
+//     this.asma = "hidden"
+//   }else{
+//     this.asma = "visible"
+//   }
+//   this.slide = event;
+//   console.log("this.slide.activeIndex");
+// }
 
-handleSearch(){
+handleSearch(val: string){
   if(this.searchKey.length > 0){
-    this.vis = "visible";
-    if(this.slide.activeIndex == 1){
-      console.log("this.slide.activeIndex");
+    this.vis = false;
+    if(val === 'dua'){
+      //console.log("this.slide.activeIndex");
       this.dua = [];
       this.PermDua.forEach((s: any)=>{
         if(s.title.toLowerCase().includes(this.searchKey.toLowerCase())){
           this.dua.push(s);
         }
       })
-    }else if(this.slide.activeIndex == 2){
+    }else if(val === 'salawat'){
       this.salawat = [];
       this.PermSalawat.forEach((s: any)=>{
         if(s.title.toLowerCase().includes(this.searchKey.toLowerCase())){
@@ -363,7 +440,7 @@ handleSearch(){
     }
 
   }else{
-      this.vis = "hidden";
+      this.vis = true;
       this.dua = this.PermDua;
       this.salawat = this.PermSalawat;
 
@@ -461,6 +538,95 @@ update(){
     this.utilService.NetworkToast();
   }
 }
+
+viewArticles(value: string){
+  this.clearSearch();
+  this.handleSearch('refresh')
+  if(value === 'as'){
+    this.IsAsma = !this.IsAsma
+    this.IsDua = false;
+    this.IsSalawat = false;
+
+    this.contentFetched = true;
+  }else if(value === 'dua'){
+    this.IsDua = !this.IsDua
+    this.IsAsma = false;
+    this.IsSalawat = false;
+
+    this.contentFetched = this.duaAnyContent;
+  }else if(value === 'salawat'){
+    this.IsSalawat =!this.IsSalawat
+    this.IsAsma = false;
+    this.IsDua = false;
+
+    this.contentFetched = this.salAnyContent;
+  }
+
+  this.opened = this.IsAsma || this.IsDua || this.IsSalawat
+  ;
+
+  if(this.opened && this.contentFetched){
+    const rendaring = setInterval(()=>{
+      this.RendarCss();
+      if(this.rendered){
+        console.log('rendered');
+        clearInterval(rendaring);
+      }
+    },1000);
+  }
+
+}
+
+RendarCss(){
+
+  const tool = document.querySelector('.duatool') as HTMLElement;
+const list = document.querySelector('.lstdua') as HTMLElement;
+ //const content = document.querySelector('.content') as HTMLElement;
+ const smallTile = document.querySelector('.smallTileDua') as HTMLElement;
+ const bigTile = document.querySelector('.bigTileDua') as HTMLElement;
+//  const listcont = document.querySelector('.lstcontziy') as HTMLElement;
+//  const cont = document.querySelector('.contziy') as HTMLElement;
+  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+  // const search = document.querySelector('.barziy') as HTMLElement;
+  //const swiper = document.querySelector('.swiper') as HTMLElement;
+
+  // const main = document.querySelector('.mainziy') as HTMLElement;
+
+
+  if(tool && bar){
+
+
+    const dyHeight = tool.offsetHeight;
+    const barHeight = bar.offsetHeight;
+    const sTile = smallTile.offsetHeight;
+    //const bTile = bigTile.offsetHeight;
+    // const searchHeight = search.offsetHeight;
+    console.log(sTile);
+
+
+
+
+    if(dyHeight > 0 && barHeight > 0 && sTile > 0){
+
+      // main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+      // cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+      //list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - 1rem)`
+      //content.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px)`
+      bigTile.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${sTile}px - ${sTile}px + 3rem)`
+      // listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
+      //swiper.style.height = `85vh`
+      this.rendered = true;
+
+
+
+    }else {
+      console.log('Not enough height');
+
+    }
+
+ }
+
+ }
 
 
 }

@@ -329,6 +329,11 @@ background-color: white !important ;
     display: flex;
    }
 
+   .iconImage {
+    width: 5rem;
+    height: 5rem;
+   }
+
    .grid{
     display: flex;
     flex-direction: column;
@@ -347,10 +352,48 @@ background-color: white !important ;
    }
 
    .smallTile {
-    display: flex; background-color: white; justify-items: center; align-items: center; padding:0.5rem; border-radius: 25px; margin-left: 0.5rem; margin-right: 0.5rem;margin-bottom: 0.5rem;
-
+    display: flex; background-color: white;
+    justify-items: center; align-items: center;
+    padding:0.5rem; border-radius: 25px;
+    margin-left: 0.5rem; margin-right: 0.5rem;margin-bottom: 0.5rem;
     animation: loading 1s linear;
+
    }
+
+   .line {
+    height: 4px;
+    //background: linear-gradient(to right,rgba(128, 128, 128, 0), grey);
+    margin-right: 2px;
+    background-image: url("../../assets/pictures/Feet.jpg");
+    background-size: 300% 200%;
+    border-radius: 25px;
+    width: calc(100vw - 10rem);
+    animation: wave 3s linear infinite alternate ;
+   }
+
+   @keyframes wave {
+
+    0% { background-position: 0% 0%;
+      opacity: 0;
+    }
+
+    25% {
+      background-position: 50% 0%;
+      opacity: 1;
+    }
+
+    50% {
+      background-position: 75% 0%;
+      opacity: 0;
+    }
+
+    100% { background-position: 100% 0%;
+    opacity: 1; }
+
+
+   }
+
+
 
    .content {
     overflow-y: scroll;
@@ -404,7 +447,7 @@ background-color: white !important ;
 
   .smallrow{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
   }
 .hide{
@@ -424,6 +467,7 @@ background-color: white !important ;
 }
 
 .show {
+
   img {
     display: block;
     opacity: 1;

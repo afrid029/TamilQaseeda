@@ -35,7 +35,7 @@ import { HttpClientModule } from  '@angular/common/http';
   OnlineStatusModule,
   SharedModuleModule,
   HttpClientModule,
-  AngularFirestoreModule.enablePersistence(),
+  //AngularFirestoreModule.enablePersistence(),
   NgCalendarModule
 ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, DatePipe],

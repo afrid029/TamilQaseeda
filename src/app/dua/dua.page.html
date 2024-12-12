@@ -1,164 +1,194 @@
 <html class = "addBody">
-  <div class="tool">
+  <div class="tool duatool">
     <img class="img" alt="">
   </div>
   <ion-content>
     <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
     opacity: 0.7;">
       <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-     </div>
-
-     <div  class="bar primary">
-      <ion-input  style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search dua / salawat"><ion-icon  name="search"></ion-icon></ion-input>
-      <div class="close">
-        <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
-      </div>
-      </div>
+    </div>
 
 
-    <ion-list class="lst">
-      <div class="lstcont">
-        <swiper [effect]="'coverflow'" [speed]="400" (swiper)="setSwiperInstance($event)">
 
 
-          <ng-template
-            swiperSlide>
+      <ion-list class="lst lstdua">
+        <div class="lstcont">
+          <div class="cont">
+            <ion-grid  class="grid">
 
-            <div class="head">
-              <ion-text>அஸ்மாஉல் ஹுஸ்னா</ion-text>
-              <ion-icon name="caret-forward-outline"></ion-icon>
-            </div>
-              <div  class="cont qursi">
-                <ion-card *ngFor="let itm of arabic; index as i" class = "box">
-                  <ion-card-header>
-                    <ion-card-title>{{itm}}</ion-card-title>
-                  </ion-card-header>
-                  <h5>{{english[i]}}</h5>
-                  <hr>
-                  <h6> {{tamil[i]}}</h6>
-                </ion-card>
+            <ion-row *ngIf="!IsAsma" (click)="viewArticles('as')"  class="smallTile smallTileDua">
+              <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/kolhai.webp" alt="">
+                <div style="display: flex; flex-direction: column;">
+                  m];khcy; `_];dh
+                  <hr class="line">
+                </div>
+              </ion-col>
 
-              </div>
-          </ng-template>
+            </ion-row>
 
-            <ng-template *ngIf="duaAnyContent"  swiperSlide>
+            <ion-row *ngIf="IsAsma" class="bigTile bigTileDua">
+              <!-- <ion-col  size="3">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+              </ion-col> -->
+              <ion-col style="color: black"  size="12">
+                <div (click) = "viewArticles('as')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
+                  <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
+                 </div>
 
-              <div class="head">
-                <!-- <span style="float: left;">Hellow</span> -->
-                <ion-icon name="caret-back-outline"></ion-icon>
-                <ion-text>துஆக்கள் </ion-text>
-                <ion-icon name="caret-forward-outline"></ion-icon>
-                <!-- <span style="float: right;">Hii</span> -->
-              </div>
+                  <div  class="qursi">
+                    <ion-card *ngFor="let itm of arabic; index as i" class = "box">
+                      <ion-card-header>
+                        <ion-card-title>{{itm}}</ion-card-title>
+                      </ion-card-header>
+                      <h5>{{english[i]}}</h5>
+                      <hr>
+                      <h6> {{tamil[i]}}</h6>
+                    </ion-card>
 
-                <div *ngIf="obj" class="cont" id = "cont">
-                  <!--For div-->
-                  <div *ngFor="let d of dua">
-                    <ion-item class="itm">
-                      <ion-label style="white-space: initial" (click)="promo(d)" >{{d.title}}</ion-label>
-                      <div (click)="editDetail(d)" class="edit">
-                        <ion-icon class="icon" name="pencil"></ion-icon>
-                      </div>
-                      <div (click)="deleteAwrath(d)" class="edit del">
-                        <ion-icon class="icon" name="trash"></ion-icon>
-                      </div>
-                    </ion-item>
                   </div>
 
 
-                </div>
+              </ion-col>
+            </ion-row>
 
-                <div *ngIf="!obj" class="cont" id = "cont">
-                  <!--For div-->
-                  <div *ngFor="let d of dua" >
-                    <ion-item class="itm">
-                      <ion-label style="white-space: initial" (click)="promo(d)" >{{d.title}}</ion-label>
-                    </ion-item>
+            <ion-row *ngIf="!IsDua" (click)="viewArticles('dua')" class="smallTile smallTileDua">
+              <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+                <div style="display: flex; flex-direction: column;">
+                  md;whl JMf;fs;
+                  <hr class="line">
+                </div>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row *ngIf="IsDua" class="bigTile bigTileDua">
+              <!-- <ion-col  size="3">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+              </ion-col> -->
+              <ion-col style="color: black"  size="12">
+               <div (click) = "viewArticles('dua')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
+                <ion-icon name="albums" style="font-size:4vw"></ion-icon>
+               </div>
+
+                <div *ngIf="duaAnyContent" class="content">
+                  <div class="bar">
+                    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('dua')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                    <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
                   </div>
+                  <div  *ngIf="obj" >
+                    <div *ngFor = "let s of dua">
+                      <ion-item >
+                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                        <div (click)="editDetail(s)" class="edit">
+                          <ion-icon class="icon" name="pencil"></ion-icon>
+                        </div>
+                        <div (click)="deleteAwrath(s)" class="edit del">
+                          <ion-icon class="icon" name="trash"></ion-icon>
+                        </div>
+                      </ion-item>
+                    </div>
+
+
+                  </div>
+
+                  <div *ngIf="!obj" >
+                    <div *ngFor = "let s of dua">
+                      <ion-item>
+                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+
+                      </ion-item>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "dua.length === 0" >
+
+                    <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                      <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                    </ion-chip>
+
                 </div>
-                <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "dua.length === 0" >
+                </div>
 
-                  <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-                  </ion-chip>
-
-              </div>
-            </ng-template>
-            <ng-template *ngIf="!duaAnyContent"  swiperSlide>
-
-              <div class="head">
-                <ion-icon name="caret-back-outline"></ion-icon>
-                <ion-text>துஆக்கள்</ion-text>
-                <ion-icon name="caret-forward-outline"></ion-icon>
-              </div>
-                <div class="cont">
-                  <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
+                <div *ngIf="!duaAnyContent" >
+                  <ion-chip>
                     <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-            </ng-template>
 
 
 
-            <ng-template *ngIf="salAnyContent" swiperSlide>
 
-              <div class="head">
-                <ion-icon name="caret-back-outline"></ion-icon>
-                <ion-text>ஸலவாத்துக்கள்</ion-text>
-              </div>
+              </ion-col>
+            </ion-row>
 
-                <div *ngIf="obj" class="cont" id = "cont">
-                  <!--For div-->
-                  <div *ngFor="let s of salawat">
-                    <ion-item class="itm">
-                      <ion-label style="white-space: initial" (click)="promo(s)" >{{s.title}}</ion-label>
-                      <div (click)="editDetail(s)" class="edit">
-                        <ion-icon class="icon" name="pencil"></ion-icon>
-                      </div>
-                      <div (click)="deleteAwrath(s)" class="edit del">
-                        <ion-icon class="icon" name="trash"></ion-icon>
-                      </div>
+            <ion-row *ngIf="!IsSalawat" (click)="viewArticles('salawat')" class="smallTile smallTileDua">
+              <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/other.webp" alt="">
+                <div style="display: flex; flex-direction: column;">
+                Kj;jhd ]ythj;Jf;fs;
+                  <hr class="line">
+                </div>
+              </ion-col>
+            </ion-row>
 
-                    </ion-item>
+            <ion-row *ngIf="IsSalawat" class="bigTile bigTileDua">
+              <!-- <ion-col  size="3">
+                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+              </ion-col> -->
+              <ion-col style="color: black"  size="12">
+               <div (click) = "viewArticles('salawat')" style="display: flex; justify-content: center; margin-top: 1.5vh">
+                <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
+               </div>
+
+                <div *ngIf="salAnyContent" class="content">
+                  <div class="bar">
+                    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('salawat')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                    <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
+                  </div>
+                  <div  *ngIf="obj">
+                    <div *ngFor = "let s of salawat">
+                      <ion-item>
+                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                        <div (click)="editDetail(s)" class="edit">
+                          <ion-icon class="icon" name="pencil"></ion-icon>
+                        </div >
+                        <div (click)="deleteAwrath(s)" class="edit del">
+                          <ion-icon class="icon" name="trash"></ion-icon>
+                        </div>
+                      </ion-item>
+                    </div>
                   </div>
 
+                  <div *ngIf="!obj">
+                    <div *ngFor = "let s of salawat">
+                      <ion-item>
+                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
 
-                </div>
-
-                <div *ngIf="!obj" class="cont" id = "cont">
-                  <!--For div-->
-                  <div *ngFor="let s of salawat">
-                    <ion-item  (click)="promo(s)" class="itm">
-                      <ion-label style="white-space: initial" >{{s.title}}</ion-label>
-                    </ion-item>
+                      </ion-item>
+                    </div>
                   </div>
+                  <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "salawat.length === 0" >
+
+                    <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                      <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                    </ion-chip>
+
                 </div>
-                <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "salawat.length === 0" >
+                </div>
 
-                  <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-                  </ion-chip>
-
-              </div>
-            </ng-template>
-            <ng-template *ngIf="!salAnyContent"  swiperSlide>
-
-              <div class="head">
-                <ion-icon name="caret-back-outline"></ion-icon>
-                <ion-text>ஸலவாத்துக்கள்</ion-text>
-              </div>
-                <div class="cont">
-                  <ion-chip style="width:95%;height: auto;top: 38%; background-color: rgba(107, 106, 106, 0.048);">
+                <div *ngIf="!salAnyContent">
+                  <ion-chip >
                     <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-            </ng-template>
+              </ion-col>
+            </ion-row>
 
-            </swiper>
-
+            </ion-grid>
+          </div>
       </div>
-
-    </ion-list>
+      </ion-list>
 
     <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
       <ng-template>
