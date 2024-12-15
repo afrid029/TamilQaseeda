@@ -17,10 +17,6 @@
 }
 
 
-.card{
-  background-color: rgb(6, 105, 31);
-}
-
 
 /*********************************/
 
@@ -45,18 +41,19 @@ display: none;
 
 .card {
   display: inline;
-  width: 44vw;
+  width: 38vw;
   margin-left: 3vw;
   margin-right: 3vw;
   float: left;
  position: relative;
-  height: 44vw;
+  height: 38vw;
   overflow-y: scroll;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border-radius:5%;
   padding: 5px;
+
 
  }
 
@@ -79,26 +76,37 @@ display: none;
 
   .muham {
     background-image: url(../../assets/pictures/moulid/subhanamoulid.webp);
+    background-color: rgba(110, 228, 149, 0.315);
   }
   .muhi {
     background-image: url(../../assets/pictures/moulid/muhiyidden.webp);
+    background-color: rgba(228, 110, 110, 0.315);
   }
+
   .shahul {
     background-image: url(../../assets/pictures/moulid/shahemeeran.webp);
+    background-color: rgba(112, 110, 228, 0.315);
   }
   .hasan{
     background-image: url(../../assets/pictures/moulid/hassanhussain.webp);
+    background-color: rgba(228, 110, 189, 0.315);
   }
   .ajmeer {
     background-image: url(../../assets/pictures/moulid/ajmeer.webp);
+    background-color: rgba(110, 228, 222, 0.315);
   }
   .badr{
   background-image: url(../../assets/pictures/moulid/badr.webp);
+  background-color: rgba(228, 220, 110, 0.315);
   }
 
   ion-grid{
     height: 90vh;
     overflow-y: scroll;
+  }
+
+  #main-content::-webkit-scrollbar {
+    display: none !important;
   }
 
   ion-col{
