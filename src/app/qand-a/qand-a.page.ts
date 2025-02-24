@@ -70,7 +70,7 @@ export class QandAPage  {
    }
 
   ionViewWillEnter(){
-    console.log('View will enter');
+    // console.log('View will enter');
     if(this.obj){
       this.getAdminData();
     }
@@ -187,7 +187,7 @@ export class QandAPage  {
     this.spinner = true;
    // this.db.getAlertContent();
     this.db.GetforAdmin().subscribe((re: any)=>{
-      console.log('length : ',re.length);
+      // console.log('length : ',re.length);
       //
       if(re.length > 0){
         this.anyContent = true;
@@ -229,7 +229,7 @@ export class QandAPage  {
     this.isQuizView = true;
     this.currQuiz = data;
     this.db.getResponseforQuiz(data).subscribe(re=>{
-      console.log(re);
+      // console.log(re);
       this.Responses = re;
       this.progress=false;
 
@@ -325,7 +325,7 @@ export class QandAPage  {
    ///////////Users Slide//////////////////
    temp :any;
    UserClicked(data: any){
-    console.log(data);
+    // console.log(data);
 
     if(data.status === 'Active'){
       this.isUserDetailView = true;
@@ -397,7 +397,7 @@ export class QandAPage  {
 
 
     const data = {quizid:this.clickedQuiz.docid, date: timestampUTC, user: this.user, answer: this.clickedQuiz.questions};
-    console.log(data);
+    // console.log(data);
     if(this.net){
       this.db.SubmitResponse(data).then((re) =>{
         this.clickedQuiz = null;

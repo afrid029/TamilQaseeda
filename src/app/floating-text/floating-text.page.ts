@@ -209,7 +209,7 @@ export class FloatingTextPage implements OnInit {
             role: 'confirm',
             handler: () =>{
               this.spinner = true;
-              console.log('delete Confirmed');
+              // console.log('delete Confirmed');
                this.db.deleteBannerContent(data).then(()=>{
                   this.spinner = false;
                     this.utils.successToast('Deleted successfully','trash-outline','warning');

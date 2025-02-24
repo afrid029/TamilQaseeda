@@ -16,6 +16,7 @@ export class ObsrService {
   public MapClicked = new BehaviorSubject(false);
   public LocSelected = new BehaviorSubject(false);
   public genrelUser = new BehaviorSubject(false);
+  public isPlaying = new BehaviorSubject(true);
   constructor(private online: OnlineStatusService,
     public afs: AngularFirestore) {
     if(this.online.getStatus()){

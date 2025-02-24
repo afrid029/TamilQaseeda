@@ -93,7 +93,7 @@ export class AjmeerPage {
 
 
     }else {
-      console.log('Not enough height');
+      // console.log('Not enough height');
 
     }
 

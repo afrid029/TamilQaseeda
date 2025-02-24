@@ -129,7 +129,7 @@ const list = document.querySelector('.lstevi') as HTMLElement;
     const sTile = smallTile.offsetHeight;
     //const bTile = bigTile.offsetHeight;
     // const searchHeight = search.offsetHeight;
-    console.log(sTile);
+    // console.log(sTile);
 
 
 
@@ -373,7 +373,7 @@ viewArticles(value: string){
     const rendaring = setInterval(()=>{
       this.RendarCss();
       if(this.rendered){
-        console.log('rendered');
+        // console.log('rendered');
         clearInterval(rendaring);
       }
     },1000);
@@ -405,7 +405,7 @@ const list = document.querySelector('.lstevi') as HTMLElement;
     const sTile = smallTile.offsetHeight;
     //const bTile = bigTile.offsetHeight;
     // const searchHeight = search.offsetHeight;
-    console.log(sTile);
+    // console.log(sTile);
 
 
 

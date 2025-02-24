@@ -19,12 +19,30 @@
     </div>
 
     <div class="box2">
-      <!-- <ion-icon (click) = "playAudio()" style="font-size: 48px;" name="play-outline"></ion-icon>
-     <audio *ngIf="audioURL" controls>
-       <source [src]="audioURL" type="audio/mpeg">
-       Your browser does not support the audio element.
-     </audio> -->
+      <div class="box2-cover"></div>
+      <!-- <ion-icon (click) = "playAudio()" style="font-size: 48px;" name="play-outline"></ion-icon> -->
+     <!-- <audio src="https://sonic-ca.instainternet.com/assunnahtamil/stream" id="radio" controls autoplay> -->
+     <!-- </audio> -->
+
+     <div class="radio-title">Ahlussunnah Tamil <span style="color: rgb(255, 166, 0);"> Islamic Radio </span></div>
+     <div id="play" style="display: none;" (click)="controlRadio()" class="radio-btn">
+      <ion-icon name="play-circle"></ion-icon>
+     </div>
+     <div id="pause"  style="display: block;"  (click)="controlRadio()" class="radio-btn">
+      <ion-icon class="vibe" name="pause-circle"></ion-icon>
+     </div>
    </div>
+<!-- 
+   <div class="dgrid">
+    <ion-card (click)="navigateTo('moulids')" class="ic">
+      <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
+      <ion-card-header class="ichead" >
+        <ion-card-subtitle class="ictitle">nksypJfs;</ion-card-subtitle>
+
+      </ion-card-header>
+
+    </ion-card>
+   </div> -->
 
    <ion-grid class="dgrid">
     <ion-row>
@@ -32,7 +50,7 @@
         <ion-card (click)="navigateTo('moulids')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">nksypJfs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">மௌலிதுகள்</ion-card-subtitle>
 
           </ion-card-header>
 
@@ -43,7 +61,7 @@
         <ion-card (click)="navigateTo('home')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qaseedahomelighticon.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">jkpo; `]Pjhf;fs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">தமிழ் ஹஸீதாக்கள்</ion-card-subtitle>
 
           </ion-card-header>
 
@@ -53,7 +71,7 @@
         <ion-card (click)="navigateTo('ziyarams')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/ziyaramhomelighticon.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">]pahuq;fs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">ஸியாரங்கள்</ion-card-subtitle>
 
           </ion-card-header>
 
@@ -70,7 +88,7 @@
             <!-- <ion-button style="position: relative;">Click</ion-button> -->
              <!-- <div style="height: 5px; font-size: 3px; background-color: blue;">New</div> -->
             <ion-card-subtitle class="ictitle">
-              Nfs;tp-gjpy;
+              கேள்வி-பதில்
             </ion-card-subtitle>
 
           </ion-card-header>
@@ -82,7 +100,7 @@
         <ion-card (click)="navigateTo('evidence')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/evidancehomelighticon.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">khu;f;f tpsf;fq;fs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">மார்க்க விளக்கங்கள்</ion-card-subtitle>
 
           </ion-card-header>
 
@@ -92,7 +110,7 @@
         <ion-card (click)="navigateTo('calendar')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/calendarhomelighticon.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">tpN\l jpdq;fs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">விஷேட தினங்கள்</ion-card-subtitle>
 
           </ion-card-header>
 
@@ -105,7 +123,7 @@
         <ion-card (click)="navigateTo('dua')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/duahomelighticon.webp" />
           <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">mt;uhJfs;</ion-card-subtitle>
+            <ion-card-subtitle class="ictitle">அவ்ராதுகள்</ion-card-subtitle>
 
           </ion-card-header>
 

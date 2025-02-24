@@ -176,7 +176,7 @@ export class WallalertPage implements OnInit {
 
   openActionSheet(event: any){
     this.images = event.target.files;
-    console.log(this.images);
+    // console.log(this.images);
     this.fileSelected = false;
     this.closeButton = true;
 
@@ -204,8 +204,8 @@ export class WallalertPage implements OnInit {
       const length = this.images.length
 
       for(let j = 0; j < length; j++){
-        console.log(j);
-        console.log(this.images[j]);
+        // console.log(j);
+        // console.log(this.images[j]);
 
 
         const fileStoragePath = `Images/Popups/${new Date().getTime()}_${this.images[j].name}`;
@@ -225,7 +225,7 @@ export class WallalertPage implements OnInit {
               this.UploadedImageURL.subscribe({
 
                 next:(resp) =>{
-                  console.log(resp);
+                  // console.log(resp);
                   this.alert.imageUrl.push(resp);
                   this.perc = 0;
                   if(j === length-1){

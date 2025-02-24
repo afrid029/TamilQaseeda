@@ -47,7 +47,7 @@ export class HomePage {
       this.updateCss();
 
       if(this.viewSet){
-        console.log('switching off');
+        // console.log('switching off');
 
         clearInterval(loadView);
 
@@ -81,11 +81,11 @@ export class HomePage {
       const dyHeight = tool.offsetHeight;
       const barHeight = bar.offsetHeight;
 
-      console.log(dyHeight);
+      // console.log(dyHeight);
       //console.log(grid.offsetHeight);
       // console.log(bar.offsetHeight > 0);
       // console.log(bg.offsetHeight > 0);
-      console.log(barHeight);
+      // console.log(barHeight);
       //console.log(grid.style.height);
 
 
@@ -93,7 +93,7 @@ export class HomePage {
         grid.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
         grid.style.maxHeight = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
         //bg.style.height = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
-        console.log('Vie Set true');
+        // console.log('Vie Set true');
         this.viewSet = true;
 
 

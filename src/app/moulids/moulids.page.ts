@@ -112,7 +112,7 @@ export class MoulidsPage implements OnInit {
    }
 
    ngOnInit() {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
     //this.updateCss();
 
 
@@ -139,19 +139,19 @@ export class MoulidsPage implements OnInit {
       const dyHeight = tool.offsetHeight;
       const barHeight = bar.offsetHeight;
 
-      console.log(tool.offsetHeight);
-      //console.log(grid);
-      console.log(bar.offsetHeight);
-      // console.log(bg.offsetHeight > 0);
-      // console.log(bg.offsetHeight);
-      console.log(grid1.offsetHeight);
+      // console.log(tool.offsetHeight);
+      // //console.log(grid);
+      // console.log(bar.offsetHeight);
+      // // console.log(bg.offsetHeight > 0);
+      // // console.log(bg.offsetHeight);
+      // console.log(grid1.offsetHeight);
 
 
       if(dyHeight > 0 && barHeight > 0 ){
         grid1.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
         grid1.style.maxHeight = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
         //bg.style.height = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
-        console.log('changed ',grid1.style.height);
+        // console.log('changed ',grid1.style.height);
         this.viewSet = true;
 
 
@@ -159,7 +159,7 @@ export class MoulidsPage implements OnInit {
         console.log('Not enough height');
 
       }
-      console.log(grid1.offsetHeight);
+      // console.log(grid1.offsetHeight);
 
 
 

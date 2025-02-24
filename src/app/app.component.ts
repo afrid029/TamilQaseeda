@@ -116,7 +116,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(){
-    console.log("AfterViewInit");
+    // console.log("AfterViewInit");
 
   }
 
@@ -126,10 +126,10 @@ export class AppComponent implements AfterViewInit{
 
    let obs = this.db.getTodayContent().pipe(take(1));
    obs.subscribe((cont: any)=>{
-      //console.log('Alerts Count ', cont.length);
+      // console.log('Alerts Count ', cont.length);
 
         if(cont.length > 0){
-          //console.log(cont.length);
+          // console.log(cont.length);
           this.length = 0;
           for (let i = 0; i < cont.length; i++){
             this.alerts.push(cont[i].imageUrl);
@@ -159,7 +159,7 @@ export class AppComponent implements AfterViewInit{
       this.content = this.alerts[k];
       this.i = k + 1;
       this.isModalOpen = true;
-      console.log(this.content);
+      // console.log(this.content);
 
     }
 
@@ -176,7 +176,7 @@ export class AppComponent implements AfterViewInit{
           this.i = this.i + 1;
           this.isModalOpen = true;
 
-      console.log(this.content);
+      // console.log(this.content);
         },500)
       }
     }

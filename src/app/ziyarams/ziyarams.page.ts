@@ -140,7 +140,7 @@ export class ZiyaramsPage implements AfterViewInit {
     this.getZiyarams();
   }
   ionViewWillEnter(){
-    console.log('will Enter');
+    // console.log('will Enter');
     this.ReqView = false;
   }
   ionViewDidEnter(){

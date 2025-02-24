@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { UtillService } from '../services/utill.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Platform } from '@ionic/angular';
-import { log } from 'console';
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.page.html',
@@ -34,7 +33,7 @@ export class GoogleMapPage implements OnInit {
 
    }
    ionViewDidEnter(){
-    console.log('Map view entering');
+    // console.log('Map view entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
       //  this.location.back();
@@ -43,7 +42,7 @@ export class GoogleMapPage implements OnInit {
     })
 
     this.myLoc().then((re)=>{
-      console.log(re);
+      // console.log(re);
 
       this.viewMap();
     }).catch((er)=>{
@@ -63,7 +62,7 @@ export class GoogleMapPage implements OnInit {
  }
 
    ionViewWillLeave(){
-    console.log('Map view leaving');
+    // console.log('Map view leaving');
     if(this.newMap){
       this.newMap.destroy();
     }
@@ -95,12 +94,12 @@ export class GoogleMapPage implements OnInit {
       }else{
         alert('map is not therr ')
       }
-      console.log(this.val);
+      // console.log(this.val);
 
     },1000)
 
 
-    console.log('after view init');
+    // console.log('after view init');
 
 
     // this.myLoc().then((re)=>{
@@ -117,7 +116,7 @@ export class GoogleMapPage implements OnInit {
   }
     async myLoc(){
        this.loc = await Geolocation.getCurrentPosition({enableHighAccuracy: true});
-       console.log(this.loc);
+      //  console.log(this.loc);
 
 
       }
@@ -158,7 +157,7 @@ export class GoogleMapPage implements OnInit {
 
           this.id = markerId1;
           this.obsr.MapClicked.next(true);
-          console.log('jnjbjh');
+          // console.log('jnjbjh');
 
         }
 
@@ -177,10 +176,10 @@ export class GoogleMapPage implements OnInit {
               title: 'My Location'
           }
         );
-        console.log(this.obsr.latitude.value);
+        // console.log(this.obsr.latitude.value);
 
         this.newMap.setOnMapClickListener(async (re)=>{
-          console.log(re);
+          // console.log(re);
           if(this.clicked){
             await this.newMap.removeMarker(this.id);
           }
@@ -194,7 +193,7 @@ export class GoogleMapPage implements OnInit {
           this.obsr.LocSelected.next(true);
           this.obsr.MapClicked.next(true);
           this.id = myMark;
-          console.log(myMark);
+          // console.log(myMark);
 
           this.obsr.latitude.next(re.latitude);
           this.obsr.longtitude.next(re.longitude);

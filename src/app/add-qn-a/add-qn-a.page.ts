@@ -78,7 +78,7 @@ export class AddQnAPage implements OnInit {
 
         this.isUpdateQuiz = true;
 
-        console.log(this.quiz);
+        // console.log(this.quiz);
 
       }else{
         this.isUpdateQuiz = false;
@@ -86,7 +86,7 @@ export class AddQnAPage implements OnInit {
     })
 
 
-    console.log(this.quiz);
+    // console.log(this.quiz);
 
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
@@ -100,7 +100,7 @@ export class AddQnAPage implements OnInit {
    }
 
    ionViewWillLeave(){
-    console.log('Ziyaram view leaving');
+    // console.log('Ziyaram view leaving');
     this.quiz = {number:'',startDate: '',endDate: '',status:'', questions:[]=[]};
     this.subs.unsubscribe();
    }
@@ -131,7 +131,7 @@ export class AddQnAPage implements OnInit {
 
   deleteList(id: any){
     this.quiz.questions = this.quiz.questions.filter((q:any) => q.id !== id);
-    console.log(this.quiz);
+    // console.log(this.quiz);
 
   }
 

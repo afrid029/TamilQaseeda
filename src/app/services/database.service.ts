@@ -537,8 +537,8 @@ async deleteQnA(evidence: any){
 
 AlreadySentOrNot(mobile: any, data: any){
 
-  console.log(typeof(mobile));
-  console.log(data);
+  // console.log(typeof(mobile));
+  // console.log(data);
 
 
   return this.afs.collection('response', ref=> {
