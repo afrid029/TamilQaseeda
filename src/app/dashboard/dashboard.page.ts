@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
 import { AlertController, IonGrid, IonModal, IonRouterOutlet, Platform } from '@ionic/angular';
@@ -19,7 +19,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage  {
+export class DashboardPage implements OnInit, OnDestroy {
   @ViewChild(IonModal) modal: IonModal;
 
 
@@ -30,9 +30,10 @@ export class DashboardPage  {
   submitButton: boolean = true;
   login = {email:'', password:''};
   subs: Subscription;
+  player: Subscription;
   banner: boolean = false;
   content: any;
-  viewSet: boolean = false;
+  // viewSet: boolean = false;
 
   isBlink: boolean = false;
 
@@ -54,12 +55,10 @@ export class DashboardPage  {
       this.obj = re;
     })
 
-    this.obsr.isPlaying.subscribe(re => {
-      this.isPlaying = re;
-    })
 
     // this.initializeAudio();
 
+   console.log('constructor')
     this.radioSrvc.playStream();
 
   
@@ -113,62 +112,88 @@ export class DashboardPage  {
 
    ionViewDidEnter(){
     //console.log('view entering');
+
+    
+
     this.subs = this.platform.backButton.subscribeWithPriority(1,()=>{
       //console.log('Dashboard ',this.constructor.name);
-
+    
         this.toExit();
 
     });
 
-    const loading = setInterval(()=>{
-      this.UpdateCss();
-      if(this.viewSet){
-        clearInterval(loading);
-      }
-    },1000);
-    this.UpdateCss();
+    // const loading = setInterval(()=>{
+    //   this.UpdateCss();
+    //   if(this.viewSet){
+    //     clearInterval(loading);
+    //   }
+    // },1000);
+    // this.UpdateCss();
    }
 
-   UpdateCss(){
-
-      const banner = document.querySelector('.img1') as HTMLElement;
-      const audio = document.querySelector('.box2') as HTMLElement;
-    const grid = document.querySelector('.dgrid') as HTMLElement;
-    const bar = document.querySelector('ion-tab-bar') as HTMLElement;
-
-    if(banner && grid && audio){
-      // console.log('viewd');
-
-      const bannerHeight = banner.offsetHeight;
-      const audioHeight = audio.offsetHeight;
-      const barHeight = bar.offsetHeight;
-      // console.log(bannerHeight);
-      //   console.log(audioHeight);
-      //   console.log(barHeight);
-
-      if(bannerHeight > 0 && audioHeight > 0 && barHeight > 0) {
-        grid.style.height = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
-        grid.style.maxHeight = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
-        // console.log(bannerHeight);
-        // console.log(audioHeight);
-
-        this.viewSet = true;
-
+   ngOnInit(): void {
+    this.player = this.obsr.isPlaying.subscribe(re => {
+      this.isPlaying = re;
+      const play = document.getElementById("play") as HTMLDivElement;
+      const pause = document.getElementById("pause") as HTMLDivElement;
+      if(this.isPlaying) {
+        console.log('Playing...');
+        
+        play.style.display = 'none';
+        pause.style.display = 'block'
       }else {
-        console.log('Not enough height');
-
+        console.log('Pausing...');
+        play.style.display = 'block';
+        pause.style.display = 'none'
       }
-
-
-
+    })
    }
 
+   ngOnDestroy(): void {
+    
+    this.player.unsubscribe(); 
    }
+
+  //  UpdateCss(){
+
+  // //     const banner = document.querySelector('.img1') as HTMLElement;
+  // //     const audio = document.querySelector('.box2') as HTMLElement;
+  // //   const grid = document.querySelector('.dgrid') as HTMLElement;
+  // //   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+
+  // //   if(banner && grid && audio){
+  // //     // console.log('viewd');
+
+  // //     const bannerHeight = banner.offsetHeight;
+  // //     const audioHeight = audio.offsetHeight;
+  // //     const barHeight = bar.offsetHeight;
+  // //     // console.log(bannerHeight);
+  // //     //   console.log(audioHeight);
+  // //     //   console.log(barHeight);
+
+  // //     if(bannerHeight > 0 && audioHeight > 0 && barHeight > 0) {
+  // //       grid.style.height = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
+  // //       grid.style.maxHeight = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
+  // //       // console.log(bannerHeight);
+  // //       // console.log(audioHeight);
+
+  // //       this.viewSet = true;
+
+  // //     }else {
+  // //       console.log('Not enough height');
+
+  // //     }
+
+
+
+  // //  }
+
+  //  }
 
     // audioURL: string ="http://streams.radio.co/s937ac5492/listen";
    ionViewWillEnter(){
 
-    
+
     // const radio = document.getElementById("radio") as HTMLAudioElement;
 
     // const radioCheck = setInterval(() => {
@@ -230,8 +255,8 @@ export class DashboardPage  {
 
 
    ionViewWillLeave(){
-    //console.log('view leaving');
-
+    // console.log('view leaving');
+   
     this.subs.unsubscribe();
    }
    async toExit(){
@@ -272,7 +297,7 @@ export class DashboardPage  {
 
 
 
-  async controlRadio(){
+  controlRadio(){
 
     const radio = document.getElementById("radio") as HTMLAudioElement;
     const play = document.getElementById("play") as HTMLDivElement;
@@ -281,17 +306,17 @@ export class DashboardPage  {
 // console.log('Hello');
 
     if(this.isPlaying) {
-      // console.log('Hi');
+      console.log('Hi');
+      this.obsr.isPlaying.next(false);
       this.radioSrvc.stopStream();
-        play.style.display = 'block';
-        pause.style.display = 'none';
-        this.obsr.isPlaying.next(false);
+       
+        
     }else {
-      // console.log('man');
+      console.log('man');
+      this.obsr.isPlaying.next(true);
       this.radioSrvc.playStream();
-        play.style.display = 'none';
-        pause.style.display = 'block';
-        this.obsr.isPlaying.next(true);
+       
+        
     }
 
     // NativeAudio.isPlaying({assetId: 'Radio'}).then(res => {

@@ -125,17 +125,21 @@ export class CalendarPage {
    }
 
    ionViewDidEnter(){
-    //console.log('calendarview entering');
+    // alert('calendarview entering');
 
-    this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
+    
+
+    this.subs = this.platform.backButton.subscribeWithPriority(10,()=>{
+      // alert('Back is pressed');
       if(this.isEditModalOpen){
         this.isEditModalOpen = false;
       }else if(this.isModalOpen){
         this.isModalOpen = false
       }else{
-          this.route.navigateByUrl('/dashboard');
+          this.route.navigateByUrl('/');
         }
 
+        
     })
     //console.log(localStorage.getItem('calendarref'));
 
@@ -145,6 +149,7 @@ export class CalendarPage {
 
    ionViewWillLeave(){
     //console.log('calendar view leaving');
+    // alert('Calender Leaving');
 
     this.subs.unsubscribe();
    }

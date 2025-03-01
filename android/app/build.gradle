@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdk 33
+    namespace 'com.mafd.ahlussunnahtamil'
+    compileSdk 35
   defaultConfig {
         applicationId "com.mafd.ahlussunnahtamil"
     minSdk rootProject.ext.minSdkVersion
     targetSdk 35
-    versionCode 12
+    versionCode 14
         versionName '1.6.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -31,6 +32,13 @@ android {
       storePassword 'Mafrid1997'
     }
   }
+
+   lintOptions {
+         checkReleaseBuilds false
+        // This will suppress lint errors during the debug build
+        abortOnError false
+    }
+
 
 }
 

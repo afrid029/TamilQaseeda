@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.mafd.ahlussunnahtamil">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -13,7 +16,7 @@
             android:name="com.mafd.ahlussunnahtamil.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
-            android:launchMode="singleTask"
+            android:launchMode="standard"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,6 +38,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBWTpiUf6Zbjzcu2hEOSgrPMYVCQ7VPWIw"
         />
+<!--      <service-->
+<!--        android:name=".BackgroundAudioService"-->
+<!--        android:permission="android.permission.FOREGROUND_SERVICE"-->
+<!--        android:foregroundServiceType="mediaPlayback">-->
+<!--      </service>-->
+
       <service
         android:name=".BackgroundAudioService"
         android:permission="android.permission.FOREGROUND_SERVICE"
@@ -48,8 +57,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
 
 
 </manifest>

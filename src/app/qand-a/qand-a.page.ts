@@ -55,7 +55,7 @@ export class QandAPage  {
 
   adminView:boolean = false
 
-  viewSet: boolean = false;
+  // viewSet: boolean = false;
 
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
@@ -85,7 +85,7 @@ export class QandAPage  {
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
 
       if(!this.isQuestionView && !this.isUserDetailView && !this.isQuizView && !this.isAnswerSheet && !this.isCorrectioView && !this.isRevealView){
-        this.route.navigateByUrl('/dashboard');
+        this.route.navigateByUrl('/');
        }
 
       if(this.isQuestionView){
@@ -128,54 +128,54 @@ export class QandAPage  {
 
 
 
-  const loading = setInterval(()=>{
-    this.updateCss();
-    if(this.viewSet){
-      clearInterval(loading);
-    }
-  },1000);
+  // const loading = setInterval(()=>{
+  //   this.updateCss();
+  //   if(this.viewSet){
+  //     clearInterval(loading);
+  //   }
+  // },1000);
 
  }
 
- updateCss(){
+//  updateCss(){
 
-  const tool = document.querySelector('.qnatool') as HTMLElement;
- const list = document.querySelector('.lstqna') as HTMLElement;
- const listcont = document.querySelector('.lstcontqna') as HTMLElement;
- const cont = document.querySelector('.contqna') as HTMLElement;
-  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
-  //const search = document.querySelector('.barziy') as HTMLElement;
-  //const swiper = document.querySelector('.swiper') as HTMLElement;
+//   const tool = document.querySelector('.qnatool') as HTMLElement;
+//  const list = document.querySelector('.lstqna') as HTMLElement;
+//  const listcont = document.querySelector('.lstcontqna') as HTMLElement;
+//  const cont = document.querySelector('.contqna') as HTMLElement;
+//   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+//   //const search = document.querySelector('.barziy') as HTMLElement;
+//   //const swiper = document.querySelector('.swiper') as HTMLElement;
 
-  const main = document.querySelector('.mainqna') as HTMLElement;
-
-
-  if(tool && bar){
+//   const main = document.querySelector('.mainqna') as HTMLElement;
 
 
-    const dyHeight = tool.offsetHeight;
-    const barHeight = bar.offsetHeight;
-    //const searchHeight = search.offsetHeight;
-
-    if(dyHeight > 0 && barHeight > 0){
-
-      main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-      cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-      list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-      listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-      //swiper.style.height = `85vh`
-      this.viewSet = true;
+//   if(tool && bar){
 
 
+//     const dyHeight = tool.offsetHeight;
+//     const barHeight = bar.offsetHeight;
+//     //const searchHeight = search.offsetHeight;
 
-    }else {
-      console.log('Not enough height');
+//     if(dyHeight > 0 && barHeight > 0){
 
-    }
+//       main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+//       cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+//       list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+//       listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+//       //swiper.style.height = `85vh`
+//       this.viewSet = true;
 
- }
 
- }
+
+//     }else {
+//       console.log('Not enough height');
+
+//     }
+
+//  }
+
+//  }
 
    ionViewWillLeave(){
     //console.log('Ziyaram view leaving');

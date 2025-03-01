@@ -78,9 +78,9 @@
 
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth">
-          <ion-label style="font-size: 10px;  color: black"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author ? currSong.author : 'Unknown' }}</ion-label>
+          <ion-label style=" color: black"><b>தொகுப்பு / ஆக்கம் : </b><br><br>{{ currSong.author ? currSong.author : 'Unknown' }}</ion-label>
         </ion-chip>
-        <p style="white-space: pre-line; text-align: center; font-size: 13px;"> {{ currSong.content }}
+        <p style="white-space: pre-line; text-align: center; "> {{ currSong.content }}
         </p>
       </ion-content>
     </ng-template>
@@ -102,9 +102,9 @@
 
       <ion-content class="ion-padding modalBody">
         <ion-chip class="auth" >
-          <ion-input style="font-size: 10px; color: black" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
+          <ion-input style="color: black" (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.author"><b>தொகுப்பு / ஆக்கம் : </b><br><br> </ion-input>
         </ion-chip>
-        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; font-size: 15px; color: black" [autoGrow] = "true"></ion-textarea>
+        <ion-textarea (ionChange) = "onFieldChange()" required [(ngModel)] = "editSong.content" style="white-space: pre-line; text-align: center; color: black" [autoGrow] = "true"></ion-textarea>
       </ion-content>
 
     </ng-template>

@@ -69,6 +69,9 @@ backdrop-filter: blur(5px);
     padding-left: 2%;
     font-size: 1rem;
     color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 .cont1{
     //margin-top: 10% !important;
@@ -243,6 +246,14 @@ ion-fab-button {
   height: auto;
  // margin-top: 2vh;
 }
+
+.main {
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
 .mainImg{
   justify-content: center;
   align-items: center;
@@ -300,3 +311,96 @@ ion-fab-button {
 }
 
 
+
+@media (max-width: 1024px) {
+  .cont ion-item ion-label {
+    font-size: 0.9rem;
+  }
+
+  .cont ion-item p {
+    font-size: 1rem;
+  }
+
+  .edit {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+
+  .icon {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 900px) {
+  .cont ion-item ion-label {
+    font-size: 0.8rem;
+  }
+
+  .cont ion-item p {
+    font-size: 0.9rem;
+  }
+
+  .edit {
+    width: 4.3vw;
+    height: 4.3vw;
+  }
+
+  .icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cont ion-item ion-label {
+    font-size: 0.7rem;
+  }
+
+  .cont ion-item p {
+    font-size: 0.8rem;
+  }
+
+  .edit {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cont ion-item ion-label {
+    font-size: 0.7rem;
+  }
+
+  .cont ion-item p {
+    font-size: 0.9rem;
+  }
+
+  .edit {
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 400px) {
+  .cont ion-item ion-label {
+    font-size: 0.6rem;
+  }
+
+  .cont ion-item p {
+    font-size: 0.9rem;
+  }
+
+  .edit {
+    width: 7.2vw;
+    height: 7.2vw;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+}

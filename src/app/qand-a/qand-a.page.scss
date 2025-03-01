@@ -36,19 +36,19 @@ background-color: white !important;
 //   box-shadow: 0 0 6px 0 #cfcfcf;
 // }
 
-.lstcont {
-/* From https://css.glass */
-// background: rgba(185, 181, 181, 0.39);
-// border-radius: 16px;
-// box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-// backdrop-filter: blur(5px);
-// -webkit-backdrop-filter: blur(14px);
-}
+// .lstcont {
+// /* From https://css.glass */
+// // background: rgba(185, 181, 181, 0.39);
+// // border-radius: 16px;
+// // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+// // backdrop-filter: blur(5px);
+// // -webkit-backdrop-filter: blur(14px);
+// }
 
 /***************************/
 
 .cont{
-    height: 77vh;
+    // height: 77vh;
     width: 100%;
    // margin-top: 2.5vh;
     overflow-y: scroll;
@@ -236,29 +236,30 @@ background-color: white !important;
 
 }
 
-.add h5{
+.add .h5{
   margin-left: 1em;
-  color: white;
   font-size: 1em;
   font-weight: 400;
   font-family: Georgia, 'Times New Roman', Times, serif;
-
+  color: rgb(2, 32, 2);
 }
 
 .add ion-icon {
   font-size: 1.5em;
-  color: white;
+  color: rgb(2, 32, 2);
 }
 
 .row1{
   display: flex;
   justify-content: center;
 /* From https://css.glass */
-background: rgba(128, 124, 124, 0.37);
+background: rgb(168, 226, 168);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.6px);
 -webkit-backdrop-filter: blur(6.6px);
+padding: 6px 10px;
+
 }
 
 .row2{
@@ -290,6 +291,7 @@ border: 1px solid rgba(147, 247, 243, 0.3);
 
 .ichead{
   display: grid;
+  gap: 8px;
   padding: 1vh 1vw;
 }
 
@@ -345,6 +347,7 @@ border: 1px solid rgba(147, 247, 243, 0.3);
   justify-content: space-between;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 1px;
 }
 
 .iccontent h5{
@@ -459,3 +462,154 @@ ion-card-content{
       opacity: 1;
   }
 }
+
+@media (max-width: 1024px) {
+
+  .row1 {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .add {
+    font-size: 1.5rem;
+  }
+ .ictitle {
+  font-size: 1.2rem;
+ }
+
+ .icstitle {
+  font-size: 1rem;
+ }
+
+ .date {
+  font-size: 1.4rem;
+ }
+
+ .toAdmin ion-button, .toUser ion-button {
+  font-size: 1.3rem;
+ }
+  
+}
+
+
+@media (max-width: 900px) {
+
+  
+  .row1 {
+    width: 60%;
+    margin: auto;
+    padding: 9px 10px;
+  }
+
+  .add {
+    font-size: 1.2rem;
+  }
+
+  .ictitle {
+   font-size: 1.1rem;
+  }
+ 
+  .icstitle {
+   font-size: 0.9rem;
+  }
+ 
+  .date {
+   font-size: 1.3rem;
+  }
+ 
+  .toAdmin ion-button, .toUser ion-button {
+   font-size: 1.2rem;
+  }
+   
+ }
+
+@media (max-width: 768px) {
+
+  .row1 {
+    width: 50%;
+    margin: auto;
+    padding: 9px 10px;
+  }
+
+  .add {
+    font-size: 1rem;
+  }
+
+
+  .ictitle {
+   font-size: 1rem;
+  }
+ 
+  .icstitle {
+   font-size: 0.85rem;
+  }
+ 
+  .date {
+   font-size: 1.2rem;
+  }
+ 
+  .toAdmin ion-button, .toUser ion-button {
+   font-size: 1.15rem;
+  }
+   
+ }
+
+@media (max-width: 600px) {
+  .row1 {
+    width: 60%;
+    margin: auto;
+    padding: 9px 10px;
+  }
+
+  .add {
+    font-size: 0.95rem;
+  }
+
+  .ictitle {
+   font-size: 0.9rem;
+  }
+ 
+  .icstitle {
+   font-size: 0.7rem;
+  }
+ 
+  .date {
+   font-size: 1.1rem;
+  }
+ 
+  .toAdmin ion-button, .toUser ion-button {
+   font-size: 1rem;
+  }
+   
+ }
+
+@media (max-width: 400px) {
+
+  .row1 {
+    width: 60%;
+    margin: auto;
+    padding: 8px 10px;
+  }
+
+  .add {
+    font-size: 0.8rem;
+  }
+
+  .ictitle {
+   font-size: 0.8rem;
+  }
+ 
+  .icstitle {
+   font-size: 0.6rem;
+  }
+ 
+  .date {
+   font-size: 1rem;
+  }
+ 
+  .toAdmin ion-button, .toUser ion-button {
+   font-size: 1rem;
+  }
+   
+ }

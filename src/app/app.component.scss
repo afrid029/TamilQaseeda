@@ -251,4 +251,112 @@ backdrop-filter: blur(10.8px);
 -webkit-backdrop-filter: blur(10.8px);
 }
 
+.item {
+  padding: 20px;
+}
+
+.item ion-label {
+  font-weight: 600;
+}
+
+.alt h5 {
+  line-height: 15px;
+}
+
+@media (max-width: 1024px) {
+
+  .card1 h3 {
+    font-size: 2rem;
+  }
+
+  .alt ion-item ion-icon, .alt ion-item ion-label {
+    font-size: 1.5rem;
+  }
+  .alt h5 {
+    font-size: 1rem
+  }
+
+  .alt .copyright, .alt p {
+    font-size: 1rem
+  }
+}
+
+@media (max-width: 900px) {
+
+  .card1 h3 {
+    font-size: 1.8rem;
+  }
+
+  .alt ion-item ion-icon, .alt ion-item ion-label {
+    font-size: 1.3rem;
+  }
+  .alt h5 {
+    font-size: 0.9rem
+  }
+
+  .alt .copyright, .alt p {
+    font-size: 0.9rem
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .card1 h3 {
+    font-size: 1.6rem;
+  }
+
+  .alt ion-item ion-icon, .alt ion-item ion-label {
+    font-size: 1.2rem;
+  }
+  .alt h5 {
+    font-size: 0.8rem
+  }
+
+  .alt .copyright, .alt p {
+    font-size: 0.8rem
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    padding: 6px 0px;
+  }
+  .card1 h3 {
+    font-size: 1.4rem;
+  }
+
+  .alt ion-item ion-icon, .alt ion-item ion-label {
+    font-size: 1.05rem;
+  }
+  .alt h5 {
+    font-size: 0.6rem
+  }
+
+  .alt .copyright, .alt p {
+    font-size: 0.6rem
+  }
+}
+
+
+@media (max-width: 400px) {
+  .item {
+    padding: 6px 0px;
+  }
+  .card1 h3 {
+    font-size: 1.2rem;
+  }
+
+  .alt ion-item ion-icon, .alt ion-item ion-label {
+    font-size: 0.9rem;
+  }
+  .alt h5 {
+    font-size: 0.5rem
+  }
+
+  .alt .copyright, .alt p {
+    font-size: 0.5rem
+  }
+}
+
 

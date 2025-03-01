@@ -43,6 +43,7 @@ public class MyApplication extends Application {
         Intent serviceIntent = new Intent(getApplicationContext(), BackgroundAudioService.class);
 
         stopService(serviceIntent);
+
         // Called when an activity is destroyed (if killed or removed from recent)
         // Here, you can stop your service or do any necessary cleanup
         // Check if the app has been removed from the recent apps

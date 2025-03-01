@@ -3,7 +3,7 @@
   opacity: 0.7;">
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
-    <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+    <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen">
     <ng-template>
 
       <ion-content>
@@ -35,10 +35,10 @@
 
   </ion-modal>
 
-  <ion-modal  backdropDismiss="false" [isOpen]="isTopicOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+  <ion-modal  backdropDismiss="false" [isOpen]="isTopicOpen">
     <ng-template>
         <ion-card class="card1" >
-          <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(185, 151, 106); ">
+          <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(185, 151, 106);display: flex;align-items: center; ">
             <h3><b>Ahlussunnah Tamil</b></h3>
             <ion-button fill="clear" class="closebtn" (click)="openTitle(false)">
               <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
@@ -47,47 +47,47 @@
           <ion-card-content class="alt">
 
             <ion-item (click)="closeMenu()" [routerLink] = "['/moulids']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="heart-half-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(29, 61, 10)" >&nbsp;&nbsp;மௌலிதுகள்</ion-label>
+              <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="heart-half-sharp"></ion-icon><ion-label style=" float: left; color: rgb(29, 61, 10)" >&nbsp;&nbsp;மௌலிதுகள்</ion-label>
             </ion-item>
             <ion-item (click)="closeMenu()" [routerLink] = "['/home']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="musical-notes-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)" >&nbsp;&nbsp;தமிழ் கஸீதா தளம்</ion-label>
+              <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="musical-notes-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)" >&nbsp;&nbsp;தமிழ் கஸீதா தளம்</ion-label>
             </ion-item>
             <ion-item (click)="closeMenu()" [routerLink] = "['/ziyarams']">
-              <ion-icon style="font-size: 20px; float: left; color:rgb(29, 61, 10);" name="location-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
+              <ion-icon style=" float: left; color:rgb(29, 61, 10);" name="location-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;ஸியாரங்கள்</ion-label>
             </ion-item>
             <ion-item (click)="closeMenu()" [routerLink] = "['/qand-a']">
-              <ion-icon style="font-size: 20px; float: left; color:rgb(29, 61, 10);" name="help-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;கேள்வி - பதில் பக்கம்</ion-label>
+              <ion-icon style=" float: left; color:rgb(29, 61, 10);" name="help-circle-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;கேள்வி - பதில் பக்கம்</ion-label>
             </ion-item>
             <ion-item (click)="closeMenu()" [routerLink] = "['/evidence']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="bulb-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
+              <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="bulb-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;மார்க்க விளக்கங்கள்</ion-label>
             </ion-item>
            <ion-item (click)="closeMenu()" [routerLink] = "['/calendar']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="calendar-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
+              <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="calendar-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;விஷேட தினங்கள்</ion-label>
           </ion-item>
           <ion-item (click)="closeMenu()" [routerLink] = "['/dua']">
-            <ion-icon style="font-size: 20px; float: left; color: rgb(29, 61, 10);" name="book-sharp"></ion-icon><ion-label style="font-size: medium; float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
+            <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="book-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
         </ion-item>
 
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77);">&nbsp;&nbsp;Add Hazeetha</ion-label>
+              <ion-icon style=" float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77);">&nbsp;&nbsp;Add Hazeetha</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
-              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
+              <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/floating-text']">
-              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Floating Text</ion-label>
+              <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Floating Text</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-evidence']">
-              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Religious Topic</ion-label>
+              <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Religious Topic</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-calendar']">
-              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Calendar Event</ion-label>
+              <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Calendar Event</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/add-dua']">
-              <ion-icon style="font-size: 20px; float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
+              <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
             </ion-item>
             <ion-item *ngIf="obj" (click)="closeMenu()" [routerLink] = "['/wallalert']">
-              <ion-icon style="font-size: 20px; float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style="font-size: medium; float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Popup Images</ion-label>
+              <ion-icon style=" float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Popup Images</ion-label>
             </ion-item>
 
             <ion-button (click) = "Logout()" *ngIf="obj" style="display: flex; ">Logout</ion-button>
@@ -129,10 +129,10 @@
   </ion-modal>
 
 
-  <ion-modal  backdropDismiss="false" [isOpen]="isAboutOpen" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+  <ion-modal  backdropDismiss="false" [isOpen]="isAboutOpen" >
     <ng-template>
         <ion-card class="card1" >
-          <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(145, 82, 0); ">
+          <ion-card-header style="height: 12%; color: rgb(255, 255, 255); background-color: rgb(145, 82, 0); display: flex;align-items: center;">
             <h3><b>About Us</b></h3>
             <ion-button fill="clear" class="closebtn" (click)="openAboutUs(false)">
               <ion-icon class="closeicon1"   name="close-circle-sharp"></ion-icon>
@@ -152,16 +152,18 @@
 
                 அல்குர்ஆன், அல்-ஹதீஸ், இஜ்மாஉ, கியாஸ் ஆகிய மார்க்க மூலாதாரங்களின் அடிப்படையில் கட்டியெழுப்பப்பட்டுள்ள அஹ்லுஸ்ஸுன்னாஹ் வல் ஜமாஅத் அகீதாவின் பக்கம் மக்களை அழைப்பதும் அதன் பிரகாரம் அமல் செய்வதற்கு மக்களை ஆர்வமூட்டுவதும் இலங்கையிலுள்ள இஸ்லாமிய நினைவிடங்கள் தொடர்பில் தகவல்களை திரட்டி மக்களை அறிவூட்டுவதும் நமது கலாச்சார பாரம்பரியங்களை அழிந்துவிடாமல் பாதுகாப்பதுமே நாம் <b>“அஹ்லுஸ் ஸுன்னாஹ் தமிழ்”</b> எனும் இச்செயலியை உருவாக்கியிருப்பதன் பிரதான நோக்கமாகும்.<br><br>
 
-                இதை எம்மிடம் உள்ள தகவல்களைக் கொண்டு ஆரம்பித்திருக்கின்றோம் , அல்ஹம்துலில்லாஹ்.
+                இதை எம்மிடம் உள்ள தகவல்களைக் கொண்டு ஆரம்பித்திருக்கின்றோம், அல்ஹம்துலில்லாஹ்.
 
                 இதில் பிரதானமாக,<br><br>
 
-                1.இலங்கையில் உள்ள புனித வலிமார்களின் ஸியாரங்களின் தகவல்கள் (அமைவிடம், அறிமுகம், புகைப்படம்)<br>
-                2.கொள்கை விளக்க ஆதாரங்கள்<br>
-                3.மௌலிதுகள்<br>
-                4.இஸ்லாமிய துஆக்கள் மற்றும் ஸலவாத்துக்கள்<br>
-                5.இஸ்லாமிய விஷேட தினங்கள்<br>
-                6.நன்மக்களால் எழுதப்பட்ட / தொகுக்கப்பட்ட தமிழ் ஹஸீதாக்கள் (எழுத்து வடிவில்)<br><br>
+                1.அஹ்லுஸ்ஸூன்னாஹ் தமிழ் இணைய வானொலி<br>
+                2.இலங்கையில் உள்ள புனித வலிமார்களின் ஸியாரங்களின் தகவல்கள் (அமைவிடம், அறிமுகம், புகைப்படம்)<br>
+                3.கொள்கை விளக்க ஆதாரங்கள்<br>
+                4.மௌலிதுகள்<br>
+                5.இஸ்லாமிய துஆக்கள் மற்றும் ஸலவாத்துக்கள்<br>
+                6.இஸ்லாமிய விஷேட தினங்கள்<br>
+                7.இஸ்லாமிய கேள்வி - பதில் போட்டி<br>
+                8.நன்மக்களால் எழுதப்பட்ட / தொகுக்கப்பட்ட தமிழ் ஹஸீதாக்கள் (எழுத்து வடிவில்)<br><br>
 
                 போன்ற தகவல்கள் உள்வாங்கப்பட்டுள்ளது.<br><br>
 
@@ -176,8 +178,9 @@
                 kasjmedia&#64;gmail.com<br></b>
               </h5>
 
-              <div style="justify-content: space-around; display: grid;text-align: center; ">
+              <div class="copyright" style="justify-content: space-around; display: grid;text-align: center; ">
                 <p style="color: rgb(94, 94, 94) !important;">Designed by : KASJ Media</p>
+                <p style="color: rgb(94, 94, 94) !important;">Developed by : <a href="https://www.linkedin.com/in/muhammadh-afrid/">Muhammadh Afrid</a></p>
                 <a *ngIf = "isAndroid" href="https://umafd.blogspot.com/2023/09/privacy-policy-for-ahlussunnah-tamil.html">Privacy Policy</a>
                 <a *ngIf = "!isAndroid" href="https://umafd.blogspot.com/2023/09/privacy-policy-for-ahlussunnah-tamil.html">Privacy Policy</a>
               </div>
@@ -187,7 +190,7 @@
             <ion-col style="text-align: center; color: black; font-size: 10px; font-weight: 800; background-color: rgb(209, 165, 129);">
                 <p >
 
-                  Ahlussunnah Tamil © 2023
+                  Ahlussunnah Tamil © 2025
                 </p>
 
             </ion-col>

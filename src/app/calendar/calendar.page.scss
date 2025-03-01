@@ -47,6 +47,10 @@ color: #3477ce;
 
 }
 
+.detail::-webkit-scrollbar {
+    display: none;
+}
+
 .lstcont{
     height: 100%;
     max-height: auto;
@@ -288,7 +292,6 @@ animation: showing 0.6s ease-out
       border-radius: 10px;
       margin: 5px;
       width: 100%;
-      height: 7.0vh;
       color: white;
       align-items: center;
       z-index: 10;
@@ -297,7 +300,7 @@ animation: showing 0.6s ease-out
     }
      h2 {
         margin-top: 5px !important;
-        font-size: 5vw;
+        // font-size: 5vw;
         font-weight: 700;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
@@ -321,11 +324,208 @@ animation: showing 0.6s ease-out
 
     }
     .event-detail{
-      font-size: 3vw !important;
+      font-size: 3vw;
       height: 8vh;
       display: contents;
       white-space: inherit !important;
       color: black !important;
 
     }
+  }
+
+  @media (max-width: 1024px) {
+
+    .listbtn {
+      padding: 15px 12px;
+    }
+    .listbtn ion-button{
+      font-size: 1.4rem;
+      
+    }
+
+    .edit {
+      width: 4.5vw;
+      height: 4.5vw;
+    }
+  
+    .icon {
+      font-size: 1.3rem;
+    }
+
+    :host ::ng-deep {
+      .item-lines-default {
+        padding: 10px;
+      }
+  
+      .event-detail {
+        font-size: 1.1rem;
+      }
+  
+      .no-events-label {
+        font-size: 1.2rem;
+      }
+
+      .ion-text-center {
+      
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+    
+  }
+  
+  @media (max-width: 900px) {
+    .listbtn ion-button{
+      font-size: 1.35rem;
+    }
+
+    .edit {
+      width: 4.3vw;
+      height: 4.3vw;
+    }
+  
+    .icon {
+      font-size: 1.1rem;
+    }
+
+    :host ::ng-deep {
+      .item-lines-default {
+        padding: 10px;
+      }
+  
+      .event-detail {
+        font-size: 1.05rem;
+      }
+  
+      .no-events-label {
+        font-size: 1.15rem;
+      }
+
+      .ion-text-center {
+      
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 2.45rem;
+      }
+    }
+    
+  }
+
+  @media (max-width: 768px) {
+    .listbtn ion-button{
+      font-size: 1.35rem;
+    }
+
+    .edit {
+      width: 4vw;
+      height: 4vw;
+    }
+  
+    .icon {
+      font-size: 1rem;
+    }
+
+    :host ::ng-deep {
+      .item-lines-default {
+        padding: 10px;
+      }
+  
+      .event-detail {
+        font-size: 1.05rem;
+      }
+  
+      .no-events-label {
+        font-size: 1.15rem;
+      }
+
+      .ion-text-center {
+      
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 2.45rem;
+      }
+    }
+    
+  }
+  @media (max-width: 600px) {
+    .listbtn ion-button{
+      font-size: 1rem;
+    }
+
+    .edit {
+      width: 7vw;
+      height: 7vw;
+    }
+  
+    .icon {
+      font-size: 1rem;
+    }
+
+    :host ::ng-deep {
+      .item-lines-default {
+        padding: 8px;
+      }
+  
+      .event-detail {
+        font-size: 0.9rem;
+      }
+  
+      .no-events-label {
+        font-size: 1rem;
+      }
+
+      .ion-text-center {
+      
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+    
+  }
+  @media (max-width: 400px) {
+    .listbtn ion-button{
+      font-size: 1rem;
+    }
+
+    .edit {
+      width: 7.2vw;
+      height: 7.2vw;
+    }
+  
+    .icon {
+      font-size: 1rem;
+    }
+    :host ::ng-deep {
+      .item-lines-default {
+        padding: 8px;
+      }
+  
+      .event-detail {
+        font-size: 0.9rem;
+      }
+  
+      .no-events-label {
+        font-size: 1rem;
+      }
+
+      .ion-text-center {
+      
+        padding: 8px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
+    
   }

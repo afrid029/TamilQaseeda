@@ -39,7 +39,7 @@
                 <div *ngIf="anyUserContent">
                   <ion-grid>
                     <ion-row class = "row2">
-                      <ion-col *ngFor="let data of UserData" size="6">
+                      <ion-col *ngFor="let data of UserData" size-md="4" size="6">
                         <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
                           <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
                           <ion-card-header class="ichead" >
@@ -75,12 +75,13 @@
                 <ion-grid>
                   <ion-row (click) = "navToAdd()" class="row1">
                     <ion-col class="add"  size="8">
-                      <ion-icon name="add-circle"></ion-icon><h5>Add Quiz</h5>
+                      <ion-icon name="add-circle"></ion-icon>
+                      <div class="h5">Add Quiz</div>
                     </ion-col>
                   </ion-row >
 
                   <ion-row *ngIf="anyContent" class = "row2">
-                    <ion-col *ngFor="let data of AdminData" size="6">
+                    <ion-col *ngFor="let data of AdminData" size-md="4" size="6">
                       <ion-card (click)="OpenQuiz(data)" class="ic">
                         <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
                         <ion-card-header class="ichead" >
@@ -122,7 +123,7 @@
                 <div *ngIf="anyUserContent">
                   <ion-grid>
                     <ion-row class = "row2">
-                      <ion-col *ngFor="let data of UserData" size="6">
+                      <ion-col *ngFor="let data of UserData" size="6" size-md="4">
                         <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
                           <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
                           <ion-card-header class="ichead" >

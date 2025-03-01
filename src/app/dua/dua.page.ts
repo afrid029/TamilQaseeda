@@ -289,7 +289,7 @@ export class DuaPage implements OnInit {
       }else if(this.isModalOpen){
         this.isModalOpen = false
       }else{
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/');
         }
 
     })

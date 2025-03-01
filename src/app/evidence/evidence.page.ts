@@ -90,7 +90,7 @@ ionViewDidEnter(){
     }else if(this.isModalOpen){
       this.isModalOpen = false
     }else{
-        this.route.navigateByUrl('/dashboard');
+        this.route.navigateByUrl('/');
       }
 
   })

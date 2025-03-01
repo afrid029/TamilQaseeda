@@ -20,7 +20,7 @@ export class HomePage {
   subs: Subscription;
   spinner: boolean = false;
 
-  viewSet: boolean = false;
+  // viewSet: boolean = false;
 
   constructor(public platform: Platform ,public route: Router,public db: DatabaseService,
     public toast: ToastController, private obsr: ObsrService, public routerOutlet: IonRouterOutlet,
@@ -38,21 +38,21 @@ export class HomePage {
     //console.log('Homeview entering');
 
     this.subs = this.platform.backButton.subscribeWithPriority(2,()=>{
-      this.route.navigateByUrl('/dashboard');
+      this.route.navigateByUrl('/');
 
 
     })
 
-    const loadView = setInterval (() => {
-      this.updateCss();
+    // const loadView = setInterval (() => {
+    //   this.updateCss();
 
-      if(this.viewSet){
-        // console.log('switching off');
+    //   if(this.viewSet){
+    //     // console.log('switching off');
 
-        clearInterval(loadView);
+    //     clearInterval(loadView);
 
-      }
-    },1000)
+    //   }
+    // },1000)
    }
 
    ionViewWillLeave(){
@@ -60,52 +60,52 @@ export class HomePage {
     this.subs.unsubscribe();
    }
 
-   updateCss(){
+  //  updateCss(){
 
-    const tool = document.querySelector('.qtool') as HTMLElement;
-    const grid = document.querySelector('.hgrid') as HTMLElement;
-    const bar = document.querySelector('ion-tab-bar') as HTMLElement;
-    const bg = document.querySelector('.bg') as HTMLElement;
+  //   const tool = document.querySelector('.qtool') as HTMLElement;
+  //   const grid = document.querySelector('.hgrid') as HTMLElement;
+  //   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+  //   const bg = document.querySelector('.bg') as HTMLElement;
 
-    if(tool && grid){
-      // console.log('viewd');
+  //   if(tool && grid){
+  //     // console.log('viewd');
 
-      // if(tool.offsetHeight > 0 && grid.offsetHeight > 0 && bar.offsetHeight > 0 && bg.offsetHeight > 0){
-      //   console.log('true');
+  //     // if(tool.offsetHeight > 0 && grid.offsetHeight > 0 && bar.offsetHeight > 0 && bg.offsetHeight > 0){
+  //     //   console.log('true');
 
-      // }else{
-      //   console.log('false');
+  //     // }else{
+  //     //   console.log('false');
 
-      // }
+  //     // }
 
-      const dyHeight = tool.offsetHeight;
-      const barHeight = bar.offsetHeight;
+  //     const dyHeight = tool.offsetHeight;
+  //     const barHeight = bar.offsetHeight;
 
-      // console.log(dyHeight);
-      //console.log(grid.offsetHeight);
-      // console.log(bar.offsetHeight > 0);
-      // console.log(bg.offsetHeight > 0);
-      // console.log(barHeight);
-      //console.log(grid.style.height);
-
-
-      if(dyHeight > 0 && barHeight > 0 ){
-        grid.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-        grid.style.maxHeight = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
-        //bg.style.height = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
-        // console.log('Vie Set true');
-        this.viewSet = true;
+  //     // console.log(dyHeight);
+  //     //console.log(grid.offsetHeight);
+  //     // console.log(bar.offsetHeight > 0);
+  //     // console.log(bg.offsetHeight > 0);
+  //     // console.log(barHeight);
+  //     //console.log(grid.style.height);
 
 
-      }else {
-        console.log('Not enough height');
+  //     if(dyHeight > 0 && barHeight > 0 ){
+  //       grid.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+  //       grid.style.maxHeight = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
+  //       //bg.style.height = `calc(100vh - ${dyHeight}px -  ${barHeight}px)`
+  //       // console.log('Vie Set true');
+  //       this.viewSet = true;
 
-      }
+
+  //     }else {
+  //       console.log('Not enough height');
+
+  //     }
 
 
 
-   }
+  //  }
 
-   }
+  //  }
 
 }

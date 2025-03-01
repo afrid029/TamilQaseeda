@@ -197,7 +197,68 @@ background-color: white !important ;
   }
 
 
+  @media (max-width: 1024px) {
 
+    .cont ion-item ion-label {
+      font-size: 1.2rem;
+    }
+    .modalBody p, .modalBody ion-textarea {
+      font-size: 1.2rem;
+    }
 
+    .auth ion-input, .auth ion-label {
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 900px) {
 
+    .cont ion-item ion-label {
+      font-size: 1.1rem;
+    }
+    .modalBody p, .modalBody ion-textarea {
+      font-size: 1.1rem;
+    }
 
+    .auth ion-input, .auth ion-label {
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 768px) {
+
+    .cont ion-item ion-label {
+      font-size: 1rem;
+    }
+    .modalBody p, .modalBody ion-textarea {
+      font-size: 1rem;
+    }
+
+    .auth ion-input, .auth ion-label {
+      font-size: 0.7rem;
+    }
+  }
+  @media (max-width: 600px) {
+
+    .cont ion-item ion-label {
+      font-size: 0.9rem;
+    }
+    .modalBody p, .modalBody ion-textarea {
+      font-size: 0.9rem;
+    }
+
+    .auth ion-input, .auth ion-label {
+      font-size: 0.65rem;
+    }
+  }
+  @media (max-width: 400px) {
+
+    .cont ion-item ion-label {
+      font-size: 0.85rem;
+    }
+    .modalBody p, .modalBody ion-textarea {
+      font-size: 0.85rem;
+    }
+
+    .auth ion-input, .auth ion-label {
+      font-size: 0.6rem;
+    }
+  }

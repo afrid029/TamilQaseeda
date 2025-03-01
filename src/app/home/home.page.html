@@ -6,6 +6,7 @@
 <ion-content  id="main-content">
 
     <div class="bg">
+      <div class="bg-image"></div>
       <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
       opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
@@ -13,35 +14,35 @@
 
        <ion-grid class="hgrid">
         <ion-row>
-          <ion-col size="6">
+          <ion-col size="6" size-md="4">
             <ion-card [routerLink] = "['/prophet']"  class="card muham">
               <img src="../../assets/pictures/qaseeda/muham.webp" alt="">
            </ion-card>
           </ion-col>
 
-          <ion-col size="6">
+          <ion-col size="6" size-md="4">
             <ion-card [routerLink] = "['/muhyidden']" class="card muhi">
               <img src="../../assets/pictures/qaseeda/muhiy.webp" alt="">
             </ion-card>
           </ion-col>
-        </ion-row>
+        <!-- </ion-row> -->
 
-        <ion-row>
-          <ion-col size="6">
+        <!-- <ion-row> -->
+          <ion-col size="6" size-md="4">
             <ion-card [routerLink] = "['/shahul']"  class="card shahul">
               <img src="../../assets/pictures/qaseeda/shahul.webp" alt="">
             </ion-card>
           </ion-col>
 
-          <ion-col size="6">
+          <ion-col size="6" size-md="4">
             <ion-card [routerLink] = "['/ajmeer']" class="card kwaja">
               <img src="../../assets/pictures/qaseeda/kwaja.webp" alt="">
             </ion-card>
           </ion-col>
-        </ion-row>
+        <!-- </ion-row> -->
 
-        <ion-row>
-          <ion-col size="6">
+        <!-- <ion-row> -->
+          <ion-col size="6" size-md="4">
             <ion-card [routerLink] = "['/others']" class="card other">
               <img src="../../assets/pictures/qaseeda/other.webp" alt="">
              </ion-card>

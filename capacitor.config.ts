@@ -1,5 +1,4 @@
 import { CapacitorConfig } from '@capacitor/cli';
-import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
   appId: 'com.mafd.ahlussunnahtamil',
@@ -22,10 +21,7 @@ const config: CapacitorConfig = {
       layoutName: "launch_screen",
       useDialog: true,
     },
-    Keyboard: {
-      resize: KeyboardResize.None,
-      resizeOnFullScreen: true,
-    },
+   
   },
 };
 

@@ -134,17 +134,31 @@ backdrop-filter: blur(9.1px);
  }
 
  .newQna{
-  border: 5px solid green;
-  animation: popup 2s infinite;
-  transition: linear;
+  // border: 5px solid green;
+  animation: popup 2s linear infinite ;
+  
  }
 
  @keyframes popup {
-   0% {border-color: green;}
-   25% {border-color:rgba(0, 128, 0, 0.74)}
-   50% {border-color: rgba(0, 128, 0, 0.404);}
-   75% {border-color: rgba(0, 128, 0, 0.171);}
-   100% {border-color: rgba(0, 128, 0, 0);}
+    0% {
+      box-shadow: 0 0 0 0px rgba(1, 75, 5, 0.726);
+    }
+    35% {
+      box-shadow: 0 0 0 10px rgba(1, 75, 5, 0);
+    }
+    37% {
+      box-shadow: 0 0 0 0px rgba(1, 75, 5, 0);
+    }
+    38% {
+      box-shadow: 0 0 0 0px rgba(199, 212, 7, 0.726);
+    }
+    73% {
+      box-shadow: 0 0 0 10px rgba(199, 212, 7, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0px rgba(199, 212, 7, 0);
+    }
  }
 
  .ichead{
@@ -251,7 +265,7 @@ background: linear-gradient(317deg, rgba(5,43,2,0.7) 0%, rgba(84,108,0,1) 100%);
 
 #play, #pause {
   opacity: 0;
-  animation: pop 0.5s ease forwards ;
+  animation: pop 0.5s linear forwards ;
 }
 
 @keyframes pop {
@@ -279,20 +293,29 @@ ion-grid {
     max-height: 65vh;
     overflow-y: scroll;
     margin-top: 1.5vh;
+    padding-bottom: 60px;
 
-    animation: showing 0.6s ease-out
+    
+  }
+
+  ion-col {
+    animation: showing 0.6s linear
   }
 
   @keyframes showing {
-    0% {margin-right: 100vw;
-      //transform: scale(0);
+    0% {
+      // margin-right: 100vw;
+      opacity: 0;
+      transform: scale(0);
           }
 
-    90% {
-      margin-right: -5vw;
-    }
-    100% {margin-right: 0vw;
-      //transform: scale(1)
+    // 90% {
+    //   margin-right: -5vw;
+    // }
+    100% {
+      // margin-right: 0vw;
+      opacity: 1;
+      transform: scale(1)
       }
   }
 
@@ -334,4 +357,62 @@ border: 1px solid rgb(230, 255, 3);
 color: white;
 
 
+}
+
+@media (max-width: 1024px) {
+  .ictitle{
+    font-size: 1rem;
+  }
+  .radio-title {
+    font-size: 2rem;
+  }
+  .radio-btn {
+    font-size: 4.2rem;
+  }
+}
+@media (max-width: 900px) {
+  .ictitle{
+    font-size: 0.9rem;
+  }
+  .radio-title {
+    font-size: 1.9rem;
+  }
+  .radio-btn {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ictitle{
+    font-size: 0.8rem;
+  }
+  .radio-title {
+    font-size: 1.7rem;
+  }
+  .radio-btn {
+    font-size: 3.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ictitle{
+    font-size: 0.4rem;
+  }
+  .radio-title {
+    font-size: 1.2rem;
+  }
+  .radio-btn {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 400px) {
+  .ictitle{
+    font-size: 0.3rem;
+  }
+  .radio-title {
+    font-size: 1rem;
+  }
+  .radio-btn {
+    font-size: 2.6rem;
+  }
 }

@@ -317,7 +317,7 @@ background-color: white !important ;
    .smallTile {
     display: flex; background-color: white; justify-items: center; align-items: center; padding:0.5rem; border-radius: 25px; margin-left: 0.5rem; margin-right: 0.5rem;margin-bottom: 0.5rem;
 
-    animation: loading 1s linear;
+    animation: loading 0.5s linear;
    }
 
    .content {
@@ -408,6 +408,8 @@ background-color: white !important ;
   img {
     display: block;
     opacity: 1;
+    height: 5rem;
+    width: 5rem;
     animation: shown 0.5s linear reverse;
   }
   div{
@@ -420,7 +422,7 @@ background-color: white !important ;
 }
 
 .line {
-  height: 4px;
+  height: 2px;
   //background: linear-gradient(to right,rgba(128, 128, 128, 0), grey);
   margin-right: 2px;
   background-image: url("../../assets/pictures/Feet.jpg");
@@ -472,28 +474,33 @@ background-color: white !important ;
 }
 
 @keyframes hidden {
-  0% { display: block;
-  opacity: 1;
-  height: 5rem;
-  width: 5rem;
-}
-  100% { display: none;
+  0% { 
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+  }
+  99% { 
   opacity: 0;
-  height: 0rem;
-width: 0rem;
-}
+  transform: scale(0);
+  
+  }
+  100% { 
+    display: none;
+  }
 }
 
 @keyframes shown {
   0% { display: block;
-  opacity: 1;
-  height: 5rem;
-  width: 5rem;
+ 
 }
-  100% { display: none;
+99% { 
   opacity: 0;
-  height: 0rem;
-width: 0rem;
+  transform: scale(0);
+  
+  }
+
+100% {
+  display: none;
 }
 }
 
