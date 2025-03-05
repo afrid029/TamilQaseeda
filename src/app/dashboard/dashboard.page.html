@@ -12,10 +12,12 @@
 
 
    <div class="ban" >
-    <div style = "justify-content: center; align-items: center;">
-      <div class="img1">
+    <div class="title">
+      <h3>அஹ்லுஸ்ஸுன்னாஹ் தமிழ்</h3>
+      <h4>vkf;fhd rj;jpa jsk;</h4>
+      <!-- <div class="img1">
 
-      </div>
+      </div> -->
     </div>
 
     <div class="box2">
@@ -28,9 +30,10 @@
      <div id="play" style="display: none;" (click)="controlRadio()" class="radio-btn">
       <ion-icon name="play-circle"></ion-icon>
      </div>
-     <div id="pause"  style="display: block;"  (click)="controlRadio()" class="radio-btn">
+     <div id="pause"  style="display: flex;"  (click)="controlRadio()" class="radio-btn">
       <ion-icon class="vibe" name="pause-circle"></ion-icon>
      </div>
+     <div id='sonic_title'></div>
    </div>
 <!-- 
    <div class="dgrid">
@@ -46,7 +49,7 @@
 
    <ion-grid class="dgrid">
     <ion-row>
-      <ion-col size="4">
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('moulids')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
           <ion-card-header class="ichead" >
@@ -57,7 +60,7 @@
         </ion-card>
 
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('home')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qaseedahomelighticon.webp" />
           <ion-card-header class="ichead" >
@@ -67,7 +70,7 @@
 
         </ion-card>
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('ziyarams')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/ziyaramhomelighticon.webp" />
           <ion-card-header class="ichead" >
@@ -77,10 +80,10 @@
 
         </ion-card>
       </ion-col>
-    </ion-row>
+    <!-- </ion-row> -->
 
-    <ion-row>
-      <ion-col size="4">
+    <!-- <ion-row> -->
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('qand-a')" class="ic {{isBlink ? 'newQna' : null}}">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qnahomelighticon.webp" />
 
@@ -96,7 +99,7 @@
         </ion-card>
 
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('evidence')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/evidancehomelighticon.webp" />
           <ion-card-header class="ichead" >
@@ -106,7 +109,7 @@
 
         </ion-card>
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('calendar')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/calendarhomelighticon.webp" />
           <ion-card-header class="ichead" >
@@ -116,10 +119,10 @@
 
         </ion-card>
       </ion-col>
-    </ion-row>
+    <!-- </ion-row> -->
 
-    <ion-row>
-      <ion-col size="4">
+    <!-- <ion-row> -->
+      <ion-col size="4" size-lg="3">
         <ion-card (click)="navigateTo('dua')" class="ic">
           <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/duahomelighticon.webp" />
           <ion-card-header class="ichead" >
@@ -148,6 +151,7 @@
 
     </div>
   </div>
+
 
 </ion-content>
 

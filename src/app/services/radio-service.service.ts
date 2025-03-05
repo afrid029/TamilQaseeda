@@ -6,7 +6,7 @@ import { Howl, Howler } from 'howler';
 })
 export class RadioServiceService {
   private player: Howl | null = null;
-  private url : string = 'https://sonic-ca.instainternet.com/assunnahtamil/stream'
+  private url : string = 'https://sonic-ca.instainternet.com:8074/assunnahtamil/stream'
 
   constructor() {}
 

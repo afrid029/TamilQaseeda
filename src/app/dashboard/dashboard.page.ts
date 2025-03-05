@@ -10,8 +10,6 @@ import { Subscription, take } from 'rxjs';
 import { RadioServiceService } from '../services/radio-service.service';
 
 
-
-
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 @Component({
@@ -66,50 +64,6 @@ export class DashboardPage implements OnInit, OnDestroy {
    }
 
   
-  //  async initializeAudio() {
-  //   try {
-  //     // Preload the audio
-
-  //     const liveStreamUrl = 'https://sonic-ca.instainternet.com/assunnahtamil/stream'; // Example of HLS URL
-
-  //      this.player = new Howl({
-  //       src: [liveStreamUrl],
-  //       html5: true,
-  //       format: ['mp3', 'aac'],
-  //       onend: () => {
-  //         console.log('Stream ended');
-  //       },
-  //       onloaderror: (id, error) => {
-  //         console.error('Load error', error);
-  //       },
-  //       onplayerror: (id, error) => {
-  //         console.error('Play error', error);
-  //       }
-  //     });
-      
-  //     // this.player.play();
-  //     // Initialize and play the live stream
-  //     // const audio = AudioPlugin.playList(liveStreamUrl)
-
-      
-  //     console.log('Live Audio Streaming Started');
-
-  //   //   await NativeAudio.preload({
-  //   //     assetId: "Radio",
-  //   //     assetPath: "https://sonic-ca.instainternet.com/assunnahtamil/stream",
-  //   //     audioChannelNum: 1,
-  //   //     isUrl: true
-  //   // });
-  //     // console.log('Audio Preloaded');
-      
-  //     // Automatically play the audio after it is preloaded
-  //     // await this.controlRadio();
-      
-  //   } catch (error) {
-  //     console.error('Error preloading and autoplaying audio', error);
-  //   }
-  // }
-
    ionViewDidEnter(){
     //console.log('view entering');
 
@@ -122,13 +76,7 @@ export class DashboardPage implements OnInit, OnDestroy {
 
     });
 
-    // const loading = setInterval(()=>{
-    //   this.UpdateCss();
-    //   if(this.viewSet){
-    //     clearInterval(loading);
-    //   }
-    // },1000);
-    // this.UpdateCss();
+ 
    }
 
    ngOnInit(): void {
@@ -140,13 +88,15 @@ export class DashboardPage implements OnInit, OnDestroy {
         console.log('Playing...');
         
         play.style.display = 'none';
-        pause.style.display = 'block'
+        pause.style.display = 'flex'
       }else {
         console.log('Pausing...');
-        play.style.display = 'block';
+        play.style.display = 'flex';
         pause.style.display = 'none'
       }
     })
+
+   
    }
 
    ngOnDestroy(): void {
@@ -154,60 +104,11 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.player.unsubscribe(); 
    }
 
-  //  UpdateCss(){
-
-  // //     const banner = document.querySelector('.img1') as HTMLElement;
-  // //     const audio = document.querySelector('.box2') as HTMLElement;
-  // //   const grid = document.querySelector('.dgrid') as HTMLElement;
-  // //   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
-
-  // //   if(banner && grid && audio){
-  // //     // console.log('viewd');
-
-  // //     const bannerHeight = banner.offsetHeight;
-  // //     const audioHeight = audio.offsetHeight;
-  // //     const barHeight = bar.offsetHeight;
-  // //     // console.log(bannerHeight);
-  // //     //   console.log(audioHeight);
-  // //     //   console.log(barHeight);
-
-  // //     if(bannerHeight > 0 && audioHeight > 0 && barHeight > 0) {
-  // //       grid.style.height = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
-  // //       grid.style.maxHeight = `calc(100vh - 8vh - 8px - ${barHeight}px - ${audioHeight}px - ${bannerHeight}px)`
-  // //       // console.log(bannerHeight);
-  // //       // console.log(audioHeight);
-
-  // //       this.viewSet = true;
-
-  // //     }else {
-  // //       console.log('Not enough height');
-
-  // //     }
-
-
-
-  // //  }
-
-  //  }
 
     // audioURL: string ="http://streams.radio.co/s937ac5492/listen";
    ionViewWillEnter(){
 
 
-    // const radio = document.getElementById("radio") as HTMLAudioElement;
-
-    // const radioCheck = setInterval(() => {
-    //   if(radio) {
-    //     console.log('checking');
-    //     if(radio.paused){
-    //       this.controlRadio();
-    //     }
-       
-    //     clearInterval(radioCheck);
-    //   }
-    // }, 1000)
-
-    // radio.setAttribute('src', this.audioURL);
    
    this.db.isAnyQna().subscribe({
     next: (result) =>{
@@ -230,18 +131,7 @@ export class DashboardPage implements OnInit, OnDestroy {
          if(cont.length > 0){
           this.banner = true;
           this.content = cont;
-          // for(let z = 0; z < cont.length; z++){
-          //   this.content = this.content.concat("       ", cont[z].content);
-          //   console.log(cont[z]);
-
-          // }
-
-          // console.log(this.content);
-
-          //  console.log(cont.length);
-          //  this.alerts = cont;
-          //  this.length = cont.length;
-          //  this.openModal(true);
+          
          }else{
           this.banner = false;
           this.content = "";
@@ -319,40 +209,7 @@ export class DashboardPage implements OnInit, OnDestroy {
         
     }
 
-    // NativeAudio.isPlaying({assetId: 'Radio'}).then(res => {
-    //   if(res.isPlaying) {
 
-    //     NativeAudio.pause({assetId: 'Radio'});
-    //     play.style.display = 'block';
-    //     pause.style.display = 'none';
-    //   } else {
-    //     NativeAudio.play({assetId: 'Radio'});
-    //     play.style.display = 'none';
-    //     pause.style.display = 'block';
-    //   }
-    // })
-
-    // if(NativeAudio.isPlaying({assetId: 'radio'})) {
-    //   radio.play();
-    //   play.style.display = 'none';
-    //   pause.style.display = 'block';
-
-
-    // }else {
-    //   radio.pause();
-    //   play.style.display = 'block';
-    //   pause.style.display = 'none';
-    // }
-
-    // var options: StreamingAudioOptions = {
-    //   initFullscreen: false,
-
-    // }
-
-
-    // //console.log(this.audioURL);
-
-    // this.stream.playAudio("https://sonic-ca.instainternet.com/8020/stream", options)
 
   }
 

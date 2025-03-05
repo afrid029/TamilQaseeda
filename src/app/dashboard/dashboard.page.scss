@@ -3,6 +3,10 @@
     font-family: nts;
     src: url('./../../assets/fonts/nctsn.ttf');
   }
+@font-face {
+    font-family: papa;
+    src: url('./../../assets/fonts/ncpapa.ttf');
+  }
 
 
   @font-face {
@@ -10,11 +14,16 @@
     // src: url('./../../assets/fonts/TAU_GUNN.TTF');
     src: url('./../../assets/fonts/TMOTCNB_Ship.TTF');
   }
+  @font-face {
+    font-family: gunn2;
+    src: url('./../../assets/fonts/TAU_GUNN.TTF');
+    // src: url('./../../assets/fonts/TMOTCNB_Ship.TTF');
+  }
 
 
-.img1{
-  content: url(../../assets/pictures/dashboard/headingbg.webp);
-}
+// .img1{
+//   // content: url(../../assets/pictures/dashboard/headingbg.webp);
+// }
 
 
 .bgInner{
@@ -84,7 +93,66 @@
 
   }
 
+  .title {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+  }
 
+  .title h3 {
+    font-family: gunn2, serif;
+    margin: 0;
+    letter-spacing: 1px;
+    color: rgb(2, 66, 2);
+    text-shadow: 
+    1px 1px 0 rgb(252, 252, 252), 
+    -1px -1px 0 rgb(252, 252, 250),  
+    1px -1px 0 rgb(238, 238, 234), 
+    -1px 1px 0 rgb(248, 248, 244); /* Stroke effect */
+
+  }
+
+  .title h4 {
+    font-family: papa, serif;
+    margin: 0;
+    letter-spacing: 1px;
+    color: #717107;
+    text-shadow: 
+    1px 1px 0 rgb(252, 252, 252), 
+    -1px -1px 0 rgb(252, 252, 250),  
+    1px -1px 0 rgb(238, 238, 234), 
+    -1px 1px 0 rgb(248, 248, 244); /* Stroke effect */
+  }
+
+  #sonic_title {
+    width: 100%;
+    white-space: nowrap;
+    // overflow: hidden;
+    animation: roll 10s linear infinite;
+    // margin-left: 50px;
+  
+  }
+
+
+  @keyframes roll {
+    0% {
+      // transform: margin-;
+      // overflow: hidden;
+      transform: translateX(100%);
+      // margin-left: 150px;
+    }
+
+    100%{
+      // left: -100%;
+      // overflow: hidden;
+      transform: translateX(-200%);
+      // margin-left: -150px;
+    }
+  }
 
   .addmodal{
     height: 42%;
@@ -128,7 +196,7 @@ backdrop-filter: blur(9.1px);
 
  .ic {
   background-color: rgba(255, 255, 255, 0.514);
-  border-radius: 4vw;
+  border-radius: 15px 15px 8px 8px;
   margin-top: 1vh;
 
  }
@@ -202,12 +270,14 @@ padding: 10px;
 gap: 10px;
 margin-top: 15px;
 position: relative;
-background-image: url("../../assets/pictures/wave1.jpg");
+background-image: url("../../assets/pictures/radiobg.webp");
 background-size: cover;
+background-origin: padding-box;
   //background-color: aqua !important;
 
   // position: fixed;
   // bottom: 13vh;
+  overflow: hidden;
 }
 
 .box2-cover {
@@ -216,7 +286,7 @@ background-size: cover;
   width: 100%;
   border-radius: 16px;
   background: rgb(5,43,2);
-background: linear-gradient(317deg, rgba(5,43,2,0.7) 0%, rgba(84,108,0,1) 100%);
+  background: linear-gradient(317deg, rgb(5 43 2 / 0%) 0%, rgb(84 108 0 / 49%) 100%)
 }
 
 .vibe {
@@ -369,6 +439,14 @@ color: white;
   .radio-btn {
     font-size: 4.2rem;
   }
+
+  .title h3 {
+    font-size: 2.8rem;
+  }
+
+  .title h4 {
+    font-size: 2.2rem;
+  }
 }
 @media (max-width: 900px) {
   .ictitle{
@@ -379,6 +457,14 @@ color: white;
   }
   .radio-btn {
     font-size: 4rem;
+  }
+
+  .title h3 {
+    font-size: 2.4rem;
+  }
+
+  .title h4 {
+    font-size: 1.8rem;
   }
 }
 
@@ -392,6 +478,14 @@ color: white;
   .radio-btn {
     font-size: 3.8rem;
   }
+
+  .title h3 {
+    font-size: 2.3rem;
+  }
+
+  .title h4 {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -403,6 +497,13 @@ color: white;
   }
   .radio-btn {
     font-size: 3rem;
+  }
+  .title h3 {
+    font-size: 1.6rem;
+  }
+
+  .title h4 {
+    font-size: 1.1rem;
   }
 }
 @media (max-width: 400px) {
