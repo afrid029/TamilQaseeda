@@ -68,51 +68,51 @@ ionViewDidEnter(){
   })
 
 
-  const loading = setInterval(()=>{
-    this.updateCss();
-    if(this.viewSet){
-      clearInterval(loading);
-    }
-  },1000);
+  // const loading = setInterval(()=>{
+  //   // this.updateCss();
+  //   if(this.viewSet){
+  //     clearInterval(loading);
+  //   }
+  // },1000);
 
  }
 
- updateCss(){
+//  updateCss(){
 
-  const tool = document.querySelector('.prtool') as HTMLElement;
- const list = document.querySelector('.lstprop') as HTMLElement;
- const listcont = document.querySelector('.lstcontprop') as HTMLElement;
- const cont = document.querySelector('.contprop') as HTMLElement;
-  const bar = document.querySelector('ion-tab-bar') as HTMLElement;
-  const search = document.querySelector('.barprop') as HTMLElement;
+//   const tool = document.querySelector('.prtool') as HTMLElement;
+//  const list = document.querySelector('.lstprop') as HTMLElement;
+//  const listcont = document.querySelector('.lstcontprop') as HTMLElement;
+//  const cont = document.querySelector('.contprop') as HTMLElement;
+//   const bar = document.querySelector('ion-tab-bar') as HTMLElement;
+//   const search = document.querySelector('.barprop') as HTMLElement;
 
-  const main = document.querySelector('.mainprop') as HTMLElement;
-
-
-  if(tool && bar && search){
+//   const main = document.querySelector('.mainprop') as HTMLElement;
 
 
-    const dyHeight = tool.offsetHeight;
-    const barHeight = bar.offsetHeight;
-    const searchHeight = search.offsetHeight;
-
-    if(dyHeight > 0 && barHeight > 0 && searchHeight > 0){
-
-      main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
-      cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
-      list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
-      listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
-      this.viewSet = true;
+//   if(tool && bar && search){
 
 
-    }else {
-      console.log('Not enough height');
+//     const dyHeight = tool.offsetHeight;
+//     const barHeight = bar.offsetHeight;
+//     const searchHeight = search.offsetHeight;
 
-    }
+//     if(dyHeight > 0 && barHeight > 0 && searchHeight > 0){
 
- }
+//       main.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px)`
+//       cont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+//       list.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px - 1rem)`
+//       listcont.style.height = `calc(100vh - ${dyHeight}px - ${barHeight}px - ${searchHeight}px -1rem)`
+//       this.viewSet = true;
 
- }
+
+//     }else {
+//       console.log('Not enough height');
+
+//     }
+
+//  }
+
+//  }
 
  ionViewWillLeave(){
   //console.log('Proph view leaving');

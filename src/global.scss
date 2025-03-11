@@ -394,12 +394,31 @@ ion-input{
 ion-select::part(text){
   color: rgb(0, 0, 0) !important;
   overflow-x: visible;
+  
 }
 
 ion-select::part(placeholder){
   color: rgb(0, 0, 0) !important;
 }
 
+.select-alert {
+  display: block;
+  width: 100%;
+  position: absolute;
+  
+}
+
+.select-alert .alert-wrapper {
+  width: 90%;
+  position: relative;
+  max-width: 90%;
+  margin: auto;
+  top: 30%;
+}
+
+.select-alert .alert-wrapper .select-interface-option {
+  display: contents;
+}
 ion-content::part(background){
   background-color: white;
 }

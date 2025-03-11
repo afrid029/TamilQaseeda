@@ -106,8 +106,22 @@ export class DashboardPage implements OnInit, OnDestroy {
 
 
     // audioURL: string ="http://streams.radio.co/s937ac5492/listen";
+    radioInterval : any ;
+    onAirTitle :  any;
    ionViewWillEnter(){
-
+    const radio = document.getElementById('sonic_title') as HTMLDivElement
+    
+    this.radioInterval = setInterval(()=> {
+      
+      const title = radio.innerText;
+      if(this.onAirTitle != title){
+        const titleArray = title.split('-');
+        const onair = document.querySelector('.onair') as HTMLDivElement;
+        const onairType = document.querySelector('.onair_type') as HTMLDivElement;
+        onair.innerText = titleArray[0];
+        onairType.innerText = titleArray[1] ? titleArray[1] : '';
+      }
+    }, 5000)
 
    
    this.db.isAnyQna().subscribe({
@@ -146,6 +160,8 @@ export class DashboardPage implements OnInit, OnDestroy {
 
    ionViewWillLeave(){
     // console.log('view leaving');
+
+    clearInterval(this.radioInterval);
    
     this.subs.unsubscribe();
    }

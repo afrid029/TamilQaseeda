@@ -11,50 +11,33 @@
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
        </div>
 
-
-    <ion-grid class="mgrid">
-     <ion-row>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('muham')"  class="card muham">
-            <!-- <img src="../../assets/pictures/moulid/subhanamoulid.webp" > -->
-          </ion-card>
-        </ion-col>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('muhi')" class="card muhi">
-            <!-- <img src="../../assets/pictures/moulid/muhiyidden.webp" > -->
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('shahul')" class="card shahul">
-            <!-- <img src="../../assets/pictures/moulid/shahemeeran.webp" > -->
-          </ion-card>
-        </ion-col>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('hasan')" class="card hasan">
-            <!-- <img src="../../assets/pictures/moulid/hassanhussain.webp" > -->
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('badr')" class="card badr">
-            <!-- <img src="../../assets/pictures/moulid/badr.webp" > -->
-          </ion-card>
-        </ion-col>
-        <ion-col size="6">
-          <ion-card (click)="viewMoulidh('ajmeer')" class="card ajmeer">
-            <!-- <img src="../../assets/pictures/moulid/ajmeer.webp" > -->
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
-
+       <div class="content-container">
+        <div (click)="viewMoulidh('muham')"  class="content">
+          <h4>சுப்ஹான மௌலித்</h4>
+        </div>
+        <div (click)="viewMoulidh('muhi')" class="content">
+          <h4>முஹ்யித்தீன் மௌலித்</h4>
+        </div>
+        <div (click)="viewMoulidh('shahul')"  class="content">
+          <h4>ஷாஹே மீரான் மௌலித்</h4>
+        </div>
+        <div (click)="viewMoulidh('hasan')" class="content">
+          <h4>ஹஸன்-ஹுஸைன் மௌலித்</h4>
+        </div>
+        <div (click)="viewMoulidh('badr')" class="content">
+          <h4>பத்ர் மௌலித்</h4>
+        </div>
+        <div (click)="viewMoulidh('ajmeer')" class="content">
+          <h4>அஜ்மீர் நாயகம் மௌலித்</h4>
+        </div>
+      </div>
     </div>
+
+    <div class="spec-button">
+      <ion-icon name="earth-outline"></ion-icon>
+    </div>
+
+    
 
 
 </ion-content>

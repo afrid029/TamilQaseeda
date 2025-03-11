@@ -34,6 +34,10 @@
       <ion-icon class="vibe" name="pause-circle"></ion-icon>
      </div>
      <div id='sonic_title'></div>
+     <div class="sonic_title">
+        <div class="onair"></div>
+        <div class="onair_type"></div>
+     </div>
    </div>
 <!-- 
    <div class="dgrid">
@@ -47,96 +51,37 @@
     </ion-card>
    </div> -->
 
-   <ion-grid class="dgrid">
-    <ion-row>
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('moulids')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">மௌலிதுகள்</ion-card-subtitle>
+   <div class="dgrid">
+    <div (click)="navigateTo('moulids')" class="content">
+      <div class="content-img moulid"></div>
+      <div class="content-text">மௌலிதுகள்</div>
+    </div>
+    <div (click)="navigateTo('home')"  class="content">
+      <div class="content-img haseetha"></div>
+      <div class="content-text">ஹஸீதாக்கள்</div>
+    </div>
+    <div (click)="navigateTo('ziyarams')" class="content">
+      <div class="content-img ziyaram"></div>
+      <div class="content-text">ஸியாரங்கள்</div>
+    </div>
+    <div (click)="navigateTo('qand-a')" class="content {{isBlink ? 'newQna' : null}}">
+      <div class="content-img qna"></div>
+      <div class="content-text">கேள்வி-பதில்</div>
+    </div>
+    <div (click)="navigateTo('evidence')" class="content">
+      <div class="content-img evidence"></div>
+      <div class="content-text">இஸ்லாமிய கட்டுரைகள்</div>
+    </div>
+    <div (click)="navigateTo('calendar')" class="content">
+      <div class="content-img calendar"></div>
+      <div class="content-text">இஸ்லாமிய நாட்காட்டி</div>
+    </div>
 
-          </ion-card-header>
-
-        </ion-card>
-
-      </ion-col>
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('home')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qaseedahomelighticon.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">தமிழ் ஹஸீதாக்கள்</ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-      </ion-col>
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('ziyarams')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/ziyaramhomelighticon.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">ஸியாரங்கள்</ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-      </ion-col>
-    <!-- </ion-row> -->
-
-    <!-- <ion-row> -->
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('qand-a')" class="ic {{isBlink ? 'newQna' : null}}">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/qnahomelighticon.webp" />
-
-          <ion-card-header class="ichead" >
-            <!-- <ion-button style="position: relative;">Click</ion-button> -->
-             <!-- <div style="height: 5px; font-size: 3px; background-color: blue;">New</div> -->
-            <ion-card-subtitle class="ictitle">
-              கேள்வி-பதில்
-            </ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-
-      </ion-col>
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('evidence')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/evidancehomelighticon.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">மார்க்க விளக்கங்கள்</ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-      </ion-col>
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('calendar')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/calendarhomelighticon.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">விஷேட தினங்கள்</ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-      </ion-col>
-    <!-- </ion-row> -->
-
-    <!-- <ion-row> -->
-      <ion-col size="4" size-lg="3">
-        <ion-card (click)="navigateTo('dua')" class="ic">
-          <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/duahomelighticon.webp" />
-          <ion-card-header class="ichead" >
-            <ion-card-subtitle class="ictitle">அவ்ராதுகள்</ion-card-subtitle>
-
-          </ion-card-header>
-
-        </ion-card>
-
-      </ion-col>
-
-    </ion-row>
-
-  </ion-grid>
+    <div (click)="navigateTo('dua')" class="content">
+      <div class="content-img dua"></div>
+      <div class="content-text">விஷேட ஓதல்கள்</div>
+    </div>
+ </div>
 
 
 

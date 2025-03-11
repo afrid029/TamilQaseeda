@@ -9,7 +9,7 @@
     <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
    </div>
 
-   <div class="main mainprop" style="background-color: rgb(139 126 126 / 39%); height: 90vh;">
+   <div class="main mainprop" style="background-color: rgb(139 126 126 / 39%);">
     <div class="bar barprop">
 
       <ion-button fill="clear" color="light" (click) = "redirect()"><ion-icon name="chevron-back-outline"></ion-icon>Back</ion-button>
@@ -20,7 +20,7 @@
 
     <ion-list class="lst lstprop">
       <div class="lstcont lstcontprop">
-      <div *ngIf = "anyContent">
+      <div style="height: 100%;" *ngIf = "anyContent">
         <div *ngIf = "obj" class="cont contprop">
           <div *ngFor = "let song of songs">
               <ion-item style="padding-bottom: 5px;">

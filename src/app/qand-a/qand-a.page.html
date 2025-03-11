@@ -21,7 +21,7 @@
     <div class="main mainqna">
       <ion-list class="lst lstqna">
         <div class="lstcont lstcontqna">
-          <div *ngIf="obj">
+          <div style="height: 100%;" *ngIf="obj">
             <div class="cont contqna">
               <div class="toAdmin" *ngIf="!adminView" style="width: 100%; display: flex; flex-direction: row-reverse;">
                 <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Add Quiz
@@ -39,7 +39,7 @@
                 <div *ngIf="anyUserContent">
                   <ion-grid>
                     <ion-row class = "row2">
-                      <ion-col *ngFor="let data of UserData" size-md="4" size="6">
+                      <ion-col *ngFor="let data of UserData" size-md="4" size-lg="3" size="6">
                         <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
                           <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
                           <ion-card-header class="ichead" >
@@ -81,7 +81,7 @@
                   </ion-row >
 
                   <ion-row *ngIf="anyContent" class = "row2">
-                    <ion-col *ngFor="let data of AdminData" size-md="4" size="6">
+                    <ion-col *ngFor="let data of AdminData" size-md="4" size-lg="3" size="6">
                       <ion-card (click)="OpenQuiz(data)" class="ic">
                         <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
                         <ion-card-header class="ichead" >
@@ -117,7 +117,7 @@
 
           </div>
 
-          <div *ngIf="!obj">
+          <div style="height: 100%;" *ngIf="!obj">
             <div class="cont contqna">
               <div class="normalV">
                 <div *ngIf="anyUserContent">
@@ -445,12 +445,6 @@
         </ion-content>
       </ng-template>
     </ion-modal>
-
-
-
-
-
-
 
 </ion-content>
 

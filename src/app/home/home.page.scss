@@ -1,15 +1,12 @@
+
 @font-face {
-    font-family: 'papa';
-    src: url(../../assets/fonts/ncpapa.ttf);
+    font-family: 'ship';
+    src: url(../../assets/fonts/TMOTPTB_Ship.TTF);
 }
 
 @font-face {
-    font-family: 'kiddu';
-    src: url(../../assets/fonts/nckiddu.ttf);
-}
-@font-face {
-    font-family: 'nallur';
-    src: url(../../assets/fonts/ncnallur.ttf);
+  font-family: 'gunn';
+  src: url(../../assets/fonts/TAU_GUNN.TTF);
 }
 
 
@@ -17,6 +14,10 @@
   content: url(../../assets/pictures/qaseeda/qaseedalightbanner.webp);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
 
 
 /*************************************************/
@@ -24,7 +25,7 @@
 
 .bg{
   width: 100%;
-  height: 90vh;
+  height: 100%;
   position: relative;
  // background: #b9ebc8c4;
   // background-attachment: fixed;
@@ -50,28 +51,7 @@
   position: absolute;
 }
 
-ion-grid {
-  overflow-y: auto;
-  height: 100%;
-  padding-bottom: 60px;
-}
 
-
-.card {
-    display: inline;
-    // width: 44vw;
-    // margin-left: 3vw;
-    // margin-right: 3vw;
-    // float: left;
-    position: relative;
-    // height: 44vw;
-    // overflow-y: scroll;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size:100% 100%;
-    background-color: transparent;
-
-}
 .menu {
     height: 100%;
 }
@@ -84,25 +64,231 @@ ion-grid {
     width: 100%;
     height: auto;
     //margin-top: 2vh;
+    display: flex;
+    justify-content:center ;
+    position: fixed;
+  z-index: 10;
+  background-color: #004620;
 
 
     }
-    ion-col{
+
+    @media (max-width:1024px) and (min-width:900px) and (max-height: 900px){
+      .tool img {
+        max-width: 50%;
+      }
+    }
+    @media (max-width:1024px){
+      .tool img {
+        max-width: 70%;
+      }
+    }
+  
+    @media (max-width:1280px) and (min-width:1024px) and (max-height: 900px){
+      .tool img {
+        max-width: 50%;
+      }
+    }
+  
+    @media (max-width:768px){
+      .tool img {
+        max-width: 88%;
+      }
+    }
+
+    
+  .content-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
+
+  .content {
+    background-image: url("../../assets/pictures/qaseeda/haseethaTile.webp");
+    width: 90%;
+    background-size: 100% 100%;
+    border-radius: 16px;
+    background-repeat: no-repeat;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+   
+  }
+
+  @keyframes zoomEnter {
+    0% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+
+    100% {
+      opacity: 1;
       transform: scale(1);
-      align-content: center;
+    }
+  }
 
-      animation: zoomEnter 0.6s linear;
+  .content h4 {
+    font-family: gunn, serif;
+    font-size: 1.85rem;
+    color: #ffc107;
+    animation: zoomEnter 0.3s linear;
+  }
+  
+  .content p {
+    font-family: ship, serif;
+    font-size: 0.9rem;
+    color: white !important;
+    animation: zoomEnter 0.6s linear;
+  }
+
+
+  @media (max-width: 1024px) {
+    .content-container {
+      width: 95%;
+      margin: auto;
     }
 
-    @keyframes zoomEnter {
-      0% {
-        transform: scale(0.2);
-      }
-      90% {
-        transform: scale(1.1);
-      }
-
-      100% {
-        transform: scale(1);
-      }
+    .content {
+      height: 115px;
     }
+
+    .content h4 {
+      font-size: 1.9rem;
+    }
+    .content p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (min-width: 900px) and (max-height: 900px) {
+    .content-container{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+      align-content: space-evenly;
+      padding-top: 100px;
+    }
+
+    .content {
+      width: 90%;
+      height: 90px;
+    }
+
+    .content h4 {
+      font-size: 1.4rem;
+    }
+    .content p {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .content-container {
+      width: 90%;
+      margin: auto;
+      padding-top: 70px;
+    }
+
+    .content {
+      height: 108px;
+    }
+
+    .content h4 {
+      font-size: 1.7rem;
+    }
+    .content p {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content-container {
+      width: 95%;
+      margin: auto;
+    }
+
+    .content {
+      height: 100px;
+    }
+    .content h4 {
+      font-size: 1.6rem;
+    }
+    .content p {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tool img {
+      max-width: 76%;
+    }
+    .content-container {
+      width: 100%;
+      margin: auto;
+      padding-top: 35px;
+    }
+
+    .content {
+      width: 88%;
+      height: 90px;
+    }
+
+    .content h4 {
+      font-size: 1.25rem;
+    }
+    .content p {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .content-container {
+      width: 100%;
+      margin: auto;
+    }
+
+    
+    .content {
+      width: 95%;
+      height: 85px;
+    }
+
+    .content h4 {
+      font-size: 1.15rem;
+    }
+    .content p {
+      font-size: 0.55rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .content-container {
+      padding-top: 25px;
+    }
+    
+    .content {
+      width: 95%;
+      height: 78px;
+    }
+
+    .content h4 {
+      font-size: 1.05rem;
+    }
+    .content p {
+      font-size: 0.5rem;
+    }
+  }
+  
+
+
+
+
