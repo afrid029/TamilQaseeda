@@ -9,12 +9,12 @@
   </ion-header>
 
   <ion-content>
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
     <ion-card style="overflow-y: scroll; max-height: 80%;">
       <ion-card-header>
@@ -40,12 +40,12 @@
             <p style="font-size: 15px; text-align: center;">{{type}}</p>
           </ion-item>
 
-          @if (type === 'other') {
+          <ng-container *ngIf="type === 'other'">
             <ion-item lines="full">
               <ion-label position="floating">இறைநேசரின் பெயர்</ion-label>
               <ion-input [(ngModel)]="song.vali" type="text" name="vali" required></ion-input>
             </ion-item>
-          }
+          </ng-container>
 
           <div class="cont">
             <ion-button type="submit" [disabled]="addForm.invalid || typeSelected" style="display: flex;" (click)="submit(addForm)" class = "btn">Add</ion-button>

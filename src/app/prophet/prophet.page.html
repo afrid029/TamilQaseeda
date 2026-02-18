@@ -4,12 +4,12 @@
     <img class="img" alt="">
   </div>
   <ion-content>
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
     <div class="main mainprop" style="background-color: rgb(139 126 126 / 39%);">
       <div class="bar barprop">
@@ -22,11 +22,11 @@
 
       <ion-list class="lst lstprop">
         <div class="lstcont lstcontprop">
-          @if (anyContent) {
+          <ng-container *ngIf="anyContent">
             <div style="height: 100%;">
-              @if (obj) {
+              <ng-container *ngIf="obj">
                 <div class="cont contprop">
-                  @for (song of songs; track song) {
+                  <ng-container *ngFor="let song of songs">
                     <div>
                       <ion-item style="padding-bottom: 5px;">
                         <ion-label style="white-space: initial" (click) = "promo(song)">{{ song.title }}</ion-label>
@@ -38,36 +38,36 @@
                         </div>
                       </ion-item>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (!obj) {
+              </ng-container>
+              <ng-container *ngIf="!obj">
                 <div class="cont contprop">
-                  @for (song of songs; track song) {
+                  <ng-container *ngFor="let song of songs">
                     <div>
                       <ion-item style="padding-bottom: 5px;" >
                         <ion-label style="white-space: initial" (click) = "promo(song)">{{ song.title }}</ion-label>
                       </ion-item>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (songs.length === 0) {
+              </ng-container>
+              <ng-container *ngIf="songs.length === 0">
                 <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
                   <ion-chip style="width:76%;">
                     <ion-label style="margin: 0 auto; text-align: center"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                   </ion-chip>
                 </div>
-              }
+              </ng-container>
             </div>
-          }
-          @if (!anyContent) {
+          </ng-container>
+          <ng-container *ngIf="!anyContent">
             <div class="cont">
               <ion-chip style="width:95%; top:48%">
                 <ion-label style="margin: 0 auto;" >பாடல்கள் விரைவில் இணைக்கப்படும்</ion-label>
               </ion-chip>
             </div>
-          }
+          </ng-container>
         </div>
       </ion-list>
 

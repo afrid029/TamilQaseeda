@@ -5,12 +5,12 @@
 
 
   <ion-content [scrollEvents]="true" >
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
     <!-- <div class="bar primary">
     <ion-input style="font-style: italic; font-size: 3vw;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
 
@@ -23,29 +23,29 @@
   <div class="main mainqna">
     <ion-list class="lst lstqna">
       <div class="lstcont lstcontqna">
-        @if (obj) {
+        <ng-container *ngIf="obj">
           <div style="height: 100%;">
             <div class="cont contqna">
-              @if (!adminView) {
+              <ng-container *ngIf="!adminView">
                 <div class="toAdmin" style="width: 100%; display: flex; flex-direction: row-reverse;">
                   <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Add Quiz
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                   </ion-button>
                 </div>
-              }
-              @if (adminView) {
+              </ng-container>
+              <ng-container *ngIf="adminView">
                 <div class="toUser" style="width: 100%; display: flex;">
                   <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Quiz Home
                 </ion-button>
               </div>
-            }
-            @if (!adminView) {
+            </ng-container>
+            <ng-container *ngIf="!adminView">
               <div class="normalV" >
-                @if (anyUserContent) {
+                <ng-container *ngIf="anyUserContent">
                   <div>
                     <ion-grid>
                       <ion-row class = "row2">
-                        @for (data of UserData; track data) {
+                        <ng-container *ngFor="let data of UserData">
                           <ion-col size-md="4" size-lg="3" size="6">
                             <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
                               <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
@@ -65,21 +65,21 @@
                               </ion-card-content>
                             </ion-card>
                           </ion-col>
-                        }
+                        </ng-container>
                       </ion-row>
                     </ion-grid>
                   </div>
-                }
-                @if (!anyUserContent) {
+                </ng-container>
+                <ng-container *ngIf="!anyUserContent">
                   <div>
                     <ion-chip style="width:95%;  top: 25vh;">
                       <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
                     </ion-chip>
                   </div>
-                }
+                </ng-container>
               </div>
-            }
-            @if (adminView) {
+            </ng-container>
+            <ng-container *ngIf="adminView">
               <div class="adminV" >
                 <ion-grid>
                   <ion-row (click) = "navToAdd()" class="row1">
@@ -88,9 +88,9 @@
                       <div class="h5">Add Quiz</div>
                     </ion-col>
                   </ion-row >
-                  @if (anyContent) {
+                  <ng-container *ngIf="anyContent">
                     <ion-row class = "row2">
-                      @for (data of AdminData; track data) {
+                      <ng-container *ngFor="let data of AdminData">
                         <ion-col size-md="4" size-lg="3" size="6">
                           <ion-card (click)="OpenQuiz(data)" class="ic">
                             <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
@@ -110,32 +110,32 @@
                             </ion-card-content>
                           </ion-card>
                         </ion-col>
-                      }
+                      </ng-container>
                     </ion-row>
-                  }
+                  </ng-container>
                 </ion-grid>
-                @if (!anyContent) {
+                <ng-container *ngIf="!anyContent">
                   <div>
                     <ion-chip style="width:95%;  top:25vh;">
                       <ion-label style="margin: 0 auto;" >தரவுகள் பெறப்படவில்லை</ion-label>
                     </ion-chip>
                   </div>
-                }
+                </ng-container>
               </div>
-            }
+            </ng-container>
           </div>
         </div>
-      }
+      </ng-container>
 
-      @if (!obj) {
+      <ng-container *ngIf="!obj">
         <div style="height: 100%;">
           <div class="cont contqna">
             <div class="normalV">
-              @if (anyUserContent) {
+              <ng-container *ngIf="anyUserContent">
                 <div>
                   <ion-grid>
                     <ion-row class = "row2">
-                      @for (data of UserData; track data) {
+                      <ng-container *ngFor="let data of UserData">
                         <ion-col size="6" size-md="4">
                           <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
                             <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
@@ -155,22 +155,22 @@
                             </ion-card-content>
                           </ion-card>
                         </ion-col>
-                      }
+                      </ng-container>
                     </ion-row>
                   </ion-grid>
                 </div>
-              }
-              @if (!anyUserContent) {
+              </ng-container>
+              <ng-container *ngIf="!anyUserContent">
                 <div>
                   <ion-chip style="width:95%;  top: 25vh;">
                     <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-              }
+              </ng-container>
             </div>
           </div>
         </div>
-      }
+      </ng-container>
     </div>
 
   </ion-list>
@@ -220,10 +220,10 @@
         <ion-row>
           <ion-col style="text-align: center; font-weight: bold; color: black;"  size = "12">Responses</ion-col>
         </ion-row>
-        @if (progress) {
+        <ng-container *ngIf="progress">
           <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
-        }
-        @for (data of Responses; track data) {
+        </ng-container>
+        <ng-container *ngFor="let data of Responses">
           <ion-row >
             <ion-col (click) = "checkAnswers(data)" size="12">
               <ion-list style="background-color: white">
@@ -231,7 +231,7 @@
               </ion-list>
             </ion-col>
           </ion-row>
-        }
+        </ng-container>
       </ion-grid>
 
       <!-- <div class="quizMeta">
@@ -267,7 +267,7 @@
 
     <ion-content class="quesIc">
 
-      @for (d of currQuiz.questions; track d) {
+      <ng-container *ngFor="let d of currQuiz.questions">
         <div class="que" >
           <p>{{d.qst}}</p>
           <ion-list style="background-color: white" lines="full">
@@ -278,7 +278,7 @@
             <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
           </ion-list>
         </div>
-      }
+      </ng-container>
 
     </ion-content>
   </ng-template>
@@ -294,9 +294,9 @@
         <ion-button (click) = "closeUserInfoView()" >Close</ion-button>
       </ion-buttons>
     </ion-toolbar>
-    @if (progress) {
+    <ng-container *ngIf="progress">
       <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
-    }
+    </ng-container>
 
     <ion-content style="background-color: white;">
 
@@ -344,15 +344,15 @@
         <ion-button (click) = "closeAnswerSheet()" >Close</ion-button>
       </ion-buttons>
     </ion-toolbar>
-    @if (progress) {
+    <ng-container *ngIf="progress">
       <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
-    }
+    </ng-container>
 
     <ion-content>
       <div style="background-color: white !important; margin: 1vh 2vw">
         <form #AnsForm="ngForm">
           <div>
-            @for (data of clickedQuiz?.questions; track data) {
+            <ng-container *ngFor="let data of clickedQuiz?.questions">
               <div>
                 <ion-label style="color:black; font-style: italic; text-align: justify; font-weight:bold ;">{{data.qst}}</ion-label>
                 <ion-list style="background-color: white;">
@@ -367,7 +367,7 @@
                 </ion-list>
                 <hr>
                 </div>
-              }
+              </ng-container>
 
 
               <ion-button style="font-weight: bold;" (click) = "SaveAnswer()" [disabled]="AnsForm.invalid || btnValid" color="success" expand="block">Submit The Quiz</ion-button>
@@ -423,7 +423,7 @@
 
         <hr style="background-color: #0000003d;">
 
-        @for (d of Answers.answer; track d) {
+        <ng-container *ngFor="let d of Answers.answer">
           <div class="queList" >
             <p style="margin: 1px 3px; font-style: italic; font-weight: 600;">{{d.qst}}</p>
             <ion-list style="background-color: white;" lines="full">
@@ -435,7 +435,7 @@
             </ion-list>
             <hr style="background-color: #00000096">
           </div>
-        }
+        </ng-container>
 
 
       </ion-content>
@@ -455,7 +455,7 @@
 
       <ion-content class="quesIc">
 
-        @for (d of RevealedAnswers.questions; track d) {
+        <ng-container *ngFor="let d of RevealedAnswers.questions">
           <div class="que" >
             <p style="font-style: italic; font-weight: 500; text-align: justify;">{{d.qst}}</p>
             <ion-list style="background-color: white" lines="full">
@@ -466,7 +466,7 @@
               <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
             </ion-list>
           </div>
-        }
+        </ng-container>
 
       </ion-content>
     </ng-template>

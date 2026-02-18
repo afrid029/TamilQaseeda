@@ -1,7 +1,7 @@
 import { PlatformLocation } from '@angular/common';
 import { AfterViewInit, Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router, RouterModule } from '@angular/router';
-import { Platform, IonRouterOutlet, AlertController, IonContent, ScrollDetail, IonModal, IonicModule } from '@ionic/angular';
+import { NavigationExtras, Router } from '@angular/router';
+import { Platform, IonRouterOutlet, AlertController, IonContent, ScrollDetail, IonModal } from '@ionic/angular';
 import { finalize, Observable, Subscription, tap } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { ObsrService } from '../services/obsr.service';
@@ -12,14 +12,12 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@awesome-cordova-plugin
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { imgFile } from '../add-ziyaram/add-ziyaram.page';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
-import { FormsModule } from '@angular/forms';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 @Component({
   selector: 'app-ziyarams',
   templateUrl: './ziyarams.page.html',
-  imports: [IonicModule, RouterModule, FormsModule],
   styleUrls: ['./ziyarams.page.scss'],
 })
 export class ZiyaramsPage implements AfterViewInit {

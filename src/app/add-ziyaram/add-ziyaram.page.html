@@ -10,12 +10,12 @@
   </ion-header>
 
   <ion-content >
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
     <ion-card style="overflow-y: scroll; max-height: 90%;">
       <ion-card-header>
@@ -57,9 +57,10 @@
               <div>
                 <img src="{{ziyaram.imageUrl}}" width="100%" alt="">
                 <ion-button style="display: flex; width: 100%;" color="primary" size="medium">
-                  <input #fileInput type="file" accept="image/*" (change)="openActionSheet($event)"/>@if (closeButton) {
+                  <input #fileInput type="file" accept="image/*" (change)="openActionSheet($event)"/>
+                  <ng-container *ngIf="closeButton">
                   <ion-button style="float: right;" (click)="clearFile()" fill="light"><ion-icon   name="close-outline"></ion-icon></ion-button>
-                }
+                </ng-container>
               </ion-button>
 
             </div>
@@ -67,20 +68,20 @@
 
 
               <div class="cont">
-                @if (!update) {
+                <ng-container *ngIf="!update">
                   <ion-button  color="success" (click)="submit(addForm)" [disabled]="addForm.invalid || btnvalid || !selected || fileSelected" type="submit" style="display: flex"  class = "btn">Add </ion-button>
-                }
-                @if (update) {
+                </ng-container>
+                <ng-container *ngIf="update">
                   <ion-button  color="warning" (click)="updateDetail(addForm)" [disabled]="addForm.invalid || btnvalid || !selected ||  fileSelected" type="submit" style="display: flex"  class = "btn">Update</ion-button>
-                }
+                </ng-container>
               </div>
             </form>
           </ion-card-header>
-          @if (perc) {
+          <ng-container *ngIf="perc">
             <div>
               <ion-progress-bar [value] = "perc"></ion-progress-bar>
             </div>
-          }
+          </ng-container>
         </ion-card>
 
         <!--------------------Province Modal----------------------->
@@ -121,13 +122,13 @@
               </ion-toolbar>
             </ion-header>
             <ion-content class="ion-padding modalBody ">
-              @for (dis of dist; track dis) {
+              <ng-container *ngFor="let dis of dist">
                 <ion-list>
                   <ion-item (click)="setDistrict(dis)">
                     {{dis}}
                   </ion-item>
                 </ion-list>
-              }
+              </ng-container>
             </ion-content>
           </ng-template>
         </ion-modal>

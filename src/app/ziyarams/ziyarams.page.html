@@ -5,12 +5,12 @@
 
 
   <ion-content [scrollEvents]="true" >
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
     <div class="main mainziy" style="background-color: rgb(139 126 126 / 39%);">
       <div class="bar barziy">
@@ -24,27 +24,27 @@
       <ion-list class="lst lstziy">
         <div class="lstcont lstcontziy">
 
-          @if (obj) {
+          <ng-container *ngIf="obj">
             <div style="height: 100%;">
               <div class="cont contziy">
-                @if (!ReqView) {
+                <ng-container *ngIf="!ReqView">
                   <div class="toAdmin" style="width: 100%; display: flex; flex-direction: row-reverse;">
                     <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Ziyaram Requests
                       <ion-icon name="chevron-forward-outline"></ion-icon>
                     </ion-button>
                   </div>
-                }
-                @if (ReqView) {
+                </ng-container>
+                <ng-container *ngIf="ReqView">
                   <div class="toUser" style="width: 100%; display: flex;">
                     <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Ziyarams
                   </ion-button>
                 </div>
-              }
-              @if (!ReqView) {
+              </ng-container>
+              <ng-container *ngIf="!ReqView">
                 <div class="normalV" (scroll)="logScrollStart($event)" >
-                  @if (anyContent) {
+                  <ng-container *ngIf="anyContent">
                     <div>
-                      @for (s of ziyarams; track s) {
+                      <ng-container *ngFor="let s of ziyarams">
                         <div>
                           <ion-item style="padding-bottom: 5px;" >
                             <ion-label (click) = "promo(s)">
@@ -59,30 +59,30 @@
                             </div>
                           </ion-item>
                         </div>
-                      }
-                      @if (ziyarams.length === 0) {
+                      </ng-container>
+                      <ng-container *ngIf="ziyarams.length === 0">
                         <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
                           <ion-chip style="width:76%;">
                             <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                           </ion-chip>
                         </div>
-                      }
+                      </ng-container>
                     </div>
-                  }
-                  @if (!anyContent) {
+                  </ng-container>
+                  <ng-container *ngIf="!anyContent">
                     <div>
                       <ion-chip style="width:95%;  top: 25vh;">
                         <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
                       </ion-chip>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (ReqView) {
+              </ng-container>
+              <ng-container *ngIf="ReqView">
                 <div class="adminV" (scroll)="logScrollStart($event)" >
-                  @if (anyReq) {
+                  <ng-container *ngIf="anyReq">
                     <div>
-                      @for (s of ZiyaramRequests; track s) {
+                      <ng-container *ngFor="let s of ZiyaramRequests">
                         <div>
                           <ion-item style="padding-bottom: 5px;" >
                             <ion-label style="white-space: initial;" (click) = "promo(s)">{{s.name}}</ion-label>
@@ -94,22 +94,22 @@
                             </div>
                           </ion-item>
                         </div>
-                      }
+                      </ng-container>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
+              </ng-container>
             </div>
           </div>
-        }
+        </ng-container>
 
-        @if (!obj) {
+        <ng-container *ngIf="!obj">
           <div style="height: 100%;" >
             <div class="cont contziy">
               <div class="normalV">
-                @if (anyContent) {
+                <ng-container *ngIf="anyContent">
                   <div>
-                    @for (s of ziyarams; track s) {
+                    <ng-container *ngFor="let s of ziyarams">
                       <div>
                         <ion-item style="padding-bottom: 5px;">
                           <ion-label (click) = "promo(s)">
@@ -118,27 +118,27 @@
                           </ion-label>
                         </ion-item>
                       </div>
-                    }
-                    @if (ziyarams.length === 0) {
+                    </ng-container>
+                    <ng-container *ngIf="ziyarams.length === 0">
                       <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
                         <ion-chip style="width:76%;">
                           <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                         </ion-chip>
                       </div>
-                    }
+                    </ng-container>
                   </div>
-                }
-                @if (!anyContent) {
+                </ng-container>
+                <ng-container *ngIf="!anyContent">
                   <div>
                     <ion-chip style="width:95%;  top: 25vh;">
                       <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
                     </ion-chip>
                   </div>
-                }
+                </ng-container>
               </div>
             </div>
           </div>
-        }
+        </ng-container>
 
         <!--   -->
 
@@ -170,25 +170,25 @@
 
           </div>
 
-          @if (cardSpinner) {
+          <ng-container *ngIf="cardSpinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;
                 opacity: 0.7;">
               <ion-spinner name="lines-small" [paused]="false" color="primary"></ion-spinner>
             </div>
-          }
+          </ng-container>
           <ion-card-header>
             <ion-card-title style="width: 100%; font-weight: 700; font-size: medium; color: black;">{{currZiyaram.name}}</ion-card-title>
             <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>
-            @if (currZiyaram.day !== '') {
+            <ng-container *ngIf="currZiyaram.day !== ''">
               <ion-card-subtitle><small> <ion-icon name="calendar-outline"></ion-icon>
             &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
-          }
+          </ng-container>
         </ion-card-header>
 
         <ion-card-content  style="white-space: pre-line;">
-          @if (currZiyaram.description) {
+          <ng-container *ngIf="currZiyaram.description">
             <span>{{currZiyaram.description}}</span>
-          }
+          </ng-container>
 
           <ion-button color="danger" style="display:flex" (click)="launchGoogleMap()">Launch Google Map</ion-button>
 

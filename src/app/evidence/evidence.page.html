@@ -7,12 +7,12 @@
 
 
   <ion-content >
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
     <!-- <div class="bar primary">
     <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by topic"><ion-icon  name="search"></ion-icon></ion-input>
     <div class="close">
@@ -30,7 +30,7 @@
     <div class="cont">
       <ion-grid  class="grid">
 
-        @if (!isAqeeda) {
+        <ng-container *ngIf="!isAqeeda">
           <ion-row (click)="viewArticles('a')" class="smallTile">
             <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
               <img class="iconImage" src="../../assets/pictures/evidence/kolhai.webp" alt="">
@@ -41,9 +41,9 @@
               <!-- <hr class="line"> -->
             </ion-col>
           </ion-row>
-        }
+        </ng-container>
 
-        @if (isAqeeda) {
+        <ng-container *ngIf="isAqeeda">
           <ion-row class="bigTile">
             <!-- <ion-col  size="3">
             <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -52,15 +52,15 @@
             <div (click) = "viewArticles('a')" style="display: flex; justify-content: center;">
               <ion-icon name="albums"></ion-icon>
             </div>
-            @if (aqAnyContent) {
+            <ng-container *ngIf="aqAnyContent">
               <div class="content">
                 <div class="bar">
                   <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('a')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
                   <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
                 </div>
-                @if (obj) {
+                <ng-container *ngIf="obj">
                   <div >
-                    @for (s of aqeeda; track s) {
+                    <ng-container *ngFor="let s of aqeeda">
                       <div>
                         <ion-item >
                           <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
@@ -72,41 +72,41 @@
                           </div>
                         </ion-item>
                       </div>
-                    }
+                    </ng-container>
                   </div>
-                }
-                @if (!obj) {
+                </ng-container>
+                <ng-container *ngIf="!obj">
                   <div >
-                    @for (s of aqeeda; track s) {
+                    <ng-container *ngFor="let s of aqeeda">
                       <div>
                         <ion-item>
                           <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
                         </ion-item>
                       </div>
-                    }
+                    </ng-container>
                   </div>
-                }
-                @if (aqeeda.length === 0) {
+                </ng-container>
+                <ng-container *ngIf="aqeeda.length === 0">
                   <div style="display: flex; justify-content: space-around;align-items: center;" >
                     <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                       <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                     </ion-chip>
                   </div>
-                }
+                </ng-container>
               </div>
-            }
-            @if (!aqAnyContent) {
+            </ng-container>
+            <ng-container *ngIf="!aqAnyContent">
               <div>
                 <ion-chip>
                   <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                 </ion-chip>
               </div>
-            }
+            </ng-container>
           </ion-col>
         </ion-row>
-      }
+      </ng-container>
 
-      @if (!isSunnath) {
+      <ng-container *ngIf="!isSunnath">
         <ion-row (click)="viewArticles('s')" class="smallTile">
           <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
             <img class="iconImage" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -116,9 +116,9 @@
             </div>
           </ion-col>
         </ion-row>
-      }
+      </ng-container>
 
-      @if (isSunnath) {
+      <ng-container *ngIf="isSunnath">
         <ion-row class="bigTile">
           <!-- <ion-col  size="3">
           <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -127,15 +127,15 @@
           <div (click) = "viewArticles('s')" style="display: flex; justify-content: center;">
             <ion-icon name="albums"></ion-icon>
           </div>
-          @if (fiqhAnyContent) {
+          <ng-container *ngIf="fiqhAnyContent">
             <div class="content">
               <div class="bar">
                 <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('s')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
                 <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
               </div>
-              @if (obj) {
+              <ng-container *ngIf="obj">
                 <div  >
-                  @for (s of fiqh; track s) {
+                  <ng-container *ngFor="let s of fiqh">
                     <div>
                       <ion-item >
                         <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
@@ -147,41 +147,41 @@
                         </div>
                       </ion-item>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (!obj) {
+              </ng-container>
+              <ng-container *ngIf="!obj">
                 <div >
-                  @for (s of fiqh; track s) {
+                  <ng-container *ngFor="let s of fiqh">
                     <div>
                       <ion-item>
                         <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
                       </ion-item>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (fiqh.length === 0) {
+              </ng-container>
+              <ng-container *ngIf="fiqh.length === 0">
                 <div style="display: flex; justify-content: space-around;align-items: center;" >
                   <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                     <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                   </ion-chip>
                 </div>
-              }
+              </ng-container>
             </div>
-          }
-          @if (!fiqhAnyContent) {
+          </ng-container>
+          <ng-container *ngIf="!fiqhAnyContent">
             <div >
               <ion-chip>
                 <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
               </ion-chip>
             </div>
-          }
+          </ng-container>
         </ion-col>
       </ion-row>
-    }
+    </ng-container>
 
-    @if (!isOther) {
+    <ng-container *ngIf="!isOther">
       <ion-row (click)="viewArticles('o')" class="smallTile">
         <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
           <img class="iconImage" src="../../assets/pictures/evidence/other.webp" alt="">
@@ -191,9 +191,9 @@
           </div>
         </ion-col>
       </ion-row>
-    }
+    </ng-container>
 
-    @if (isOther) {
+    <ng-container *ngIf="isOther">
       <ion-row class="bigTile">
         <!-- <ion-col  size="3">
         <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -202,15 +202,15 @@
         <div (click) = "viewArticles('o')" style="display: flex; justify-content: center;">
           <ion-icon name="albums"></ion-icon>
         </div>
-        @if (othAnyContent) {
+        <ng-container *ngIf="othAnyContent">
           <div class="content">
             <div class="bar">
               <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('o')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
               <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
             </div>
-            @if (obj) {
+            <ng-container *ngIf="obj">
               <div >
-                @for (s of other; track s) {
+                <ng-container *ngFor="let s of other">
                   <div>
                     <ion-item>
                       <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
@@ -222,39 +222,39 @@
                       </div>
                     </ion-item>
                   </div>
-                }
+                </ng-container>
               </div>
-            }
-            @if (!obj) {
+            </ng-container>
+            <ng-container *ngIf="!obj">
               <div>
-                @for (s of other; track s) {
+                <ng-container *ngFor="let s of other">
                   <div>
                     <ion-item>
                       <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
                     </ion-item>
                   </div>
-                }
+                </ng-container>
               </div>
-            }
-            @if (other.length === 0) {
+            </ng-container>
+            <ng-container *ngIf="other.length === 0">
               <div style="display: flex; justify-content: space-around;align-items: center;" >
                 <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                 </ion-chip>
               </div>
-            }
+            </ng-container>
           </div>
-        }
-        @if (!othAnyContent) {
+        </ng-container>
+        <ng-container *ngIf="!othAnyContent">
           <div>
             <ion-chip >
               <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
             </ion-chip>
           </div>
-        }
+        </ng-container>
       </ion-col>
     </ion-row>
-  }
+  </ng-container>
 
 </ion-grid>
 </div>

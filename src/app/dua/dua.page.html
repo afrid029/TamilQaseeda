@@ -3,12 +3,12 @@
     <img class="img" alt="">
   </div>
   <ion-content>
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
     opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
 
 
@@ -18,7 +18,7 @@
         <div class="cont">
           <ion-grid  class="grid">
 
-            @if (!IsAsma) {
+            <ng-container *ngIf="!IsAsma">
               <ion-row (click)="viewArticles('as')"  class="smallTile smallTileDua">
                 <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
                   <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/asma.webp" alt="">
@@ -28,9 +28,9 @@
                   </div>
                 </ion-col>
               </ion-row>
-            }
+            </ng-container>
 
-            @if (IsAsma) {
+            <ng-container *ngIf="IsAsma">
               <ion-row class="bigTile bigTileDua">
                 <!-- <ion-col  size="3">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -40,7 +40,7 @@
                   <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
                 </div>
                 <div  class="qursi">
-                  @for (itm of arabic; track itm; let i = $index) {
+                  <ng-container *ngFor="let itm of arabic; let i = index">
                     <ion-card class = "box">
                       <ion-card-header>
                         <ion-card-title>{{itm}}</ion-card-title>
@@ -49,13 +49,13 @@
                       <hr>
                         <h6> {{tamil[i]}}</h6>
                       </ion-card>
-                    }
+                    </ng-container>
                   </div>
                 </ion-col>
               </ion-row>
-            }
+            </ng-container>
 
-            @if (!IsDua) {
+            <ng-container *ngIf="!IsDua">
               <ion-row (click)="viewArticles('dua')" class="smallTile smallTileDua">
                 <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
                   <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/dua.webp" alt="">
@@ -65,9 +65,9 @@
                   </div>
                 </ion-col>
               </ion-row>
-            }
+            </ng-container>
 
-            @if (IsDua) {
+            <ng-container *ngIf="IsDua">
               <ion-row class="bigTile bigTileDua">
                 <!-- <ion-col  size="3">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -76,15 +76,15 @@
                 <div (click) = "viewArticles('dua')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
                   <ion-icon name="albums" style="font-size:4vw"></ion-icon>
                 </div>
-                @if (duaAnyContent) {
+                <ng-container *ngIf="duaAnyContent">
                   <div class="content">
                     <div class="bar">
                       <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('dua')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
                       <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
                     </div>
-                    @if (obj) {
+                    <ng-container *ngIf="obj">
                       <div  >
-                        @for (s of dua; track s) {
+                        <ng-container *ngFor="let s of dua">
                           <div>
                             <ion-item >
                               <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
@@ -96,41 +96,41 @@
                               </div>
                             </ion-item>
                           </div>
-                        }
+                        </ng-container>
                       </div>
-                    }
-                    @if (!obj) {
+                    </ng-container>
+                    <ng-container *ngIf="!obj">
                       <div >
-                        @for (s of dua; track s) {
+                        <ng-container *ngFor="let s of dua">
                           <div>
                             <ion-item>
                               <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
                             </ion-item>
                           </div>
-                        }
+                        </ng-container>
                       </div>
-                    }
-                    @if (dua.length === 0) {
+                    </ng-container>
+                    <ng-container *ngIf="dua.length === 0">
                       <div style="display: flex; justify-content: space-around;align-items: center;" >
                         <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                           <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                         </ion-chip>
                       </div>
-                    }
+                    </ng-container>
                   </div>
-                }
-                @if (!duaAnyContent) {
+                </ng-container>
+                <ng-container *ngIf="!duaAnyContent">
                   <div >
                     <ion-chip>
                       <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                     </ion-chip>
                   </div>
-                }
+                </ng-container>
               </ion-col>
             </ion-row>
-          }
+          </ng-container>
 
-          @if (!IsSalawat) {
+          <ng-container *ngIf="!IsSalawat">
             <ion-row (click)="viewArticles('salawat')" class="smallTile smallTileDua">
               <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/salawat.webp" alt="">
@@ -140,9 +140,9 @@
                 </div>
               </ion-col>
             </ion-row>
-          }
+          </ng-container>
 
-          @if (IsSalawat) {
+          <ng-container *ngIf="IsSalawat">
             <ion-row class="bigTile bigTileDua">
               <!-- <ion-col  size="3">
               <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
@@ -151,15 +151,15 @@
               <div (click) = "viewArticles('salawat')" style="display: flex; justify-content: center; margin-top: 1.5vh">
                 <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
               </div>
-              @if (salAnyContent) {
+              <ng-container *ngIf="salAnyContent">
                 <div class="content">
                   <div class="bar">
                     <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('salawat')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
                     <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
                   </div>
-                  @if (obj) {
+                  <ng-container *ngIf="obj">
                     <div >
-                      @for (s of salawat; track s) {
+                      <ng-container *ngFor="let s of salawat">
                         <div>
                           <ion-item>
                             <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
@@ -171,39 +171,39 @@
                             </div>
                           </ion-item>
                         </div>
-                      }
+                      </ng-container>
                     </div>
-                  }
-                  @if (!obj) {
+                  </ng-container>
+                  <ng-container *ngIf="!obj">
                     <div>
-                      @for (s of salawat; track s) {
+                      <ng-container *ngFor="let s of salawat">
                         <div>
                           <ion-item>
                             <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
                           </ion-item>
                         </div>
-                      }
+                      </ng-container>
                     </div>
-                  }
-                  @if (salawat.length === 0) {
+                  </ng-container>
+                  <ng-container *ngIf="salawat.length === 0">
                     <div style="display: flex; justify-content: space-around;align-items: center;" >
                       <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                         <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
                       </ion-chip>
                     </div>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (!salAnyContent) {
+              </ng-container>
+              <ng-container *ngIf="!salAnyContent">
                 <div>
                   <ion-chip >
                     <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-              }
+              </ng-container>
             </ion-col>
           </ion-row>
-        }
+        </ng-container>
 
       </ion-grid>
     </div>
@@ -229,24 +229,24 @@
 
           </ion-item>
           <br>
-            @if (currAwraath.meaning) {
+            <ng-container *ngIf="currAwraath.meaning">
               <div>
                 <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
                 <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225);">
                   <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;">{{currAwraath.meaning}}</p>
                 </ion-item>
               </div>
-            }
+            </ng-container>
 
             <br>
-              @if (currAwraath.benifit) {
+              <ng-container *ngIf="currAwraath.benifit">
                 <div>
                   <ion-label  style=" color: rgb(177, 55, 55); font-weight:800; font-size: 11px; opacity: 1 !important;">பலன் : </ion-label>
                   <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225)" >
                     <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;"><i>{{currAwraath.benifit}}</i></p>
                   </ion-item>
                 </div>
-              }
+              </ng-container>
 
             </ion-card-content>
           </ion-card>

@@ -1,10 +1,10 @@
 <ion-app >
-  @if (spinner) {
+  <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
       <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
     </div>
-  }
+  </ng-container>
   <ion-modal class="addmodal" backdropDismiss="false" [isOpen]="isModalOpen">
     <ng-template>
 
@@ -70,45 +70,45 @@
           <ion-icon style=" float: left; color: rgb(29, 61, 10);" name="book-sharp"></ion-icon><ion-label style=" float: left;color: rgb(29, 61, 10)">&nbsp;&nbsp;அன்றாட துஆக்கள்</ion-label>
         </ion-item>
 
-        @if (obj) {
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/add']">
             <ion-icon style=" float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77);">&nbsp;&nbsp;Add Hazeetha</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/add-ziyaram']">
             <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Ziyaram Details</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/floating-text']">
             <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Floating Text</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/add-evidence']">
             <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Religious Topic</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/add-calendar']">
             <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Calendar Event</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/add-dua']">
             <ion-icon style=" float: left; color:  rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Add Dua & Salawat</ion-label>
           </ion-item>
-        }
-        @if (obj) {
+        </ng-container>
+        <ng-container *ngIf="obj">
           <ion-item (click)="closeMenu()" [routerLink] = "['/wallalert']">
             <ion-icon style=" float: left; color: rgb(51, 59, 77);" name="add-circle-sharp"></ion-icon><ion-label style=" float: left; color: rgb(51, 59, 77)">&nbsp;&nbsp;Manage Popup Images</ion-label>
           </ion-item>
-        }
+        </ng-container>
 
-        @if (obj) {
+        <ng-container *ngIf="obj">
           <ion-button (click) = "Logout()" style="display: flex; ">Logout</ion-button>
-        }
+        </ng-container>
 
       </ion-card-content>
 
@@ -199,12 +199,12 @@
           <div class="copyright" style="justify-content: space-around; display: grid;text-align: center; ">
             <p style="color: rgb(94, 94, 94) !important;">Designed by : KASJ Media</p>
             <p style="color: rgb(94, 94, 94) !important;">Developed by : <a href="https://www.facebook.com/share/1XdJv2LULN/?mibextid=LQQJ4d">Muhammadh Afrid</a></p>
-            @if (isAndroid) {
+            <ng-container *ngIf="isAndroid">
               <a href="https://umafd.blogspot.com/2023/09/privacy-policy-for-ahlussunnah-tamil.html">Privacy Policy</a>
-            }
-            @if (!isAndroid) {
+            </ng-container>
+            <ng-container *ngIf="!isAndroid">
               <a href="https://umafd.blogspot.com/2023/09/privacy-policy-for-ahlussunnah-tamil.html">Privacy Policy</a>
-            }
+            </ng-container>
           </div>
 
         </ion-card-content>

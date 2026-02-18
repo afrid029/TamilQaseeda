@@ -3,12 +3,12 @@
   <img class="img" alt="">
 </div>
 <ion-content >
-  @if (spinner) {
+  <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
       <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
     </div>
-  }
+  </ng-container>
 
   <ion-list class="lst">
     <div class="lstcont">
@@ -21,10 +21,10 @@
             <ion-text>Contents</ion-text>
           </div>
 
-          @if (anyContent) {
+          <ng-container *ngIf="anyContent">
             <div class="cont">
               <!--For div-->
-              @for (d of datas; track d) {
+              <ng-container *ngFor="let d of datas">
                 <div>
                   <ion-item class="itm">
                     <ion-label (click)="promo(d)" style="width: 80%">Popup for {{d.date | date:'dd/MM/yyyy'}}</ion-label>
@@ -33,28 +33,28 @@
                     </div>
                   </ion-item>
                 </div>
-              }
+              </ng-container>
             </div>
-          }
+          </ng-container>
 
-          @if (!anyContent) {
+          <ng-container *ngIf="!anyContent">
             <div class="cont">
               <!--For div-->
               <!-- <ion-item class="itm">
               <ion-label  >d.title</ion-label>
             </ion-item> -->
-            @if (true) {
+            <ng-container *ngIf="true">
               <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
                 <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Contents not found</ion-label>
                 </ion-chip>
               </div>
-            }
+            </ng-container>
           </div>
-        }
+        </ng-container>
 
       </ng-template>
-      @if (true) {
+      <ng-container *ngIf="true">
         <ng-template  swiperSlide>
           <div class="head">
             <ion-text>Add Popup Content</ion-text>
@@ -62,21 +62,22 @@
           <div class="cont">
             <form #addForm = "ngForm" validate>
               <ion-list style = "background-color: white" lines="inset">
-                @for (al of alert.imageUrl; track al) {
+                <ng-container *ngFor="let al of alert.imageUrl">
                   <div >
                     <img src="{{al}}" width="100%" alt="">
                   </div>
-                }
+                </ng-container>
                 <ion-item>
-                  @if (perc) {
+                  <ng-container *ngIf="perc">
                     <div>
                       <ion-progress-bar [value] = "perc"></ion-progress-bar>
                     </div>
-                  }
+                  </ng-container>
                   <ion-button style="display: flex; width: 100%;" color="primary" size="medium">
-                    <input #fileInput type="file" multiple="true" accept="image/*" (change)="openActionSheet($event)"/>@if (closeButton) {
+                    <input #fileInput type="file" multiple="true" accept="image/*" (change)="openActionSheet($event)"/>
+                    <ng-container *ngIf="closeButton">
                     <ion-button style="float: right;" (click)="clearFile()" fill="light"><ion-icon   name="close-outline"></ion-icon></ion-button>
-                  }
+                  </ng-container>
                 </ion-button>
               </ion-item>
               <ion-item >
@@ -90,7 +91,7 @@
           </form>
         </div>
       </ng-template>
-    }
+    </ng-container>
   </swiper>
 </div>
 </ion-list>
@@ -106,13 +107,13 @@
     </ion-toolbar>
 
     <ion-content class="modalBody">
-      @for (data of viewAlert.imageUrl; track data) {
+      <ng-container *ngFor="let data of viewAlert.imageUrl">
         <div>
           <ion-card  style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white">
             <img alt="Silhouette of mountains" src="{{data}}" />
           </ion-card>
         </div>
-      }
+      </ng-container>
     </ion-content>
   </ng-template>
 </ion-modal>

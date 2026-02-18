@@ -3,12 +3,12 @@
   <img class="img" alt="">
 </div>
 <ion-content >
-  @if (spinner) {
+  <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
       <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
     </div>
-  }
+  </ng-container>
 
   <ion-list class="lst">
     <div class="lstcont">
@@ -21,10 +21,10 @@
             <ion-text>Contents</ion-text>
           </div>
 
-          @if (anyContent) {
+          <ng-container *ngIf="anyContent">
             <div class="cont">
               <!--For div-->
-              @for (d of datas; track d) {
+              <ng-container *ngFor="let d of datas">
                 <div>
                   <ion-item class="itm">
                     <ion-label (click)="promo(d)" style="width: 80%">{{d.content}}</ion-label>
@@ -37,28 +37,28 @@
                     </div>
                   </ion-item>
                 </div>
-              }
+              </ng-container>
             </div>
-          }
+          </ng-container>
 
-          @if (!anyContent) {
+          <ng-container *ngIf="!anyContent">
             <div class="cont">
               <!--For div-->
               <!-- <ion-item class="itm">
               <ion-label  >d.title</ion-label>
             </ion-item> -->
-            @if (true) {
+            <ng-container *ngIf="true">
               <div style="width: 100%; height: 70%; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
                 <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
                   <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; Contents not found</ion-label>
                 </ion-chip>
               </div>
-            }
+            </ng-container>
           </div>
-        }
+        </ng-container>
 
       </ng-template>
-      @if (true) {
+      <ng-container *ngIf="true">
         <ng-template  swiperSlide>
           <div class="head">
             <ion-text>Add Banner Content</ion-text>
@@ -81,7 +81,7 @@
             </form>
           </div>
         </ng-template>
-      }
+      </ng-container>
     </swiper>
   </div>
 </ion-list>

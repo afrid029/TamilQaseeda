@@ -1,11 +1,11 @@
 
 <ion-content >
-  @if (banner) {
+  <ng-container *ngIf="banner">
     <div class = "ScrollCont">
       <!-- <div *ngFor="let c of content" class="scrolling-text">{{c.content}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
       <div class = "scrolling-text">{{content[0].content}} </div>
     </div>
-  }
+  </ng-container>
 
   <div class="bg">
     <div class="bgInner">

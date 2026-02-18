@@ -4,24 +4,24 @@
       <ion-back-button defaultHref="qand-a" style="color: rgb(56, 128, 255);"  icon="caret-back"></ion-back-button>
 
 
-      @if (!isUpdateQuiz) {
+      <ng-container *ngIf="!isUpdateQuiz">
         <ion-title style="font-weight: 700;color: rgb(56, 128, 255);; text-align: center; ">Add Quiz</ion-title>
-      }
-      @if (isUpdateQuiz) {
+      </ng-container>
+      <ng-container *ngIf="isUpdateQuiz">
         <ion-title style="font-weight: 700;color: rgb(56, 128, 255); text-align: center; ">Update Quiz Info</ion-title>
-      }
+      </ng-container>
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  @if (spinner) {
+  <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:10;
   opacity: 0.7;">
       <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
     </div>
-  }
+  </ng-container>
 
 
   <div >
@@ -42,7 +42,7 @@
           <ion-input type = "date" name="edate" [(ngModel)]="quiz.endDate" min = "{{getMinDate()}}" required></ion-input>
         </ion-item>
 
-        @for (d of quiz.questions; track d) {
+        <ng-container *ngFor="let d of quiz.questions">
           <div class="que" >
             <p>{{d.qst}}</p>
             <ion-list lines="full">
@@ -58,19 +58,19 @@
             </ion-item>
             <hr>
             </div>
-          }
+          </ng-container>
 
           <ion-item slot="end">
             <ion-button slot="end" color="secondary" (click)="setViewModel(true)"><ion-icon name="add-outline"></ion-icon> &nbsp; Add Question</ion-button>
           </ion-item>
 
           <div style="margin: 1vh 2vw; border-radius: 16px;">
-            @if (!isUpdateQuiz) {
+            <ng-container *ngIf="!isUpdateQuiz">
               <ion-button (click)="PostQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="warning" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Post Quiz</ion-button>
-            }
-            @if (isUpdateQuiz) {
+            </ng-container>
+            <ng-container *ngIf="isUpdateQuiz">
               <ion-button (click)="UpdateQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="success" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Update Quiz</ion-button>
-            }
+            </ng-container>
           </div>
 
         </ion-list>
@@ -81,12 +81,12 @@
       <ng-template>
 
         <ion-toolbar color="success">
-          @if (!isEditModel) {
+          <ng-container *ngIf="!isEditModel">
             <ion-title style="font-size:14px; font-weight: 900;"> Add Question</ion-title>
-          }
-          @if (isEditModel) {
+          </ng-container>
+          <ng-container *ngIf="isEditModel">
             <ion-title style="font-size:14px; font-weight: 900;"> Update Question</ion-title>
-          }
+          </ng-container>
           <ion-buttons slot="end">
             <ion-button (click)="setViewModel(false)">Close</ion-button>
           </ion-buttons>
@@ -123,12 +123,12 @@
                     <ion-input style="font-weight: bold;" type="number" name="crctAns" [(ngModel)] = "query.crctAns" required></ion-input>
                   </ion-item>
 
-                  @if (!isEditModel) {
+                  <ng-container *ngIf="!isEditModel">
                     <ion-button [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "addList()" expand="full" color="warning" >Add in the list</ion-button>
-                  }
-                  @if (isEditModel) {
+                  </ng-container>
+                  <ng-container *ngIf="isEditModel">
                     <ion-button [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "updateList()" expand="full" color="success" >Update list</ion-button>
-                  }
+                  </ng-container>
                 </ion-list>
               </form>
             </ion-card-content>

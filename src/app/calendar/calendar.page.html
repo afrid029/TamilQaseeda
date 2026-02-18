@@ -4,12 +4,12 @@
   </div>
 
   <ion-content class="body">
-    @if (spinner) {
+    <ng-container *ngIf="spinner">
 <div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:10;
     opacity: 0.7;">
         <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
-    }
+    </ng-container>
 
     <div class="lst">
       <div class="lstcont">
@@ -52,12 +52,12 @@
 
 
       <ng-template>
-        @if (spinner1) {
+        <ng-container *ngIf="spinner1">
 <div style="position:fixed; display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
     opacity: 0.7;">
             <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
           </div>
-        }
+        </ng-container>
 
         <ion-toolbar color="success">
           <ion-title style="font-size: 14px">இஸ்லாமிய நிகழ்வுகள்</ion-title>
@@ -71,7 +71,7 @@
         <ion-content class="modalBody">
 
 
-          @if (obj) {
+          <ng-container *ngIf="obj">
             <div class="Xbutton">
               <ion-button (click)="refresh(false)" color="tertiary" class="left">
                 <ion-icon name="play-back-circle-outline"></ion-icon> &nbsp;&nbsp;
@@ -82,13 +82,13 @@
                 &nbsp;&nbsp;<ion-icon name="play-forward-circle-outline"></ion-icon>
               </ion-button>
             </div>
-          }
+          </ng-container>
 
           <ion-list  lines="inset">
             <h5>January</h5>
-            @if (jan.length > 0) {
+            <ng-container *ngIf="jan.length > 0">
               <div class="month">
-                @for (d of jan; track d) {
+                <ng-container *ngFor="let d of jan">
                   <ion-item>
                     <div class="date">
                       {{d.day}}
@@ -96,7 +96,7 @@
                     <div class="detail">
                       <ion-label class = "label">{{d.content}} - {{d.year}}
                         <br>
-                          @if (d.isl) {
+                          <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -105,12 +105,12 @@
                               <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                               <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                             </div>
-                          }
+                          </ng-container>
                           <!--
                           <small><ion-icon style="display: inline-block; vertical-align: middle;" name="ellipsis-vertical-circle-outline"></ion-icon><span style="display: inline-block; vertical-align: middle;">&nbsp;&nbsp; {{d.isl}}</span></small> -->
                         </ion-label>
                       </div>
-                      @if (obj) {
+                      <ng-container *ngIf="obj">
                         <div   style="display: flex;">
                           <div (click)="updateClick(d)"  class="edit">
                             <ion-icon class="icon" name="pencil"></ion-icon>
@@ -119,25 +119,25 @@
                             <ion-icon class="icon" name="trash"></ion-icon>
                           </div>
                         </div>
-                      }
+                      </ng-container>
                     </ion-item>
-                  }
+                  </ng-container>
                 </div>
-              }
-              @if (jan.length === 0) {
+              </ng-container>
+              <ng-container *ngIf="jan.length === 0">
                 <div style="width: 100%;">
                   <ion-item>
                     <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                   </ion-item>
                 </div>
-              }
+              </ng-container>
 
             </ion-list>
             <ion-list lines="inset">
               <h5>February</h5>
-              @if (feb.length > 0) {
+              <ng-container *ngIf="feb.length > 0">
                 <div class="month">
-                  @for (d of feb; track d) {
+                  <ng-container *ngFor="let d of feb">
                     <ion-item>
                       <div class="date">
                         {{d.day}}
@@ -145,7 +145,7 @@
                       <div class="detail">
                         <ion-label class = "label">{{d.content}} - {{d.year}}
                           <br>
-                            @if (d.isl) {
+                            <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -154,10 +154,10 @@
                                 <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                 <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                               </div>
-                            }
+                            </ng-container>
                           </ion-label>
                         </div>
-                        @if (obj) {
+                        <ng-container *ngIf="obj">
                           <div   style="display: flex;">
                             <div (click)="updateClick(d)"  class="edit">
                               <ion-icon class="icon" name="pencil"></ion-icon>
@@ -166,25 +166,25 @@
                               <ion-icon class="icon" name="trash"></ion-icon>
                             </div>
                           </div>
-                        }
+                        </ng-container>
                       </ion-item>
-                    }
+                    </ng-container>
                   </div>
-                }
-                @if (feb.length === 0) {
+                </ng-container>
+                <ng-container *ngIf="feb.length === 0">
                   <div style="width: 100%;">
                     <ion-item>
                       <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                     </ion-item>
                   </div>
-                }
+                </ng-container>
               </ion-list>
 
               <ion-list lines="inset">
                 <h5>March</h5>
-                @if (mar.length > 0) {
+                <ng-container *ngIf="mar.length > 0">
                   <div class="month">
-                    @for (d of mar; track d) {
+                    <ng-container *ngFor="let d of mar">
                       <ion-item>
                         <div class="date">
                           {{d.day}}
@@ -192,7 +192,7 @@
                         <div class="detail">
                           <ion-label class = "label">{{d.content}} - {{d.year}}
                             <br>
-                              @if (d.isl) {
+                              <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -201,10 +201,10 @@
                                   <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                   <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                 </div>
-                              }
+                              </ng-container>
                             </ion-label>
                           </div>
-                          @if (obj) {
+                          <ng-container *ngIf="obj">
                             <div   style="display: flex;">
                               <div (click)="updateClick(d)"  class="edit">
                                 <ion-icon class="icon" name="pencil"></ion-icon>
@@ -213,25 +213,25 @@
                                 <ion-icon class="icon" name="trash"></ion-icon>
                               </div>
                             </div>
-                          }
+                          </ng-container>
                         </ion-item>
-                      }
+                      </ng-container>
                     </div>
-                  }
-                  @if (mar.length === 0) {
+                  </ng-container>
+                  <ng-container *ngIf="mar.length === 0">
                     <div style="width: 100%;">
                       <ion-item>
                         <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                       </ion-item>
                     </div>
-                  }
+                  </ng-container>
                 </ion-list>
 
                 <ion-list lines="inset">
                   <h5>April</h5>
-                  @if (apr.length > 0) {
+                  <ng-container *ngIf="apr.length > 0">
                     <div class="month">
-                      @for (d of apr; track d) {
+                      <ng-container *ngFor="let d of apr">
                         <ion-item>
                           <div class="date">
                             {{d.day}}
@@ -239,7 +239,7 @@
                           <div class="detail">
                             <ion-label class = "label">{{d.content}} - {{d.year}}
                               <br>
-                                @if (d.isl) {
+                                <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -248,10 +248,10 @@
                                     <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                     <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                   </div>
-                                }
+                                </ng-container>
                               </ion-label>
                             </div>
-                            @if (obj) {
+                            <ng-container *ngIf="obj">
                               <div   style="display: flex;">
                                 <div (click)="updateClick(d)"  class="edit">
                                   <ion-icon class="icon" name="pencil"></ion-icon>
@@ -260,25 +260,25 @@
                                   <ion-icon class="icon" name="trash"></ion-icon>
                                 </div>
                               </div>
-                            }
+                            </ng-container>
                           </ion-item>
-                        }
+                        </ng-container>
                       </div>
-                    }
-                    @if (apr.length === 0) {
+                    </ng-container>
+                    <ng-container *ngIf="apr.length === 0">
                       <div style="width: 100%;">
                         <ion-item>
                           <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                         </ion-item>
                       </div>
-                    }
+                    </ng-container>
                   </ion-list>
 
                   <ion-list lines="inset">
                     <h5>May</h5>
-                    @if (may.length > 0) {
+                    <ng-container *ngIf="may.length > 0">
                       <div class="month">
-                        @for (d of may; track d) {
+                        <ng-container *ngFor="let d of may">
                           <ion-item>
                             <div class="date">
                               {{d.day}}
@@ -286,7 +286,7 @@
                             <div class="detail">
                               <ion-label class = "label">{{d.content}} - {{d.year}}
                                 <br>
-                                  @if (d.isl) {
+                                  <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -295,10 +295,10 @@
                                       <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                       <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                     </div>
-                                  }
+                                  </ng-container>
                                 </ion-label>
                               </div>
-                              @if (obj) {
+                              <ng-container *ngIf="obj">
                                 <div   style="display: flex;">
                                   <div (click)="updateClick(d)"  class="edit">
                                     <ion-icon class="icon" name="pencil"></ion-icon>
@@ -307,25 +307,25 @@
                                     <ion-icon class="icon" name="trash"></ion-icon>
                                   </div>
                                 </div>
-                              }
+                              </ng-container>
                             </ion-item>
-                          }
+                          </ng-container>
                         </div>
-                      }
-                      @if (may.length === 0) {
+                      </ng-container>
+                      <ng-container *ngIf="may.length === 0">
                         <div style="width: 100%;">
                           <ion-item>
                             <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                           </ion-item>
                         </div>
-                      }
+                      </ng-container>
                     </ion-list>
 
                     <ion-list  lines="inset">
                       <h5>June</h5>
-                      @if (jun.length > 0) {
+                      <ng-container *ngIf="jun.length > 0">
                         <div class="month">
-                          @for (d of jun; track d) {
+                          <ng-container *ngFor="let d of jun">
                             <ion-item>
                               <div class="date">
                                 {{d.day}}
@@ -333,7 +333,7 @@
                               <div class="detail">
                                 <ion-label class = "label">{{d.content}} - {{d.year}}
                                   <br>
-                                    @if (d.isl) {
+                                    <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -342,10 +342,10 @@
                                         <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                         <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                       </div>
-                                    }
+                                    </ng-container>
                                   </ion-label>
                                 </div>
-                                @if (obj) {
+                                <ng-container *ngIf="obj">
                                   <div   style="display: flex;">
                                     <div (click)="updateClick(d)"  class="edit">
                                       <ion-icon class="icon" name="pencil"></ion-icon>
@@ -354,25 +354,25 @@
                                       <ion-icon class="icon" name="trash"></ion-icon>
                                     </div>
                                   </div>
-                                }
+                                </ng-container>
                               </ion-item>
-                            }
+                            </ng-container>
                           </div>
-                        }
-                        @if (jun.length === 0) {
+                        </ng-container>
+                        <ng-container *ngIf="jun.length === 0">
                           <div style="width: 100%;">
                             <ion-item>
                               <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                             </ion-item>
                           </div>
-                        }
+                        </ng-container>
                       </ion-list>
 
                       <ion-list lines="inset">
                         <h5>July</h5>
-                        @if (jul.length > 0) {
+                        <ng-container *ngIf="jul.length > 0">
                           <div class="month">
-                            @for (d of jul; track d) {
+                            <ng-container *ngFor="let d of jul">
                               <ion-item>
                                 <div class="date">
                                   {{d.day}}
@@ -380,7 +380,7 @@
                                 <div class="detail">
                                   <ion-label class = "label">{{d.content}} - {{d.year}}
                                     <br>
-                                      @if (d.isl) {
+                                      <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -389,10 +389,10 @@
                                           <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                           <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                         </div>
-                                      }
+                                      </ng-container>
                                     </ion-label>
                                   </div>
-                                  @if (obj) {
+                                  <ng-container *ngIf="obj">
                                     <div   style="display: flex;">
                                       <div (click)="updateClick(d)"  class="edit">
                                         <ion-icon class="icon" name="pencil"></ion-icon>
@@ -401,25 +401,25 @@
                                         <ion-icon class="icon" name="trash"></ion-icon>
                                       </div>
                                     </div>
-                                  }
+                                  </ng-container>
                                 </ion-item>
-                              }
+                              </ng-container>
                             </div>
-                          }
-                          @if (jul.length === 0) {
+                          </ng-container>
+                          <ng-container *ngIf="jul.length === 0">
                             <div style="width: 100%;">
                               <ion-item>
                                 <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                               </ion-item>
                             </div>
-                          }
+                          </ng-container>
                         </ion-list>
 
                         <ion-list lines="inset">
                           <h5>August</h5>
-                          @if (aug.length > 0) {
+                          <ng-container *ngIf="aug.length > 0">
                             <div class="month">
-                              @for (d of aug; track d) {
+                              <ng-container *ngFor="let d of aug">
                                 <ion-item>
                                   <div class="date">
                                     {{d.day}}
@@ -427,7 +427,7 @@
                                   <div class="detail">
                                     <ion-label class = "label">{{d.content}} - {{d.year}}
                                       <br>
-                                        @if (d.isl) {
+                                        <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -436,10 +436,10 @@
                                             <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                             <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                           </div>
-                                        }
+                                        </ng-container>
                                       </ion-label>
                                     </div>
-                                    @if (obj) {
+                                    <ng-container *ngIf="obj">
                                       <div   style="display: flex;">
                                         <div (click)="updateClick(d)"  class="edit">
                                           <ion-icon class="icon" name="pencil"></ion-icon>
@@ -448,25 +448,25 @@
                                           <ion-icon class="icon" name="trash"></ion-icon>
                                         </div>
                                       </div>
-                                    }
+                                    </ng-container>
                                   </ion-item>
-                                }
+                                </ng-container>
                               </div>
-                            }
-                            @if (aug.length === 0) {
+                            </ng-container>
+                            <ng-container *ngIf="aug.length === 0">
                               <div style="width: 100%;">
                                 <ion-item>
                                   <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                                 </ion-item>
                               </div>
-                            }
+                            </ng-container>
                           </ion-list>
 
                           <ion-list lines="inset">
                             <h5>September</h5>
-                            @if (sep.length > 0) {
+                            <ng-container *ngIf="sep.length > 0">
                               <div class="month">
-                                @for (d of sep; track d) {
+                                <ng-container *ngFor="let d of sep">
                                   <ion-item>
                                     <div class="date">
                                       {{d.day}}
@@ -474,7 +474,7 @@
                                     <div class="detail">
                                       <ion-label class = "label">{{d.content}} - {{d.year}}
                                         <br>
-                                          @if (d.isl) {
+                                          <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -483,10 +483,10 @@
                                               <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                               <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                             </div>
-                                          }
+                                          </ng-container>
                                         </ion-label>
                                       </div>
-                                      @if (obj) {
+                                      <ng-container *ngIf="obj">
                                         <div   style="display: flex;">
                                           <div (click)="updateClick(d)"  class="edit">
                                             <ion-icon class="icon" name="pencil"></ion-icon>
@@ -495,25 +495,25 @@
                                             <ion-icon class="icon" name="trash"></ion-icon>
                                           </div>
                                         </div>
-                                      }
+                                      </ng-container>
                                     </ion-item>
-                                  }
+                                  </ng-container>
                                 </div>
-                              }
-                              @if (sep.length === 0) {
+                              </ng-container>
+                              <ng-container *ngIf="sep.length === 0">
                                 <div style="width: 100%;">
                                   <ion-item>
                                     <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                                   </ion-item>
                                 </div>
-                              }
+                              </ng-container>
                             </ion-list>
 
                             <ion-list lines="inset">
                               <h5>October</h5>
-                              @if (oct.length > 0) {
+                              <ng-container *ngIf="oct.length > 0">
                                 <div class="month">
-                                  @for (d of oct; track d) {
+                                  <ng-container *ngFor="let d of oct">
                                     <ion-item>
                                       <div class="date">
                                         {{d.day}}
@@ -521,7 +521,7 @@
                                       <div class="detail">
                                         <ion-label class = "label">{{d.content}} - {{d.year}}
                                           <br>
-                                            @if (d.isl) {
+                                            <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -530,10 +530,10 @@
                                                 <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                                 <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                               </div>
-                                            }
+                                            </ng-container>
                                           </ion-label>
                                         </div>
-                                        @if (obj) {
+                                        <ng-container *ngIf="obj">
                                           <div   style="display: flex;">
                                             <div (click)="updateClick(d)"  class="edit">
                                               <ion-icon class="icon" name="pencil"></ion-icon>
@@ -542,25 +542,25 @@
                                               <ion-icon class="icon" name="trash"></ion-icon>
                                             </div>
                                           </div>
-                                        }
+                                        </ng-container>
                                       </ion-item>
-                                    }
+                                    </ng-container>
                                   </div>
-                                }
-                                @if (oct.length === 0) {
+                                </ng-container>
+                                <ng-container *ngIf="oct.length === 0">
                                   <div style="width: 100%;">
                                     <ion-item>
                                       <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                                     </ion-item>
                                   </div>
-                                }
+                                </ng-container>
                               </ion-list>
 
                               <ion-list lines="inset">
                                 <h5>November</h5>
-                                @if (nov.length > 0) {
+                                <ng-container *ngIf="nov.length > 0">
                                   <div class="month">
-                                    @for (d of nov; track d) {
+                                    <ng-container *ngFor="let d of nov">
                                       <ion-item>
                                         <div class="date">
                                           {{d.day}}
@@ -568,7 +568,7 @@
                                         <div class="detail">
                                           <ion-label class = "label">{{d.content}} - {{d.year}}
                                             <br>
-                                              @if (d.isl) {
+                                              <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -577,10 +577,10 @@
                                                   <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                                   <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                                 </div>
-                                              }
+                                              </ng-container>
                                             </ion-label>
                                           </div>
-                                          @if (obj) {
+                                          <ng-container *ngIf="obj">
                                             <div   style="display: flex;">
                                               <div (click)="updateClick(d)"  class="edit">
                                                 <ion-icon class="icon" name="pencil"></ion-icon>
@@ -589,25 +589,25 @@
                                                 <ion-icon class="icon" name="trash"></ion-icon>
                                               </div>
                                             </div>
-                                          }
+                                          </ng-container>
                                         </ion-item>
-                                      }
+                                      </ng-container>
                                     </div>
-                                  }
-                                  @if (nov.length === 0) {
+                                  </ng-container>
+                                  <ng-container *ngIf="nov.length === 0">
                                     <div style="width: 100%;">
                                       <ion-item>
                                         <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                                       </ion-item>
                                     </div>
-                                  }
+                                  </ng-container>
                                 </ion-list>
 
                                 <ion-list lines="inset">
                                   <h5 >December</h5>
-                                  @if (dec.length > 0) {
+                                  <ng-container *ngIf="dec.length > 0">
                                     <div class="month">
-                                      @for (d of dec; track d) {
+                                      <ng-container *ngFor="let d of dec">
                                         <ion-item>
                                           <div class="date">
                                             {{d.day}}
@@ -615,7 +615,7 @@
                                           <div class="detail">
                                             <ion-label class = "label">{{d.content}} - {{d.year}}</ion-label>
                                             <br>
-                                              @if (d.isl) {
+                                              <ng-container *ngIf="d.isl">
 <div style="display: flex;
                     justify-items: center;
                     align-content: center;
@@ -624,9 +624,9 @@
                                                   <ion-icon size="small" style="color: rgb(147, 147, 151);" name="moon-sharp"></ion-icon>
                                                   <span style="font-size: 12px; color: rgb(147, 147, 151); font-style: italic;">&nbsp;&nbsp; {{d.isl}}</span>
                                                 </div>
-                                              }
+                                              </ng-container>
                                             </div>
-                                            @if (obj) {
+                                            <ng-container *ngIf="obj">
                                               <div   style="display: flex;">
                                                 <div (click)="updateClick(d)"  class="edit">
                                                   <ion-icon class="icon" name="pencil"></ion-icon>
@@ -635,18 +635,18 @@
                                                   <ion-icon class="icon" name="trash"></ion-icon>
                                                 </div>
                                               </div>
-                                            }
+                                            </ng-container>
                                           </ion-item>
-                                        }
+                                        </ng-container>
                                       </div>
-                                    }
-                                    @if (dec.length === 0) {
+                                    </ng-container>
+                                    <ng-container *ngIf="dec.length === 0">
                                       <div style="width: 100%;">
                                         <ion-item>
                                           <ion-label style="text-align: center; opacity: 0.5;">No events available</ion-label>
                                         </ion-item>
                                       </div>
-                                    }
+                                    </ng-container>
                                   </ion-list>
 
 
