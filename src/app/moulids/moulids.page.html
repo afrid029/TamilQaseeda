@@ -1,17 +1,19 @@
 <html class="addBody ios-view">
 
-<div class="tool moutool">
-  <img class="img" alt="">
-</div>
-<ion-content  id="main-content">
+  <div class="tool moutool">
+    <img class="img" alt="">
+  </div>
+  <ion-content  id="main-content">
     <div class="bg">
       <div class="bg-image"></div>
-      <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+      @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
       opacity: 0.7;">
-        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-       </div>
+          <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+        </div>
+      }
 
-       <div class="content-container">
+      <div class="content-container">
         <div (click)="viewMoulidh('muham')"  class="content">
           <h4>சுப்ஹான மௌலித்</h4>
         </div>
@@ -37,10 +39,10 @@
       <ion-icon name="earth-outline"></ion-icon>
     </div>
 
-    
 
 
-</ion-content>
+
+  </ion-content>
 
 
 </html>

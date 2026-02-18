@@ -8,8 +8,12 @@
   <ion-button (click)="goprev()" fill="outline" color ="danger" style="display: flex;">Cancel</ion-button>
 
   <ion-button [disabled]="!test" (click)="goFurther(false)" color ="success" style="display: flex;">Set Location By Manual</ion-button>
-  <ion-button *ngIf="!test" (click)="goFurther(true)" color ="warning" style="display: flex;">Take My Current Position</ion-button>
-  <ion-button *ngIf="test" (click)="clearLoc()" color ="danger" style="display: flex;">Clear Selected Position</ion-button>
+  @if (!test) {
+    <ion-button (click)="goFurther(true)" color ="warning" style="display: flex;">Take My Current Position</ion-button>
+  }
+  @if (test) {
+    <ion-button (click)="clearLoc()" color ="danger" style="display: flex;">Clear Selected Position</ion-button>
+  }
 
 
 

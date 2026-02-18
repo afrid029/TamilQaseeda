@@ -4,121 +4,143 @@
   </div>
 
 
-<ion-content [scrollEvents]="true" >
-  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+  <ion-content [scrollEvents]="true" >
+    @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
-    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-   </div>
+        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+      </div>
+    }
 
-   <div class="main mainziy" style="background-color: rgb(139 126 126 / 39%);">
-    <div class="bar barziy">
+    <div class="main mainziy" style="background-color: rgb(139 126 126 / 39%);">
+      <div class="bar barziy">
 
-      <!-- <ion-button fill="clear" color="light" ><ion-icon name="chevron-back-outline"></ion-icon>Back</ion-button> -->
+        <!-- <ion-button fill="clear" color="light" ><ion-icon name="chevron-back-outline"></ion-icon>Back</ion-button> -->
         <ion-input [readonly]="ReqView" style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by title/place"><ion-icon  name="search"></ion-icon></ion-input>
         <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
 
-    </div>
+      </div>
 
-    <ion-list class="lst lstziy">
-      <div class="lstcont lstcontziy">
+      <ion-list class="lst lstziy">
+        <div class="lstcont lstcontziy">
 
-          <div style="height: 100%;" *ngIf="obj">
-           <div class="cont contziy">
-            <div class="toAdmin" *ngIf="!ReqView" style="width: 100%; display: flex; flex-direction: row-reverse;">
-              <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Ziyaram Requests
-                <ion-icon name="chevron-forward-outline"></ion-icon>
-              </ion-button>
-            </div>
-
-            <div class="toUser" *ngIf="ReqView" style="width: 100%; display: flex;">
-              <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Ziyarams
-
-              </ion-button>
-            </div>
-            <div class="normalV" *ngIf="!ReqView" (scroll)="logScrollStart($event)" >
-              <div *ngIf="anyContent">
-                <div *ngFor = "let s of ziyarams">
-                  <ion-item style="padding-bottom: 5px;" >
-                    <ion-label (click) = "promo(s)">
-                      <ion-label style="white-space: initial; font-weight: 510;">{{s.name}}</ion-label>
-                      <p><small><ion-icon style=" color: rgb(138, 137, 137);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
-                    </ion-label>
-                    <div (click)="EditZiyaram(s)" class="edit">
-                      <ion-icon class="icon" name="pencil"></ion-icon>
-                    </div>
-                    <div (click)="deleteZiyaram(s)" class="edit del">
-                      <ion-icon class="icon" name="trash"></ion-icon>
-                    </div>
-                  </ion-item>
-
-
+          @if (obj) {
+            <div style="height: 100%;">
+              <div class="cont contziy">
+                @if (!ReqView) {
+                  <div class="toAdmin" style="width: 100%; display: flex; flex-direction: row-reverse;">
+                    <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Ziyaram Requests
+                      <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </ion-button>
+                  </div>
+                }
+                @if (ReqView) {
+                  <div class="toUser" style="width: 100%; display: flex;">
+                    <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Ziyarams
+                  </ion-button>
                 </div>
-                <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "ziyarams.length === 0" >
-
-                  <ion-chip style="width:76%;">
-                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-                  </ion-chip>
-
-                </div>
-              </div>
-              <div *ngIf="!anyContent">
-                <ion-chip style="width:95%;  top: 25vh;">
-                  <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
-                </ion-chip>
-              </div>
-
-            </div>
-            <div class="adminV" *ngIf="ReqView" (scroll)="logScrollStart($event)" >
-              <div *ngIf="anyReq">
-
-                <div *ngFor = "let s of ZiyaramRequests">
-                  <ion-item style="padding-bottom: 5px;" >
-                    <ion-label style="white-space: initial;" (click) = "promo(s)">{{s.name}}</ion-label>
-                    <div (click)="EditZiyaram(s)" class="edit">
-                      <ion-icon class="icon" name="pencil"></ion-icon>
+              }
+              @if (!ReqView) {
+                <div class="normalV" (scroll)="logScrollStart($event)" >
+                  @if (anyContent) {
+                    <div>
+                      @for (s of ziyarams; track s) {
+                        <div>
+                          <ion-item style="padding-bottom: 5px;" >
+                            <ion-label (click) = "promo(s)">
+                              <ion-label style="white-space: initial; font-weight: 510;">{{s.name}}</ion-label>
+                              <p><small><ion-icon style=" color: rgb(138, 137, 137);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
+                            </ion-label>
+                            <div (click)="EditZiyaram(s)" class="edit">
+                              <ion-icon class="icon" name="pencil"></ion-icon>
+                            </div>
+                            <div (click)="deleteZiyaram(s)" class="edit del">
+                              <ion-icon class="icon" name="trash"></ion-icon>
+                            </div>
+                          </ion-item>
+                        </div>
+                      }
+                      @if (ziyarams.length === 0) {
+                        <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
+                          <ion-chip style="width:76%;">
+                            <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                          </ion-chip>
+                        </div>
+                      }
                     </div>
-                    <div (click)="deleteZiyaramRequest(s)" class="edit del">
-                      <ion-icon class="icon" name="trash"></ion-icon>
+                  }
+                  @if (!anyContent) {
+                    <div>
+                      <ion-chip style="width:95%;  top: 25vh;">
+                        <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
+                      </ion-chip>
                     </div>
-                  </ion-item>
+                  }
                 </div>
-              </div>
+              }
+              @if (ReqView) {
+                <div class="adminV" (scroll)="logScrollStart($event)" >
+                  @if (anyReq) {
+                    <div>
+                      @for (s of ZiyaramRequests; track s) {
+                        <div>
+                          <ion-item style="padding-bottom: 5px;" >
+                            <ion-label style="white-space: initial;" (click) = "promo(s)">{{s.name}}</ion-label>
+                            <div (click)="EditZiyaram(s)" class="edit">
+                              <ion-icon class="icon" name="pencil"></ion-icon>
+                            </div>
+                            <div (click)="deleteZiyaramRequest(s)" class="edit del">
+                              <ion-icon class="icon" name="trash"></ion-icon>
+                            </div>
+                          </ion-item>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              }
             </div>
-           </div>
           </div>
+        }
 
-          <div style="height: 100%;"  *ngIf="!obj">
+        @if (!obj) {
+          <div style="height: 100%;" >
             <div class="cont contziy">
-
               <div class="normalV">
-                <div *ngIf="anyContent">
-                <div *ngFor = "let s of ziyarams">
-                  <ion-item style="padding-bottom: 5px;">
-                    <ion-label (click) = "promo(s)">
-                      <h6 style="white-space: initial; font-weight: 510;">{{s.name}}</h6>
-                      <p><small><ion-icon style=" color: rgb(68, 68, 68);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
-                   </ion-label>
-                </ion-item>
-                </div>
-                <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" *ngIf = "ziyarams.length === 0" >
-
-                  <ion-chip style="width:76%;">
-                    <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-                  </ion-chip>
-
-                </div>
+                @if (anyContent) {
+                  <div>
+                    @for (s of ziyarams; track s) {
+                      <div>
+                        <ion-item style="padding-bottom: 5px;">
+                          <ion-label (click) = "promo(s)">
+                            <h6 style="white-space: initial; font-weight: 510;">{{s.name}}</h6>
+                            <p><small><ion-icon style=" color: rgb(68, 68, 68);" name="location-outline"></ion-icon>&nbsp; <span style=" color: rgb(85, 84, 84);"> {{s.location}}</span></small></p>
+                          </ion-label>
+                        </ion-item>
+                      </div>
+                    }
+                    @if (ziyarams.length === 0) {
+                      <div style="width: 100%; height: 50vh; position: fixed; display: flex; justify-content: space-around;align-items: center;" >
+                        <ion-chip style="width:76%;">
+                          <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                        </ion-chip>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (!anyContent) {
+                  <div>
+                    <ion-chip style="width:95%;  top: 25vh;">
+                      <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
+                    </ion-chip>
+                  </div>
+                }
               </div>
-              <div *ngIf="!anyContent">
-                <ion-chip style="width:95%;  top: 25vh;">
-                  <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
-                </ion-chip>
-              </div>
-              </div>
-
             </div>
           </div>
+        }
 
-            <!--   -->
+        <!--   -->
 
 
 
@@ -126,49 +148,55 @@
     </ion-list>
 
 
-   </div>
+  </div>
 
 
 
 
-    <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
-      <ng-template>
+  <ion-modal backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
+    <ng-template>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px">{{currZiyaram.name}}</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="setViewModel(false)">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+      <ion-toolbar color="success">
+        <ion-title style="font-size:14px">{{currZiyaram.name}}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setViewModel(false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
 
-        <ion-content class="modalBody">
-          <ion-card style="background-color: aliceblue;">
-            <div class = 'mainImg'>
-              <img  alt="Image Not Found" src="{{img}}" (error)="missImage($event)" />
+      <ion-content class="modalBody">
+        <ion-card style="background-color: aliceblue;">
+          <div class = 'mainImg'>
+            <img  alt="Image Not Found" src="{{img}}" (error)="missImage($event)" />
 
-            </div>
+          </div>
 
-             <div *ngIf="cardSpinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;
+          @if (cardSpinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:1%; justify-content: space-around; align-items: center; z-index:4;
                 opacity: 0.7;">
-                  <ion-spinner name="lines-small" [paused]="false" color="primary"></ion-spinner>
-              </div>
-            <ion-card-header>
-              <ion-card-title style="width: 100%; font-weight: 700; font-size: medium; color: black;">{{currZiyaram.name}}</ion-card-title>
-              <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>
-              <ion-card-subtitle *ngIf = "currZiyaram.day !== ''"><small> <ion-icon name="calendar-outline"></ion-icon>
-                &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
-            </ion-card-header>
+              <ion-spinner name="lines-small" [paused]="false" color="primary"></ion-spinner>
+            </div>
+          }
+          <ion-card-header>
+            <ion-card-title style="width: 100%; font-weight: 700; font-size: medium; color: black;">{{currZiyaram.name}}</ion-card-title>
+            <ion-card-subtitle><small><ion-icon name="location-outline"></ion-icon>&nbsp;{{currZiyaram.location}}</small></ion-card-subtitle>
+            @if (currZiyaram.day !== '') {
+              <ion-card-subtitle><small> <ion-icon name="calendar-outline"></ion-icon>
+            &nbsp;{{currZiyaram.day}}</small></ion-card-subtitle>
+          }
+        </ion-card-header>
 
-            <ion-card-content  style="white-space: pre-line;">
-              <span *ngIf="currZiyaram.description">{{currZiyaram.description}}</span>
+        <ion-card-content  style="white-space: pre-line;">
+          @if (currZiyaram.description) {
+            <span>{{currZiyaram.description}}</span>
+          }
 
-              <ion-button color="danger" style="display:flex" (click)="launchGoogleMap()">Launch Google Map</ion-button>
+          <ion-button color="danger" style="display:flex" (click)="launchGoogleMap()">Launch Google Map</ion-button>
 
-            </ion-card-content>
-          </ion-card>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 
 
@@ -180,14 +208,14 @@
 
 <ion-fab style="visibility: hidden;" vertical="bottom" horizontal="start">
   <!-- <ion-fab-button size="small" color="success"> -->
-    <ion-button [routerLink] = "['/add-ziyaram']"  shape="round" color="warning" style="text-transform: capitalize;">
-      <ion-icon slot="start"  name="add-sharp" size="medium"></ion-icon> Add
-    </ion-button>
-  <!-- </ion-fab-button> -->
-  <!-- <ion-fab-list side="end">
-    <ion-button [routerLink] = "['/add-ziyaram']" color="warning" size="small" shape="round">
-      Send Ziyaram Details
-    </ion-button>
-  </ion-fab-list> -->
+  <ion-button [routerLink] = "['/add-ziyaram']"  shape="round" color="warning" style="text-transform: capitalize;">
+    <ion-icon slot="start"  name="add-sharp" size="medium"></ion-icon> Add
+  </ion-button>
+<!-- </ion-fab-button> -->
+<!-- <ion-fab-list side="end">
+<ion-button [routerLink] = "['/add-ziyaram']" color="warning" size="small" shape="round">
+  Send Ziyaram Details
+</ion-button>
+</ion-fab-list> -->
 </ion-fab>
 </html>

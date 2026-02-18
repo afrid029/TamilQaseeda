@@ -1,109 +1,109 @@
 
 <ion-content >
-  <div *ngIf="banner" class = "ScrollCont">
-    <!-- <div *ngFor="let c of content" class="scrolling-text">{{c.content}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
-
-    <div class = "scrolling-text">{{content[0].content}} </div>
-
-  </div>
+  @if (banner) {
+    <div class = "ScrollCont">
+      <!-- <div *ngFor="let c of content" class="scrolling-text">{{c.content}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
+      <div class = "scrolling-text">{{content[0].content}} </div>
+    </div>
+  }
 
   <div class="bg">
     <div class="bgInner">
 
 
-   <div class="ban" >
-    <div class="title">
-      <h3>அஹ்லுஸ்ஸுன்னாஹ் தமிழ்</h3>
-      <h4>vkf;fhd rj;jpa jsk;</h4>
-      <!-- <div class="img1">
+      <div class="ban" >
+        <div class="title">
+          <h3>அஹ்லுஸ்ஸுன்னாஹ் தமிழ்</h3>
+          <h4>vkf;fhd rj;jpa jsk;</h4>
+          <!-- <div class="img1">
 
-      </div> -->
-    </div>
+        </div> -->
+      </div>
 
-    <div class="box2">
-      <div class="box2-cover"></div>
-      <!-- <ion-icon (click) = "playAudio()" style="font-size: 48px;" name="play-outline"></ion-icon> -->
-     <!-- <audio src="https://sonic-ca.instainternet.com/assunnahtamil/stream" id="radio" controls autoplay> -->
-     <!-- </audio> -->
+      <div class="box2">
+        <div class="box2-cover"></div>
+        <!-- <ion-icon (click) = "playAudio()" style="font-size: 48px;" name="play-outline"></ion-icon> -->
+        <!-- <audio src="https://sonic-ca.instainternet.com/assunnahtamil/stream" id="radio" controls autoplay> -->
+      <!-- </audio> -->
 
-     <div class="radio-title">Ahlussunnah Tamil <span style="color: rgb(255, 166, 0);"> Islamic Radio </span></div>
-     <div id="play" style="display: none;" (click)="controlRadio()" class="radio-btn">
-      <ion-icon name="play-circle"></ion-icon>
-     </div>
-     <div id="pause"  style="display: flex;"  (click)="controlRadio()" class="radio-btn">
-      <ion-icon class="vibe" name="pause-circle"></ion-icon>
-     </div>
-     <div id='sonic_title'></div>
-     <div class="sonic_title">
+      <div class="radio-title">Ahlussunnah Tamil <span style="color: rgb(255, 166, 0);"> Islamic Radio </span></div>
+      <div id="play" style="display: none;" (click)="controlRadio()" class="radio-btn">
+        <ion-icon name="play-circle"></ion-icon>
+      </div>
+      <div id="pause"  style="display: flex;"  (click)="controlRadio()" class="radio-btn">
+        <ion-icon class="vibe" name="pause-circle"></ion-icon>
+      </div>
+      <div id='sonic_title'></div>
+      <div class="sonic_title">
         <div class="onair"></div>
         <div class="onair_type"></div>
-     </div>
-   </div>
-<!-- 
-   <div class="dgrid">
-    <ion-card (click)="navigateTo('moulids')" class="ic">
-      <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
-      <ion-card-header class="ichead" >
-        <ion-card-subtitle class="ictitle">nksypJfs;</ion-card-subtitle>
-
-      </ion-card-header>
-
-    </ion-card>
-   </div> -->
-
-   <div class="dgrid">
-    <div (click)="navigateTo('moulids')" class="content">
-      <div class="content-img moulid"></div>
-      <div class="content-text">மௌலிதுகள்</div>
+      </div>
     </div>
-    <div (click)="navigateTo('home')"  class="content">
-      <div class="content-img haseetha"></div>
-      <div class="content-text">ஹஸீதாக்கள்</div>
+    <!--
+    <div class="dgrid">
+      <ion-card (click)="navigateTo('moulids')" class="ic">
+        <img alt="Silhouette of mountains" src="../../assets/pictures/dashboard/moulidhomelight.webp" />
+        <ion-card-header class="ichead" >
+          <ion-card-subtitle class="ictitle">nksypJfs;</ion-card-subtitle>
+
+        </ion-card-header>
+
+      </ion-card>
+    </div> -->
+
+    <div class="dgrid">
+      <div (click)="navigateTo('moulids')" class="content">
+        <div class="content-img moulid"></div>
+        <div class="content-text">மௌலிதுகள்</div>
+      </div>
+      <div (click)="navigateTo('home')"  class="content">
+        <div class="content-img haseetha"></div>
+        <div class="content-text">ஹஸீதாக்கள்</div>
+      </div>
+      <div (click)="navigateTo('ziyarams')" class="content">
+        <div class="content-img ziyaram"></div>
+        <div class="content-text">ஸியாரங்கள்</div>
+      </div>
+      <div (click)="navigateTo('qand-a')" class="content {{isBlink ? 'newQna' : null}}">
+        <div class="content-img qna"></div>
+        <div class="content-text">கேள்வி-பதில்</div>
+      </div>
+      <div (click)="navigateTo('evidence')" class="content">
+        <div class="content-img evidence"></div>
+        <div class="content-text">இஸ்லாமிய கட்டுரைகள்</div>
+      </div>
+      <div (click)="navigateTo('calendar')" class="content">
+        <div class="content-img calendar"></div>
+        <div class="content-text">இஸ்லாமிய நாட்காட்டி</div>
+      </div>
+
+      <div (click)="navigateTo('dua')" class="content">
+        <div class="content-img dua"></div>
+        <div class="content-text">விஷேட ஓதல்கள்</div>
+      </div>
     </div>
-    <div (click)="navigateTo('ziyarams')" class="content">
-      <div class="content-img ziyaram"></div>
-      <div class="content-text">ஸியாரங்கள்</div>
-    </div>
-    <div (click)="navigateTo('qand-a')" class="content {{isBlink ? 'newQna' : null}}">
-      <div class="content-img qna"></div>
-      <div class="content-text">கேள்வி-பதில்</div>
-    </div>
-    <div (click)="navigateTo('evidence')" class="content">
-      <div class="content-img evidence"></div>
-      <div class="content-text">இஸ்லாமிய கட்டுரைகள்</div>
-    </div>
-    <div (click)="navigateTo('calendar')" class="content">
-      <div class="content-img calendar"></div>
-      <div class="content-text">இஸ்லாமிய நாட்காட்டி</div>
-    </div>
-
-    <div (click)="navigateTo('dua')" class="content">
-      <div class="content-img dua"></div>
-      <div class="content-text">விஷேட ஓதல்கள்</div>
-    </div>
- </div>
 
 
 
 
 
 
-   </div>
-
-
-
-
-
-    </div>
   </div>
+
+
+
+
+
+</div>
+</div>
 
 
 </ion-content>
 
 
-  <!-- <div class="bg1">
-    <div class="bgInner1">
+<!-- <div class="bg1">
+<div class="bgInner1">
 
-    </div>
-  </div> -->
+</div>
+</div> -->
 

@@ -4,74 +4,83 @@
   </div>
 
 
-<ion-content [scrollEvents]="true" >
-  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+  <ion-content [scrollEvents]="true" >
+    @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
-    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-   </div>
-    <!-- <div class="bar primary">
-      <ion-input style="font-style: italic; font-size: 3vw;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
-
-      <div class="close">
-        <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
+        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
       </div>
+    }
+    <!-- <div class="bar primary">
+    <ion-input style="font-style: italic; font-size: 3vw;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch()" placeholder="Search by Name, Province, Distrinct and Town/Village"><ion-icon  name="search"></ion-icon></ion-input>
 
-    </div> -->
+    <div class="close">
+      <ion-icon [style.visibility]="vis" (click)="clearSearch()" name="close"></ion-icon>
+    </div>
 
-    <div class="main mainqna">
-      <ion-list class="lst lstqna">
-        <div class="lstcont lstcontqna">
-          <div style="height: 100%;" *ngIf="obj">
+  </div> -->
+
+  <div class="main mainqna">
+    <ion-list class="lst lstqna">
+      <div class="lstcont lstcontqna">
+        @if (obj) {
+          <div style="height: 100%;">
             <div class="cont contqna">
-              <div class="toAdmin" *ngIf="!adminView" style="width: 100%; display: flex; flex-direction: row-reverse;">
-                <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Add Quiz
-                  <ion-icon name="chevron-forward-outline"></ion-icon>
+              @if (!adminView) {
+                <div class="toAdmin" style="width: 100%; display: flex; flex-direction: row-reverse;">
+                  <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear">Add Quiz
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              }
+              @if (adminView) {
+                <div class="toUser" style="width: 100%; display: flex;">
+                  <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Quiz Home
                 </ion-button>
               </div>
-
-              <div class="toUser" *ngIf="adminView" style="width: 100%; display: flex;">
-                <ion-button (click) = "pageTrans()" style="color: #5b5555; font-weight: 800;" fill="clear"> <ion-icon name="chevron-back-outline"></ion-icon>Quiz Home
-
-                </ion-button>
+            }
+            @if (!adminView) {
+              <div class="normalV" >
+                @if (anyUserContent) {
+                  <div>
+                    <ion-grid>
+                      <ion-row class = "row2">
+                        @for (data of UserData; track data) {
+                          <ion-col size-md="4" size-lg="3" size="6">
+                            <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
+                              <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                              <ion-card-header class="ichead" >
+                                <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                                <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                              </ion-card-header>
+                              <ion-card-content class="iccontent">
+                                <div class="date">
+                                  <h5>Start Date </h5>
+                                  <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                                </div>
+                                <div class="date">
+                                  <h5>End Date </h5>
+                                  <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                                </div>
+                              </ion-card-content>
+                            </ion-card>
+                          </ion-col>
+                        }
+                      </ion-row>
+                    </ion-grid>
+                  </div>
+                }
+                @if (!anyUserContent) {
+                  <div>
+                    <ion-chip style="width:95%;  top: 25vh;">
+                      <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
+                    </ion-chip>
+                  </div>
+                }
               </div>
-
-              <div class="normalV" *ngIf="!adminView" >
-                <div *ngIf="anyUserContent">
-                  <ion-grid>
-                    <ion-row class = "row2">
-                      <ion-col *ngFor="let data of UserData" size-md="4" size-lg="3" size="6">
-                        <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
-                          <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
-                          <ion-card-header class="ichead" >
-                            <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
-                            <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
-                          </ion-card-header>
-
-                          <ion-card-content class="iccontent">
-                            <div class="date">
-                              <h5>Start Date </h5>
-                              <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
-                            </div>
-                            <div class="date">
-                              <h5>End Date </h5>
-                              <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
-                            </div>
-                          </ion-card-content>
-                        </ion-card>
-                      </ion-col>
-
-                    </ion-row>
-
-                  </ion-grid>
-                </div>
-                <div *ngIf="!anyUserContent">
-                  <ion-chip style="width:95%;  top: 25vh;">
-                    <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
-                  </ion-chip>
-                </div>
-              </div>
-
-              <div class="adminV" *ngIf="adminView" >
+            }
+            @if (adminView) {
+              <div class="adminV" >
                 <ion-grid>
                   <ion-row (click) = "navToAdd()" class="row1">
                     <ion-col class="add"  size="8">
@@ -79,327 +88,343 @@
                       <div class="h5">Add Quiz</div>
                     </ion-col>
                   </ion-row >
-
-                  <ion-row *ngIf="anyContent" class = "row2">
-                    <ion-col *ngFor="let data of AdminData" size-md="4" size-lg="3" size="6">
-                      <ion-card (click)="OpenQuiz(data)" class="ic">
-                        <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
-                        <ion-card-header class="ichead" >
-                          <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
-                          <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp;  {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
-                        </ion-card-header>
-
-                        <ion-card-content class="iccontent">
-                          <div class="date">
-                            <h5>Start Date </h5>
-                            <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
-                          </div>
-                          <div class="date">
-                            <h5>End Date </h5>
-                            <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
-                          </div>
-
-                        </ion-card-content>
-                      </ion-card>
-                    </ion-col>
-                  </ion-row>
-
+                  @if (anyContent) {
+                    <ion-row class = "row2">
+                      @for (data of AdminData; track data) {
+                        <ion-col size-md="4" size-lg="3" size="6">
+                          <ion-card (click)="OpenQuiz(data)" class="ic">
+                            <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                            <ion-card-header class="ichead" >
+                              <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                              <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp;  {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content class="iccontent">
+                              <div class="date">
+                                <h5>Start Date </h5>
+                                <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                              </div>
+                              <div class="date">
+                                <h5>End Date </h5>
+                                <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                              </div>
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                      }
+                    </ion-row>
+                  }
                 </ion-grid>
-
-                <div *ngIf="!anyContent">
-                  <ion-chip style="width:95%;  top:25vh;">
-                    <ion-label style="margin: 0 auto;" >தரவுகள் பெறப்படவில்லை</ion-label>
-                  </ion-chip>
-                </div>
-
+                @if (!anyContent) {
+                  <div>
+                    <ion-chip style="width:95%;  top:25vh;">
+                      <ion-label style="margin: 0 auto;" >தரவுகள் பெறப்படவில்லை</ion-label>
+                    </ion-chip>
+                  </div>
+                }
               </div>
-            </div>
-
+            }
           </div>
+        </div>
+      }
 
-          <div style="height: 100%;" *ngIf="!obj">
-            <div class="cont contqna">
-              <div class="normalV">
-                <div *ngIf="anyUserContent">
+      @if (!obj) {
+        <div style="height: 100%;">
+          <div class="cont contqna">
+            <div class="normalV">
+              @if (anyUserContent) {
+                <div>
                   <ion-grid>
                     <ion-row class = "row2">
-                      <ion-col *ngFor="let data of UserData" size="6" size-md="4">
-                        <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
-                          <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
-                          <ion-card-header class="ichead" >
-                            <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
-                            <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
-                          </ion-card-header>
-
-                          <ion-card-content class="iccontent">
-                            <div class="date">
-                              <h5>Start Date </h5>
-                              <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
-                            </div>
-                            <div class="date">
-                              <h5>End Date </h5>
-                              <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
-                            </div>
-                          </ion-card-content>
-                        </ion-card>
-                      </ion-col>
+                      @for (data of UserData; track data) {
+                        <ion-col size="6" size-md="4">
+                          <ion-card (click)="GetDate() < data.endDate ? UserClicked(data) : RevealAnswers(data)" class="ic">
+                            <img alt="Silhouette of mountains" src="../../assets/pictures/qna/qnatile.webp" />
+                            <ion-card-header class="ichead" >
+                              <ion-card-title class="ictitle">Quiz {{data.number}}</ion-card-title>
+                              <ion-card-subtitle class="icstitle">Status : &nbsp;<ion-icon class="{{GetDate() < data.endDate ? 'green' :'red'}}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < data.endDate ? 'Active' :'Expired'}}</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content class="iccontent">
+                              <div class="date">
+                                <h5>Start Date </h5>
+                                <h5> {{data.startDate | date: 'dd/MM/yyyy'}} </h5>
+                              </div>
+                              <div class="date">
+                                <h5>End Date </h5>
+                                <h5>{{data.endDate | date: 'dd/MM/yyyy'}} </h5>
+                              </div>
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                      }
                     </ion-row>
-
                   </ion-grid>
                 </div>
-                <div *ngIf="!anyUserContent">
+              }
+              @if (!anyUserContent) {
+                <div>
                   <ion-chip style="width:95%;  top: 25vh;">
                     <ion-label style="margin: 0 auto;" >விபரங்கள் விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-              </div>
+              }
             </div>
           </div>
         </div>
-
-      </ion-list>
+      }
     </div>
 
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isQuizView">
-      <ng-template>
+  </ion-list>
+</div>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{currQuiz.number}}</ion-title>
+<ion-modal  backdropDismiss="false" mode="md" [isOpen]="isQuizView">
+  <ng-template>
 
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeQuizView()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+    <ion-toolbar color="success">
+      <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{currQuiz.number}}</ion-title>
 
-        <ion-content >
+      <ion-buttons slot="end">
+        <ion-button (click) = "closeQuizView()" >Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
 
-          <ion-grid style="background-color: white !important;">
-            <ion-row style="background-color: rgba(149, 167, 167, 0.678); border-radius: 10px;">
-              <ion-col class="quizMeta" size="4">
-                <h5>Status </h5>
-                <h5><ion-icon class="{{GetDate() < currQuiz.endDate ? 'green' : 'red' }}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < currQuiz.endDate ? 'Active' : 'Expired' }} </h5>
-              </ion-col>
-              <ion-col class="quizMeta" size="4">
-                <h5>Start Date </h5>
-                <h5> {{currQuiz.startDate | date: 'dd/MM/yyyy'}} </h5>
-              </ion-col>
+    <ion-content >
 
-              <ion-col class="quizMeta" size="4">
-                <h5>End Date </h5>
-                <h5>{{currQuiz.endDate | date: 'dd/MM/yyyy'}} </h5>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col  size="5">
-                <ion-button (click) = "OpenQuestions()" style="font-size: 0.65em;" size="small"><ion-icon name="folder-open-outline"></ion-icon> &nbsp; Open Quiz</ion-button>
-              </ion-col>
-              <ion-col offset="1" size="3">
-                <ion-button (click) = "OpenQuestionsSheet()" style="font-size: 0.65em;" color="tertiary" size="small"><ion-icon name="create-outline"></ion-icon> &nbsp;Edit</ion-button>
-              </ion-col>
-              <ion-col size="2">
-                <ion-button (click) = "DeleteQuiz()" style="font-size: 0.65em;" color="danger" size="small"><ion-icon name="close-circle-outline"></ion-icon> &nbsp; Delete</ion-button>
-              </ion-col>
-            </ion-row>
-            <hr style="background-color: #0000003b;">
-            <ion-row>
-              <ion-col style="text-align: center; font-weight: bold; color: black;"  size = "12">Responses</ion-col>
-            </ion-row>
-            <ion-progress-bar *ngIf="progress" type="indeterminate" color="warning"></ion-progress-bar>
-            <ion-row  *ngFor="let data of Responses">
-              <ion-col (click) = "checkAnswers(data)" size="12">
-                <ion-list style="background-color: white">
-                  <ion-item style="color: rgb(44, 44, 44); font-weight: 700;">{{data.user.name}} - {{data.user.country}} - {{data.user.city}}</ion-item>
-                </ion-list>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+      <ion-grid style="background-color: white !important;">
+        <ion-row style="background-color: rgba(149, 167, 167, 0.678); border-radius: 10px;">
+          <ion-col class="quizMeta" size="4">
+            <h5>Status </h5>
+            <h5><ion-icon class="{{GetDate() < currQuiz.endDate ? 'green' : 'red' }}" name="ellipse-sharp"></ion-icon>&nbsp; {{GetDate() < currQuiz.endDate ? 'Active' : 'Expired' }} </h5>
+          </ion-col>
+          <ion-col class="quizMeta" size="4">
+            <h5>Start Date </h5>
+            <h5> {{currQuiz.startDate | date: 'dd/MM/yyyy'}} </h5>
+          </ion-col>
 
-          <!-- <div class="quizMeta">
-            <div class="date">
-              <h5>Status </h5>
-              <h5><ion-icon name="ellipse-sharp"></ion-icon>&nbsp; {{currQuiz.status}} </h5>
-            </div>
-            <div class="date">
-              <h5>Start Date </h5>
-              <h5> {{currQuiz.startDate | date: 'dd/MM/yyyy'}} </h5>
-            </div>
-            <div class="date">
-              <h5>End Date </h5>
-              <h5>{{currQuiz.endDate | date: 'dd/MM/yyyy'}} </h5>
-            </div>
-          </div> -->
+          <ion-col class="quizMeta" size="4">
+            <h5>End Date </h5>
+            <h5>{{currQuiz.endDate | date: 'dd/MM/yyyy'}} </h5>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col  size="5">
+            <ion-button (click) = "OpenQuestions()" style="font-size: 0.65em;" size="small"><ion-icon name="folder-open-outline"></ion-icon> &nbsp; Open Quiz</ion-button>
+          </ion-col>
+          <ion-col offset="1" size="3">
+            <ion-button (click) = "OpenQuestionsSheet()" style="font-size: 0.65em;" color="tertiary" size="small"><ion-icon name="create-outline"></ion-icon> &nbsp;Edit</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button (click) = "DeleteQuiz()" style="font-size: 0.65em;" color="danger" size="small"><ion-icon name="close-circle-outline"></ion-icon> &nbsp; Delete</ion-button>
+          </ion-col>
+        </ion-row>
+        <hr style="background-color: #0000003b;">
+        <ion-row>
+          <ion-col style="text-align: center; font-weight: bold; color: black;"  size = "12">Responses</ion-col>
+        </ion-row>
+        @if (progress) {
+          <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
+        }
+        @for (data of Responses; track data) {
+          <ion-row >
+            <ion-col (click) = "checkAnswers(data)" size="12">
+              <ion-list style="background-color: white">
+                <ion-item style="color: rgb(44, 44, 44); font-weight: 700;">{{data.user.name}} - {{data.user.country}} - {{data.user.city}}</ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        }
+      </ion-grid>
+
+      <!-- <div class="quizMeta">
+      <div class="date">
+        <h5>Status </h5>
+        <h5><ion-icon name="ellipse-sharp"></ion-icon>&nbsp; {{currQuiz.status}} </h5>
+      </div>
+      <div class="date">
+        <h5>Start Date </h5>
+        <h5> {{currQuiz.startDate | date: 'dd/MM/yyyy'}} </h5>
+      </div>
+      <div class="date">
+        <h5>End Date </h5>
+        <h5>{{currQuiz.endDate | date: 'dd/MM/yyyy'}} </h5>
+      </div>
+    </div> -->
 
 
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+  </ion-content>
+</ng-template>
+</ion-modal>
 
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isQuestionView">
-      <ng-template>
+<ion-modal  backdropDismiss="false" mode="md" [isOpen]="isQuestionView">
+  <ng-template>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{currQuiz.number}}</ion-title>
+    <ion-toolbar color="success">
+      <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{currQuiz.number}}</ion-title>
 
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeQuestions()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click) = "closeQuestions()" >Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
 
-        <ion-content class="quesIc">
+    <ion-content class="quesIc">
 
-          <div *ngFor="let d of currQuiz.questions" class="que" >
-            <p>{{d.qst}}</p>
-            <ion-list style="background-color: white" lines="full">
-              <ion-item ><ion-label>{{d.ans1}}</ion-label></ion-item>
-              <ion-item ><ion-label>{{d.ans2}}</ion-label></ion-item>
-              <ion-item ><ion-label>{{d.ans3}}</ion-label></ion-item>
-              <ion-item ><ion-label>{{d.ans4}}</ion-label></ion-item>
-              <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
-
-            </ion-list>
-          </div>
-
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isUserDetailView">
-      <ng-template>
-
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900;"> Enter your details</ion-title>
-
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeUserInfoView()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <ion-progress-bar *ngIf="progress" type="indeterminate" color="warning"></ion-progress-bar>
-
-        <ion-content style="background-color: white;">
-
-        <form #userForm="ngForm">
-          <ion-list style="background-color: white;">
-            <ion-item>
-              <ion-label position="floating">Name <small style="color:red">&nbsp; ***</small></ion-label>
-              <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Mobile Number <small>(WhatsApp contact is preferable)</small><small style="color:red">&nbsp; ***</small></ion-label>
-              <ion-input type="text" name="mobile" [(ngModel)]="user.mobile" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Country <small style="color:red">&nbsp; ***</small></ion-label>
-              <ion-input type="text" name="country" [(ngModel)]="user.country" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">City <small style="color:red">&nbsp; ***</small></ion-label>
-              <ion-input type="text" name="city" [(ngModel)]="user.city" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Email </ion-label>
-              <ion-input  type="email" name="email" [(ngModel)]="user.email" ></ion-input>
-            </ion-item>
-
-            <ion-button style="font-weight: bold;" (click) = "SaveUserInfo()" [disabled]="userForm.invalid" color="success" expand="block">Go to Quiz</ion-button>
-            <!-- [disabled]="userForm.invalid" -->
+      @for (d of currQuiz.questions; track d) {
+        <div class="que" >
+          <p>{{d.qst}}</p>
+          <ion-list style="background-color: white" lines="full">
+            <ion-item ><ion-label>{{d.ans1}}</ion-label></ion-item>
+            <ion-item ><ion-label>{{d.ans2}}</ion-label></ion-item>
+            <ion-item ><ion-label>{{d.ans3}}</ion-label></ion-item>
+            <ion-item ><ion-label>{{d.ans4}}</ion-label></ion-item>
+            <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
           </ion-list>
-        </form>
+        </div>
+      }
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal  backdropDismiss="false" mode="md" [isOpen]="isUserDetailView">
+  <ng-template>
+
+    <ion-toolbar color="success">
+      <ion-title style="font-size:14px; font-weight: 900;"> Enter your details</ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button (click) = "closeUserInfoView()" >Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    @if (progress) {
+      <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
+    }
+
+    <ion-content style="background-color: white;">
+
+      <form #userForm="ngForm">
+        <ion-list style="background-color: white;">
+          <ion-item>
+            <ion-label position="floating">Name <small style="color:red">&nbsp; ***</small></ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Mobile Number <small>(WhatsApp contact is preferable)</small><small style="color:red">&nbsp; ***</small></ion-label>
+            <ion-input type="text" name="mobile" [(ngModel)]="user.mobile" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Country <small style="color:red">&nbsp; ***</small></ion-label>
+            <ion-input type="text" name="country" [(ngModel)]="user.country" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">City <small style="color:red">&nbsp; ***</small></ion-label>
+            <ion-input type="text" name="city" [(ngModel)]="user.city" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email </ion-label>
+            <ion-input  type="email" name="email" [(ngModel)]="user.email" ></ion-input>
+          </ion-item>
+
+          <ion-button style="font-weight: bold;" (click) = "SaveUserInfo()" [disabled]="userForm.invalid" color="success" expand="block">Go to Quiz</ion-button>
+          <!-- [disabled]="userForm.invalid" -->
+        </ion-list>
+      </form>
 
 
 
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isAnswerSheet">
-      <ng-template>
+<ion-modal  backdropDismiss="false" mode="md" [isOpen]="isAnswerSheet">
+  <ng-template>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900; "> Submit Your Answers &nbsp; <ion-icon name="ellipse-sharp"></ion-icon> <ion-icon name="ellipse-sharp"></ion-icon> </ion-title>
+    <ion-toolbar color="success">
+      <ion-title style="font-size:14px; font-weight: 900; "> Submit Your Answers &nbsp; <ion-icon name="ellipse-sharp"></ion-icon> <ion-icon name="ellipse-sharp"></ion-icon> </ion-title>
 
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeAnswerSheet()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <ion-progress-bar *ngIf="progress" type="indeterminate" color="warning"></ion-progress-bar>
+      <ion-buttons slot="end">
+        <ion-button (click) = "closeAnswerSheet()" >Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    @if (progress) {
+      <ion-progress-bar type="indeterminate" color="warning"></ion-progress-bar>
+    }
 
-        <ion-content>
-          <div style="background-color: white !important; margin: 1vh 2vw">
-            <form #AnsForm="ngForm">
+    <ion-content>
+      <div style="background-color: white !important; margin: 1vh 2vw">
+        <form #AnsForm="ngForm">
+          <div>
+            @for (data of clickedQuiz?.questions; track data) {
               <div>
-                <div *ngFor="let data of clickedQuiz?.questions">
-                  <ion-label style="color:black; font-style: italic; text-align: justify; font-weight:bold ;">{{data.qst}}</ion-label>
-
-                  <ion-list style="background-color: white;">
-                    <ion-item>
-                      <ion-select [(ngModel)] = "data.selected" [name]="'name'+data.id" placeholder="Select a Option" required>
-                        <ion-select-option [value]="'ans1'">{{data.ans1}}</ion-select-option>
-                        <ion-select-option [value]="'ans2'">{{data.ans2}}</ion-select-option>
-                        <ion-select-option [value]="'ans3'">{{data.ans3}}</ion-select-option>
-                        <ion-select-option [value]="'ans4'">{{data.ans4}}</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                  </ion-list>
-
-                  <hr>
-
-                </div>
-
-
-                <ion-button style="font-weight: bold;" (click) = "SaveAnswer()" [disabled]="AnsForm.invalid || btnValid" color="success" expand="block">Submit The Quiz</ion-button>
-
-              </div>
-            </form>
-          </div>
-
-
-
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isCorrectioView">
-      <ng-template>
-
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900; "> Checking Answers &nbsp; <ion-icon name="ellipse-sharp"></ion-icon> <ion-icon name="ellipse-sharp"></ion-icon> </ion-title>
-
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeCorrectionSheet()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <!-- <ion-progress-bar *ngIf="progress" type="indeterminate" color="warning"></ion-progress-bar> -->
-          <ion-content style="background-color: white;">
-
-            <ion-card class="useric">
-              <ion-card-header>
-                <ion-card-title>Responser Info</ion-card-title>
-                <ion-card-subtitle style="font-weight: 600; color:chocolate">Correct Answers : {{correctCount}}/{{totalCount}}</ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                <ion-list>
+                <ion-label style="color:black; font-style: italic; text-align: justify; font-weight:bold ;">{{data.qst}}</ion-label>
+                <ion-list style="background-color: white;">
                   <ion-item>
-                    <ion-label>Name: {{Answers.user.name}}</ion-label>
-                  </ion-item>
-                  <ion-item>
-                    <ion-label>Mobile: {{Answers.user.mobile}}</ion-label>
-                  </ion-item>
-                  <ion-item>
-                    <ion-label>Country: {{Answers.user.country}}</ion-label>
-                  </ion-item>
-                  <ion-item>
-                    <ion-label>City: {{Answers.user.city}}</ion-label>
-                  </ion-item>
-                  <ion-item>
-                    <ion-label>Email: {{Answers.user.email}}</ion-label>
+                    <ion-select [(ngModel)] = "data.selected" [name]="'name'+data.id" placeholder="Select a Option" required>
+                      <ion-select-option [value]="'ans1'">{{data.ans1}}</ion-select-option>
+                      <ion-select-option [value]="'ans2'">{{data.ans2}}</ion-select-option>
+                      <ion-select-option [value]="'ans3'">{{data.ans3}}</ion-select-option>
+                      <ion-select-option [value]="'ans4'">{{data.ans4}}</ion-select-option>
+                    </ion-select>
                   </ion-item>
                 </ion-list>
-              </ion-card-content>
-            </ion-card>
+                <hr>
+                </div>
+              }
 
-            <hr style="background-color: #0000003d;">
 
-          <div *ngFor="let d of Answers.answer" class="queList" >
+              <ion-button style="font-weight: bold;" (click) = "SaveAnswer()" [disabled]="AnsForm.invalid || btnValid" color="success" expand="block">Submit The Quiz</ion-button>
+
+            </div>
+          </form>
+        </div>
+
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isCorrectioView">
+    <ng-template>
+
+      <ion-toolbar color="success">
+        <ion-title style="font-size:14px; font-weight: 900; "> Checking Answers &nbsp; <ion-icon name="ellipse-sharp"></ion-icon> <ion-icon name="ellipse-sharp"></ion-icon> </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click) = "closeCorrectionSheet()" >Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <!-- <ion-progress-bar *ngIf="progress" type="indeterminate" color="warning"></ion-progress-bar> -->
+      <ion-content style="background-color: white;">
+
+        <ion-card class="useric">
+          <ion-card-header>
+            <ion-card-title>Responser Info</ion-card-title>
+            <ion-card-subtitle style="font-weight: 600; color:chocolate">Correct Answers : {{correctCount}}/{{totalCount}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Name: {{Answers.user.name}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Mobile: {{Answers.user.mobile}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Country: {{Answers.user.country}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>City: {{Answers.user.city}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Email: {{Answers.user.email}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <hr style="background-color: #0000003d;">
+
+        @for (d of Answers.answer; track d) {
+          <div class="queList" >
             <p style="margin: 1px 3px; font-style: italic; font-weight: 600;">{{d.qst}}</p>
             <ion-list style="background-color: white;" lines="full">
               <ion-item class="{{d.crctAns === 'ans1' ? 'correct' : d.selected === 'ans1' ? 'wrong' : 'null'}}"><ion-label>{{d.ans1}}</ion-label></ion-item>
@@ -407,30 +432,31 @@
               <ion-item class="{{d.crctAns === 'ans3' ? 'correct' : d.selected === 'ans3' ? 'wrong' : 'null'}}"><ion-label>{{d.ans3}}</ion-label></ion-item>
               <ion-item class="{{d.crctAns === 'ans4' ? 'correct' : d.selected === 'ans4' ? 'wrong' : 'null'}}"><ion-label>{{d.ans4}}</ion-label></ion-item>
               <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
-
             </ion-list>
             <hr style="background-color: #00000096">
           </div>
+        }
 
 
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isRevealView">
-      <ng-template>
+  <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isRevealView">
+    <ng-template>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{RevealedAnswers.number}}</ion-title>
+      <ion-toolbar color="success">
+        <ion-title style="font-size:14px; font-weight: 900;"> Quiz No {{RevealedAnswers.number}}</ion-title>
 
-            <ion-buttons slot="end">
-              <ion-button (click) = "closeAnswerReveal()" >Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click) = "closeAnswerReveal()" >Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
 
-        <ion-content class="quesIc">
+      <ion-content class="quesIc">
 
-          <div *ngFor="let d of RevealedAnswers.questions" class="que" >
+        @for (d of RevealedAnswers.questions; track d) {
+          <div class="que" >
             <p style="font-style: italic; font-weight: 500; text-align: justify;">{{d.qst}}</p>
             <ion-list style="background-color: white" lines="full">
               <ion-item class="{{d.crctAns === 'ans1' ? 'correct' : 'null'}}" ><ion-label>{{d.ans1}}</ion-label></ion-item>
@@ -438,13 +464,13 @@
               <ion-item class = "{{d.crctAns === 'ans3' ? 'correct' : 'null'}}" ><ion-label>{{d.ans3}}</ion-label></ion-item>
               <ion-item class = "{{d.crctAns === 'ans4' ? 'correct' : 'null'}}" ><ion-label>{{d.ans4}}</ion-label></ion-item>
               <ion-item ><ion-label style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-label></ion-item>
-
             </ion-list>
           </div>
+        }
 
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>
 

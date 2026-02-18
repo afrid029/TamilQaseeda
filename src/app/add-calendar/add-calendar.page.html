@@ -1,44 +1,46 @@
 
 <html class="addBody">
   <ion-header>
-  <ion-toolbar class = "tool">
-    <ion-buttons slot="start">
+    <ion-toolbar class = "tool">
+      <ion-buttons slot="start">
 
-      <ion-back-button defaultHref="dashboard"></ion-back-button>
-      <ion-title>Add Calendar Detail</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+        <ion-back-button defaultHref="dashboard"></ion-back-button>
+        <ion-title>Add Calendar Detail</ion-title>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
-  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+  <ion-content>
+    @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
   opacity: 0.7;">
-    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-   </div>
+        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+      </div>
+    }
 
-<ion-card style="overflow-y: scroll; max-height: 80%;">
-  <ion-card-header>
-   <form  #addForm = "ngForm" validate>
-    <ion-item lines="full">
-      <ion-label position="floating">திகதி</ion-label>
-      <ion-input [(ngModel)]="calendar.date" name="date" type="date" required></ion-input>
-    </ion-item>
+    <ion-card style="overflow-y: scroll; max-height: 80%;">
+      <ion-card-header>
+        <form  #addForm = "ngForm" validate>
+          <ion-item lines="full">
+            <ion-label position="floating">திகதி</ion-label>
+            <ion-input [(ngModel)]="calendar.date" name="date" type="date" required></ion-input>
+          </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating">இஸ்லாமிய திகதி</ion-label>
-      <ion-textarea [(ngModel)]="calendar.isl"  [autoGrow]="true" name="isl" ></ion-textarea>
-    </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">இஸ்லாமிய திகதி</ion-label>
+            <ion-textarea [(ngModel)]="calendar.isl"  [autoGrow]="true" name="isl" ></ion-textarea>
+          </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating">விபரம்</ion-label>
-      <ion-textarea [(ngModel)]="calendar.content"  [autoGrow]="true" name="content"required></ion-textarea>
-    </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">விபரம்</ion-label>
+            <ion-textarea [(ngModel)]="calendar.content"  [autoGrow]="true" name="content"required></ion-textarea>
+          </ion-item>
 
-    <div class="cont">
-      <ion-button style="display: flex;" (click)="submit(addForm)" type="submit" [disabled]="addForm.invalid"  class = "btn">Add</ion-button>
-    </div>
-   </form>
-  </ion-card-header>
-</ion-card>
-</ion-content>
+          <div class="cont">
+            <ion-button style="display: flex;" (click)="submit(addForm)" type="submit" [disabled]="addForm.invalid"  class = "btn">Add</ion-button>
+          </div>
+        </form>
+      </ion-card-header>
+    </ion-card>
+  </ion-content>
 </html>

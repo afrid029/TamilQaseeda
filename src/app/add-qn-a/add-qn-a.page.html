@@ -4,39 +4,46 @@
       <ion-back-button defaultHref="qand-a" style="color: rgb(56, 128, 255);"  icon="caret-back"></ion-back-button>
 
 
-      <ion-title *ngIf="!isUpdateQuiz" style="font-weight: 700;color: rgb(56, 128, 255);; text-align: center; ">Add Quiz</ion-title>
-    <ion-title *ngIf="isUpdateQuiz" style="font-weight: 700;color: rgb(56, 128, 255); text-align: center; ">Update Quiz Info</ion-title>
+      @if (!isUpdateQuiz) {
+        <ion-title style="font-weight: 700;color: rgb(56, 128, 255);; text-align: center; ">Add Quiz</ion-title>
+      }
+      @if (isUpdateQuiz) {
+        <ion-title style="font-weight: 700;color: rgb(56, 128, 255); text-align: center; ">Update Quiz Info</ion-title>
+      }
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:10;
+  @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:10;
   opacity: 0.7;">
-    <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-   </div>
+      <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+    </div>
+  }
 
 
   <div >
     <form  #addForm="ngForm" validate>
       <ion-list class="form" style="position: absolute;">
-          <ion-item lines="inset">
-            <ion-label position="floating">Quiz No</ion-label>
-            <ion-input type = "number" name="number" [(ngModel)]="quiz.number" required></ion-input>
-          </ion-item>
+        <ion-item lines="inset">
+          <ion-label position="floating">Quiz No</ion-label>
+          <ion-input type = "number" name="number" [(ngModel)]="quiz.number" required></ion-input>
+        </ion-item>
 
-          <ion-item lines="inset" >
-            <ion-label position="floating">Start Date</ion-label>
-            <ion-input type = "date" name="sdate" min = "{{getMinDate()}}" [(ngModel)]="quiz.startDate" required></ion-input>
-          </ion-item>
+        <ion-item lines="inset" >
+          <ion-label position="floating">Start Date</ion-label>
+          <ion-input type = "date" name="sdate" min = "{{getMinDate()}}" [(ngModel)]="quiz.startDate" required></ion-input>
+        </ion-item>
 
-          <ion-item lines="inset" >
-            <ion-label position="floating">End Date</ion-label>
-            <ion-input type = "date" name="edate" [(ngModel)]="quiz.endDate" min = "{{getMinDate()}}" required></ion-input>
-          </ion-item>
+        <ion-item lines="inset" >
+          <ion-label position="floating">End Date</ion-label>
+          <ion-input type = "date" name="edate" [(ngModel)]="quiz.endDate" min = "{{getMinDate()}}" required></ion-input>
+        </ion-item>
 
-          <div *ngFor="let d of quiz.questions" class="que" >
+        @for (d of quiz.questions; track d) {
+          <div class="que" >
             <p>{{d.qst}}</p>
             <ion-list lines="full">
               <ion-item ><ion-label>{{d.ans1}}</ion-label></ion-item>
@@ -44,79 +51,90 @@
               <ion-item >{{d.ans3}}</ion-item>
               <ion-item >{{d.ans4}}</ion-item>
               <ion-item style="font-weight: bold;"> Correct Answer : {{getCorrectAns(d)}}</ion-item>
-
             </ion-list>
-
             <ion-item slot="end">
               <ion-button (click) = "deleteList(d.id)" slot="end" color="danger"><ion-icon name="trash-sharp"></ion-icon> &nbsp; Delete</ion-button>
               <ion-button (click) = "editList(d.id)" slot="end" color="success"><ion-icon name="pencil-sharp"></ion-icon> &nbsp; Edit</ion-button>
             </ion-item>
             <hr>
-          </div>
+            </div>
+          }
 
           <ion-item slot="end">
             <ion-button slot="end" color="secondary" (click)="setViewModel(true)"><ion-icon name="add-outline"></ion-icon> &nbsp; Add Question</ion-button>
           </ion-item>
 
           <div style="margin: 1vh 2vw; border-radius: 16px;">
-            <ion-button *ngIf="!isUpdateQuiz" (click)="PostQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="warning" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Post Quiz</ion-button>
-            <ion-button *ngIf="isUpdateQuiz" (click)="UpdateQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="success" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Update Quiz</ion-button>
+            @if (!isUpdateQuiz) {
+              <ion-button (click)="PostQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="warning" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Post Quiz</ion-button>
+            }
+            @if (isUpdateQuiz) {
+              <ion-button (click)="UpdateQuiz(addForm)" style="color: beige !important; font-weight: 850;" expand="block" color="success" [disabled]="addForm.invalid || quiz.endDate < quiz.startDate || quiz.questions.length < 1 ">Update Quiz</ion-button>
+            }
           </div>
 
-      </ion-list>
-    </form>
-  </div>
+        </ion-list>
+      </form>
+    </div>
 
-  <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
-    <ng-template>
+    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
+      <ng-template>
 
         <ion-toolbar color="success">
-          <ion-title *ngIf="!isEditModel" style="font-size:14px; font-weight: 900;"> Add Question</ion-title>
-          <ion-title *ngIf="isEditModel" style="font-size:14px; font-weight: 900;"> Update Question</ion-title>
+          @if (!isEditModel) {
+            <ion-title style="font-size:14px; font-weight: 900;"> Add Question</ion-title>
+          }
+          @if (isEditModel) {
+            <ion-title style="font-size:14px; font-weight: 900;"> Update Question</ion-title>
+          }
           <ion-buttons slot="end">
             <ion-button (click)="setViewModel(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
 
-      <ion-content>
-        <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white">
-          <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
-            <form #addQue ="ngForm">
-              <ion-list lines="full">
-                <ion-item>
-                  <ion-label position="floating">Question</ion-label>
-                  <ion-textarea type="text" name="qst" [(ngModel)] = "query.qst" required></ion-textarea>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Option 1</ion-label>
-                  <ion-input type="text" name="ans1" [(ngModel)] = "query.ans1" required></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Option 2</ion-label>
-                  <ion-input type="text" name="ans2" [(ngModel)] = "query.ans2" required></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Option 3</ion-label>
-                  <ion-input type="text" name="ans3" [(ngModel)] = "query.ans3" required></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="floating">Option 4</ion-label>
-                  <ion-input type="text" name="ans4" [(ngModel)] = "query.ans4" required></ion-input>
-                </ion-item>
+        <ion-content>
+          <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white">
+            <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
+              <form #addQue ="ngForm">
+                <ion-list lines="full">
+                  <ion-item>
+                    <ion-label position="floating">Question</ion-label>
+                    <ion-textarea type="text" name="qst" [(ngModel)] = "query.qst" required></ion-textarea>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Option 1</ion-label>
+                    <ion-input type="text" name="ans1" [(ngModel)] = "query.ans1" required></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Option 2</ion-label>
+                    <ion-input type="text" name="ans2" [(ngModel)] = "query.ans2" required></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Option 3</ion-label>
+                    <ion-input type="text" name="ans3" [(ngModel)] = "query.ans3" required></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Option 4</ion-label>
+                    <ion-input type="text" name="ans4" [(ngModel)] = "query.ans4" required></ion-input>
+                  </ion-item>
 
-                <ion-item style="background-color: rgba(255, 245, 104, 0.658); border-radius: 16px;">
-                  <ion-label position="floating" style="font-weight: bold;">Correct Answer </ion-label>
-                  <ion-input style="font-weight: bold;" type="number" name="crctAns" [(ngModel)] = "query.crctAns" required></ion-input>
-                </ion-item>
+                  <ion-item style="background-color: rgba(255, 245, 104, 0.658); border-radius: 16px;">
+                    <ion-label position="floating" style="font-weight: bold;">Correct Answer </ion-label>
+                    <ion-input style="font-weight: bold;" type="number" name="crctAns" [(ngModel)] = "query.crctAns" required></ion-input>
+                  </ion-item>
 
-                <ion-button *ngIf="!isEditModel" [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "addList()" expand="full" color="warning" >Add in the list</ion-button>
-                <ion-button *ngIf="isEditModel" [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "updateList()" expand="full" color="success" >Update list</ion-button>
-              </ion-list>
-            </form>
-          </ion-card-content>
-        </ion-card>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+                  @if (!isEditModel) {
+                    <ion-button [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "addList()" expand="full" color="warning" >Add in the list</ion-button>
+                  }
+                  @if (isEditModel) {
+                    <ion-button [disabled]="addQue.invalid || query.crctAns < 1 || query.crctAns > 4" (click) = "updateList()" expand="full" color="success" >Update list</ion-button>
+                  }
+                </ion-list>
+              </form>
+            </ion-card-content>
+          </ion-card>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
 
-</ion-content>
+  </ion-content>

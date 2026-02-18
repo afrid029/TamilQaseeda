@@ -3,226 +3,250 @@
     <img class="img" alt="">
   </div>
   <ion-content>
-    <div *ngIf="spinner" style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
+    @if (spinner) {
+<div style="position:fixed;transform: scale(2); display: flex; width:100%; height:100%; justify-content: space-around; align-items: center; z-index:4;
     opacity: 0.7;">
-      <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
-    </div>
+        <ion-spinner name="lines-small" [paused]="false" color="warning"></ion-spinner>
+      </div>
+    }
 
 
 
 
-      <ion-list class="lst lstdua">
-        <div class="lstcont">
-          <div class="cont">
-            <ion-grid  class="grid">
+    <ion-list class="lst lstdua">
+      <div class="lstcont">
+        <div class="cont">
+          <ion-grid  class="grid">
 
-            <ion-row *ngIf="!IsAsma" (click)="viewArticles('as')"  class="smallTile smallTileDua">
-              <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
-                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/asma.webp" alt="">
-                <div style="display: flex; flex-direction: column;">
-                  m];khcy; `_];dh
-                  <!-- <hr class="line"> -->
-                </div>
-              </ion-col>
+            @if (!IsAsma) {
+              <ion-row (click)="viewArticles('as')"  class="smallTile smallTileDua">
+                <ion-col [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+                  <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/asma.webp" alt="">
+                  <div style="display: flex; flex-direction: column;">
+                    m];khcy; `_];dh
+                    <!-- <hr class="line"> -->
+                  </div>
+                </ion-col>
+              </ion-row>
+            }
 
-            </ion-row>
-
-            <ion-row *ngIf="IsAsma" class="bigTile bigTileDua">
-              <!-- <ion-col  size="3">
+            @if (IsAsma) {
+              <ion-row class="bigTile bigTileDua">
+                <!-- <ion-col  size="3">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
               </ion-col> -->
               <ion-col style="color: black"  size="12">
                 <div (click) = "viewArticles('as')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
                   <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
-                 </div>
-
-                  <div  class="qursi">
-                    <ion-card *ngFor="let itm of arabic; index as i" class = "box">
+                </div>
+                <div  class="qursi">
+                  @for (itm of arabic; track itm; let i = $index) {
+                    <ion-card class = "box">
                       <ion-card-header>
                         <ion-card-title>{{itm}}</ion-card-title>
                       </ion-card-header>
                       <h5>{{english[i]}}</h5>
                       <hr>
-                      <h6> {{tamil[i]}}</h6>
-                    </ion-card>
-
+                        <h6> {{tamil[i]}}</h6>
+                      </ion-card>
+                    }
                   </div>
+                </ion-col>
+              </ion-row>
+            }
 
+            @if (!IsDua) {
+              <ion-row (click)="viewArticles('dua')" class="smallTile smallTileDua">
+                <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
+                  <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/dua.webp" alt="">
+                  <div style="display: flex; flex-direction: column;">
+                    md;whl JMf;fs;
+                    <!-- <hr class="line"> -->
+                  </div>
+                </ion-col>
+              </ion-row>
+            }
 
-              </ion-col>
-            </ion-row>
-
-            <ion-row *ngIf="!IsDua" (click)="viewArticles('dua')" class="smallTile smallTileDua">
-              <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
-                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/dua.webp" alt="">
-                <div style="display: flex; flex-direction: column;">
-                  md;whl JMf;fs;
-                  <!-- <hr class="line"> -->
-                </div>
-              </ion-col>
-
-            </ion-row>
-
-            <ion-row *ngIf="IsDua" class="bigTile bigTileDua">
-              <!-- <ion-col  size="3">
+            @if (IsDua) {
+              <ion-row class="bigTile bigTileDua">
+                <!-- <ion-col  size="3">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
               </ion-col> -->
               <ion-col style="color: black"  size="12">
-               <div (click) = "viewArticles('dua')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
-                <ion-icon name="albums" style="font-size:4vw"></ion-icon>
-               </div>
-
-                <div *ngIf="duaAnyContent" class="content">
-                  <div class="bar">
-                    <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('dua')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
-                    <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
-                  </div>
-                  <div  *ngIf="obj" >
-                    <div *ngFor = "let s of dua">
-                      <ion-item >
-                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                        <div (click)="editDetail(s)" class="edit">
-                          <ion-icon class="icon" name="pencil"></ion-icon>
-                        </div>
-                        <div (click)="deleteAwrath(s)" class="edit del">
-                          <ion-icon class="icon" name="trash"></ion-icon>
-                        </div>
-                      </ion-item>
+                <div (click) = "viewArticles('dua')" style="display: flex; justify-content: center; margin-top: 1.5vh;">
+                  <ion-icon name="albums" style="font-size:4vw"></ion-icon>
+                </div>
+                @if (duaAnyContent) {
+                  <div class="content">
+                    <div class="bar">
+                      <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('dua')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
+                      <ion-button fill="clear" color="dark" [disabled]="vis"  (click)="clearSearch()">Clear</ion-button>
                     </div>
-
-
+                    @if (obj) {
+                      <div  >
+                        @for (s of dua; track s) {
+                          <div>
+                            <ion-item >
+                              <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                              <div (click)="editDetail(s)" class="edit">
+                                <ion-icon class="icon" name="pencil"></ion-icon>
+                              </div>
+                              <div (click)="deleteAwrath(s)" class="edit del">
+                                <ion-icon class="icon" name="trash"></ion-icon>
+                              </div>
+                            </ion-item>
+                          </div>
+                        }
+                      </div>
+                    }
+                    @if (!obj) {
+                      <div >
+                        @for (s of dua; track s) {
+                          <div>
+                            <ion-item>
+                              <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                            </ion-item>
+                          </div>
+                        }
+                      </div>
+                    }
+                    @if (dua.length === 0) {
+                      <div style="display: flex; justify-content: space-around;align-items: center;" >
+                        <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                          <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                        </ion-chip>
+                      </div>
+                    }
                   </div>
-
-                  <div *ngIf="!obj" >
-                    <div *ngFor = "let s of dua">
-                      <ion-item>
-                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-
-                      </ion-item>
-                    </div>
-                  </div>
-                  <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "dua.length === 0" >
-
-                    <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                      <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                }
+                @if (!duaAnyContent) {
+                  <div >
+                    <ion-chip>
+                      <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                     </ion-chip>
-
-                </div>
-                </div>
-
-                <div *ngIf="!duaAnyContent" >
-                  <ion-chip>
-                    <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
-                  </ion-chip>
-                </div>
-
-
-
-
+                  </div>
+                }
               </ion-col>
             </ion-row>
+          }
 
-            <ion-row *ngIf="!IsSalawat" (click)="viewArticles('salawat')" class="smallTile smallTileDua">
+          @if (!IsSalawat) {
+            <ion-row (click)="viewArticles('salawat')" class="smallTile smallTileDua">
               <ion-col  [ngClass]="opened ? 'hide smallrow' : 'show smallrow'"  size="12">
                 <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/dua/salawat.webp" alt="">
                 <div style="display: flex; flex-direction: column;">
-                Kj;jhd ]ythj;Jf;fs;
+                  Kj;jhd ]ythj;Jf;fs;
                   <!-- <hr class="line"> -->
                 </div>
               </ion-col>
             </ion-row>
+          }
 
-            <ion-row *ngIf="IsSalawat" class="bigTile bigTileDua">
+          @if (IsSalawat) {
+            <ion-row class="bigTile bigTileDua">
               <!-- <ion-col  size="3">
-                <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
-              </ion-col> -->
-              <ion-col style="color: black"  size="12">
-               <div (click) = "viewArticles('salawat')" style="display: flex; justify-content: center; margin-top: 1.5vh">
+              <img style="width: 5rem; height: 5rem;" src="../../assets/pictures/evidence/aqeeda.webp" alt="">
+            </ion-col> -->
+            <ion-col style="color: black"  size="12">
+              <div (click) = "viewArticles('salawat')" style="display: flex; justify-content: center; margin-top: 1.5vh">
                 <ion-icon name="albums" style="font-size: 4vw;"></ion-icon>
-               </div>
-
-                <div *ngIf="salAnyContent" class="content">
+              </div>
+              @if (salAnyContent) {
+                <div class="content">
                   <div class="bar">
                     <ion-input style="font-style: italic; font-size: smaller;" class="search" [(ngModel)]="searchKey" (ionChange)="handleSearch('salawat')" placeholder="Search by title"><ion-icon  name="search"></ion-icon></ion-input>
                     <ion-button fill="clear" color="dark" [disabled]="vis" (click)="clearSearch()">Clear</ion-button>
                   </div>
-                  <div  *ngIf="obj">
-                    <div *ngFor = "let s of salawat">
-                      <ion-item>
-                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-                        <div (click)="editDetail(s)" class="edit">
-                          <ion-icon class="icon" name="pencil"></ion-icon>
-                        </div >
-                        <div (click)="deleteAwrath(s)" class="edit del">
-                          <ion-icon class="icon" name="trash"></ion-icon>
+                  @if (obj) {
+                    <div >
+                      @for (s of salawat; track s) {
+                        <div>
+                          <ion-item>
+                            <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                            <div (click)="editDetail(s)" class="edit">
+                              <ion-icon class="icon" name="pencil"></ion-icon>
+                            </div >
+                            <div (click)="deleteAwrath(s)" class="edit del">
+                              <ion-icon class="icon" name="trash"></ion-icon>
+                            </div>
+                          </ion-item>
                         </div>
-                      </ion-item>
+                      }
                     </div>
-                  </div>
-
-                  <div *ngIf="!obj">
-                    <div *ngFor = "let s of salawat">
-                      <ion-item>
-                        <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
-
-                      </ion-item>
+                  }
+                  @if (!obj) {
+                    <div>
+                      @for (s of salawat; track s) {
+                        <div>
+                          <ion-item>
+                            <ion-label style="white-space: initial" (click)="promo(s)">{{s.title}}</ion-label>
+                          </ion-item>
+                        </div>
+                      }
                     </div>
-                  </div>
-                  <div style="display: flex; justify-content: space-around;align-items: center;" *ngIf = "salawat.length === 0" >
-
-                    <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
-                      <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
-                    </ion-chip>
-
+                  }
+                  @if (salawat.length === 0) {
+                    <div style="display: flex; justify-content: space-around;align-items: center;" >
+                      <ion-chip style="width:95%;height: auto; background-color: rgba(107, 106, 106, 0.048);">
+                        <ion-label style="margin: 0 auto;"><ion-icon name="search-outline"></ion-icon>&nbsp; தேடல் கிடைக்கவில்லை.</ion-label>
+                      </ion-chip>
+                    </div>
+                  }
                 </div>
-                </div>
-
-                <div *ngIf="!salAnyContent">
+              }
+              @if (!salAnyContent) {
+                <div>
                   <ion-chip >
                     <ion-label style="margin: 0 auto;" ><ion-icon name="search-outline"></ion-icon>&nbsp; &nbsp; விரைவில் இணைக்கப்படும்</ion-label>
                   </ion-chip>
                 </div>
-              </ion-col>
-            </ion-row>
+              }
+            </ion-col>
+          </ion-row>
+        }
 
-            </ion-grid>
-          </div>
-      </div>
-      </ion-list>
+      </ion-grid>
+    </div>
+  </div>
+</ion-list>
 
-    <ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
-      <ng-template>
+<ion-modal  backdropDismiss="false" mode="md" [isOpen]="isModalOpen">
+  <ng-template>
 
-          <ion-toolbar color="success">
-            <ion-title style="font-size:14px">{{currAwraath.title}}</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="setViewModel(false)">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+    <ion-toolbar color="success">
+      <ion-title style="font-size:14px">{{currAwraath.title}}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="setViewModel(false)">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
 
-        <ion-content class="modalBody">
-          <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white;">
-            <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
+    <ion-content class="modalBody">
+      <ion-card style="white-space: pre-line; height: 98%; max-height: 98%; position: relative; padding-top: 10px; background-color: white;">
+        <ion-card-content style="white-space: pre-line; height: 100%; max-height: 100%; overflow-y: scroll;">
 
-              <ion-item style="border-radius: 10px; background-color: rgb(243, 243, 243);">
-                <p class="detail">{{currAwraath.content}}</p>
+          <ion-item style="border-radius: 10px; background-color: rgb(243, 243, 243);">
+            <p class="detail">{{currAwraath.content}}</p>
 
-              </ion-item>
-              <br>
-              <div *ngIf="currAwraath.meaning">
-                 <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
-                 <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225);">
-                    <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;">{{currAwraath.meaning}}</p>
-                  </ion-item>
-              </div>
-
-              <br>
-              <div *ngIf="currAwraath.benifit">
-                <ion-label  style=" color: rgb(177, 55, 55); font-weight:800; font-size: 11px; opacity: 1 !important;">பலன் : </ion-label>
-                <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225)" >
-                  <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;"><i>{{currAwraath.benifit}}</i></p>
+          </ion-item>
+          <br>
+            @if (currAwraath.meaning) {
+              <div>
+                <ion-label  style=" color: rgb(177, 55, 55); font-size: 11px; font-weight: 800;">பொருள் : </ion-label>
+                <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225);">
+                  <p style="text-align: justify; font-size: 13px; width: 100%; font-weight: 500; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;">{{currAwraath.meaning}}</p>
                 </ion-item>
               </div>
+            }
+
+            <br>
+              @if (currAwraath.benifit) {
+                <div>
+                  <ion-label  style=" color: rgb(177, 55, 55); font-weight:800; font-size: 11px; opacity: 1 !important;">பலன் : </ion-label>
+                  <ion-item style="border-radius: 10px; background-color: rgb(226, 225, 225)" >
+                    <p style="text-align: justify; font-size: 13px; width: 100%; opacity: 0.6; padding-top: 12px; padding-bottom: 12px;"><i>{{currAwraath.benifit}}</i></p>
+                  </ion-item>
+                </div>
+              }
 
             </ion-card-content>
           </ion-card>
@@ -236,13 +260,13 @@
       <ng-template>
 
 
-          <ion-toolbar color="warning">
-            <ion-title style="font-size:14px">{{editAwraath.title}}</ion-title>
+        <ion-toolbar color="warning">
+          <ion-title style="font-size:14px">{{editAwraath.title}}</ion-title>
 
-            <ion-buttons slot="end">
-              <ion-button (click)="setEditModel(false)">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setEditModel(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
 
         <ion-content class="ion-padding modalBody">
           <form  #addForm = "ngForm" validate>
@@ -282,7 +306,7 @@
             <div class="cont">
               <ion-button (click)="update()" color="secondary" style = "display: flex;"type="submit" [disabled]="addForm.invalid "  class = "btn">Update</ion-button>
             </div>
-           </form>
+          </form>
         </ion-content>
 
       </ng-template>
